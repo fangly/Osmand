@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="amenity_type_administrative">Administrativo</string>
   <string name="amenity_type_barrier">Barreira</string>
   <string name="amenity_type_education">Educação</string>
@@ -102,7 +102,7 @@
   <string name="vector_data">Mapas vetoriais offline</string>
   <string name="transport_context_menu">Procurar transporte na parada</string>
   
-  <string name="osb_bug_name">Erro</string>
+  
   <string name="poi_context_menu_modify">Modificar POI</string>
   <string name="poi_context_menu_delete">Apagar POI</string>
   <string name="rotate_map_compass_opt">Na direção da bússola</string>
@@ -138,7 +138,7 @@
   <string name="use_trackball">Use o cursor</string>
   <string name="background_service_wait_int_descr">Definir o tempo limite para determinar a localização</string>
   <string name="background_service_wait_int">Tempo de espera</string>
-  <string name="service_stop_background_service">Desligar serviço de segundo plano de navegação</string>
+  
   <string name="where_am_i">Onde estou?</string>
   <string name="process_navigation_service">Serviço de navegação OsmAnd</string>
   <string name="network_provider">Rede</string>
@@ -159,7 +159,7 @@
   <string name="search_poi_filter">Filtro</string>
   <string name="menu_mute_off">Som activado</string>
   <string name="menu_mute_on">Som desativado</string>
-  <string name="voice_not_use">Sem voz</string>
+  
   <string name="voice_provider_descr">Selecione a orientação por voz para navegação ( ver códigos de idioma ISO 639-1 )</string>
   <string name="voice_provider">Instruções por voz</string>
   <string name="voice_data_initializing">Inicializando dados de voz…</string>
@@ -310,15 +310,15 @@
   <string name="save_track_interval_descr">Escolher o intervalo entre posições nas trilhas</string>
   <string name="save_track_interval">Intervalo de gravação</string>
   
-  <string name="save_track_to_gpx_descrp">As trilhas serão gravadas no diretório tracks agrupadas por dia</string>
-  <string name="save_track_to_gpx">salvar trilhas em GPX</string>
+  <string name="save_track_to_gpx_descrp">As trilhas serão automaticamente gravadas no directório \'tracks\' durante a navegação</string>
+  <string name="save_track_to_gpx">salvar trilha GPX durante a navegação</string>
   <string name="update_tile">Atualizar mapa</string>
   <string name="reload_tile">Atualizar imagens</string>
-  <string name="user_name_descr">Nome do usuário OpenStreetMap</string>
+  <string name="open_street_map_login_descr">Nome do usuário OpenStreetMap</string>
   <string name="user_name">Nome do usuário</string>
   <string name="mark_point">Destino</string>
-  <string name="show_osm_bugs_descr">Ver bugs OpenStreet no mapa</string>
-  <string name="show_osm_bugs">Ver bugs OpenStreet</string>
+  
+  
   
   <string name="shared_string_add_to_favorites">Adicionar aos Favoritos</string>
   <string name="use_english_names_descr">Escolher entre os nomes nativos e inglês</string>
@@ -379,10 +379,10 @@
   <string name="search_address_building">Edifício</string>
   <string name="search_address_building_option">Edifício</string>
   <string name="search_address_street_option">Rua transversal</string>
-  <string name="search_tabs_location">Localização</string>
+  
   
   <string name="context_menu_item_update_map">Atualizar mapa</string>
-  <string name="context_menu_item_open_bug">Reportar problema OSM</string>
+  
   <string name="context_menu_item_create_poi">Criar ponto de interesse</string>
   <string name="shared_string_yes">Sim</string>
   <string name="shared_string_cancel">Cancelar</string>
@@ -396,21 +396,21 @@
   <string name="favourites_context_menu_delete">Apagar favorito</string>
   <string name="favourites_remove_dialog_msg">Você quer mesmo apagar este favorito \'%s\'?</string>
   <string name="favourites_remove_dialog_success">Ponto favorito {0} apagado com sucesso.</string>
-  <string name="osb_add_dialog_title">Descrição do problema</string>
-  <string name="osb_add_dialog_success">O bug foi criado</string>
-  <string name="osb_add_dialog_error">Erro: bug não foi criado</string>
-  <string name="osb_comment_menu_item">Adicionar comentário</string>
+  
+  
+  
+  
   <string name="osb_comment_dialog_message">Mensagem</string>
   <string name="osb_comment_dialog_author">Autor</string>
-  <string name="osb_comment_dialog_title">Adicionando comentário ao bug</string>
-  <string name="osb_comment_dialog_add_button">Adicionar comentário</string>
+  
+  
   <string name="osb_comment_dialog_success">Comentário adicionado</string>
   <string name="osb_comment_dialog_error">Erro: o comentário não foi adicionado</string>
-  <string name="osb_close_menu_item">Fechar o bug</string>
-  <string name="osb_close_dialog_title">Fechando o bug</string>
-  <string name="osb_close_dialog_close_button">Fechar o bug</string>
-  <string name="osb_close_dialog_success">Bug fechado com sucesso</string>
-  <string name="osb_close_dialog_error">Erro: bug não foi fechado</string>
+  
+  
+  
+  
+  
   <string name="poi_edit_title">Editar POI</string>
   <string name="poi_create_title">Criar POI</string>
   <string name="poi_error_poi_not_found">Nó não pode ser encontrado ou POI não é um único nó</string>
@@ -430,7 +430,7 @@
   <string name="poi_dialog_comment_default">Alterar POI</string>
   <string name="poi_dialog_other_tags_message">Todos os outros valores serão preservados</string>
   <string name="default_buttons_commit">Enviar</string>
-  <string name="shared_string_clear">Limpar</string>
+  <string name="shared_string_clear">Apagar</string>
   <string name="filter_current_poiButton">Filtro</string>
   
   <string name="edit_filter_save_as_menu_item">Salvar como</string>
@@ -460,11 +460,11 @@
   <string name="map_online_plugin_is_not_installed">Activar plugin de mapas on-line para seleccionar diferentes fontes de mapas</string>
   <string name="map_online_data">Mapas Online e Mosaicos</string>
   <string name="map_online_data_descr">Usar mapas on-line (obter e armazenar mosaicos no cartão SD)</string>
-  <string name="online_map_settings">Mapas Online</string>
+  <string name="shared_string_online_maps">Mapas Online</string>
   <string name="online_map_settings_descr">Configurar fontes de mosaicos ou de mapas on-line</string>
   
   
-  <string name="osmand_rastermaps_plugin_description">"Com este plugin você pode acessar muitos tipos de mapas online (também chamada de quadrícula ou ladrilho), de quadrículas pré-definidas do OpenStreetMap (como Mapnik) para imagens de satélite e camadas especiais como mapas aquáticos, climáticos, geológicos, camadas de sombra de relevo, etc.\n\nQuaisquer desses mapas podem ser usados como mapa principal (base) para ser mostrado no OsmAnd ou como uma sobreposição ou subcamada para outro mapa base (como o mapa offline normal de OsmAnd). A fim de fazer qualquer subcamada do mapa mais visível, certos elementos do mapa vetorial do OsmAnd podem facilmente ser ocultados através do menu \'Configurar mapa\' conforme desejado.
+  <string name="osmand_rastermaps_plugin_description">"Com este plugin, pode ter acesso a muitos tipos de mapas on-line (também chamada de quadrícula ou ladrilho), de quadrículas pré-definidas do OpenStreetMap (como Mapnik) para imagens de satélite e camadas especiais, como mapas aquáticos, climáticos, geológicos, camadas de sombra de relevo, etc.\n\nQuaisquer desses mapas podem ser usados como mapa principal (base) para ser mostrado no OsmAnd, ou como uma sobreposição, ou sub-camada para outro mapa base (como o mapa off-line normal de OsmAnd). Para fazer qualquer sub-camada do mapa mais visível, certos elementos do mapa vetorial do OsmAnd podem facilmente ser ocultados através do menu \'Configurar mapa\'.
 \n\nQuadrículas de mapas podem ser obtidas diretamente através de fontes on-line ou podem ser preparados para uso off-line (e copiadas manualmente para o diretório de dados do OsmAnd) como um banco de dados sqlite, que pode ser produzido por uma variedade de ferramentas de terceiros para preparação de mapas. "</string>
   <string name="osmand_background_plugin_description">This plugin allows tracking or navigation in sleep (screen off) mode by periodically waking up the GPS device.</string>
   <string name="osmand_accessibility_description">Mostrar configurações de características especiais de acessibilidade.</string>
@@ -476,18 +476,7 @@
   
   <string name="prefs_plugins_descr">Plugins activam as configurações avançadas e funcionalidades adicionais</string>
   <string name="prefs_plugins">Gerenciar plugins</string>
-  <string name="tip_recent_changes_0_8_0_t">Alterações na 0.8.0: 
-		\n\t * funcionalidade Plugin * 
-		\n\t - A maioria das funcionalidades são agrupadas por características e pode ser ativado / desativado nas configurações / plugins 
-Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de rastreamento, e muitos outros recursos novos e já existentes. 
-		\n\t-* Novo suporte de dados de mapas off-line * 
-		\n\t …- Mapa prestação torna-se mais rápido e mais preciso (litoral e área inundada problemas são corrigidos principalmente). 
-		\n\t	- Você precisa baixar completamente novos dados offline (dados antigos não serão mais suportadas) 
-		\n\t-Offline Routing * 
-		\n\t	- Roteamento offline torna-se mais robusto 
-		\n\t* Usabilidade e experiência UI * 
-		\n\t	- Melhorou em muitas áreas		
-	</string>
+  
   <string name="osm_editing_plugin_description">This plugin facilitates OSM feedback like collecting / modifying OSM POI objects, opening / commenting OSM bugs, and contributing recorded GPX files (requires OSM credentials).</string>
   <string name="vector_maps_may_display_faster_on_some_devices">Mapas vectoriais são visualizados mais rápido. Podem não funcionar bem em alguns dispositivos.</string>
   
@@ -497,7 +486,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   
   <string name="test_voice_prompts">Testar comandos de voz</string>
   <string name="switch_to_raster_map_to_see">Nenhum mapa vetorial presente para este local .  Você pode baixar um em Configurações (Gerenciar arquivos de mapas ) , ou mudar para mapas online ( activar mapas on-line do plugin para isso).</string>
-  <string name="tip_recent_changes_0_7_2_t">"Changes in 0.7.2 : \n\t- Native rendering for all devices \n\t- Offline POI editing \n\t- Accessibility \n\t- Lots of bug fixes "</string>
+  
   <string name="send_files_to_osm">Enviar arquivos GPX para o OSM?</string>
   <string name="gpx_visibility_txt">Visibilidade</string>
   <string name="gpx_tags_txt">Etiquetas</string>
@@ -510,9 +499,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="info_button">Info</string>
   <string name="back_to_location">Back to location</string>
   <string name="shared_string_help">Ajuda</string>
-  <string name="show_details">Mostrar detalhes</string>
-  <string name="accessibility_extensions_descr">Extensões de acessibilidade para versões Android antigas</string>
-  <string name="accessibility_extensions">Extensões de acessibilidade</string>
+  
   <string name="accessibility_mode">Modo de acessibilidade</string>
   <string name="accessibility_mode_descr">Activa as opções de acessibilidade</string>
   <string name="shared_string_on">Ligado</string>
@@ -557,20 +544,16 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="settings_direction_style_descr">Escolha o estilo para expressar sentidos relativos ao movimento</string>
   <string name="auto_announce_on">Começar auto-anunciar</string>
   <string name="auto_announce_off">Parar auto-anunciar</string>
-  <string name="scroll_map_by_gestures_descr">Usar gestos no ecrã táctil para mover o mapa</string>
-  <string name="scroll_map_by_gestures">Movimentação natural do mapa</string>
   <string name="i_am_here">Estou aqui</string>
   <string name="zoom_by_trackball_descr">Alterar zoom do mapa por movimentos horizontais da trackball</string>
   <string name="zoom_by_trackball">Usar trackball para controle de zoom</string>
-  <string name="use_short_object_names_descr">Use nomes curtos de objetos em modo de exploração por toque</string>
-  <string name="use_short_object_names">Usar nomes de objetos</string>
   <string name="accessibility_preferences_descr">Preferências relacionadas com a acessibilidade</string>
-  <string name="accessibility_preferences">Acessibilidade</string>
+  <string name="shared_string_accessibility">Acessibilidade</string>
   <string name="use_fluorescent_overlays">Sobreposições Fluorescentes</string>
   <string name="use_fluorescent_overlays_descr">Use cores fluorescentes para exibir faixas e rotas</string>
   <string name="offline_edition">Edição offline</string>
   <string name="offline_edition_descr">Usar sempre edição offline</string>
-  <string name="tip_recent_changes_0_7_1_t">"Changes in 0.7.1 : \n\t- Offline POI editing \n\t- Live Tracking option - send coordinates to web service periodically (read how to setup your own web service in HowTo Articles) \n\t- Show currently recorded track on map \n\t- Direction detection: \'Make U-turn\' is indicated and announced when heading in opposite direction or after missing a turn \n\t- New voice prompt \'Route recalculated\' \n\t- Optical indication of an imminent turn within 100m by diretion arrow changing color \n\t- Actuality also of deactivated index files now shown on Download screen in dark green and dark blue \n\t- Other changes "</string>
+  
   <string name="update_poi_does_not_change_indexes">As alterações são apenas armazenadas na memória local. Para serem introduzidas nos mapas tem que ir a \"Editar Offline\" -&gt; \"Enviar\".</string>
   <string name="local_openstreetmap_uploading">A enviar…</string>
   <string name="local_openstreetmap_were_uploaded">{0} POI/Bugs foram enviados</string>
@@ -589,7 +572,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="live_monitoring_url">Live tracking web address</string>
   <string name="gpx_monitoring_disabled_warn">Registro de trajeto usando widget GPX ou via \'Gravação de viagem\' nas configurações.</string>
   <string name="show_current_gpx_title">Mostrar rota atual</string>
-  <string name="tip_recent_changes_0_7_0_t">"Changes in 0.7.0 : \n\t- Offline wikipedia data with articles \n\t- Updated maps \n\t- Other small features "</string>
+  
   <string name="free_version_message">Esta versão gratuita do OsmAnd é limitada a %1$s downloads e não suporta artigos off-line da Wikipedia.</string>
   <string name="free_version_title">Versão gratuita</string>
   <string name="poi_context_menu_showdescription">Ver descritivo do POI</string>
@@ -614,24 +597,18 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="profile_settings">Configurações específicas de Perfil</string>
   <string name="global_settings">Configurações Globais</string>
   <string name="global_app_settings">Configurações globais da aplicação</string>
-  <string name="tip_rotation_switching">Orientação do Mapa</string>
   
   
-  <string name="tip_day_night_mode">Modo Dia/Noite</string>
   
-  <string name="tip_osm_improve">Melhorar dados OSM</string>
-  <string name="tip_osm_improve_t">OsmAnd utiliza mapas baseados em Openstreetmap.org dados (OSM) e pode ser directamente utilizado para melhorar a qualidade dos dados de OSM .  Você pode criar e fazer upload de novos relatórios de bugs POI ou OSM com apenas alguns cliques.
- \n \n Para isso, você precisa ativar o \ plug-in \' OSM Edição \' em \ \' Settings \ \' → \ \' Plugins \' , em seguida, fornecer suas informações de login na OSM \ \' Settings \ \' → \ \' OSM edição \' .
- \n \n Para adicionar um novo uso POI opção \ \'Criar POI \' no menu de contexto \ \' Use localização \' .  Prossiga com a inserir as informações sobre o novo POI na \ \'Criar POI \' diálogo e, finalmente, cometê-lo .
- erros \n \n Também em mapas podem imediatamente ser comunicados através de um bug OSM , para que a comunidade OSM pode corrigir esse problema .  Use a opção \ \'Open OSM bug \ \' em \' Use localização \' do menu \ contexto.  Em seguida, digite a descrição detalhada do problema e, finalmente, publicá-la usando o \ "Adicionar \ \' botão.
- \n \n OsmAnd suporta cache suas entradas off-line ( ver respectiva definição ), mas conectividade com a Internet é, naturalmente, necessário para carregar o seu POI OSM e contribuições de bugs OSM .
-	</string>
+  
+  
+  
+  
   <string name="download_files_not_enough_space">Espaço livre insuficiente, precisa de %1$s MB (só tem: %2$s disponíveis).</string>
   <string name="download_files_question_space">Agora tem {2} MB de espaço livre! Quer fazer o download de {0} arquivo(s) ({1} MB)?</string>
   
   
-  <string name="tip_recent_changes_0_6_9_t">"Mudanças em 0.6.9:\n\t- Melhoria da renderização de mapa off-line\n\t- Rápidas prestações da renderização Nativa off-line - ver em recursos experimentais (pode não funcionar em alguns dispositivos)\n\t- Mudanças maciças na aparência e interação
-\n\t- Informação de Altitude\n\t- Novas traduções (Vienamita, Polaco)\n\t- Outras pequenas características "</string>
+  
   
   <string name="use_transparent_map_theme">Tema transparente</string>
   <string name="native_library_not_supported">Biblioteca Nativa não é compatível com este dispositivo.</string>
@@ -655,7 +632,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   
   <string name="animate_route_off">Parar animação</string>
   <string name="animate_route">Iniciar animação</string>
-  <string name="tip_recent_changes_0_6_8_t">"Changes in 0.6.8 : \n\t- Completely redesigned search (POI, Address)! Make address search much faster and more responsive. Create one Search interface with many different options. \n\t- Implement POI search by name in big areas (countries) \n\t- Fix flickering map screen for tablets (Issue 641) \n\t- Auto-center map view option (Issue 356) \n\t- GPX navigation moved to \'Directions\' and \'Save Directions\' moved to \'About route\' \n\t- POI data included in .obf file (all download indexes after 01/10/11) \n\t- Voice prompt fixes (GPS position fix, omitting first command) \n\t- Small improvements "</string>
+  
   <string name="file_can_not_be_renamed">O ficheiro não pode ser renomeado.</string>
   <string name="file_with_name_already_exists">Já existe um ficheiro com esse nome.</string>
   <string name="gpx_navigation">Rota GPX</string>
@@ -674,11 +651,11 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="search_position_favorites">Favoritos…</string>
   <string name="search_position_undefined">Sem definir</string>
   
-  <string name="search_position_current_location">Posição atual…</string>
+  
   <string name="search_position_map_view">Última vista do mapa</string>
   <string name="select_search_position">Pesquisar próximo a:</string>
   <string name="context_menu_item_search">Pesquisar aqui perto</string>
-  <string name="tip_recent_changes_0_6_7_t">"Recent changes for 0.6.7 : \n\t- Offline data manager (download, delete, activate / deactivate offline data directly in OsmAnd) \n\t- Favorite points and groups (categorize, delete, manage favorites) \n\t- GPX Explorer in application (view track detail, distance, average speed, elevation, etc.) \n\t- GPX navigation (more options, continue navigation after crash, support roundabouts) \n\t- Function to save route as GPX track for offline use \n\t- Improve GPX monitoring (filter some inaccurate position and save accuracy/elevation/speed) \n\t- Upload GPX to OSM community (http://download.osmand.net/gpx/) \n\t- Improve vector rendering \n\t- Improvement of TTS engine (announce exact distance, enable miles) \n\t- Bug fixes "</string>
+  
   <string name="shared_string_save_as_gpx">Guardar a rota como trilha GPX</string>
   <string name="route_successfully_saved_at">Rota guardada como \'%1$s\'.</string>
   <string name="filename_input">O nome do arquivo : </string>
@@ -695,7 +672,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="favorite_home_category">Casa</string>
   <string name="favorite_friends_category">Amigos</string>
   <string name="favorite_places_category">Locais</string>
-  <string name="favorite_default_category">Outros</string>
+  
   <string name="favourites_edit_dialog_name">Name</string>
   <string name="favourites_edit_dialog_category">Categoria</string>
   <string name="shared_string_no_thanks">Não, obrigado</string>
@@ -731,8 +708,8 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="search_offline_clear_search">Nova Pesquisa</string>
   <string name="map_text_size_descr">Seleccione o tamanho do texto para nomes no mapa</string>
   <string name="map_text_size">Text size</string>
-  <string name="tip_recent_changes">Alterações recentes</string>
-  <string name="tip_recent_changes_0_6_6_t">"Recent changes for 0.6.6 : \n\t- Text To Speech engine for voice navigation \n\t- Make map renderer more detailed \n\t- Basemap for whole world packaged with app \n\t- Tweak offline navigation (still experimental) \n\t- GPX navigation options \n\t- UI update and large bug fixing "</string>
+  
+  
   
   <string name="installing_new_resources">Preparando novos dados…</string>
   <string name="internet_connection_required_for_online_route">Para usar o serviço de navegação on-line, precisa de uma ligação à Internet.</string>
@@ -765,27 +742,14 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="select_tile_source_to_install">Selecione os mapas a serem instalados ou atualizados</string>
   <string name="internet_not_available">Precisa de ligação à Internet para essa operação</string>
   <string name="install_more">Instalar mais…</string>
-  <string name="tip_update_index">Atualização de mapas offline</string>
-  <string name="tip_update_index_t">Dados de mapa Actualizados são essenciais para a visão do mapa off-line, para POI / endereço de pesquisa , e para a navegação offline. OsmAnd fornece um gerenciador de dados para baixar os mapas off-line ( e alguns outros arquivos de dados) , e para verificar se há atualizações disponíveis. 
-		\n\n download de mapas ir a \'Configurações \' → \' Data Management \' \' → Download de dados off-line \' . 
-		\n\nDepois a lista região global está recuperado da internet, clique em qualquer entrada para baixar ou atualizar um arquivo . Por favor, note que o seletor de tipo de arquivo na parte superior da tela para selecionar o tipo de download que você quer ( mapas regulares , sobreposições hillshade , etc.) 
-		\n\nVocê pode filtrar a lista região digitando algumas letras , ou você pode selecionar a opção "Configurações \' → \' Filtro baixado \'para ver as atualizações somente para os dados já no seu dispositivo. 
-		\n\n\t* Entradas no \' verde \' indicam arquivos de dados idênticos em dispositivo eo servidor 
-\n\t* Entradas no \ \'blue \' indicam atualizações disponíveis no servidor 
-\n\t* entradas em itálico indicam dados de- ativado no dispositivo
-	</string>
+  
+  
   <string name="level_to_switch_vector_raster_descr">Nível de zoom mínimo para usar mapas vectoriais</string>
   <string name="level_to_switch_vector_raster">Nível mínimo de zoom para vectorial</string>
-  <string name="tip_location_sharing">Partilhar localização</string>
-  <string name="tip_location_sharing_t">Você pode compartilhar a localização de lugares interessantes em sua viagem com a família ou amigos através do " Use local \' menu de contexto \ → \' Compartilhar localização \' .
- \n\n depois escolheu uma maneira de compartilhar sua localização.  As opções são: E-mail, SMS (texto) , ou apenas copiar as coordenadas de localização para a área de transferência do dispositivo.
-	</string>
-  <string name="tip_favorites">Pontos Favoritos</string>
-  <string name="tip_favorites_t">Pontos usados frequentemente podem ser guardados como \"Favoritos\".
-		\n\n Para guardar um ponto como Favorito, no menu de contexto do ponto, seleccione \"Adicionar aos Favoritos\" e escolha um nome.
-		\n\n Ao escolher um item no menu \"Favoritos\", tem as opções para \"Ver no mapa\", \"Definir como destino\", \"Editar\" ou \"Apagar\".
-		\n\n Para ver todos os pontos favoritos directamente no mapa, escolha \"Menu\" -&gt; \"Definir Exibição\" e active a camada \"Favoritos\"
-	</string>
+  
+  
+  
+  
   <string name="create_poi_link_to_osm_doc">" <u>Online OSM</u> map classification with images"</string>
   <string name="error_doing_search">Erro na pesquisa offline</string>
   <string name="search_offline_geo_error">Não foi possível separar geo intent \'%s\'</string>
@@ -793,36 +757,18 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="system_locale">Sistema</string>
   <string name="preferred_locale_descr">Seleccione linguagem</string>
   <string name="preferred_locale">Linguagem</string>
-  <string name="tip_map_switch">Origem dos Mapas</string>
   
-  <string name="tip_app_mode">Perfil</string>
   
-  <string name="tip_navigation">Navegação</string>
-  <string name="tip_navigation_t">Para obter direcções para um lugar , seja diretamente longo clique sobre ele no mapa, ( em seguida, toque seu marcador descrição e selecione \' Directions para \'), ou selecionar \' Directions \' depois de tocar em qualquer entrada em uma lista de resultados de pesquisa  ou lista de favoritos.
- \n \n O destino é marcado como um alvo bandeira marcador laranja no mapa e OsmAnd exibe a distância a ele ea direção a ele ( triângulo laranja).
- \n \n Você pode escolher qualquer um \' Iniciar navegação \' , o que significa que OsmAnd viveria - orientá-lo , dar-lhe instruções de voz (se habilitado) , etc Ou você pode selecionar \' rota Display \" , resultando em rota estática  sem - guideance ao vivo ou ajustes à medida que se movem .
- \n \n Para mostrar uma rota para o destino selecionado a partir de qualquer ponto que não seja a sua posição atual , selecione o ponto de partida no mapa e toque \' Direções de \' .
- \n \n Se você usa \' Direções de \' em conjunto com \' Iniciar navegação \' , OsmAnd mudará para a sua posição actual , logo que ele se encontra ( por isso este pode ser usado para impulsionar o encaminhamento antes da posição é encontrado  ), enquanto \' Direções de \' em combinação com \' Mostrar rota \' só mostra o caminho a partir de qualquer ponto arbitrário que você tinha selecionado sem atualizações posteriores.
-	</string>
-  <string name="tip_search">Buscando</string>
-  <string name="tip_search_t">Você pode procurar por lugares directamente no mapa via \' → \' Pesquisa perto daqui \' Use localização \' , ou ligando para a tela de pesquisa via \' Menu \' → \' Search \' .
-\n \n* A tela de pesquisa fornece modelos para a pesquisa
-\n \t* por endereço
-\n \t* via coordenadas
-\n \t* como POI ( por tipo ou por nome)
-\n \t* via o histórico de pesquisas
-\n \t* ou através de seus favoritos predefinidos.
-\n \n* Para tudo atinge um menu de contexto ou barra de ação oferece opções como \' Directions \' ou \' Mostrar no mapa \'  , etc
-	</string>
-  <string name="tip_map_context_menu">Menu \'Use localização \'</string>
-  <string name="tip_map_context_menu_t">O \' Use localização \' menu de contexto contém todas as ações referentes a um ponto (localização) .
- \n \n É está disponível por longo pressionando qualquer ponto no mapa ( em seguida, tocando seu marcador ) ou pressionando o botão trackball, ou selecionando \'Menu \' → \' Use localização \' ( as duas últimas formas tomar  centro do mapa como referência).
- caixa marcador \n \n A pode ser escondido novamente clicando longo nele.
-	</string>
   
-  <string name="tip_initial_t">OsmAnd é uma aplicação de navegação com muitos recursos.
- \n\n  Nas uma introdução básica , algumas dicas de uso e truques estão ligados via \'Menu \' → \' Dicas \' a partir da tela do mapa.
-	</string>
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <string name="shared_string_next">Próximo</string>
   <string name="shared_string_previous">Anterior</string>
   <string name="unit_of_length_descr">Alterar unidades de medida de distância e velocidade</string>
@@ -872,15 +818,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="route_kr">Keep right</string>
   
   <string name="asap">Assim que possível</string>
-  <string name="tip_recent_changes_0_8_1_t">Alterações na 0.8.1: 
-		\n\t* rotas mais precisas (um pouco mais lento) 
-		\n\t* Inteligente e rápido recalculo de rota 
-		\n\t* Direcção de pistas 
-		\n\t* Informações sobre os limites de velocidade, câmaras de velocidade e lombas
-		\n\t* Melhoria da orientação por voz em rodovias 
-		\n\t* Estacionamento plugin (\ \'Onde está o meu carro estacionado? \') 
-		\n\t* Activar / desactivar a ferramenta de registo
-	</string>
+  
   <string name="gpxup_public">Público</string>
   <string name="gpxup_identifiable">Identificável</string>
   <string name="gpxup_trackable">Rastreável</string>
@@ -902,7 +840,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="osmand_parking_pm">PM</string>
   <string name="osmand_parking_am">AM</string>
   <string name="osmand_parking_position_name">Local de estacionamento</string>
-  <string name="osmand_parking_plugin_description">Este plugin permite armazenar a localização do seu estacionamento.</string>
+  <string name="osmand_parking_plugin_description">Este plugin permite armazenar a localização do seu estacionamento, e quanto tempo resta de parquímetro (se houver limite de tempo).\nTanto a localização como o tempo são visíveis no \'Dashboard\', bem como no widget do mapa. Um lembrete de alarme pode ser adicionado ao calendário Android.</string>
   <string name="osmand_parking_plugin_name">Local de estacionamento</string>
   <string name="context_menu_item_add_parking_point">Marcar como local de estacionamento</string>
   <string name="context_menu_item_delete_parking_point">Apagar um marcador de estacionamento</string>
@@ -927,13 +865,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
   <string name="show_cameras">Mostrar radares</string>
   <string name="show_traffic_warnings">Mostrar limites de velocidade</string>
   <string name="avoid_toll_roads">Evitar portagens</string>
-  <string name="tip_recent_changes_0_8_2_t">Alterações em 0.8.2:
-		\n\t* Routiamento melhorado
-		\n\t* Widgets de mapa dinâmicos
-		\n\t* Deficnições de Mapa movidos para o ecrã do mapa 
-		\n\t* Botão de travamento com serviço de registo 
-		\n\t* Corrigidos línguas Arabic, Kannada scripting e RTL 
-	</string>
+  
   <string name="map_widget_top_text">Nome da Rua</string>
   <string name="map_widget_config">Configuração da tela</string>
   
@@ -965,7 +897,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
 <string name="show_warnings_title">Mostrar alarmes…</string>
 <string name="show_warnings_descr">Mostrar os limites de velocidade, câmeras de velocidade, redutores de velocidade, e outros avisos</string>
 <string name="avoid_motorway">Sem auto-estradas</string>
-<string name="tip_recent_changes_0_8_3_t">Alterações em 0.8.3:\n\t* Pontos de rota intermédios\n\t* Melhoria na orientação de rota\n\t* Adicionada opção que permite evitar auto-estradas ao planear a rota\n\t* Adicionado mais um tipo de via para bicicletas no mapa (Cycleway=track)\n\t* Correções de erros</string>
+
 <string name="snap_to_road_descr">Encaixe posição de estradas durante a navegação</string>
 <string name="snap_to_road">Ajustar à estrada</string>
 <string name="osmand_short_description_80_chars">OsmAnd é uma aplicação de navegação de código aberto para mapas offline e online</string>
@@ -976,7 +908,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
 \nPôr-do-sol: %2$s</string>
 <string name="day_night_info">Dia/noite Informações</string>
 <string name="map_widget_day_night">Modo Dia/noite</string>
-<string name="map_widget_vector_attributes">Atributos de renderização:</string>
+<string name="map_widget_vector_attributes">Atributos de renderização</string>
 <string name="map_widget_renderer">Estilo de renderização</string>
 
 
@@ -996,9 +928,18 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
 <string name="gps_wakeup_interval">GPS intervalo de despertar: %s</string>
 <string name="int_continuosly">Contínuo</string>
 <string name="email">e-mail</string>
-<string name="osmand_long_description_1000_chars">
-		" OsmAnd (Direções OSM automatizados de navegação) O OsmAnd é uma aplicação de navegação livre com acesso a uma ampla variedade de dados OpenStreetMap (OSM) globais. Todos os dados de mapas (mapas vetoriais ou telha) podem ser armazenados no cartão de memória do telefone para uso offline. O OsmAnd também oferece roteamento offline e online, incluindo a funcionalidade de roteamento curva-a-curva com orientação por voz. Algumas das características principais: - Completa funcionalidade offline (guarda os mapas baixados, sejam eles vetoriais ou imagens, em uma pasta selecionável) - Mapas vetoriais compactados para o mundo inteiro disponíveis - Faça o download de mapas de países ou regiões diretamente do aplicativo - Sobreposição de camadas de mapas diversos, como GPX ou trilhas de navegação, Pontos de Interesse, favoritos, curvas de nível, paragens de transportes públicos, mapas adicionais com transparência personalizável - Pesquisa offline para endereços e locais (POIs) - Encaminhamento offline para distâncias curtas (experimental) - Carro, bicicleta, e os modos de pedestres com: - Opcional vista de dia/noite automático de comutação - Mapa em função da velocidade opcional zoom - Alinhamento mapa opcional de acordo com bússola ou direção do movimento - Orientação pista opcional, display de limite de velocidade, registradas e vozes TTS Limitações desta versão gratuita de OsmAnd: - Número de downloads de mapa limitado - Sem acesso a Wikipedia off-line POIs OsmAnd está sendo ativamente desenvolvida e nosso projeto e seu progresso depende ainda contribuições financeiras para financiar o desenvolvimento e testdriving novas funcionalidades. Por favor, considere a compra de OsmAnd, ou ajude a financiar novas funcionalidades específicas ou fazer uma doação no osmand.net."
-	</string>
+<string name="osmand_long_description_1000_chars">" OsmAnd (Direções OSM automatizadas de navegação) é uma aplicação de navegação livre, com acesso a uma ampla variedade de dados OpenStreetMap (OSM) globais. Todos os dados de mapas (mapas vectoriais ou imagens) podem ser armazenados no cartão de memória do telefone para uso off-line. OsmAnd também oferece roteamento off-line e on-line, incluindo a funcionalidade de roteamento curva-a-curva com orientação por voz.
+\n\nAlgumas das características principais:
+\n- Completa funcionalidade offline (guarda os mapas obtidos, sejam eles vectoriais ou imagens, numa pasta seleccionável)
+\n- Mapas vectoriais compactados disponíveis para o mundo inteiro 
+\n- Faça o download de mapas de países ou regiões directamente no aplicativo
+\n- Sobreposição de camadas de mapas diversos, como GPX ou trilhas de navegação, Pontos de Interesse (POI), Favoritos, Curvas de nível, paragens de transportes públicos, mapas adicionais com transparência personalizável
+\n- Pesquisa off-line para endereços e locais (POIs)
+\n- Encaminhamento off-line para distâncias curtas (experimental)
+\n- Modo de Carro, Bicicleta, e Pedestre\n- Vista de dia/noite, com comutação automática (opcional)\n- Zoom de mapa em função da velocidade (opcional)\n- Alinhamento de mapa de acordo com bússola ou direção do movimento (opcional)\n- Orientação de vias, aviso de limite de velocidade, vozes gravadas e TTS (opcional)\n\nLimitações desta versão gratuita de OsmAnd:
+\n- Número de downloads de mapa limitado
+\n- Sem acesso a POIs Wikipedia off-line. 
+\n\nOsmAnd está a em desenvolvimento activo, mas o nosso projecto e o seu progresso ainda depende de contribuições financeiras para financiar o desenvolvimento e testes de novas funcionalidades. Por favor, considere a compra de OsmAnd+, ou ajude a financiar novas funcionalidades específicas ou através duma doação no osmand.net. "</string>
 <string name="rendering_attr_roadColors_description">Selecione um esquema de cores de estrada:</string>
 	<string name="rendering_attr_roadColors_name">Esquema de cores</string>
     <string name="map_widget_show_destination_arrow">Ver direção para o destino</string>
@@ -1026,12 +967,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="poi_filter_accomodation">Alojamento</string>
     <string name="poi_filter_restaurants">Restaurantes</string>
     <string name="poi_filter_sightseeing">Turismo</string>
-    <string name="tip_recent_changes_0_8_4_t">"Mudanças no 0.8.4:\n\t* 
-	Algumas correções de bugs\n\t*
-	Mapa não perde a posição de bloqueio após interrupções 
-	Possibilidade de activar modo suspensão durante a navegação 
-…"
-    </string>
+    
 	<string name="context_menu_item_intermediate_point">Adicionar como ponto de passagem</string>
     <string name="arrived_at_intermediate_point">Você chegou ao seu ponto de passagem</string>
     <string name="map_widget_intermediate_distance">Ponto de passagem</string>
@@ -1049,7 +985,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="native_library_not_running">O aplicativo está sendo executado em modo seguro (desabilite em Configurações).</string>
     <string name="background_service_is_enabled_question">Serviço em segundo plano ainda em execução. Deseja cancelá-lo?</string>
     <string name="close_changeset">Fechar conjunto de alterações</string>
-	<string name="route_descr_current_location">Posição atual</string>
+	
     
     
     <string name="search_villages_and_postcodes">Pesquisa por CEP</string>
@@ -1068,8 +1004,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="recording_is_recorded">Áudio/vídeo está a ser gravado. Para parar pressione o botão de stop no widget.</string>
     <string name="recording_open_external_player">Abrir leitor externo</string>
     <string name="recording_delete_confirm">Quer remover esta gravação?</string>
-    <string name="tip_recent_changes_1_1_0_t">"Mudanças em 1.1.0:\n\t* Plugin calculador de distância\n\t* Plugin de notas áudio / vídeo\n\t* Plugin de Curvas de Nível\n\t* Correções de bugs\n\t* Opção de estilo de mapa \"Touring view\" com mais detalhes, novos estilos de estradas, mais contraste, e opção de caminhadas Alpinas (escala SAC)\n\t* Opção de correção do geóide EGM96, para corrigir as leituras de altitude GPS "
-    </string>
+    
     <string name="recording_context_menu_arecord">Fazer uma nota de áudio</string>
     <string name="recording_context_menu_vrecord">Fazer uma nota de vídeo</string>
     <string name="layer_recordings">Camada de gravação</string>
@@ -1082,7 +1017,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="prefer_motorways">Preferir auto-estradas</string>
 	<string name="prefer_in_routing_title">Preferir-…</string>
 	<string name="prefer_in_routing_descr">Preferir Auto-Estradas</string>
-    <string name="tip_recent_changes_1_2_t">Correções em 1.2.1:\n\t* Corrigido o Geo Intent (Foursquare, c:geo)\n\t* Corrigidos os tremeliques de visor durante a navegação\n\t* Outras pequenas correções\n\nAlterações em 1.2:\n\t* Correções de bugs (acertos nas rotas, pesquisa, gravação de AV, comandos de voz, algumas melhorias de exibição)\n\t* Facilitada a configuração de sobreposições de Sombras de Colinas (requer plugin Curvas de Nível)\n\t* Agora aceita links de localização maps.google.com\n\t* filtro de Kalman para a bússola\n\t* Suporte para relógio Pebble\n\t* Novo widget (Informações GPS)\n\t* Adicionado suporte multi-janela para dispositivos Samsung recentes</string>
+    
     <string name="max_speed_none">Nenhum</string>
     <string name="index_name_openmaps">OpenMaps UE</string>
     
@@ -1114,20 +1049,21 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     
     
     <string name="map_widget_distancemeasurement">Medição da distância</string>
-    <string name="audionotes_location_not_defined">Local para associar com a nota ainda não está definido. \"Usar localização...\" para atribuir uma nota para o local especificado</string>
+    <string name="audionotes_location_not_defined">Local para associar com a nota ainda não está definido. \"Usar localização…\" para atribuir uma nota para o local especificado</string>
     
     <string name="map_widget_audionotes">Notas de áudio</string>
     <string name="audionotes_plugin_description">O plugin de notas de áudio/vídeo fornece a funcionalidade para tomar notas de áudio/fotografia/vídeo durante uma viagem, usando um botão na tela do mapa ou diretamente do menu de contexto para qualquer posição no mapa.</string>
     <string name="audionotes_plugin_name">Notas de Audio/vídeo</string>
     <string name="index_srtm_parts">Partes</string>
     <string name="index_srtm_ele">Curvas de nível</string>
-    <string name="tip_recent_changes_1_1_2_t">Mudanças em 1.1.2:\n\t* melhorias no plug-in de áudio / vídeo (fotos com informações EXIF)\n\t* Usabilidade reparada e reestruturação do plugin de Curvas de Nivel\n\t* Pacotes de Sombras de Colinas para o plugin das Curvas de nível\n\t* Correções de bugs (roteamento suboptimal)
-    </string>
+    
     <string name="recording_photo_description">Foto %1$s de %2$s</string>
     <string name="av_def_action_picture">Capture uma foto</string>
-    <string name="osmand_srtm_long_description_1000_chars">Esse plugin disponibiliza curvas de nível que podem ser mostradas nos mapas offline do OsmAnd. Os dados globais (entre as latitudes 70° norte e 70° sul) são baseados nas medições do SRTM (Shuttle Radar Topography Mission) e do ASTER (Advanced Spaceborn Thermal Emission and Reflection Radiometer), um instrumento de imagens no Terra, o satélite principal do Sistema de Observação da Terra da NASA. O ASTER é um esforço conjunto da NASA, do Ministério da Economia, Comércio e Indústria do Japão e do Sistema Espacial Japonês (J-spacesystems).</string>
-    <string name="srtm_plugin_description">Facilita o download de curvas de nível e relevo sombreado (Configurações -&gt; Dados offline -&gt; Baixar -&gt; Selecciona o tipo de mapa).</string>
-    <string name="srtm_plugin_name">Plugin de curvas de nível</string>
+    <string name="osmand_srtm_long_description_1000_chars">"Este plugin disponibiliza \'Curvas de Nível\' e \'Sombras de Relevo\', que podem ser aplicadas nos mapas standard do OsmAnd.
+\nEstas funcionalidades podem ser apreciadas por atletas, caminhantes, e qualquer pessoa interessada na informação de relevo de uma paisagem.\n\nOs dados globais (entre as latitudes 70° norte e 70° sul) são baseados nas medições do SRTM (Shuttle Radar Topography Mission) e do ASTER (Advanced Spaceborn Thermal Emission and Reflection Radiometer), um instrumento de imagens no \'Terra\', o satélite principal do Sistema de Observação da Terra da NASA. O ASTER é um esforço conjunto da NASA, do Ministério da Economia, Comércio e Indústria do Japão e do Sistema Espacial Japonês (J-spacesystems). "</string>
+    <string name="srtm_plugin_description">"Este plugin disponibiliza \'Curvas de Nível\' e \'Sombras de Relevo\', que podem ser aplicadas nos mapas standard do OsmAnd.
+\nEstas funcionalidades podem ser apreciadas por atletas, caminhantes, e qualquer pessoa interessada na informação de relevo de uma paisagem.\n\nOs dados globais (entre as latitudes 70° norte e 70° sul) são baseados nas medições do SRTM (Shuttle Radar Topography Mission) e do ASTER (Advanced Spaceborn Thermal Emission and Reflection Radiometer), um instrumento de imagens no \'Terra\', o satélite principal do Sistema de Observação da Terra da NASA. O ASTER é um esforço conjunto da NASA, do Ministério da Economia, Comércio e Indústria do Japão e do Sistema Espacial Japonês (J-spacesystems). "</string>
+    <string name="srtm_plugin_name">Curvas de Nível</string>
     <string name="download_select_map_types">Outros mapas</string>
     <string name="download_srtm_maps">Curvas de nível</string>
     <string name="rendering_attr_noAdminboundaries_name">Ocultar limites</string>
@@ -1141,22 +1077,12 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="no_buildings_found">Nenhum edifício encontrado.</string>
     <string name="zxing_barcode_scanner_not_found">Aplicação ZXing Barcode Scanner não está instalada. Procurar no Market?</string>
 	<string name="support_new_features_descr">Faça uma doação para ver novas funcionalidades implementadas nesta aplicação</string>
-	<string name="tip_rotation_switching_t_v2">Você pode definir se, e como, o mapa será rotacionado clicando repetidamente no ícone da bússola na tela do mapa.
-		\n\nAs opções são:
-		\n\t*\'Não girar\' - Mapa ficará fixo sempre com o norte para cima
-		\n\t*\'Na direcção do movimento\' - Mapa será continuamente alinhado com a sua direcção
-		\n\t*\'Na direcção da bússola\' - Mapa será continuamente alinhado com a leitura da bússola do dispositivo "
-	</string>
-	<string name="tip_day_night_mode_t_v2">"A aparência dos mapas off-line pode ser alterada entre o modo dia (mais claro ) e noite ( mais escuro) . Cores noturnas são mais seguras e confortáveis para dirigir à noite.\n\nVocê pode definir uma política de alteração para o dia/noite em  \'Menu\' → \'Configurar mapa\' → \'Modo dia/noite\'.
-\n\n As escolhas são:
-\n\t* \'Nascer/Pôr-do-sol\': modo automático, controlado pela posição do sol (pré-definido):
-\n\t* \'Dia\': sempre usar o modo diurno\n\t* \'Noite\' : sempre usar o modo noturno
-\n\t* \'Sensor de luz\': a aparência do mapa é controlada pelo sensor de luz do aparelho (se equipado) "</string>	
+	
+		
 	<string name="incomplete_locale">incompleto</string>
 	<string name="street_name">Rua</string>
 	<string name="hno">Número de casa</string>
-    <string name="tip_recent_changes_1_0_0_t">Mudanças em 1.0.0:\n\t* Melhorado cálculo de rota: mais rápido, mais preciso e até 250 km\n\t* Incluída opção de mapas apenas com estradas\n\t* Mapa não perde posição após interrupções\n\t* Permitido modo de serviço oculto durante a navegação
-    </string>
+    
     <string name="monitoring_settings">Serviços de monitoramento e Serviço em segundo plano</string>
     <string name="choose_osmand_theme_descr">Escolha o tema da aplicação</string>
     <string name="choose_osmand_theme">Tema da aplicação</string>
@@ -1168,27 +1094,19 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="layer_hillshade">Camada de Sombras de relevo</string>
     <string name="map_widget_gps_info">Informação de GPS</string>
     <string name="download_using_mobile_internet">A Wifi está desligada. Quer continuar o download com a ligação internet?</string>
-    <string name="tip_recent_changes_1_3_t">Alterações em 1.3:
-    \n\t* Reposto suporte para Tablets e Ecrãs grandes
-    \n\t* Tema Holo (personalização de tema)
-    \n\t* Definições adicionais para estabilização da bússola
-    \n\t* Botão no canto superior esquerdosubstitui o boão Menu
-    </string>
+    
     <string name="monitoring_settings_descr">Cancelar rota</string>
     <string name="clear_destination">Apagar local de destino</string>
     
     
-    <string name="download_hillshade_item">Sombras de relevo</string>
+    
     <string name="download_hillshade_maps">Sobreposições de Sombras de Colinas</string>
     <string name="files_limit">Restando %1$d arquivos</string>
     <string name="available_downloads_left">Disponível %1$d arquivos para download</string>
     <string name="install_paid">Versão completa</string>
     <string name="cancel_route">Descartar rota</string>
     <string name="cancel_navigation">Parar navegação</string>
-    <string name="tip_recent_changes_1_1_4_t">"Mudanças em 1.1.4: ↵
-      \n→* Interface do usuário redesenhada ↵
-         \n→* Correções de erros "
-    </string>
+    
     <string name="local_osm_changes_backup_successful">Ficheiro de alterações OSM gerado com sucesso %1$s</string>
     <string name="local_osm_changes_backup_failed">Falha ao copiar as alterações OSM</string>
     <string name="local_osm_changes_backup">Copiar como alteração OSM</string>
@@ -1201,8 +1119,8 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="gpx_file_name">Nome do arquivo GPX</string>
     <string name="gpx_saved_sucessfully">Arquivo GPX guardado com sucesso em {0}</string>
     <string name="osmand_distance_planning_plugin_name">Calculadora de Distância e Ferramenta de Planeamento</string>
-    <string name="osmand_distance_planning_plugin_description">"Criar caminhos (ou usar / modificar arquivos GPX existentes) para medir a distância entre  pontos. Se guardar como GPX, pode usar para planear rotas GPX."</string>
-    <string name="tip_altitude_offset">Altitude - Corrigir o offset</string>
+    <string name="osmand_distance_planning_plugin_description">Este plugin fornece um widget na tela do mapa que permite criar caminhos ao tocar no mapa, ou usar/modificar arquivos GPX existentes, para planear uma viagem e medir a distância entre os pontos. Os resultados podem ser guardados como um arquivo GPX, que pode ser usado posteriormente para orientação.</string>
+    
 	<string name="driving_region_descr">Selecione região: EUA, Europa, RU, Ásia e outros</string>
 	<string name="driving_region">Região</string>
 	<string name="driving_region_japan">Japão</string>
@@ -1218,13 +1136,7 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
     <string name="speak_speed_limit">Anunciar limite de velocidade</string>
     <string name="speak_cameras">Anunciar radares</string>
 	<string name="speak_traffic_warnings">Anunciar avisos de tráfego</string>
-    <string name="tip_recent_changes_1_5_t">Alterações na versão 1.5:
-	\n\t* Avisos vocais sobre limites de velocidade e radares
-	\n\t* Melhores capacidades (anúncio de nomes de rua)
-	\n\t* Ícones do mapa em alta densidade
-	\n\t* Diversas correções na interface
-	\n\t* Correções nas distâncias, analisador GPX, gestão de pontos de passagem, widget de planeamento, envios OSM, gestão HTTP
-    </string>
+    
     <string name="osb_author_or_password_not_specified">Especifique o utilizador e a senha nas definições</string>
     <string name="clear_intermediate_points">Remover pontos intermédios</string>
     <string name="keep_intermediate_points">Manter pontos intermédios</string>
@@ -1241,18 +1153,10 @@ Você pode ativar (on-line ou em cache) fontes azulejo mapa, configurações de 
 	<string name="destination_point">Destino %1$s</string>
     <string name="context_menu_item_destination_point">Definir como destino</string>
     <string name="please_select_address">Selecione primeiro a cidade ou rua</string>
-    <string name="tip_recent_changes_1_4_t">Alterações na versão 1.4:
-	\n\t* Organização de locais de passagem otimizada para os visitar todos (vendedor ambulante, porta a porta)
-	\n\t* Procura de ruas por nome (na vizinhança) 
-	\n\t* Modo de planeamento (carregar/editar/gravar  GPX)
-	\n\t* Novo ecrã de transferências (transferência em segundo plano)
-	\n\t* Suporte a subpastas GPX (organização de GPX )
-	\n\t* Eliminação de ficheiros SRTM
-	\n\t* Suporte a notas OSM 
-    </string>
+    
     <string name="search_street_in_neighborhood_cities">Procurar rua na vizinhança</string>
     <string name="intermediate_items_sort_return">Pontos intermédios organizados para otimizar a ordem até ao destino.</string>
-    <string name="intermediate_items_sort_by_distance">Ordem (porta a porta)</string>
+    <string name="intermediate_items_sort_by_distance">Ordem porta a porta</string>
     <string name="use_distance_measurement_help">Toque para marcar um pont.\n
 Pressione e segure no mapa para apagar pontos anteriores.\n
 Pressione e segure no ponto para ver e anexar descrição.\n
@@ -1262,21 +1166,17 @@ Clique no widget de medição para ver mais ações.</string>
     <string name="distance_measurement_finish_editing">Finalize edição</string>
     <string name="distance_measurement_finish_subtrack">Comece uma nova subrota</string>
     <string name="distance_measurement_clear_route">Apagar os pontos</string>
-    <string name="distance_measurement_save_gpx">Salve como GPX</string>
+    
     <string name="distance_measurement_load_gpx">Abrir GPX</string>
     <string name="wait_current_task_finished">Aguarde até que a tarefa esteja concluída</string>
     <string name="use_kalman_filter_compass_descr">Use filtro Kalman para evitar aberrações na bússola</string>
     <string name="use_kalman_filter_compass">Use filtro Kalman</string>
-    <string name="access_mark_final_location_first">Modo de acessibilidade: selecione o destino primeiro</string> 
     <string name="use_magnetic_sensor_descr">use o sensor magnético para determinar a direção da bússola em vez do sensor de orientação</string>
     <string name="use_magnetic_sensor">Use sensor magnético</string>
     <string name="other_location">Outro</string>
     <string name="local_indexes_cat_srtm">Dados de curvas de nível</string>
     
-    <string name="tip_altitude_offset_t">A Maioria dos dispositivos GPS reportam medidas de altitude no sistema de referência elipsoidal WGS84, para o qual a conversão para sistemas usados localmente requerem a correção dependente de posição.
-		\n\nUma melhor aproximação para esses sistmas locais é a referência EGM96. OsmAnd agora também suporta a exibição automática de altitudes no sistema EGM96.
-		\n\nPara obtê-lo, faça o download do arquivo WW15MGH.DAC via Gerenciamento de Dados (original em http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm96/binary/WW15MGH.DAC).
-	</string>
+    
     <string name="monitoring_control_start">GPX</string>
     <string name="osmand_play_title_30_chars">Mapas OsmAnd &amp; Navegação</string>
 	<string name="osmand_extended_description_4000_chars">
@@ -1351,13 +1251,8 @@ Lista de países (basicamente, o mundo todo!):
 Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, Argentina, Armenia, Aruba, Australia, Austria, Azerbaijan, Bahamas, Bahrain, Bangladesh, Barbados, Belarus, Belgium, Belize, Benin, Bermuda, Bhutan, Bolivia, Bonaire, Bosnia and Herzegovina, Botswana, Brazil, British Virgin Islands, Brunei, Bulgaria, Burkina Faso, Burundi, Cambodia, Cameroon, Canada, Cape Verde, Central African Republic, Chad, Chile, China, Colombia, Comoros, Congo, Costa Rica, Ivory Coast, Croatia, Cuba, Curaçao, Cyprus, Czech Republic, Denmark, Djibouti, Dominica, Dominican Republic, Ecuador, Egypt, El Salvador, Equatorial Guinea, Eritrea, Estonia, Ethiopia, Fiji, Finland, France, French Guiana, French Polynesia, Gabon, Gambia, Georgia, Germany, Ghana, Gibraltar, Greece, Greenland, Grenada, Guadeloupe, Guam, Guatemala, Guernsey, Guinea, Guinea-Bissau, Guyana, Haiti, Vatican, Honduras, Hong Kong, Hungary, Iceland, India, Indonesia, Iran, Iraq, Ireland, Isle of Man, Israel, Italy, Jamaica, Japan, Jersey, Jordan, Kazakhstan, Kenya, Kiribati, North Korea and South Korea, Kuwait, Kyrgyzstan, Laos, Latvia, Lebanon, Lesotho, Liberia, Libya, Liechtenstein, Lithuania, Luxembourg, Macao, Macedonia, Madagascar, Malawi, Malaysia, Maldives, Mali, Malta, Martinique, Mauritania, Mauritius, Mayotte, Mexico, Micronesia, Moldova, Monaco, Mongolia, Montenegro, Montserrat, Morocco, Mozambique, Myanmar, Namibia, Nauru, Nepal, Netherlands, Netherlands Antilles, New Caledonia, New Zealand, Nicaragua, Niger, Nigeria, Norway, Oman, Pakistan, Palau, Palestinian Territory, Panama, Papua New Guinea, Paraguay, Peru, Philippines, Poland, Portugal, Puerto Rico, Qatar, Romania, Russia, Rwanda, Saint Barthelemy, Saint Helena, Saint Kitts and Nevis, Saint Lucia, Saint Martin, Saint Pierre and Miquelon, Saint Vincent and the Grenadines, Samoa, San Marino, Saudi Arabia, Senegal, Serbia, Seychelles, Sierra Leone, Singapore, Slovakia, Slovenia, Somalia, South Africa, South Georgia, South Sudan, Spain, Sri Lanka, Sudan, Suriname, Swaziland, Sweden, Switzerland, Syria, Taiwan, Tajikistan, Tanzania, Thailand, Timor-Leste, Togo, Tokelau, Tonga, Trinidad and Tobago, Tunisia, Turkey, Turkmenistan, Tuvalu, Uganda, Ukraine, United Arab Emirates, United Kingdom (UK), United States of America (USA), Uruguay, Uzbekistan, Vanuatu, Venezuela, Vietnam, Wallis and Futuna, Western Sahara, Yemen, Zambia, Zimbabwe.
 	</string>
 	<string name="osmand_plus_play_title_30_chars">Mapas OsmAnd+ &amp; Navegação</string>
-	<string name="tip_map_switch_t_v2">O caminho dos mapas e camadas mostradas são mudados via \'Menu\' -&gt; \'Definir vista\' em vista de mapa.
-\n\n em \'Caminho dos maps…\' você pode escolhe usar os mapas vetoriais offline pré-carregados, predefined (online) tile sources (ative o plugin \'Online and tile maps\' para isso), ou mapas criados manualmente usando, por exemplo OsmAndMapCreator em um PC.
-→→\n\n OsmAnd também suporta fontes customizadas.
-	</string>
-	<string name="tip_app_mode_t_v2">tOsmAnd suporta diferentes (personalizáveis) perfis de aplicação para diferentes usos.
-\n\n Você pode mudar os perfis via botão perfil no canto inferior esquerdo da tela do mapa (ícone do carro, bicicleta ou pedestre) ou quando criando uma rota.
-	</string>
+	
+	
 	<string name="shared_string_downloading">Baixando</string>
 	<string name="osb_author_dialog_password">Password do OSM (opcional)</string>
 	<string name="av_camera_focus">Tipo de foco da câmera</string>
@@ -1371,9 +1266,9 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
 	<string name="av_photo_play_sound">Emita som ao tirar foto</string>
 	<string name="av_photo_play_sound_descr">Escolha se emitir som quando tirar fotos</string>
 <string name="driving_region_canada">Canadá</string>
-	<string name="tip_map_styles">Estilos de mapa</string>
+	
 	<string name="about_version">Versão:</string>
-    <string name="about_settings">Sobre</string>
+    <string name="shared_string_about">Sobre</string>
     <string name="about_settings_descr">Versão, licenças, membros do projeto</string>
     
     <string name="local_index_tile_data_zooms">Zoom transferidas: %1$s</string>
@@ -1392,17 +1287,7 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="edit_tilesource_name">Nome</string>
     <string name="maps_define_edit">Definir/Editar…</string>
 	<string name="map_widget_fps_info">Depuração FPS</string>
-	<string name="tip_recent_changes_1_6_t">"Alterações na versão 1.6
-\n\t* Suporte de dispositivos Full HD
-\n\t* Suporte a fundo de mapa transparente
-\n\t* Mostrar mapas transferidos e facilitar a transferência de mapas em falta diretamente na vista do mapa
-\n\t* Ficheiros de curvas de nível de mapas disponíveis para países e regiões
-\n\t* Novo mapa mundial com as principais estradas, ferrovias e características de área, como florestas
-\n\t* Uma lupa para o mapa (clique longo no botão de ampliação) - Útil para mapas vetoriais em em mosaico
-\n\t* Possibilidade de definir/editar fontes de azulejos personalizados (e especificar tempo de expiração)
-\n\t* Suporte a limites de velocidade condicionais (Holanda)  
-\n\t* Melhorias no mapa de procura de endereços
-\n\t* Correções de erros nas rotas e renderização "</string>
+	
     
     
     
@@ -1410,35 +1295,9 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     
     <string name="map_magnifier">Lupa do mapa</string>
     <string name="base_world_map">Mapa mundial</string>
-	<string name="osmand_plus_long_description_1000_chars">
-		→ → Osmand + ( OSM automatizados direções de navegação ) ↵
-↵
-→ → OsmAnd + é uma aplicação de navegação de código aberto , com acesso a uma ampla variedade de OpenStreetMap ( OSM) dados globais . Todos os dados cartográficos (mapas vetoriais ou telha ) podem ser armazenados no cartão de memória do telefone para uso offline. OsmAnd também oferece funcionalidade de roteamento off-line e on-line , incluindo orientação por voz turn- by-turn . ↵
-↵
-→ → OsmAnd + é a versão do aplicativo pago, por comprá-lo você apoiar o projeto, financiar o desenvolvimento de novas funcionalidades, e receber as últimas atualizações. ↵
-↵
-→ → Algumas das características principais: ↵
-→ → - funcionalidade off-line completa ( armazenar mapas baixados vetor ou telha em uma pasta selecionável) ↵
-→ → - mapas vetoriais compactos off-line para todo o mundo disponíveis ↵
-→ → - Unlimited download de país ou região mapas diretamente do aplicativo ↵
-→ → - característica off-line Wikipedia (download Wikipedia POIs) , ótimo para passeios ↵
-→ → - Sobreposição de várias camadas de mapas possíveis , como GPX ou navegação trilhas , pontos de interesse , favoritos , curvas de nível , paragens de transportes públicos , mapas adicionais com transparência personalizável ↵
-→ → - Offline busca de endereços e locais ( POIs) ↵
-→ → - Offline encaminhamento para distâncias curtas ( experimental) ↵
-→ → - de carro, de bicicleta, e os modos de pedestres com: ↵
-→ → - dia / noite visão automatizada opcional comutação ↵
-→ → - mapa em função da velocidade opcional zoom ↵
-→ → - alinhamento mapa opcional de acordo com a bússola ou direção do movimento ↵
-→ → - orientação opcional pista , display de limite de velocidade , registradas e TTS vozes ↵
-→
-	</string>
+	<string name="osmand_plus_long_description_1000_chars">" → → Osmand+ (OSM automatizados direções de navegação) ↵ ↵ → → OsmAnd+ é uma aplicação de navegação de código aberto, com acesso a uma ampla variedade de dados globais OpenStreetMap (OSM). Todos os dados cartográficos (mapas vectoriais ou de imagem) podem ser armazenados no cartão de memória do telefone para uso off-line. OsmAnd também oferece funcionalidade de roteamento off-line e on-line , incluindo orientação por voz curva-a-curva. ↵ ↵ → → OsmAnd + é a versão do aplicativo pago, ao comprá-lo você apoia o projecto, financia o desenvolvimento de novas funcionalidades, e recebe as últimas actualizações. ↵ ↵ → → Algumas das características principais: ↵ → → - funcionalidade off-line completa ( armazenar mapas vectoriais obtidos ou imagens numa pasta seleccionável) ↵ → → - mapas vectoriais compactos off-line disponíveis para todo o mundo ↵ → → - Download ilimitado de mapas de países ou regiões diretamente no aplicativo ↵ → → - Funcionalidade Wikipedia off-line (obter POIs Wikipedia) , ótimo para passeios ↵ → → - Sobreposição de várias camadas de mapas possíveis , como GPX ou trilhas de navegação, pontos de interesse, favoritos, curvas de nível, paragens de transportes públicos, mapas adicionais com transparência personalizável ↵ → → - Busca off-line de endereços e locais ( POIs) ↵ → → - Encaminhamento Off-line para distâncias curtas (experimental) ↵ → → - Modos de Carro, Bicicleta, e Pedestre↵ → → - Vista de mapa em modo dia / noite, com comutação automatizada (opcional)↵ → → - Zoom de mapa em função da velocidade (opcional)↵ → → - Alinhamento de mapa de acordo com a bússola ou direcção do movimento (opcional)↵ → → - Indicação de vias, aviso de limite de velocidade, vozes gravadas e TTS (opcional) "</string>
 	<string name="osmand_plus_extended_description_4000_chars">" ↵ OsmAnd ( OSM automatizados direções de navegação ) é um mapa e aplicação de navegação com acesso aos OpenStreetMap ( OSM) de dados livre , em todo o mundo , e de alta qualidade . Todos os dados do mapa podem ser armazenados no cartão de seu dispositivo \'s de memória para uso offline. Via o seu dispositivo \'s GPS, OsmAnd oferece roteamento , com orientação ótica e voz , para o carro , bicicleta, e de pedestres. Todas as principais funcionalidades de trabalhar tanto on-line e off-line (sem internet necessário). ↵ ↵ OsmAnd + é a versão do aplicativo pago. Ao comprá-lo você apoiar o projeto, financiar o desenvolvimento de novas funcionalidades, e receber as últimas atualizações. Você pode testar o aplicativo antes de comprar , instalando a versão gratuita chamada OsmAnd . ↵ ↵ Algumas das principais características: ↵ ↵ navegação ↵  - Obras on-line (rápido) ou offline (sem tarifas de roaming quando estão no exterior ) ↵  - Turn- by-turn orientação por voz ( gravada e vozes sintetizadas ) ↵  - Orientação opcional pista , display nome da rua, e tempo estimado de chegada ↵  - Suporta pontos intermediários em seu itinerário ↵  - O reencaminhamento automático sempre que desviar da rota ↵  - Procure lugares por endereço , por tipo (por exemplo : restaurante , hotel, posto de gasolina, museu) , ou através de coordenadas geográficas ↵ ↵ Mapa Visualizando ↵  - Indique sua posição e orientação no mapa ↵  - Opcionalmente orientar o mapa de acordo com a bússola ou a sua direcção de movimento ↵  - Salvar seus lugares mais importantes como favoritos ↵  - Mostrar POIs ( ponto de interesse ) em torno de você ↵  - Pode exibir mapas on-line especializadas azulejo ↵  - Pode mostrar a vista de satélite ( a partir de Bing) ↵  - Pode apresentar diferentes sobreposições , como turismo / navegação faixas GPX e mapas adicionais com transparência personalizável ↵  - Opcionalmente exibir nomes de lugares em Inglês, local, ou ortografia fonética ↵ ↵ Use OpenStreetMap e Wikipedia dados: ↵  - Informações de alta qualidade com os melhores projetos de colaboração do mundo ↵  - Mapas globais de OpenStreetMap , disponíveis por país ou região ↵  - Wikipedia POIs , ótimo para passeios ↵  - Unlimited download gratuito, diretamente do aplicativo ↵  - Sempre mapas de up- to-date ( atualizado pelo menos uma vez por mês ) ↵  - Mapas vetoriais compactos off-line ↵  - Escolha entre os dados de mapas completos e apenas rede viária ( Exemplo: Todo o Japão é de 700 MB , ou 200 MB para a rede de estradas apenas) ↵  - Também suporta mapas azulejo on-line ou em cache ↵ ↵ Características de segurança ↵  - Dia / noite visão automatizada opcional comutação ↵  - Display opcional limite de velocidade , com lembrete , se você ultrapassá-lo ↵  - Mapa em função da velocidade opcional zoom ↵  - Compartilhe sua localização para que seus amigos possam encontrá-lo ↵ ↵ Bicicleta e Recursos ↵  - Os mapas incluem pé , caminhadas e ciclovias , ótimo para atividades ao ar livre ↵  - Roteamento especial e modos de exibição de bicicleta e pedestre ↵  - Opcionais paragens de transportes públicos ( autocarro, eléctrico, comboio ), incluindo nomes de linha ↵  - Gravação de viagem opcional para o arquivo GPX local ou serviço online ↵  - Velocidade e altitude Opcional exibir ↵  - Apresentação de curvas de nível e hill -shading (via plug-in adicional) ↵ ↵ Contribuem diretamente para o OpenStreetMap ↵  - Relatório mapa erros ↵  - Envie GPX faixas para OSM diretamente do aplicativo ↵  - Adicionar POIs e enviá-los diretamente para OSM (ou mais tarde, se offline) ↵  - Gravação de viagem opcional também no modo de fundo ( enquanto o dispositivo estiver no modo sleep ) ↵ ↵ OsmAnd é open source e sendo ativamente desenvolvida. Todos podem contribuir para a aplicação, por relatar bugs , melhorando as traduções, ou codificação novos recursos. O projeto está em um estado animado de melhoria contínua por todas estas formas de desenvolvimento e interação do usuário. O andamento do projeto também conta com contribuições financeiras para financiar o desenvolvimento , codificação e teste de novas funcionalidades. Ao comprar OsmAnd + você ajuda o aplicativo para ser ainda mais incrível! Também é possível financiar novas funcionalidades específicas , ou para fazer uma doação geral sobre osmand.net . ↵ ↵ ↵ Cobertura do mapa aproximado e qualidade: ↵  - Europa Ocidental : **** ↵  - Europa Oriental : *** ↵  - Rússia: *** ↵  - América do Norte : *** ↵  - América do Sul : ** ↵  - Ásia : ** ↵  - Japão e Coréia : *** ↵  - Oriente Médio: ** ↵  - África : ** ↵  - Antarctica : * ↵ ↵ Lista dos países apoiado (basicamente todo o mundo !) : ↵ Afeganistão , Albânia, Argélia , Andorra, Angola , Anguilla, Antígua e Barbuda, Argentina , Armênia , Aruba, Austrália, Áustria, Azerbaijão , Bahamas , Bahrein, Bangladesh , Barbados, Belarus , Bélgica , Belize, Benin , Bermudas , Butão, Bolívia, Bonaire, Bósnia e Herzegovina , Botswana, Brasil , Ilhas Virgens Britânicas , Brunei, Bulgária , Burkina Faso , Burundi, Camboja , Camarões , Canadá , Cabo Verde, República Centro Africano , Chade, Chile , China, Colombia , Comoros , Congo , Costa Rica , Costa do Marfim , Croácia , Cuba, Curaçao, Chipre, República Checa , Dinamarca , Djibuti, Dominica, República Dominicana, Equador , Egito, El Salvador, Guiné Equatorial , Eritréia, Estônia , Etiópia , Fiji, Finlândia, França, Guiana Francesa, Polinésia , Gabão, Gâmbia, Geórgia , Alemanha , Gana, Gibraltar , Grécia, Greenland , Grenada , Guadalupe , Guam , Guatemala, Guernsey , Guiné , Guiné-Bissau , Guiana , Haiti, Vaticano , Honduras , Hong Kong, Hungria, Islândia, Índia , Indonésia , Irã, Iraque , Irlanda, Ilha de Man , Israel, Itália , Jamaica, Japão , Jersey , Jordânia, Cazaquistão , Quênia , Kiribati , Coréia do Norte e Coréia do Sul , Kuwait, Quirguistão , Laos, Letônia , Líbano , Lesoto, Libéria , Líbia, Liechtenstein , Lituânia, Luxemburgo , Macau, Macedónia , Madagáscar, Malawi , Malásia, Maldivas , Mali, Malta , Martinica, Mauritânia, Maurícias , Mayotte , México, Micronésia, Moldávia , Mônaco , Mongólia , Montenegro, Montserrat, Marrocos, Moçambique , Myanmar, Namíbia , Nauru , Nepal, Holanda , Antilhas Holandesas , Nova Caledônia , Nova Zelândia, Nicarágua , Níger, Nigéria , Noruega , Omã, Paquistão , Palau, Território da Palestina , Panamá , Papua Nova Guiné, Paraguai , Peru, Filipinas, Polônia , Portugal , Porto Rico , Qatar, Romênia, Rússia, Ruanda, Saint Barthelemy , Santa Helena , São Cristóvão e Nevis , Santa Lúcia, Saint Martin, Saint Pierre e Miquelon , São Vicente e Granadinas, Samoa , San Marino , Arábia Saudita, Senegal , Sérvia , Seychelles, Serra Leoa, Cingapura , Eslováquia, Eslovênia , Somália, África do Sul, Geórgia do Sul , Sudão do Sul, Espanha , Sri Lanka , Sudão, Suriname , Suazilândia , Suécia, Suíça , Síria, Taiwan , Tajiquistão, Tanzânia, Tailândia , Timor -Leste , Togo, Tokelau , Tonga , Trinidad e Tobago , Tunísia, Turquia , Turcomenistão, Tuvalu , Uganda, Ucrânia , Emirados Árabes Unidos , Reino Unido (UK) , Estados Unidos da América (EUA), Uruguai , Uzbequistão , Vanuatu , Venezuela, Vietnam , Wallis e Futuna , Saara Ocidental , Yemen , Zâmbia, Zimbabwe. ↵ → "</string>
-	<string name="tip_map_styles_t">OsmAnd permite exibir mapas vetoriais, sem necessitar de conexão com a internet, em diferentes estilos dependendo das suas necessidades: ↵
-→ → \n \n NOTHER que o \ "default \" estilo mapa equilibrado, você pode, em \'Menu \' → \'Configurar tela \' → \'Map Style \' escolha por exemplo ↵
-→ → \n \t * O \'Touring vista \' estilo, que contém as informações mais detalhadas feasable para viagens e turismo, incluindo a optimização dos motoristas profissionais (maior contraste, estradas distintas), as opções para caminhadas Alpine (escala SAC), ciclovias, apoio símbolo caminhadas, etc ↵
-→ → \n \t * \'estradas de alto contraste \' mostra estradas em cores muito acentuadas para situações de iluminação ambiente brilhantes ↵
-→ → \n \t * \'Winter e ski \' cria um (coberto de neve) Inverno modo paisagem, e mostra pistas de esqui e teleféricos globais (em conexão com a \'World ski \' mapa download) ↵
-	</string>
+	
     <string name="auto_zoom_none">Sem zoom automático</string>
     <string name="auto_zoom_close">Aproximar</string>
     <string name="auto_zoom_far">Visão intermédia</string>
@@ -1458,8 +1317,8 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="app_mode_motorcycle">Motocicleta</string>
     <string name="app_mode_boat">Barco</string>
     <string name="app_mode_aircraft">Aeronave</string>
-    <string name="tip_faq_t">Por favor aceda a https://code.google.com/p/osmand/wiki/FAQ e veja as perguntas mais frequentes.</string>
-    <string name="tip_faq">Respostas às perguntas frequentes</string>
+    
+    
     <string name="local_osm_changes_delete_all_confirm">Você vai apagar %1$d osm mudanças .  Você tem certeza ?</string>
     <string name="shared_string_delete_all">Eliminar tudo</string>
     <string name="amenity_type_osmwiki">Wikipedia (off-line)</string>
@@ -1481,14 +1340,14 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="osmo_use_server_name">Nome registado</string>
     <string name="osmo_connect_to_my_nickname">Minha alcunha</string>
     <string name="osmo_user_name">Utilizador</string>
-	<string name="color_red">vermelho</string>
-	<string name="color_pink">rosa</string>
-	<string name="color_orange">laranja</string>
-	<string name="color_brown">castanho</string>
-	<string name="color_yellow">amarelo</string>
-	<string name="color_lightblue">azul claro</string>
-	<string name="color_blue">azul</string>
-	<string name="color_green">verde</string>
+	
+	<string name="rendering_value_pink_name">rosa</string>
+	
+	<string name="rendering_value_brown_name">castanho</string>
+	
+	
+	
+	
 	
     <string name="osmo_edit_device">Mudar propriedades do utilizador</string>
     <string name="osmo_edit_color">Mostrar cor</string>
@@ -1497,17 +1356,7 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="osmo_group_share">Para ligar-se ao grupo %2$s, indique o id do grupo (%1$s) ou click %3$s .</string>
     <string name="osmo_share_connect_device">Permitir seguir permanentement este dispositivo</string>
     <string name="osmo_share_current_session">Partilhar sessão actual no browser</string>
-    <string name="tip_recent_changes_1_7_1_t">Alterações em 1.7:
-    \n\t* IMPORTANTE os mapas devem ser mais recente do que Fevereiro de 2014.
-	\n\t* Roteamento completamente actualizado (rápido e preciso) - 
-    \n\t* Novo ecrã com planeamento da rota (mais intuitivo e poderoso)
-    \n\t** NOTA rota GPX está disponível no botão definições de Rota
-    \n\t* botões escondem-se automaticamente em modo navegação
-    \n\t* Calcular rota em modo offline para p primeiro ponto da rota GPX (\'pass the whole track\' option)
-	\n\t* Simulação activa em túneis 
-	\n\t* Muitos pequenos melhoramentos e correcções
-	\n\t* Definição da velocidade de fala
-    </string>
+    
     <string name="guidance_preferences_descr">Preferencias de navegação</string>
     <string name="routing_preferences_descr">Preferências de rota</string>
     <string name="speech_rate_descr">Definir velocidade de fala para TTS</string>
@@ -1522,13 +1371,13 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="osmo_expire_group">Expira em</string>
     <string name="osmo_group_description">Descrição</string>
     <string name="osmo_group_policy">Politica</string>
-    <string name="osmo_connect_to_device_tracker_id">Identificador do tracker</string>
+    <string name="osmo_connect_to_device_tracker_id">ID do Rastreador</string>
     <string name="osmo_connect_to_device_name">Nome do utilizador</string>
     <string name="osmo_connect_to_group_id">Identificação do grupo</string>
     <string name="osmo_group_name">Nome do grupo</string>
     <string name="osmo_connect_to_device">Ligar a um dispositivo</string>
     <string name="osmo_connect_to_group">Ligar a um grupo</string>
-    <string name="osmo_connect">Ligar a</string>
+    <string name="osmo_connect">Ligar</string>
     <string name="osmo_create_group">Criar Grupo</string>
     <string name="osmo_server_operation_failed">Operação do servidor OsMo falhou</string>
     <string name="osmo_activity">Monitorização OpenStreetMap</string>
@@ -1538,26 +1387,21 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="minutes_ago">minutos atras</string>
     <string name="seconds_ago">segundos atras</string>
     <string name="osmo_connected_devices">aparelhos ligados</string>
-    <string name="osmo_groups">OsMo Grupos/Aparelhos</string>
+    <string name="osmo_groups">Grupos OsMo</string>
     <string name="osmo_tracker_id_share">Para ligar o aparelho alvo %2$s, click no link %3$s ou especifique o id do tracker(%1$s)</string>
-    <string name="osmo_auto_send_locations_descr">Inicie automaticamente a sessão do tracker e envie localização após o início da aplicação</string>
-    <string name="osmo_auto_send_locations">Inicie automaticamente a sessão do tracker</string>
-    <string name="osmo_tracker_id">Identificação pessoal do tracker</string>
+    <string name="osmo_auto_send_locations_descr">Ao iniciar a aplicação, automaticamente gravar e enviar as localizações da viagem</string>
+    <string name="osmo_auto_send_locations">Inicie automaticamente a viagem</string>
+    <string name="osmo_tracker_id">ID de Rastreamento</string>
     <string name="osmo_tracker_id_descr">Clique para partilhar a identificação do tracker
 	Ao usar a identificação do tracker, aparelhos ligados podem ver todos os movimentos deste aparelho ! Para desligar seleccione a opção regenerar.</string>
     <string name="osmo_session_token">Token de sessão: %1$s</string>
-    <string name="osmo_auth_pending">Aguardando autorização...</string>
+    <string name="osmo_auth_pending">Aguardando autorização…</string>
     <string name="osmo_locations_sent">Localização enviada %1$d (in buffer %2$d) </string>
     <string name="osmo_conn_successfull">Ligação estabelecida : %1$s </string>
     <string name="osmo_io_error">Problema de ligação OsMo </string>
     <string name="osmo_settings_uuid">Identificação exclusiva do aparelho</string>
     <string name="use_points_as_intermediates">Calcular rota entre pontos</string>
-    <string name="tip_recent_changes_1_8_alpha">Alterações em 1,8: 
-         * Calcular rota entre os pontos da rota da trilha GPX 
-         * Mudou o esquema de países para downloads (suporta nomes de locais de pesquisa) 
-         * Suporta importação GPX / KML (converter de KML para GPX)
-         * Auto recomeço de navegação após recomeço
-    </string>
+    
     <string name="osmo_mode_restart">Reinciar sessão OsMo</string>
     <string name="osmo_mode_on">Parar sessão OsMo</string>    
     <string name="osmo_mode_off">Iniciar Sessão OsMo</string>
@@ -1565,9 +1409,8 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="osmo_settings_descr">Configurar as definições de monitoramento e configuração do canal de monitoração pessoal</string>
     <string name="osmo_settings">OsMo OpenStreetMap Monitorização (beta)</string>
     <string name="osmo_plugin_description">"Este plugin fornece a funcionalidade para OsMo (monitoramento avançado ao vivo), veja mais em http://osmo.mobi.
-\n\nVocê pode rastrear outros dispositivos e ser rastreado. Você espontaneamente pode criar grupos anônimos, compartilhar localização e se comunicar. Vem com várias opções para o controle de sessão ou acompanhamento permanente.
-\n\nGrupos anônimos são criados para um número especificado de dias e limitados a recursos definidos, ou seja, não há nenhum controle remoto e nenhum administrador de grupo. Grupos totalmente funcionais, por outro lado, podem ser criados no site e só usuários cadastrados têm acesso a eles. "</string>
-    <string name="osmo_plugin_name">OsMO (rastreamento avançado ao vivo)</string>
+\n\nVocê pode rastrear todos os dispositivos de um grupo em que participe, em tempo real, e comunicarem entre si. Tem várias opções para o rastreamento de sessão ou permanente.\n\nGrupos anónimos podem ser criados espontaneamente por um número específico de dias, e tem recursos limitados definidos, ou seja, não há controle remoto nem administrador de grupo. Por outro lado, grupos totalmente funcionais podem ser criados no website, aos quais apenas utilizadores registados podem ter acesso. "</string>
+    <string name="osmo_plugin_name">OsMo (Monitorização OSM)</string>
    	<string name="always_center_position_on_map">Centrar sempre a posição no mapa</string>
     <string name="voice_pref_title">Voz</string>
     <string name="misc_pref_title">Vários</string>
@@ -1611,8 +1454,8 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="android_19_location_disabled">Desde a versão KitKat você não pode fazer o download e actualização de mapa no local de armazenamento anterior (%s).  Você deseja alterar para um local com permissão e copiar todos os arquivos para lá?
          \n Nota: Os arquivos antigos permanecerão intocados.
          \n Nota: não será possível compartilhar arquivos entre OsmAnd e OsmAnd + . </string>
-    <string name="application_dir_change_warning2">OsmAnd pode tentar mover os dados para um novo destino.  Você quer isso ?</string>
-    <string name="copying_osmand_one_file_descr">Copiando o arquivo (%s) para novo destino ...</string>
+    
+    <string name="copying_osmand_one_file_descr">Copiando o arquivo (%s) para novo destino …</string>
     <string name="copying_osmand_files_descr">Cópia de arquivos Osmand para novo destino (%s)</string>
     <string name="copying_osmand_files">Cópia de arquivos Osmand</string>
     <string name="calculate_osmand_route_gpx">Calcular rota offline OsmAnd</string>
@@ -1736,12 +1579,12 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
 	<string name="save_global_track_interval_descr">Escolher o intervalo de log para a gravação de faixa geral (habilitado através do widget de gravação GPX no mapa)</string>
 	<string name="save_global_track_interval">Intervalo de log geral</string>
 	<string name="enable_sleep_mode">Ativar o modo de GPS em segundo plano</string>
-	<string name="save_track_to_gpx_globally">Salvar trilhas em GPX</string>
+	<string name="save_track_to_gpx_globally">Salvar trilha GPX</string>
 	<string name="save_track_to_gpx_globally_descr">Posição geral de log para um arquivo GPX pode ser ativada ou desativado usando o GPX gravação widget na tela do mapa</string>
 	<string name="save_track_interval_globally">Intervalo de log</string>
 	<string name="rendering_attr_publicTransportMode_name">Rotas de ônibus, trólebus</string>
-	<string name="record_plugin_description">"Este plugin ativa a funcionalidade para gravar e salvar seus trajetos manualmente tocando o widget de gravação GPX na tela do mapa, ou também fazendo automaticamente o registro de todas as suas rotas de navegação para um arquivo GPX.
-\n\nTrajetos gravados podem ser compartilhadas com seus amigos ou serem usados para contribuições ao OSM. Atletas podem usar trajetos gravados para monitorar seus treinamentos. Algumas análises básicas do trajeto podem ser feitas diretamente no OsmAnd, como tempos de volta, velocidade média, etc. E, claro, trajetos também podem ser analisados mais tarde em ferramentas de terceiros. "</string>
+	<string name="record_plugin_description">"Este plugin ativa a funcionalidade para gravar e salvar os seus trajetos manualmente, tocando o widget de gravação GPX na tela do mapa, ou também fazendo automaticamente o registro de todas as suas rotas de navegação para um arquivo GPX.
+\n\nTrajetos gravados podem ser compartilhadas com os seus amigos, ou serem usados para contribuições ao OSM. Atletas podem usar trajetos gravados para controlar os seus treinos. Algumas análises básicas do trajeto podem ser feitas diretamente no OsmAnd, como tempos de volta, velocidade média, etc. E, claro, trajetos também podem ser analisados mais tarde em ferramentas de terceiros. "</string>
     <string name="record_plugin_name">Gravação de viagem</string>
     <string name="int_hour">h</string>
     <string name="duration">Duração</string>
@@ -1754,7 +1597,7 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     
 	<string name="avoid_roads_msg">Você pode inciar rotas alternativas selecionando estradas a serem evitadas</string>
     
-	<string name="speak_pedestrian">Anunciar faixas de pedestre</string>
+	<string name="speak_pedestrian">Passadeiras</string>
     <string name="rendering_attr_roadStyle_name">Estilo das vias</string>
     <string name="rendering_value_default_name">Predefinido</string>
     <string name="rendering_value_orange_name">Laranja</string>
@@ -1956,4 +1799,334 @@ Afghanistan, Albania, Algeria, Andorra, Angola, Anguilla, Antigua and Barbuda, A
     <string name="shared_string_trip_recording">Gravar Viagem</string>
     <string name="shared_string_navigation">Navegação</string>
     <string name="nm">mn</string>
+    <string name="shared_string_update">Atualizar</string>
+    <string name="please_specify_poi_type_only_from_list">Escolha o tipo correcto de POI (ou ignore)</string>
+    <string name="access_from_map_description">O botão de Menu lança o Dashboard, em vez do Menu</string>
+    <string name="access_from_map">Aceder a partir do mapa</string>
+    <string name="show_on_start_description">\'Desligado\' lança directamente para a vista do mapa</string>
+    <string name="show_on_start">Mostrar no arranque</string>
+    <string name="copied_to_clipboard">Copiado para a Área de Transferências</string>
+    <string name="release_2_2">" • Novo interface do utilizador sensível ao contexto, ao tocar locais no mapa, ou em outras telas\n\n• Tela do Mapa é agora lançada diretamente, a menos que \'Mostrar Painel de instrumentos no arranque\' seja selecionado\n\n• Configure quais e de que forma os cartões são exibidos no Painel de instrumentos\n\n• Desactivar o Painel, se preferir um controle baseado em menus\n\n• Para fazer download de mapas, as regiões podem ser seleccionadas directamente, tocando no mapa do mundo\n\n• Busca por \'Pontos de Interesse\' agora oferece suporte a consultas mais específicas\n\n• Melhoria nos \'Pontos de Interesse\' e funcionalidades de edição OSM\n\n• Reformulação de estrutura e de interface para download de mapas de dados 
+\n\ne mais… "</string>
+    <string name="osm_save_offline">Guardar off-line</string>
+    <string name="osm_edit_modified_poi">Ponto de Interesse OSM modificado</string>
+    <string name="impassable_road_desc">Escolha as estradas que quer evitar durante a navegação</string>
+    <string name="shared_string_sound">Som</string>
+    <string name="no_location_permission">A aplicação não tem permissão para aceder à localização.</string>
+    <string name="no_camera_permission">A aplicação não tem permissão para aceder à camera.</string>
+    <string name="no_microphone_permission">A aplicação não tem permissão para aceder ao microfone.</string>
+    <string name="route_distance">Distância:</string>
+    <string name="route_duration">Tempo:</string>
+    <string name="rendering_attr_horseRoutes_name">Rotas de Cavalos</string>
+    <string name="no_address_found">Nenhum endereço definido</string>
+    <string name="shared_string_near">Perto</string>
+    <string name="shared_string_hide">Ocultar</string>
+    <string name="av_video_quality_low">Baixa Qualidade</string>
+    <string name="av_video_quality_high">Alta Qualidade</string>
+    <string name="av_video_quality">Qualidade de saída de Vídeo</string>
+    <string name="av_video_quality_descr">Escolha a qualidade de saída de vídeo</string>
+    <string name="av_audio_format">Formato de saída de Áudio</string>
+    <string name="av_audio_format_descr">Escolha o formato de saída de áudio</string>
+    <string name="av_audio_bitrate">Taxa bit de Áudio</string>
+    <string name="av_audio_bitrate_descr">Escolha a taxa bit de áudio</string>
+    <string name="osm_edit_deleted_poi">POI OSM apagado</string>
+    <string name="context_menu_item_open_note">Abrir Nota OSM</string>
+    <string name="osm_edit_reopened_note">Re-abrir Nota OSM</string>
+    <string name="osm_edit_commented_note">Nota OSM comentada</string>
+    <string name="osm_edit_removed_note">Nota OSM apagada</string>
+    <string name="osm_edit_created_note">Nota OSM adicionada</string>
+    <string name="osn_bug_name">Nota OSM</string>
+    <string name="osn_add_dialog_title">Adicionar Nota OSM</string>
+    <string name="osn_comment_dialog_title">Adicionar comentário</string>
+    <string name="osn_reopen_dialog_title">Re-abrir Nota</string>
+    <string name="osn_close_dialog_title">Fechar Nota</string>
+    <string name="osn_add_dialog_success">Nota adicionada com sucesso</string>
+    <string name="osn_add_dialog_error">Erro: Nota não foi adicionada</string>
+    <string name="osn_close_dialog_success">Nota encerrada com sucesso</string>
+    <string name="osn_close_dialog_error">Erro: Nota não foi encerrada</string>
+    <string name="shared_string_commit">Enviar</string>
+
+    <string name="context_menu_item_delete_waypoint">Apagar ponto GPX?</string>
+    <string name="context_menu_item_edit_waypoint">Editar ponto GPX</string>
+    <string name="shared_string_location">Localização</string>
+    <string name="share_osm_edits_subject">Edições OSM partilhadas via OsmAnd</string>
+    <string name="read_more">Ler mais</string>
+    <string name="whats_new">Novidades</string>
+    <string name="rendering_attr_hideProposed_name">Ocultar objectos propostos</string>
+    <string name="shared_string_upload">Enviar</string>
+    <string name="osm_edit_created_poi">POI OSM adicionado</string>
+
+    <string name="world_map_download_descr">"Mapa base mundial (que abrange o mundo inteiro) está ausente ou desactualizado. Por favor, considere fazer download do \'Mapa base mundial\'  para um ambiente de mapa completo."</string>
+    <string name="shared_string_qr_code">Código QR</string>
+    <string name="map_downloaded_descr">Mapa de %1$s obtido com sucesso. Volte ao mapa para o usar.</string>
+    <string name="map_downloaded">Mapa obtido com sucesso</string>
+    <string name="go_to_map">Voltar ao mapa</string>
+    <string name="simulate_initial_startup_descr">Definir como se fosse a primeira vez que a aplicação liga, mantendo todas as restantes definições inalteradas</string>
+    <string name="simulate_initial_startup">Simular arranque inicial da aplicação</string>
+    <string name="share_geo">geo:</string>
+    <string name="share_menu_location">Partilhar Localização</string>
+    <string name="shared_string_send">Enviar</string>
+    <string name="osmand_running_in_background">A funcionar em segundo plano</string>
+    <string name="gps_wake_up_timer">Intervalo para sinal de GPS</string>
+    <string name="favourites_edit_dialog_title">Informação de Favorito</string>
+    <string name="simulate_your_location_stop_descr">Parar de simular a sua posição</string>
+    <string name="simulate_your_location_descr">Simular usando uma rota calculada ou trilha GPX armazenada</string>
+    <string name="looking_up_address">Procurar endereço</string>
+    <string name="av_locations_descr">Ficheiro GPX com anotações de posições</string>
+    <string name="av_locations">Localizações</string>
+    <string name="plugin_settings">Plugins</string>
+    <string name="routing_attr_avoid_shuttle_train_name">Evitar de transporte de comboio</string>
+    <string name="routing_attr_avoid_shuttle_train_description">Evitar de transporte de comboio</string>
+    <string name="traffic_warning_hazard">Perigo</string>
+    <string name="rendering_value_boldOutline_name">contorno em negrito</string>
+    <string name="no_updates_available">Não há actualizações disponíveis</string>
+    <string name="download_live_updates">Actualizações em tempo real</string>
+    <string name="rendering_value_default13_name">Padrão (13)</string>
+    <string name="rendering_value_defaultTranslucentCyan_name">Padrão (ciano translúcido)</string>
+    <string name="rendering_attr_currentTrackColor_name">Cor GPX</string>
+    <string name="rendering_attr_currentTrackColor_description">Cor GPX</string>
+    <string name="rendering_attr_currentTrackWidth_name">Largura GPX</string>
+    <string name="rendering_attr_currentTrackWidth_description">Largura GPX</string>
+    <string name="rendering_value_red_name">Vermelho</string>
+    <string name="rendering_value_translucent_red_name">Vermelho translúcido</string>
+    <string name="rendering_value_translucent_orange_name">Laranja translúcido</string>
+    <string name="rendering_value_yellow_name">Amarelo</string>
+    <string name="rendering_value_translucent_yellow_name">Amarelo translúcido</string>
+    <string name="rendering_value_lightgreen_name">Verde claro</string>
+    <string name="rendering_value_translucent_lightgreen_name">Verde claro translúcido</string>
+    <string name="rendering_value_green_name">Verde</string>
+    <string name="rendering_value_translucent_green_name">Verde translúcido</string>
+    <string name="rendering_value_lightblue_name">Azul claro</string>
+    <string name="rendering_value_translucent_lightblue_name">Azul claro translúcido</string>
+    <string name="rendering_value_blue_name">Azul</string>
+    <string name="rendering_value_translucent_blue_name">Azul translúcido</string>
+    <string name="rendering_value_purple_name">Roxo</string>
+    <string name="rendering_value_translucent_purple_name">Roxo translúcido</string>
+    <string name="restart_is_required">Para aplicar completamente as alterações, requer uma reinicialização da aplicação.</string>
+    <string name="light_theme">Claro</string>
+    <string name="dark_theme">Escuro</string>
+    <string name="rec_split_desc">Sobrescrever ficheiros quando o espaço utilizado exceder o armazenamento disponível</string>
+    <string name="rec_split_storage_size">Espaço de armazenamento</string>
+    <string name="rec_split_storage_size_desc">Total de espaço que pode ser ocupado por todos os clips gravados</string>
+    <string name="available_maps">Mapas disponíveis</string>
+    <string name="select_voice_provider">Escolher orientação por voz</string>
+    <string name="select_voice_provider_descr">Escolher ou fazer download de \'orientação por voz\' para a sua linguagem</string>
+    <string name="night">Noite</string>
+<string name="dashboard_or_drawer_description">Há uma nova opção para controlar principalmente o aplicativo através do painel flexível (Dashboard) ou um menu estático. A sua escolha pode sempre ser alterada nas configurações do painel.</string>
+    <string name="dashboard_or_drawer_title">Dashboard ou menu de controle</string>
+    <string name="update">Actualizar em cada</string>
+    <string name="only_download_over_wifi">Apenas download com WiFi</string>
+    <string name="live_update">Actualização sincronizada</string>
+    <string name="update_now">Actualizar agora</string>
+    <string name="missing_write_external_storage_permission">App não tem permissão para usar o cartão SD</string>
+    <string name="last_update">Última atualização: %s</string>
+    <string name="update_time">Horário de actualização</string>
+    
+    <string name="last_map_change">Última alteração de mapa: %s</string>
+    <string name="hourly">A cada hora</string>
+    <string name="daily">Diário</string>
+    <string name="weekly">Semanal</string>
+    <string name="morning">Manhã</string>
+    <string name="live_updates">Actualizações sincronizadas</string>
+    <string name="lang_ga">Irlandês</string>
+    <string name="lang_la">Latim</string>
+    <string name="lang_ta">Tamil</string>
+    <string name="archive_wikipedia_data">Tem dados antigos Wikipédia incompatíveis guardados. Quer arquivá-los?</string>
+    <string name="download_wikipedia_files">Quer baixar dados Wikipédia adicionais (%1$s MB)?</string>
+    <string name="gps_network_not_enabled">Serviço de localização não está activado. Quer ligá-lo?</string>
+    <string name="disable_recording_once_app_killed_descrp">Irá pausar o registo GPX quando o aplicativo é encerrado (via aplicativos recentes). (A indicação de serviço em segundo plano de Osmand desaparece da barra de notificação Android.)</string>
+    <string name="shared_string_import2osmand">Importar para Osmand</string>
+    <string name="read_full_article">Ler o artigo completo (on-line)</string>
+    <string name="shared_string_wikipedia">Wikipedia</string>
+    <string name="local_indexes_cat_wiki">Wikipedia</string>
+    <string name="shared_string_show_details">Mostrar detalhes</string>
+    <string name="osm_edit_context_menu_delete">Apagar edição OSM</string>
+    <string name="rendering_value_disabled_name">Desactivado</string>
+    <string name="rendering_value_walkingRoutesScopeOSMC_name">Colorir de acordo com o estilo de rota</string>
+    <string name="rendering_value_walkingRoutesOSMC_name">Colorir de acordo com a OSMC</string>
+    <string name="osmo_share_my_location">Partilhar a minha posição</string>
+    <string name="shared_string_logoff">Sair</string>
+    <string name="local_recordings_delete_all_confirm">Vai apagar %1$d nota(s). Continuar?</string>
+    <string name="plugin_touringview_descr">"Esta opção muda o estilo de mapa do Osmand para a \"visão Touring \', uma visão especial de alto detalhe, para viajantes e motoristas profissionais.\n\nEsta exibição fornece, em qualquer zoom de mapa, a quantidade máxima de informação de viagem disponível no mapa (particularmente estradas, trilhas, caminhos, e marcas de orientação).\n\nTambém separa claramente todos os tipos de estradas de forma inequívoca com um código de cores, que se revela útil para a condução de veículos grandes (por exemplo).\n\nOferece opções especiais de turismo, como mostrar ciclovias ou rotas alpinas de montanha.\n\nNão é necessário fazer download dum mapa especial, a exibição é feita a partir dos mapas padrão.\n\nEssa visão pode ser revertida, basta desactiva-la, ou alterar o estilo de mapa em \'Configurar mapa\'. "</string>
+    <string name="rendering_attr_roadStyle_description">Estilo de estrada</string>
+    <string name="error_avoid_specific_road">Nenhum desvio encontrado</string>
+    <string name="osmo_use_https_descr">Usar ligação segura ao servidor</string>
+    <string name="wake_on_voice_descr">Acender o visor do dispositivo (se desligado) ao aproximar duma curva</string>
+    <string name="map_widget_top">Barra de estado</string>
+    <string name="map_widget_right">Painel direito</string>
+    <string name="map_widget_left">Painel esquerdo</string>
+    <string name="search_radius_proximity">Na proximidade de</string>
+    <string name="osmo_device_not_found">Aparelho não encontrado</string>
+    <string name="osmo_no_connection_msg">Não é possível estabelecer ligação ao Servidor Osmo:\n- Verifique a ligação à internet;\n- Verifique as configurações;\n- Verifique o nosso Twitter: https://twitter.com/OsMomobi</string>
+    <string name="anonymous_user_hint">Um utilizador anónimo não pode:\n- Criar grupos;\n- Sincronizar grupos e dispositivos com o servidor;\n- Gerir grupos e dispositivos num painel de controle pessoal no sitio web.</string>
+    <string name="anonymous_user">Utilizador anónimo</string>
+    <string name="logged_as">Ligado como %1$s</string>
+    <string name="shared_string_not_selected">Não seleccionado</string>
+    <string name="select_month_and_country">Escolha Mês e País</string>
+<string name="updates_size">Tamanho das actualizações</string>
+    <string name="poi_context_menu_modify_osm_change">Modificar edição OSM</string>
+    <string name="use_dashboard_btn">Usar Painel</string>
+    <string name="use_drawer_btn">Usar Menú</string>
+    <string name="no_map_markers_found">Por favor, adicione os marcadores no mapa</string>
+    <string name="no_waypoints_found">Não há pontos intermédios</string>
+    <string name="osmo_specify_tracker_id">Indique qual a Identidade</string>
+    <string name="report">Relatório</string>
+    <string name="map_widget_bearing">Rumo relativo</string>
+    <string name="access_disable_offroute_recalc">Não mudar a rota quando está fora do percurso</string>
+    <string name="access_disable_offroute_recalc_descr">Impedir o recálculo automático da rota quando está bastante longe do caminho certo</string>
+    <string name="access_disable_wrong_direction_recalc">Não alterar a rota pelo caminho errado</string>
+    <string name="access_disable_wrong_direction_recalc_descr">Impedir o recálculo automático da rota quando está a mover-se numa direcção errada</string>
+    <string name="access_smart_autoannounce_descr">Notificar apenas quando a direção para o ponto de destino é alterada</string>
+    <string name="access_autoannounce_period_descr">Tempo mínimo de intervalo entre anúncios</string>
+    <string name="access_default_color">Cor predefinida</string>
+    <string name="access_category_choice">Escolher categoria</string>
+    <string name="access_hint_enter_name">Inserir nome</string>
+    <string name="access_hint_enter_category">Inserir categoria</string>
+    <string name="access_hint_enter_description">Inserir descrição</string>
+    <string name="access_map_linked_to_location">Mapa está ligado à posição</string>
+    <string name="access_collapsed_list">Lista recolhida</string>
+    <string name="access_expanded_list">Lista expandida</string>
+    <string name="access_empty_list">Lista vazia</string>
+    <string name="access_shared_string_not_installed">Não instalado</string>
+    <string name="access_widget_expand">Expandir</string>
+    <string name="access_shared_string_navigate_up">Navegar até</string>
+    <string name="access_sort">Ordenar</string>
+    <string name="map_mode">Modo mapa</string>
+    <string name="number_of_gpx_files_selected_pattern">%s ficheiros GPX seleccionados</string>
+    <string name="rendering_value_thin_name">Fino</string>
+    <string name="rendering_value_medium_name">Médio</string>
+    <string name="rendering_value_bold_name">Negrito</string>
+    <string name="storage_permission_restart_is_required">Agora a aplicação está autorizada a escrever no armazenamento externo. É necessário reiniciar a aplicação.</string>
+    <string name="shared_string_move_up">Mover para cima</string>
+    <string name="shared_string_move_down">Mover para baixo</string>
+    <string name="finish_navigation">Terminar a navegação</string>
+    <string name="avoid_road">Evitar estrada</string>
+    <string name="storage_directory_readonly_desc">A presente pasta de armazenamento de dados é só de leitura. A pasta de armazenamento foi temporariamente trocada para a memória interna. Favor escolher um directório de armazenamento válido.</string>
+    <string name="storage_directory_shared">Memória partilhada</string>
+    <string name="shared_string_topbar">Barra superior</string>
+    <string name="full_report">Relatório completo</string>
+    <string name="recalculate_route">Recalcular rota</string>
+    <string name="open_street_map_login_and_pass">Utilizador e palavra passe de OpenStreetMap</string>
+    <string name="donations">Donativos</string>
+    <string name="number_of_recipients">Número de destinatários</string>
+    <string name="osm_user_stat">Edições %1$s, posição %2$s, total de edições %3$s</string>
+    <string name="osm_editors_ranking">Graduação dos Editores OSM</string>
+    <string name="osm_live_subscription">Subscrição OSM em directo</string>
+    <string name="osm_live_subscribe_btn">Subscrever</string>
+    <string name="osm_live_email_desc">Precisamos disso para lhe fornecer informações sobre as contribuições</string>
+    <string name="osm_live_user_public_name">Nome Público</string>
+    <string name="osm_live_hide_user_name">Não mostrar o meu nome nos relatórios</string>
+    <string name="osm_live_support_region">Região de suporte</string>
+    <string name="file_name_containes_illegal_char">Nome do ficheiro contém um carácter inválido</string>
+<string name="reports_for">Relatório para</string>
+    <string name="number_of_contributors">Número de colaboradores</string>
+    <string name="number_of_edits">Número de edições</string>
+    <string name="save_poi_without_poi_type_message">Quer mesmo gravar POI sem o tipo de POI?</string>
+    <string name="versions_item">Versões</string>
+    <string name="feedback">Comentários</string>
+    <string name="contact_us">Contactar-nos</string>
+    <string name="map_legend">Legenda do mapa</string>
+    <string name="techical_articles_item">Artigos técnicos</string>
+    <string name="faq_item_description">Perguntas mais frequentes</string>
+    <string name="map_viewing_item">Vista de mapa</string>
+    <string name="search_on_the_map_item">Busca no mapa</string>
+    <string name="instalation_troubleshooting_item">Instalação e resolução de problemas</string>
+    <string name="faq_item">FAQ</string>
+    <string name="first_usage_item">Primeira utilização</string>
+    <string name="first_usage_item_description">Como descarregar mapas, definir configurações básicas</string>
+    <string name="navigation_item_description">Configuração da navegação</string>
+    <string name="planning_trip_item">Planear uma viagem</string>
+    <string name="plugins_menu_group">Complementos</string>
+    <string name="features_menu_group">Funcionalidades</string>
+    <string name="help_us_to_improve_menu_group">Ajude-nos a melhorar OsmAnd</string>
+    <string name="enter_country_name">Inserir nome do país</string>
+    <string name="new_version">Nova versão</string>
+    <string name="begin_with_osmand_menu_group">Primeiros passos com OsmAnd</string>
+    <string name="application_dir_description">Escolha onde quer guardar os ficheiros de mapas.</string>
+
+    <string name="other_menu_group">Outros</string>
+    <string name="use_osm_live_routing_description">Activar navegação para alterações OSM ao vivo (Beta)</string>
+	<string name="use_osm_live_routing">Navegação OSM ao vivo</string>
+    <string name="access_no_destination">Destino não está definido</string>
+    <string name="map_widget_magnetic_bearing">Rumo magnético</string>
+    <string name="access_autoannounce_period">Período do anúncio automático</string>
+    <string name="access_tree_list">Lista em árvore</string>
+    <string name="free_downloads_used_description">Mostra os carregamentos gratuitos utilizados</string>
+
+    <string name="access_smart_autoannounce">Anúncio automático inteligente</string>
+    <string name="osm_live_month_cost">Custo mensal</string>
+    <string name="osm_live_month_cost_desc">Pagamento mensal</string>
+    <string name="osm_live_active">Activo</string>
+    <string name="osm_live_not_active">Inactivo</string>
+    <string name="osm_live_enter_email">Favor introduzir um endereço de E-mail válido</string>
+    <string name="osm_live_enter_user_name">Por favor introduza um nome Público</string>
+    <string name="osm_live_thanks">Obrigado por subscrever as actualizações ao vivo!</string>
+    <string name="osm_live_region_desc">Parte do seu donativo será enviado aos utilizadores OSM que submetem alterações ao mapa nessa região</string>
+    <string name="osm_live_subscription_settings">Configurações da subscrição</string>
+    <string name="osm_live_ask_for_purchase">Por favor, compre primeiro a subscrição OSM ao vivo</string>
+
+    <string name="osm_live_header">Esta subscrição permite actualizações de hora a hora para todos os mapas do mundo. A maior parte da receita reverte para a comunidade OSM e é paga por cada contribuição OSM. No caso de gostar do OsmAnd e OSM e quiser apoiar, esta é a forma perfeita para o fazer.</string>
+    
+    <string name="select_map_marker">Seleccione o marcador do mapa</string>
+    <string name="map_markers_other">Outros marcadores</string>
+    <string name="upload_anonymously">Enviar anonimamente</string>
+    <string name="download_files_error_not_enough_space">Espaço insuficiente! São precisos {3} MB temporariamente e {1} MB permanentemente. Actualmente, apenas existem {2} MB disponíveis.</string>
+    <string name="download_files_question_space_with_temp">Descarregar mesmo {0} ficheiro(s)? Isso precisa de {3} MB temporariamente e {1} MB permanentemente. Actualmente, existem {2} MB disponíveis.</string>
+    <string name="upload_osm_note_description">Pode enviar anonimamente a sua Nota OSM se utilizar o seu perfil do OpenStreetMap.org.</string>
+    <string name="upload_osm_note">Enviar a Nota OSM</string>
+    <string name="map_marker_1st">Primeiro marcador de mapa</string>
+    <string name="map_marker_2nd">Segundo marcador de mapa</string>
+    <string name="shared_string_toolbar">Barra de Ferramentas</string>
+    <string name="add_points_to_map_markers_q">Quer adicionar todos os pontos aos marcadores de mapa?</string>
+    <string name="shared_string_add_to_map_markers">Adicionar aos marcadores de mapa</string>
+    <string name="select_map_markers">Seleccionar marcadores de mapa</string>
+    <string name="shared_string_reverse_order">Ordem inversa</string>
+    <string name="show_map_markers_description">Activar a funcionalidade dos marcadores de mapa</string>
+    <string name="clear_active_markers_q">Quer remover todos os marcadores activos?</string>
+    <string name="clear_markers_history_q">Quer limpar o histórico dos marcadores de mapa?</string>
+    <string name="active_markers">Marcadores activos</string>
+    <string name="map_markers">Marcadores de mapa</string>
+    <string name="map_marker">Marcador de mapa</string>
+    <string name="consider_turning_polygons_off">É recomendável desactivar o processamento de polígonos.</string>
+    <string name="rendering_attr_showMtbRoutes_name">Mostrar rotas MTB</string>
+    <string name="show_polygons">Mostrar polígonos</string>
+    <string name="find_parking">Encontrar um parque de estacionamento</string>
+    <string name="shared_string_status">Situação</string>
+    <string name="shared_string_save_changes">Guardar alterações</string>
+    <string name="shared_string_email_address">Endereço de E-mail</string>
+    <string name="data_is_not_available">Dados não disponíveis</string>
+    <string name="shared_string_remove">Remover</string>
+    <string name="shared_string_read_more">Ler mais</string>
+    <string name="clear_updates_proposition_message">Pode remover actualizações descarregadas e voltar à edição do mapa original</string>
+    <string name="add_time_span">Adicionar intervalo de tempo</string>
+    <string name="road_blocked">Estrada bloqueada</string>
+    <string name="shared_string_select">Seleccionar</string>
+    <string name="switch_start_finish">Inverter ponto de partida e destino</string>
+    <string name="rendering_attr_hideIcons_name">Ícones POI</string>
+    <string name="item_removed">Item removido</string>
+    <string name="n_items_removed">Itens removidos</string>
+    <string name="shared_string_undo_all">REVERTER TUDO</string>
+    <string name="shared_string_type">Tipo</string>
+    <string name="starting_point">Ponto de partida</string>
+    <string name="rec_split">Divisão da Gravação</string>
+    <string name="rec_split_title">Usar Divisão de Gravação</string>
+    <string name="rec_split_clip_length">Duração do recorte</string>
+    <string name="rec_split_clip_length_desc">A duração de cada recorte gravado não será superior ao intervalo de tempo especificado</string>
+    <string name="lang_mk">Macedónio(a)</string>
+    <string name="lang_sh">Servo-Croata</string>
+    <string name="lang_br">Bretão</string>
+    <string name="lang_sq">Albanês</string>
+    <string name="lang_is">Islandês</string>
+    <string name="lang_lb">Luxemburguês</string>
+    <string name="lang_eo">Esperanto</string>
+    <string name="free_downloads_used">Descargas gratuitas utilizados</string>
+    <string name="downloads">Descargas</string>
+    <string name="confirm_download_roadmaps">Tem a certeza que quer descarregar o mapa só de estradas, embora já tenha o mapa padrão (completo)?</string>
+    <string name="get_full_version">Versão completa</string>
+    <string name="later">Mais tarde</string>
+    <string name="buy">COMPRAR</string>
+    <string name="downloading_number_of_files">A descarregar - %1$d ficheiros</string>
+    <string name="show_free_version_banner">Mostrar propaganda da versão gratuita</string>
+    <string name="downloads_left_template">Falta descarregar %1$s</string>
+    <string name="roads">Estradas</string>
     </resources>

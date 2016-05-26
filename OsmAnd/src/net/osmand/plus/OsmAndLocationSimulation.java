@@ -1,18 +1,9 @@
 package net.osmand.plus;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.osmand.CallbackWithObject;
-import net.osmand.Location;
-import net.osmand.access.AccessibleToast;
-import net.osmand.plus.helpers.GpxUiHelper;
-import net.osmand.plus.routing.RouteProvider.GPXRouteParamsBuilder;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -21,6 +12,14 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.osmand.CallbackWithObject;
+import net.osmand.Location;
+import net.osmand.plus.helpers.GpxUiHelper;
+import net.osmand.plus.routing.RouteProvider.GPXRouteParamsBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OsmAndLocationSimulation {
 
@@ -41,7 +40,7 @@ public class OsmAndLocationSimulation {
 //		if (!isRouteAnimating()) {
 //			List<Location> currentRoute = app.getRoutingHelper().getCurrentRoute();
 //			if (currentRoute.isEmpty()) {
-//				AccessibleToast.makeText(app, R.string.animate_routing_route_not_calculated, Toast.LENGTH_LONG).show();
+//				Toast.makeText(app, R.string.animate_routing_route_not_calculated, Toast.LENGTH_LONG).show();
 //			} else {
 //				startAnimationThread(app.getRoutingHelper(), ma, new ArrayList<Location>(currentRoute), false, 1);
 //			}
@@ -53,7 +52,7 @@ public class OsmAndLocationSimulation {
 	
 	public void startStopRouteAnimation(final Activity ma, final Runnable runnable) {
 		if (!isRouteAnimating()) {
-			Builder builder = new AlertDialog.Builder(ma);
+			AlertDialog.Builder builder = new AlertDialog.Builder(ma);
 			builder.setTitle(R.string.animate_route);
 
 			final View view = ma.getLayoutInflater().inflate(R.layout.animate_route, null);
@@ -92,7 +91,7 @@ public class OsmAndLocationSimulation {
 					} else {
 						List<Location> currentRoute = app.getRoutingHelper().getCurrentCalculatedRoute();
 						if (currentRoute.isEmpty()) {
-							AccessibleToast.makeText(app, R.string.animate_routing_route_not_calculated,
+							Toast.makeText(app, R.string.animate_routing_route_not_calculated,
 									Toast.LENGTH_LONG).show();
 						} else {
 							startAnimationThread(app, new ArrayList<Location>(currentRoute), false, 1);

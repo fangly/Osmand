@@ -1,16 +1,7 @@
 package net.osmand.plus;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import android.content.Context;
+import android.support.v7.app.AlertDialog;
 
 import net.osmand.PlatformUtil;
 import net.osmand.data.FavouritePoint;
@@ -22,8 +13,17 @@ import net.osmand.util.Algorithms;
 
 import org.apache.tools.bzip2.CBZip2OutputStream;
 
-import android.app.AlertDialog;
-import android.content.Context;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class FavouritesDbHelper {
 
@@ -166,8 +166,8 @@ public class FavouritesDbHelper {
 			cachedFavoritePoints.add(p);
 		}
 		if (saveImmediately) {
-			saveCurrentPointsIntoFile();
 			sortAll();
+			saveCurrentPointsIntoFile();
 		}
 
 		return true;
@@ -483,7 +483,7 @@ public class FavouritesDbHelper {
 		cachedFavoritePoints = temp;
 	}
 	
-	private void sortAll() {
+	public void sortAll() {
 		final Collator collator = Collator.getInstance();
 		collator.setStrength(Collator.SECONDARY);
 		Collections.sort(favoriteGroups, new Comparator<FavoriteGroup>() {
@@ -515,6 +515,13 @@ public class FavouritesDbHelper {
 				int i2 = Algorithms.extractIntegerNumber(s2);
 				String ot1 = Algorithms.extractIntegerPrefix(s1);
 				String ot2 = Algorithms.extractIntegerPrefix(s2);
+				// Next 6 lines needed for correct comparison of names with and without digits
+				if (ot1.length() == 0) {
+					ot1 = s1;
+				}
+				if (ot2.length() == 0) {
+					ot2 = s2;
+				}
 				int res = collator.compare(ot1, ot2);
 				if (res == 0) {
 					res = i1 - i2;

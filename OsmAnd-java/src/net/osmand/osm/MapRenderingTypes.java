@@ -264,6 +264,7 @@ public abstract class MapRenderingTypes {
 		rtype.category = parentCategory == null ? null : parentCategory.category;
 		rtype.onlyPoint = Boolean.parseBoolean(parser.getAttributeValue("", "point")); //$NON-NLS-1$
 		rtype.relation = Boolean.parseBoolean(parser.getAttributeValue("", "relation")); //$NON-NLS-1$
+		rtype.relationGroup = Boolean.parseBoolean(parser.getAttributeValue("", "relationGroup")); //$NON-NLS-1$
 		if (rtype.isMain()) {			
 			rtype.namePrefix = parser.getAttributeValue("", "namePrefix"); //$NON-NLS-1$
 			if (rtype.namePrefix == null) {
@@ -356,6 +357,8 @@ public abstract class MapRenderingTypes {
 	protected static class TagValuePattern {
 		protected String tag;
 		protected String value;
+		protected int substrSt = 0;
+		protected int substrEnd = 0;
 		protected TagValuePattern(String t, String v) {
 			this.tag = t;
 			this.value = v;
@@ -420,6 +423,7 @@ public abstract class MapRenderingTypes {
 		
 		protected String category = null;
 		protected boolean relation;
+		protected boolean relationGroup;
 		// creation of only section
 		protected boolean map = true;
 		protected boolean poi = true;
@@ -443,7 +447,6 @@ public abstract class MapRenderingTypes {
 		public boolean isPOI(){
 			return poi;
 		}
-		
 		
 		public boolean isMap(){
 			return map;
@@ -541,6 +544,11 @@ public abstract class MapRenderingTypes {
 		public boolean isRelation() {
 			return relation;
 		}
+		
+		public boolean isRelationGroup() {
+			return relationGroup;
+		}
+		
 		
 		public int getFreq() {
 			return freq;

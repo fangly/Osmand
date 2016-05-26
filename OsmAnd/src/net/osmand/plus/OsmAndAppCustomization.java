@@ -1,9 +1,6 @@
 package net.osmand.plus;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import android.app.Activity;
 
 import net.osmand.IProgress;
 import net.osmand.IndexConstants;
@@ -19,7 +16,11 @@ import net.osmand.plus.helpers.WaypointHelper;
 import net.osmand.plus.myplaces.FavoritesActivity;
 import net.osmand.plus.routing.RouteCalculationResult;
 import net.osmand.plus.views.OsmandMapTileView;
-import android.app.Activity;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class OsmAndAppCustomization {
 	
@@ -67,7 +68,6 @@ public class OsmAndAppCustomization {
 		return FavoritesActivity.class;
 	}
 
-	
 	public Class<? extends Activity> getDownloadIndexActivity() {
 		return DownloadActivity.class;
 	}
@@ -96,8 +96,6 @@ public class OsmAndAppCustomization {
 	public void prepareOptionsMenu(MapActivity mapActivity, ContextMenuAdapter optionsMenuHelper) {
 	}
 
-	public void prepareLocationMenu(MapActivity mapActivity, ContextMenuAdapter adapter) {
-	}
 
 	public String getIndexesUrl() {
 		return "http://"+IndexConstants.INDEX_DOWNLOAD_DOMAIN+"/get_indexes?gzip&" + Version.getVersionAsURLParam(app); //$NON-NLS-1$;

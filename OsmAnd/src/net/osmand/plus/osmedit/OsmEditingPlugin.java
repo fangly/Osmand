@@ -1,13 +1,12 @@
 package net.osmand.plus.osmedit;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,10 +15,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import net.osmand.PlatformUtil;
-import net.osmand.access.AccessibleToast;
 import net.osmand.data.Amenity;
+import net.osmand.osm.PoiType;
+import net.osmand.osm.edit.Node;
 import net.osmand.plus.ContextMenuAdapter;
-import net.osmand.plus.ContextMenuAdapter.OnContextMenuClick;
+import net.osmand.plus.ContextMenuAdapter.ItemClickListener;
+import net.osmand.plus.ContextMenuItem;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.OsmandPlugin;
 import net.osmand.plus.OsmandSettings;
@@ -28,11 +29,11 @@ import net.osmand.plus.activities.EnumAdapter;
 import net.osmand.plus.activities.EnumAdapter.IEnumWithResource;
 import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.activities.TabActivity;
-import net.osmand.plus.dashboard.DashboardOnMap;
 import net.osmand.plus.dashboard.tools.DashFragmentData;
 import net.osmand.plus.myplaces.AvailableGPXFragment;
 import net.osmand.plus.myplaces.AvailableGPXFragment.GpxInfo;
 import net.osmand.plus.myplaces.FavoritesActivity;
+import net.osmand.plus.osmedit.OsmPoint.Action;
 import net.osmand.plus.views.OsmandMapTileView;
 import net.osmand.util.Algorithms;
 
@@ -46,9 +47,17 @@ public class OsmEditingPlugin extends OsmandPlugin {
 	private static final String ID = "osm.editing";
 	private OsmandSettings settings;
 	private OsmandApplication app;
-	OpenstreetmapsDbHelper dbpoi;
-	OsmBugsDbHelper dbbug;
-	private EditingPOIDialogProvider poiActions;
+	private OpenstreetmapsDbHelper dbpoi;
+	private OsmBugsDbHelper dbbug;
+	private OpenstreetmapLocalUtil localUtil;
+	private OpenstreetmapRemoteUtil remoteUtil;
+	private OsmBugsRemoteUtil remoteNotesUtil;
+	private OsmBugsLocalUtil localNotesUtil;
+
+	public OsmEditingPlugin(OsmandApplication app) {
+		this.app = app;
+		settings = app.getSettings();
+	}
 
 	@Override
 	public String getId() {
@@ -62,6 +71,35 @@ public class OsmEditingPlugin extends OsmandPlugin {
 		return dbpoi;
 	}
 
+	public OpenstreetmapLocalUtil getPoiModificationLocalUtil() {
+		if (localUtil == null) {
+			localUtil = new OpenstreetmapLocalUtil(this);
+		}
+		return localUtil;
+	}
+
+	public OpenstreetmapRemoteUtil getPoiModificationRemoteUtil() {
+		if (remoteUtil == null) {
+			remoteUtil = new OpenstreetmapRemoteUtil(app);
+		}
+		return remoteUtil;
+	}
+
+	public OsmBugsRemoteUtil getOsmNotesRemoteUtil() {
+		if (remoteNotesUtil == null) {
+			remoteNotesUtil = new OsmBugsRemoteUtil(app);
+		}
+		return remoteNotesUtil;
+	}
+
+	public OsmBugsLocalUtil getOsmNotesLocalUtil() {
+		if (localNotesUtil == null) {
+			localNotesUtil = new OsmBugsLocalUtil(app, getDBBug());
+		}
+		return localNotesUtil;
+	}
+
+
 	public OsmBugsDbHelper getDBBug() {
 		if (dbbug == null) {
 			dbbug = new OsmBugsDbHelper(app);
@@ -69,10 +107,6 @@ public class OsmEditingPlugin extends OsmandPlugin {
 		return dbbug;
 	}
 
-	public OsmEditingPlugin(OsmandApplication app) {
-		this.app = app;
-		settings = app.getSettings();
-	}
 
 	private OsmBugsLayer osmBugsLayer;
 	private OsmEditsLayer osmEditsLayer;
@@ -125,24 +159,8 @@ public class OsmEditingPlugin extends OsmandPlugin {
 	}
 
 	@Override
-	public void mapActivityCreate(MapActivity activity) {
-		// Always create new actions !
-//		poiActions = new EditingPOIDialogProvider(activity, this);
-//		activity.addDialogProvider(getPoiActions(activity));
-		activity.addDialogProvider(getBugsLayer(activity));
-	}
-
-
-	@Override
 	public Class<? extends Activity> getSettingsActivity() {
 		return SettingsOsmEditingActivity.class;
-	}
-
-	public EditingPOIDialogProvider getPoiActions(MapActivity activity) {
-		if (poiActions == null) {
-			poiActions = new EditingPOIDialogProvider(activity, this);
-		}
-		return poiActions;
 	}
 
 	@Override
@@ -151,37 +169,67 @@ public class OsmEditingPlugin extends OsmandPlugin {
 											  final double longitude,
 											  ContextMenuAdapter adapter,
 											  final Object selectedObj) {
-		OnContextMenuClick listener = new OnContextMenuClick() {
+		ContextMenuAdapter.ItemClickListener listener = new ContextMenuAdapter.ItemClickListener() {
 			@Override
-			public boolean onContextMenuClick(ArrayAdapter<?> adapter, int resId, int pos, boolean isChecked) {
+			public boolean onContextMenuClick(ArrayAdapter<ContextMenuItem> adapter, int resId, int pos, boolean isChecked) {
 				if (resId == R.string.context_menu_item_create_poi) {
 					//getPoiActions(mapActivity).showCreateDialog(latitude, longitude);
-					EditPoiFragment editPoiFragment =
-							EditPoiFragment.createAddPoiInstance(latitude, longitude,
+					EditPoiDialogFragment editPoiDialogFragment =
+							EditPoiDialogFragment.createAddPoiInstance(latitude, longitude,
 									mapActivity.getMyApplication());
-					editPoiFragment.show(mapActivity.getSupportFragmentManager(),
-							EditPoiFragment.TAG);
-				} else if (resId == R.string.context_menu_item_open_bug) {
+					editPoiDialogFragment.show(mapActivity.getSupportFragmentManager(),
+							EditPoiDialogFragment.TAG);
+				} else if (resId == R.string.context_menu_item_open_note) {
 					if (osmBugsLayer == null) {
 						registerLayers(mapActivity);
 					}
-					osmBugsLayer.openBug(latitude, longitude);
+					osmBugsLayer.openBug(latitude, longitude, "");
 				} else if (resId == R.string.poi_context_menu_delete) {
-					new EditPoiFragment.ShowDeleteDialogAsyncTask(mapActivity)
+					new EditPoiDialogFragment.ShowDeleteDialogAsyncTask(mapActivity)
 							.execute((Amenity) selectedObj);
 				} else if (resId == R.string.poi_context_menu_modify) {
-					EditPoiFragment.showEditInstance((Amenity) selectedObj, mapActivity);
+					EditPoiDialogFragment.showEditInstance((Amenity) selectedObj, mapActivity);
+				} else if (resId == R.string.poi_context_menu_modify_osm_change) {
+					final Node entity = ((OpenstreetmapPoint) selectedObj).getEntity();
+					EditPoiDialogFragment.createInstance(entity, false)
+							.show(mapActivity.getSupportFragmentManager(), EditPoiDialogFragment.TAG);
 				}
 				return true;
 			}
 		};
+		boolean isEditable = false;
 		if (selectedObj instanceof Amenity) {
-			adapter.item(R.string.poi_context_menu_modify).iconColor(R.drawable.ic_action_edit_dark).listen(listener).position(1).reg();
-			adapter.item(R.string.poi_context_menu_delete).iconColor(R.drawable.ic_action_delete_dark).listen(listener).position(2).reg();
-		} else {
-			adapter.item(R.string.context_menu_item_create_poi).iconColor(R.drawable.ic_action_plus_dark).listen(listener).position(-1).reg();
+			Amenity amenity = (Amenity) selectedObj;
+			final PoiType poiType = amenity.getType().getPoiTypeByKeyName(amenity.getSubType());
+			isEditable = !amenity.getType().isWiki() && !poiType.isNotEditableOsm();
 		}
-		adapter.item(R.string.context_menu_item_open_bug).iconColor(R.drawable.ic_action_bug_dark).listen(listener).reg();
+		if (isEditable) {
+			adapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.poi_context_menu_modify, mapActivity)
+					.setIcon(R.drawable.ic_action_edit_dark)
+					.setListener(listener)
+					.setPosition(1)
+					.createItem());
+			adapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.poi_context_menu_delete, mapActivity)
+					.setIcon(R.drawable.ic_action_delete_dark)
+					.setListener(listener)
+					.setPosition(2)
+					.createItem());
+		} else if (selectedObj instanceof OpenstreetmapPoint && ((OpenstreetmapPoint) selectedObj).getAction() != Action.DELETE) {
+			adapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.poi_context_menu_modify_osm_change, mapActivity)
+					.setIcon(R.drawable.ic_action_edit_dark)
+					.setListener(listener)
+					.setPosition(1)
+					.createItem());
+		} else {
+			adapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.context_menu_item_create_poi, mapActivity)
+					.setIcon(R.drawable.ic_action_plus_dark)
+					.setListener(listener)
+					.setPosition(-1)
+					.createItem());
+		}
+		adapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.context_menu_item_open_note, mapActivity)
+				.setIcon(R.drawable.ic_action_bug_dark)
+				.setListener(listener).createItem());
 	}
 
 	@Override
@@ -196,18 +244,27 @@ public class OsmEditingPlugin extends OsmandPlugin {
 
 	@Override
 	public void registerLayerContextMenuActions(OsmandMapTileView mapView, ContextMenuAdapter adapter, final MapActivity mapActivity) {
-		adapter.item(R.string.layer_osm_bugs).selected(settings.SHOW_OSM_BUGS.get() ? 1 : 0)
-				.iconColor(R.drawable.ic_action_bug_dark).listen(new OnContextMenuClick() {
+		adapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.layer_osm_bugs, mapActivity)
+				.setSelected(settings.SHOW_OSM_BUGS.get())
+				.setIcon(R.drawable.ic_action_bug_dark)
+				.setColor(settings.SHOW_OSM_BUGS.get() ? R.color.osmand_orange : ContextMenuItem.INVALID_ID)
+				.setListener(new ContextMenuAdapter.ItemClickListener() {
 
-			@Override
-			public boolean onContextMenuClick(ArrayAdapter<?> adapter, int itemId, int pos, boolean isChecked) {
-				if (itemId == R.string.layer_osm_bugs) {
-					settings.SHOW_OSM_BUGS.set(isChecked);
-					updateLayers(mapActivity.getMapView(), mapActivity);
-				}
-				return true;
-			}
-		}).position(16).reg();
+					@Override
+					public boolean onContextMenuClick(ArrayAdapter<ContextMenuItem> adapter, int itemId, int pos, boolean isChecked) {
+						if (itemId == R.string.layer_osm_bugs) {
+							OsmandSettings.OsmandPreference<Boolean> showOsmBugs = settings.SHOW_OSM_BUGS;
+							showOsmBugs.set(isChecked);
+							adapter.getItem(pos).setColorRes(showOsmBugs.get() ?
+									R.color.osmand_orange : ContextMenuItem.INVALID_ID);
+							adapter.notifyDataSetChanged();
+							updateLayers(mapActivity.getMapView(), mapActivity);
+						}
+						return true;
+					}
+				})
+				.setPosition(16)
+				.createItem());
 
 	}
 
@@ -219,16 +276,16 @@ public class OsmEditingPlugin extends OsmandPlugin {
 	@Override
 	public void contextMenuFragment(final Activity la, final Fragment fragment, final Object info, ContextMenuAdapter adapter) {
 		if (fragment instanceof AvailableGPXFragment) {
-			adapter.item(R.string.local_index_mi_upload_gpx)
-					.iconColor(R.drawable.ic_action_export)
-					.listen(new OnContextMenuClick() {
+			adapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.local_index_mi_upload_gpx, la)
+					.setIcon(R.drawable.ic_action_export)
+					.setListener(new ContextMenuAdapter.ItemClickListener() {
 
 						@Override
-						public boolean onContextMenuClick(ArrayAdapter<?> adapter, int itemId, int pos, boolean isChecked) {
+						public boolean onContextMenuClick(ArrayAdapter<ContextMenuItem> adapter, int itemId, int pos, boolean isChecked) {
 							sendGPXFiles(la, (AvailableGPXFragment) fragment, (GpxInfo) info);
 							return true;
 						}
-					}).reg();
+					}).createItem());
 		}
 	}
 
@@ -236,12 +293,13 @@ public class OsmEditingPlugin extends OsmandPlugin {
 	public void optionsMenuFragment(final Activity activity, final Fragment fragment, ContextMenuAdapter optionsMenuAdapter) {
 		if (fragment instanceof AvailableGPXFragment) {
 			final AvailableGPXFragment f = ((AvailableGPXFragment) fragment);
-			optionsMenuAdapter.item(R.string.local_index_mi_upload_gpx)
-					.icon(R.drawable.ic_action_export)
-					.listen(new OnContextMenuClick() {
+			optionsMenuAdapter.addItem(new ContextMenuItem.ItemBuilder().setTitleId(R.string.local_index_mi_upload_gpx, activity)
+					.setIcon(R.drawable.ic_action_export)
+					.setColor(R.color.color_white)
+					.setListener(new ItemClickListener() {
 
 						@Override
-						public boolean onContextMenuClick(ArrayAdapter<?> adapter, int itemId, int pos, boolean isChecked) {
+						public boolean onContextMenuClick(ArrayAdapter<ContextMenuItem> adapter, int itemId, int pos, boolean isChecked) {
 							f.openSelectionMode(R.string.local_index_mi_upload_gpx, R.drawable.ic_action_export,
 									R.drawable.ic_action_export, new OnClickListener() {
 										@Override
@@ -253,7 +311,9 @@ public class OsmEditingPlugin extends OsmandPlugin {
 									});
 							return true;
 						}
-					}).position(5).reg();
+					})
+					.setPosition(5)
+					.createItem());
 		}
 	}
 
@@ -265,7 +325,7 @@ public class OsmEditingPlugin extends OsmandPlugin {
 		Private(R.string.gpxup_private);
 		private final int resourceId;
 
-		private UploadVisibility(int resourceId) {
+		UploadVisibility(int resourceId) {
 			this.resourceId = resourceId;
 		}
 
@@ -283,10 +343,10 @@ public class OsmEditingPlugin extends OsmandPlugin {
 		String name = settings.USER_NAME.get();
 		String pwd = settings.USER_PASSWORD.get();
 		if (Algorithms.isEmpty(name) || Algorithms.isEmpty(pwd)) {
-			AccessibleToast.makeText(la, R.string.validate_gpx_upload_name_pwd, Toast.LENGTH_LONG).show();
+			Toast.makeText(la, R.string.validate_gpx_upload_name_pwd, Toast.LENGTH_LONG).show();
 			return false;
 		}
-		Builder bldr = new AlertDialog.Builder(la);
+		AlertDialog.Builder bldr = new AlertDialog.Builder(la);
 		LayoutInflater inflater = (LayoutInflater) la.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		final View view = inflater.inflate(R.layout.send_gpx_osm, null);
 		final EditText descr = (EditText) view.findViewById(R.id.memory_size);
@@ -296,7 +356,7 @@ public class OsmEditingPlugin extends OsmandPlugin {
 		}
 		final EditText tags = (EditText) view.findViewById(R.id.TagsText);
 		final Spinner visibility = ((Spinner) view.findViewById(R.id.Visibility));
-		EnumAdapter<UploadVisibility> adapter = new EnumAdapter<UploadVisibility>(la, android.R.layout.simple_spinner_item, UploadVisibility.values());
+		EnumAdapter<UploadVisibility> adapter = new EnumAdapter<>(la, android.R.layout.simple_spinner_item, UploadVisibility.values());
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		visibility.setAdapter(adapter);
 		visibility.setSelection(0);
@@ -316,7 +376,6 @@ public class OsmEditingPlugin extends OsmandPlugin {
 		return true;
 	}
 
-
 	@Override
 	public String getName() {
 		return app.getString(R.string.osm_settings);
@@ -332,19 +391,29 @@ public class OsmEditingPlugin extends OsmandPlugin {
 		return R.drawable.osm_editing;
 	}
 
+
+	@Override
+	public String getHelpFileName() {
+		return "feature_articles/osm-editing-plugin.html";
+	}
+
 	public static String getEditName(OsmPoint point) {
 		String prefix = getPrefix(point);
 		if (point.getGroup() == OsmPoint.Group.POI) {
-			return prefix + " (" + ((OpenstreetmapPoint) point).getSubtype() + ") " + ((OpenstreetmapPoint) point).getName();
+			String subtype = "";
+			if (!Algorithms.isEmpty(((OpenstreetmapPoint) point).getSubtype())) {
+				subtype = " (" + ((OpenstreetmapPoint) point).getSubtype() + ") ";
+			}
+			return prefix + subtype + ((OpenstreetmapPoint) point).getName();
 		} else if (point.getGroup() == OsmPoint.Group.BUG) {
-			return prefix + " (" + ((OsmNotesPoint) point).getAuthor() + ") " + ((OsmNotesPoint) point).getText();
+			return prefix + ((OsmNotesPoint) point).getText();
 		} else {
 			return prefix;
 		}
 	}
 
 	private static String getPrefix(OsmPoint osmPoint) {
-		return (osmPoint.getGroup() == OsmPoint.Group.POI ? "POI " : "Bug ") + " id: " + osmPoint.getId();
+		return (osmPoint.getGroup() == OsmPoint.Group.POI ? "POI " : "Bug ") + " id: " + osmPoint.getId() + " ";
 	}
 
 	@Override

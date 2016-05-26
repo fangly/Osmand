@@ -25,7 +25,6 @@ import net.osmand.IProgress;
 import net.osmand.NativeLibrary.NativeSearchResult;
 import net.osmand.PlatformUtil;
 import net.osmand.ResultMatcher;
-import net.osmand.access.AccessibleToast;
 import net.osmand.binary.BinaryMapDataObject;
 import net.osmand.binary.BinaryMapIndexReader;
 import net.osmand.binary.BinaryMapIndexReader.MapIndex;
@@ -72,6 +71,7 @@ public class MapRenderRepositories {
 	private final static Log log = PlatformUtil.getLog(MapRenderRepositories.class);
 	private final OsmandApplication context;
 	private final static int zoomOnlyForBasemaps = 11;
+
 	static int zoomForBaseRouteRendering  = 14;
 	private Handler handler;
 	private Map<String, BinaryMapIndexReader> files = new LinkedHashMap<String, BinaryMapIndexReader>();
@@ -619,9 +619,17 @@ public class MapRenderRepositories {
 				if (customProp.isBoolean()) {
 					if(customProp.getAttrName().equals(RenderingRuleStorageProperties.A_ENGINE_V1)) {
 						renderingReq.setBooleanFilter(customProp, true);
+					} else if (RenderingRuleStorageProperties.UI_CATEGORY_HIDDEN.equals(customProp.getCategory())) {
+						renderingReq.setBooleanFilter(customProp, false);
 					} else {
 						CommonPreference<Boolean> pref = prefs.getCustomRenderBooleanProperty(customProp.getAttrName());
 						renderingReq.setBooleanFilter(customProp, pref.get());
+					}
+				} else if (RenderingRuleStorageProperties.UI_CATEGORY_HIDDEN.equals(customProp.getCategory())) {
+					if (customProp.isString()) {
+						renderingReq.setStringFilter(customProp, "");
+					} else {
+						renderingReq.setIntFilter(customProp, 0);
 					}
 				} else {
 					CommonPreference<String> settings = prefs.getCustomRenderProperty(customProp.getAttrName());
@@ -710,7 +718,12 @@ public class MapRenderRepositories {
 			currentRenderingContext.width = requestedBox.getPixWidth();
 			currentRenderingContext.height = requestedBox.getPixHeight();
 			currentRenderingContext.nightMode = nightMode;
-			currentRenderingContext.preferredLocale = prefs.MAP_PREFERRED_LOCALE.get();
+			if(requestedBox.getZoom() <= zoomOnlyForBasemaps && 
+					"".equals(prefs.MAP_PREFERRED_LOCALE.get())) {
+				currentRenderingContext.preferredLocale = app.getLanguage();
+			} else {
+				currentRenderingContext.preferredLocale = prefs.MAP_PREFERRED_LOCALE.get();
+			}
 			final float mapDensity = (float) requestedBox.getMapDensity();
 			currentRenderingContext.setDensityValue(mapDensity);
 			//Text/icon scales according to mapDensity (so text is size of road)
@@ -798,7 +811,7 @@ public class MapRenderRepositories {
 				handler.post(new Runnable() {
 					@Override
 					public void run() {
-						AccessibleToast.makeText(context, msg, Toast.LENGTH_LONG).show();
+						Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
 					}
 				});
 			}
@@ -807,7 +820,7 @@ public class MapRenderRepositories {
 			handler.post(new Runnable() {
 				@Override
 				public void run() {
-					AccessibleToast.makeText(context, R.string.rendering_exception, Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, R.string.rendering_exception, Toast.LENGTH_SHORT).show();
 				}
 			});
 		} catch (OutOfMemoryError e) {
@@ -824,7 +837,7 @@ public class MapRenderRepositories {
 					int max = (int) (Runtime.getRuntime().maxMemory() / (1 << 20)); 
 					int avl = (int) (Runtime.getRuntime().freeMemory() / (1 << 20));
 					String s = " (" + avl + " MB available of " + max  + ") ";
-					AccessibleToast.makeText(context, context.getString(R.string.rendering_out_of_memory) + s , Toast.LENGTH_SHORT).show();
+					Toast.makeText(context, context.getString(R.string.rendering_out_of_memory) + s , Toast.LENGTH_SHORT).show();
 				}
 			});
 		} finally {

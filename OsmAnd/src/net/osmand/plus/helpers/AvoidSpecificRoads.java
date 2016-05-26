@@ -1,8 +1,7 @@
 package net.osmand.plus.helpers;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -21,6 +20,7 @@ import net.osmand.plus.OsmAndFormatter;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.MapActivity;
+import net.osmand.plus.mapcontextmenu.MapContextMenu;
 import net.osmand.plus.routing.RoutingHelper;
 import net.osmand.plus.views.AnimateDraggingMapThread;
 import net.osmand.plus.views.ContextMenuLayer;
@@ -66,7 +66,7 @@ public class AvoidSpecificRoads {
 				final RouteDataObject obj = getItem(position);
 				v.findViewById(R.id.all_points).setVisibility(View.GONE);
 				((ImageView) v.findViewById(R.id.waypoint_icon)).setImageDrawable(
-						app.getIconsCache().getContentIcon(R.drawable.ic_action_road_works_dark));
+						app.getIconsCache().getThemedIcon(R.drawable.ic_action_road_works_dark));
 				double dist = MapUtils.getDistance(mapLocation, MapUtils.get31LatitudeY(obj.getPoint31YTile(0)),
 						MapUtils.get31LongitudeX(obj.getPoint31XTile(0)));
 				((TextView) v.findViewById(R.id.waypoint_dist)).setText(OsmAndFormatter.getFormattedDistance((float) dist, app));
@@ -74,8 +74,8 @@ public class AvoidSpecificRoads {
 				((TextView) v.findViewById(R.id.waypoint_text)).setText(getText(obj));
 				ImageButton remove = (ImageButton) v.findViewById(R.id.info_close);
 				remove.setVisibility(View.VISIBLE);
-				remove.setImageDrawable(app.getIconsCache().getContentIcon(
-						R.drawable.ic_action_gremove_dark));
+				remove.setImageDrawable(app.getIconsCache().getThemedIcon(
+						R.drawable.ic_action_remove_dark));
 				remove.setOnClickListener(new View.OnClickListener() {
 
 					@Override
@@ -103,7 +103,7 @@ public class AvoidSpecificRoads {
 	}
 
 	public void showDialog(final MapActivity mapActivity) {
-		Builder bld = new AlertDialog.Builder(mapActivity);
+		AlertDialog.Builder bld = new AlertDialog.Builder(mapActivity);
 		bld.setTitle(R.string.impassable_road);
 		if (getMissingRoads().size() == 0){
 			bld.setMessage(R.string.avoid_roads_msg);
@@ -135,44 +135,104 @@ public class AvoidSpecificRoads {
 	protected void selectFromMap(final MapActivity mapActivity) {
 		ContextMenuLayer cm = mapActivity.getMapLayers().getContextMenuLayer();
 		cm.setSelectOnMap(new CallbackWithObject<LatLon>() {
-			
+
 			@Override
 			public boolean processResult(LatLon result) {
-				findRoad(mapActivity, result);
+				addImpassableRoad(mapActivity, result, true, null);
 				return true;
 			}
 
 		});
 	}
-	private void findRoad(final MapActivity activity, final LatLon loc) {
-		Location ll = new Location("");
+
+	public void addImpassableRoad(final MapActivity activity, final LatLon loc,
+								  final boolean showDialog, final AvoidSpecificRoadsCallback callback) {
+		final Location ll = new Location("");
 		ll.setLatitude(loc.getLatitude());
 		ll.setLongitude(loc.getLongitude());
 		app.getLocationProvider().getRouteSegment(ll, new ResultMatcher<RouteDataObject>() {
 
 			@Override
 			public boolean publish(RouteDataObject object) {
-				if(object == null) {
+				if (object == null) {
 					Toast.makeText(activity, R.string.error_avoid_specific_road, Toast.LENGTH_LONG).show();
-				} else {
-					getBuilder().addImpassableRoad(object);
-					RoutingHelper rh = app.getRoutingHelper();
-					if(rh.isRouteCalculated() || rh.isRouteBeingCalculated()) {
-						rh.recalculateRouteDueToSettingsChange();
+					if (callback != null) {
+						callback.onAddImpassableRoad(false, null);
 					}
-					showDialog(activity);
+				} else {
+					addImpassableRoadInternal(object, ll, showDialog, activity, loc);
+
+					if (callback != null) {
+						callback.onAddImpassableRoad(true, object);
+					}
 				}
 				return true;
 			}
 
 			@Override
 			public boolean isCancelled() {
+				if (callback != null) {
+					return callback.isCancelled();
+				}
 				return false;
 			}
-			
+
 		});
 	}
-	
+
+	public void replaceImpassableRoad(final MapActivity activity, final RouteDataObject currentObject,
+									  final LatLon loc, final boolean showDialog,
+									  final AvoidSpecificRoadsCallback callback) {
+		final Location ll = new Location("");
+		ll.setLatitude(loc.getLatitude());
+		ll.setLongitude(loc.getLongitude());
+		app.getLocationProvider().getRouteSegment(ll, new ResultMatcher<RouteDataObject>() {
+
+			@Override
+			public boolean publish(RouteDataObject object) {
+				if (object == null) {
+					Toast.makeText(activity, R.string.error_avoid_specific_road, Toast.LENGTH_LONG).show();
+					if (callback != null) {
+						callback.onAddImpassableRoad(false, null);
+					}
+				} else {
+					getBuilder().removeImpassableRoad(currentObject);
+					addImpassableRoadInternal(object, ll, showDialog, activity, loc);
+
+					if (callback != null) {
+						callback.onAddImpassableRoad(true, object);
+					}
+				}
+				return true;
+			}
+
+			@Override
+			public boolean isCancelled() {
+				if (callback != null) {
+					return callback.isCancelled();
+				}
+				return false;
+			}
+
+		});
+	}
+
+	private void addImpassableRoadInternal(RouteDataObject object, Location ll, boolean showDialog, MapActivity activity, LatLon loc) {
+		getBuilder().addImpassableRoad(object, ll);
+		RoutingHelper rh = app.getRoutingHelper();
+		if(rh.isRouteCalculated() || rh.isRouteBeingCalculated()) {
+			rh.recalculateRouteDueToSettingsChange();
+		}
+		if (showDialog) {
+			showDialog(activity);
+		}
+		MapContextMenu menu = activity.getContextMenu();
+		if (menu.isActive() && menu.getLatLon().equals(loc)) {
+			menu.close();
+		}
+		activity.refreshMap();
+	}
+
 	private void showOnMap(MapActivity ctx, double lat, double lon, String name,
 			DialogInterface dialog) {
 		AnimateDraggingMapThread thread = ctx.getMapView().getAnimatedDraggingThread();
@@ -187,4 +247,10 @@ public class AvoidSpecificRoads {
 		dialog.dismiss();
 	}
 
+	public interface AvoidSpecificRoadsCallback {
+
+		void onAddImpassableRoad(boolean success, RouteDataObject newObject);
+
+		boolean isCancelled();
+	}
 }

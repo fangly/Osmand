@@ -30,14 +30,14 @@ public class Version {
 		} else if (isGooglePlayEnabled(ctx)) {
 			return "market://search?q=pname:";
 		} 
-		return "http://osmand.net/apps?"; 
+		return "http://osmand.net/apps?id="; 
 	}
 	
 	private static boolean isAmazonEnabled(OsmandApplication ctx) {
 		return ctx.getString(R.string.versionFeatures).contains("+amazon");
 	}
 	
-	private static boolean isGooglePlayEnabled(OsmandApplication ctx) {
+	public static boolean isGooglePlayEnabled(OsmandApplication ctx) {
 		return ctx.getString(R.string.versionFeatures).contains("+play_market");
 	}
 	

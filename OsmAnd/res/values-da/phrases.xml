@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources>
         <string name="poi_bakery">Bager</string>
         <string name="poi_alcohol">Spiritus</string>
@@ -25,7 +25,7 @@
         <string name="poi_baby_goods">Babyudstryr</string>
         <string name="poi_bag">Tasker</string>
         <string name="poi_bathroom_furnishing">Badeværelsesinventar</string>
-        <string name="poi_bed">Soveværelsesmøbler</string>
+        <string name="poi_bed">sengetøjsbutik</string>
         <string name="poi_boutique">Modebutik</string>
         <string name="poi_carpet">Tæpper</string>
         <string name="poi_chemist">Materialist</string>
@@ -45,7 +45,7 @@
         <string name="poi_furniture">Møbelforretning</string>
         <string name="poi_garden_centre">Havecenter</string>
         <string name="poi_gas">Flaskegas</string>
-        <string name="poi_general">Landhandel</string>
+        <string name="poi_shop_yes">Landhandel</string>
         <string name="poi_gift">Gavebutik</string>
         <string name="poi_glaziery">Glarmester</string>
         <string name="poi_hardware">Værktøj</string>
@@ -104,7 +104,7 @@
         <string name="poi_emergency_access_point">Nødstilfælde punkt</string>
 
         <string name="poi_ford">Vadested</string>
-        <string name="poi_mountain_pass_yes">Bjergpas</string>
+        <string name="poi_mountain_pass">Bjergpas</string>
         <string name="poi_gate">Port</string>
         <string name="poi_city_wall">Bymur</string>
         <string name="poi_lift_gate">Vippebom</string>
@@ -142,7 +142,7 @@
         <string name="poi_bus_station">Busstation</string>
         <string name="poi_railway_station">Banegård</string>
         <string name="poi_railway_platform">Perron</string>
-        <string name="poi_railway_subway_entrance">Metroindgang</string>
+        <string name="poi_subway_entrance">Metroindgang</string>
         <string name="poi_subway_station">Metrostation</string>
         <string name="poi_taxi">Taxaholdeplads</string>
 
@@ -966,7 +966,7 @@
 
 	<string name="poi_email">E-mail</string>
 	<string name="poi_fax">Fax</string>
-	<string name="poi_facebook">Facebook</string>
+	<string name="facebook">Facebook</string>
 	<string name="poi_mobile">Mobiltelefon</string>
 	<string name="poi_animal_shelter_dog">Internat: hund</string>
 	<string name="poi_animal_shelter_cat">Internat: kat</string>
@@ -1060,11 +1060,11 @@
 	<string name="poi_crossing_unmarked">Ikke markeret</string>
 
 	<string name="poi_mill_pond">Mølledam</string>
-	<string name="poi_twitter">Twitter</string>
+	<string name="twitter">Twitter</string>
 	<string name="poi_skype">Skype</string>
 	<string name="poi_youtube">YouTube</string>
 	<string name="poi_instagram">Instagram</string>
-	<string name="poi_vk">VKontakte</string>
+	<string name="vk">VKontakte</string>
 	<string name="poi_google_plus">Google+</string>
 	<string name="poi_perfumery">Parfumeri</string>
 
@@ -1185,7 +1185,7 @@
 
 	<string name="poi_population">Befolkning</string>
 
-	<string name="poi_parking_multi_storey">P-hus</string>
+	<string name="poi_parking_multi_storey">Type: P-hus</string>
 
 	<string name="poi_bicycle_parking_stands">Cykelsstativ</string>
 	<string name="poi_bicycle_parking_wall_loops">Vægmonteret cykelparkering</string>
@@ -1223,7 +1223,7 @@
 	<string name="poi_trees_coffea">Kaffetræ</string>
 	<string name="poi_trees_pomegranate">Granatæble</string>
 
-	<string name="poi_parking_underground">Párkeringskælder</string>
+	<string name="poi_parking_underground">Type: parkeringskælder</string>
 	<string name="poi_bicycle_parking_rack">Cykelsstativ</string>
 	<string name="poi_nudism_yes">Naturisme: tilladt</string>
 	<string name="poi_nudism_no">Naturisme: forbudt</string>
@@ -1368,7 +1368,7 @@
 
 <string name="poi_rtsa_scale">RTSA skala</string>
 
-<string name="poi_pump">Pumpe</string>
+<string name="poi_pump_yes">Pumpe</string>
 
 	<string name="poi_piste_difficulty_easy">Pistesværhedsgrad: let</string>
 	<string name="poi_piste_difficulty_intermediate">Pistesværhedsgrad: medium</string>
@@ -1425,7 +1425,7 @@
 	<string name="poi_aerialway_summer_access_exit">Sommeradgang: kun udgang</string>
 	<string name="poi_aerialway_summer_access_both">Sommeradgang: ind- og udgang</string>
 
-<string name="poi_wheelchair_no">Kørestol: ikke tilladt</string>
+<string name="poi_wheelchair_no">Kørestol: ikke adgang</string>
 	<string name="poi_wheelchair_limited">Kørestol: begrænset</string>
 	<string name="poi_stars_1">Stjerner: 1 (Turist)</string>
 	<string name="poi_stars_1s">Stjerner: 1S (Superior Turist)</string>
@@ -1492,7 +1492,7 @@
 	<string name="poi_payment_cheque_no">Checks accepteres ikke</string>
 	<string name="poi_payment_pikepass_yes">PIKEPASS accepteres</string>
 	<string name="poi_payment_pikepass_no">PIKEPASS accepteres ikke</string>
-	<string name="poi_payment_pikepass_designated">PIKEPASS (udpeget) accepteres</string>
+	<string name="poi_payment_pikepass_designated">PIKEPASS (særskilt) accepteres</string>
 	<string name="poi_payment_visa_debit_yes">Visa kreditkort accepteres</string>
 	<string name="poi_payment_visa_debit_no">Visa kreditkort accepteres ikke</string>
 	<string name="poi_payment_cryptocurrencies_no">Kryptovalutaer accepteres ikke</string>
@@ -1623,7 +1623,7 @@
 	<string name="poi_microbrewery_yes">Mikrobryggeri</string>
 	<string name="poi_microbrewery_no">Ingen mikrobryggeri</string>
 
-	<string name="poi_takeaway_yes">Takeway</string>
+	<string name="poi_takeaway_yes">Takeaway</string>
 	<string name="poi_takeaway_no">Ingen takeaway</string>
 	<string name="poi_takeaway_only">Kun takeaway</string>
 
@@ -1732,7 +1732,7 @@
 	<string name="poi_memorial_koshinto">Koshinto</string>
 	<string name="poi_memorial_blue_plaque">"Blå  plakette"</string>
 	<string name="poi_memorial_jizo">Jizo</string>
-	<string name="poi_memorial_cross">Kors</string>
+	<string name="poi_memorial_cross">Korsformet</string>
 	<string name="poi_memorial_vehicle">Køretøj</string>
 	<string name="poi_memorial_obelisk">Obelisk</string>
 
@@ -1840,7 +1840,7 @@
 	<string name="poi_internet_access_type_wired">Internet adgangstype: kablet</string>
 	<string name="poi_internet_access_type_public">Internetadgang: offentlig</string>
 	<string name="poi_internet_access_type_service">Internetadgang: tjeneste</string>
-	<string name="poi_internet_access_type_no">Internetadgang: ingen</string>
+	<string name="poi_internet_access_type_no">Ingen internetadgang</string>
 
 <string name="poi_maxwidth">Max. bredde</string>
 	<string name="poi_iata">IATA kode</string>
@@ -1958,7 +1958,7 @@
 
 <string name="poi_historic_yes">Historisk objekt</string>
 	<string name="poi_surveillance_yes">Overvågning: ja</string>
-	<string name="poi_shop_yes">Med butik</string>
+	<string name="poi_shop_additional_yes">Med butik</string>
 
 	<string name="poi_service_bicycle_retail_yes">Cykelsalg: ja</string>
 	<string name="poi_service_bicycle_retail_no">Cykelsalg: nej</string>
@@ -2044,12 +2044,12 @@
 	<string name="poi_parish">Sognekontor</string>
 	<string name="poi_publisher">Forlagskontor</string>
 
-<string name="poi_debris">Debris</string>
+<string name="poi_debris">Efterladenskab</string>
 	<string name="poi_jersey_barrier">Jersey barriere</string>
 	<string name="poi_fuel_91ul">91UL brændstof</string>
 	<string name="poi_fuel_100ll">100LL brændstof</string>
-	<string name="poi_autogas">Autogas</string>
-	<string name="poi_jeta1">Jet A-1 brændstof</string>
+	<string name="poi_fuel_autogas">Autogas</string>
+	<string name="poi_fuel_jeta1">Jet A-1 brændstof</string>
 	<string name="poi_fuel_adblue">AdBlue brændstof</string>
 
 	<string name="poi_fuel_wood">Brændstof: træ</string>
@@ -2266,25 +2266,677 @@
 	<string name="poi_tomb_crypt">Type: krypt</string>
 	<string name="poi_tomb_pyramid">Type: pyramide</string>
 
-<string name="poi_historic_civilization_ancient_roman">Civilisation: antik romersk</string>
-	<string name="poi_historic_civilization_nuragic">Civilisation: nuragher</string>
-	<string name="poi_historic_civilization_etruscan">Civilisation: etruskisk</string>
+<string name="poi_historic_civilization_ancient_roman">Civilisation: romerriget (753 f.kr. – 284 e.kr)</string>
+	<string name="poi_historic_civilization_nuragic">Civilisation: nuragher (18. århundrede f.Kr. - 2. århundrede e.Kr.)</string>
+	<string name="poi_historic_civilization_etruscan">Civilisation: etruskisk (12. – 6. århundrede f.kr.)</string>
 	<string name="poi_historic_civilization_prehistoric">Civilisation: forhistorisk</string>
 	<string name="poi_historic_civilization_ancient_greek">Civilisation: oldgræsk</string>
 	<string name="poi_historic_civilization_roman">Civilisation: romersk</string>
-	<string name="poi_historic_civilization_byzantine">Civilisation: byzantinsk</string>
-	<string name="poi_historic_civilization_imperial_chinese">Civilisation: kinesiske dynastier</string>
-	<string name="poi_historic_civilization_ancient_egyptian">Civilisation: gammelegyptisk</string>
+	<string name="poi_historic_civilization_byzantine">Civilisation: byzantinsk (285 e.Kr. – 1453 e.Kr.)</string>
+	<string name="poi_historic_civilization_imperial_chinese">Civilisation: kinesisk dynasti (221 f.Kr. – 1911 e.Kr.)</string>
+	<string name="poi_historic_civilization_ancient_egyptian">Civilisation: det gamle Egypten (indtil 332 f.Kr.)</string>
 	<string name="poi_historic_civilization_celtic">Civilisation: celtic</string>
-	<string name="poi_historic_civilization_western_roman">Civilisation: vestromersk</string>
+	<string name="poi_historic_civilization_western_roman">Civilisation: vestromersk (285 e.Kr. – 476 e.kr)</string>
 	<string name="poi_historic_civilization_mycenaean">Civilisation: mykensk</string>
 	<string name="poi_historic_civilization_dacian">Civilisation: daker</string>
 	<string name="poi_historic_civilization_hernici">Civilisation: herniker</string>
-	<string name="poi_historic_civilization_greek_egyptian">Civilisation: græsk egyptisk</string>
+	<string name="poi_historic_civilization_greek_egyptian">Civilisation: græsk egyptisk (285 f.Kr. – 476 f.Kr.)</string>
 	<string name="poi_historic_civilization_roman_and_byzantine_egyptian">Civilisation: romersk og byzantinsk egyptisk</string>
-	<string name="poi_historic_civilization_helladic">Civilisation: helladisk</string>
+	<string name="poi_historic_civilization_helladic">Civilisation: helladic</string>
 	<string name="poi_historic_civilization_cycladic">Civilisation: kykladisk</string>
 	<string name="poi_historic_civilization_minoan">Civilisation: minoisk</string>
 	<string name="poi_historic_civilization_tiahuanacota">Civilisation: tiahuanacota</string>
+
+<string name="poi_animal_training">Dyretræning</string>
+	<string name="poi_animal_training_dog">Hundetræning</string>
+	<string name="poi_animal_training_horse">Hestetrænning</string>
+
+	<string name="poi_horse_yes">Heste tilladt</string>
+	<string name="poi_horse_no">Heste ikke tilladt</string>
+	<string name="poi_animal_yes">Dyr tilladt</string>
+	<string name="poi_animal_no">Dyr ikke tilladt</string>
+
+	<string name="poi_historic_period_nuragic">Historiskperiode: nuragic</string>
+	<string name="poi_historic_period_stone_bronze_undetermined">Historiskperiode: stenalder / bronzealder (ubestemt)</string>
+	<string name="poi_historic_period_bronze_age">Historiskperiode:Bronzealderen</string>
+	<string name="poi_historic_period_principate">Historiskperiode: Principatet (27 f.Kr. – 284 e.Kr)</string>
+	<string name="poi_historic_period_classical_greece">Historiskperiode: klassiske Grækenland (5. - 4. århundrede f.Kr.)</string>
+	<string name="poi_historic_period_archaic_greece">Historiskperiode: Arkaisk tid</string>
+	<string name="poi_historic_period_iron_age">Historiskperiode: Jernalderen</string>
+	<string name="poi_historic_period_roman_republic">Historiskperiode: Romerske republik (508 f.kr. - 27 f.kr.)</string>
+	<string name="poi_historic_period_hellenistic_greece">Historiskperiode: Hellenistisk Grækenland</string>
+	<string name="poi_historic_period_new_kingdom">Historiskperiode: nye Kongerige (1550-1069 f.kr.)</string>
+	<string name="poi_historic_period_middle_kingdom">Historiskperiode: mellemste rige (2055 -1650 f.kr.)</string>
+	<string name="poi_historic_period_predynastic_egypt">Historiskperiode: prædynastiske Egypten</string>
+	<string name="poi_historic_period_early_dynastic_period">Historiskperiode: tidlig dynastiske periode (3100 - 2686 f.Kr.)</string>
+	<string name="poi_historic_period_old_kingdom">Historiskperiode: det gamle Kongerige (2686 - 2181 f.Kr.)</string>
+	<string name="poi_historic_period_first_intermediate_period">Historiskperiode: første mellemliggende periode (2181- 2055 f.Kr.)</string>
+	<string name="poi_historic_period_second_intermediate_period">Historiskperiode: anden mellemliggende periode (1650 – 1550 f.Kr.)</string>
+	<string name="poi_historic_period_third_intermediate_period">"Historiskperiode: tredje mellemliggende periode (1069 - 664 f.Kr.) "</string>
+	<string name="poi_historic_period_first_persian_period">Historiskperiode: første persiske periode</string>
+	<string name="poi_historic_period_late_period">Historiskperiode: sene periode (664 - 332 f.Kr.)</string>
+	<string name="poi_historic_period_second_persian_period">Historiskperiode: anden Persiske periode</string>
+	<string name="poi_historic_period_alexander_the_great">Historiskperiode: Alexander den Store</string>
+	<string name="poi_historic_period_ptolemaic_egypt">Historiskperiode: ptolemæiske Egypten (305 f.kr. – 30 f.kr.)</string>
+	<string name="poi_historic_period_christian_egypt">Historiskperiode: kristen Egypten</string>
+	<string name="poi_historic_period_byzantine_egypt">Historiskperiode: byzantinske Egypten (30 f.kr.-641 e.Kr.)</string>
+	<string name="poi_historic_period_persian_occupation">Historiskperiode: den Persisk besættelse</string>
+	<string name="poi_historic_period_greek_dark_ages">Historiskperiode: den mørke middelalder i Grækenland (1100 – 800 f.Kr.)</string>
+	<string name="poi_historic_period_roman_greece">Historiskperiode: romersk græsk (146 f.Kr. – 330 e.Kr)</string>
+	<string name="poi_historic_period_roman_kingdom">Historiskperiode: det romerske Kongerige (753 f.Kr. – 509 f.Kr.)</string>
+	<string name="poi_historic_period_dominate">Historiskperiode: Dominatet (285 e.Kr. – 476 e.Kr)</string>
+	<string name="poi_historic_period_villager">Historiskperiode: landsbyboere (epoke I, II, 1580 f.Kr. - 133 e.Kr.)</string>
+	<string name="poi_historic_period_urban">Historiskperiode: bymæssig (epoke III, 133 e.Kr. - 374 e.Kr.)</string>
+	<string name="poi_historic_period_classical">Historiskperiode: klassisk (epoke IV, 374 e.Kr. - 900 e.Kr.)</string>
+	<string name="poi_historic_period_imperial">Historiskperiode: imperial (epoke V, 900 e.Kr. - 1200 e.Kr.)</string>
+
+<string name="poi_tourism_yes">Turistmæssigt objekt</string>
+	<string name="poi_historic_era_paleolithic">Historisk æra: ældste stenalder (2,6 millioner år - 10.000 f.Kr.)</string>
+	<string name="poi_historic_era_mesolithic">Historisk æra: ældre stenalder</string>
+	<string name="poi_historic_era_neolithic">"Historisk æra:  yngre stenalder"</string>
+	<string name="poi_historic_era_chalcolithic">Historisk æra: kobberalderen (IV-III årtusinde f.Kr.)</string>
+
+	<string name="poi_historic_stone">Historisk sten</string>
+	<string name="poi_stone_type_conciliation_cross">Type: stenkors</string>
+	<string name="poi_stone_type_coat_of_arms">Type: våbenskjold</string>
+
+	<string name="poi_material_wood">Materiale: træ</string>
+	<string name="poi_material_metal">Materiale: metal</string>
+	<string name="poi_material_reinforced_concrete">Materiale: armeret beton</string>
+	<string name="poi_material_concrete">Materiale: beton</string>
+	<string name="poi_material_steel">Materiale: stål</string>
+	<string name="poi_material_stone">Materiale: sten</string>
+	<string name="poi_material_masonry">Materiale: murværk</string>
+	<string name="poi_material_brick">Materiale: mursten</string>
+	<string name="poi_material_plastic">Materiale: plastik</string>
+	<string name="poi_material_sandstone">Materiale: sandsten</string>
+	<string name="poi_material_granite_stone">Materiale: granitsten</string>
+	<string name="poi_material_metal_wood">Materiale: metal, træ</string>
+	<string name="poi_material_glass">Materiale: glas</string>
+	<string name="poi_material_bronze">Materiale: bronze</string>
+	<string name="poi_material_earth">Materiale: jord</string>
+	<string name="poi_material_composite">Materiale: composit</string>
+	<string name="poi_material_limestone">Materiale: kalksten</string>
+	<string name="poi_material_marble">Materiale: marmor</string>
+	<string name="poi_material_aluminium">Materiale: aluminium</string>
+
+	<string name="poi_site_type_megalith">Type: megalit</string>
+	<string name="poi_site_type_tumulus">Type: gravhøj</string>
+	<string name="poi_site_type_fortification">Type: befæstning</string>
+	<string name="poi_site_type_settlement">Type: bebyggelse</string>
+	<string name="poi_site_type_city">Type: by</string>
+	<string name="poi_site_type_hut_circle">Type: hyttekreds</string>
+	<string name="poi_site_type_necropolis">Type: nekropol</string>
+	<string name="poi_site_type_petroglyph">Type: helleristning</string>
+	<string name="poi_site_type_earthwork">Type: jordarbejde</string>
+	<string name="poi_megalith_type_menhir">Megalit type: bautasten</string>
+	<string name="poi_megalith_type_dolmen">Megalit type: dysse</string>
+	<string name="poi_megalith_type_nuraghe">Megalit type: nuragh</string>
+	<string name="poi_megalith_type_stone_circle">Megalit type: stenkreds</string>
+	<string name="poi_megalith_type_passage_grave">Megalit type: jættestue</string>
+	<string name="poi_fortification_type_hill_fort">Befæstningsype: hillfort</string>
+	<string name="poi_fortification_type_limes">Befæstningstype: limes</string>
+	<string name="poi_fortification_type_sconce">Befæstningstype: skanse</string>
+	<string name="poi_fortification_type_ring_ditch">Befæstningstype: kredsformet jordvold</string>
+
+	<string name="poi_pa">Pa (maori befæstet bosættelse)</string>
+
+	<string name="poi_historic_farm">Historisk gård</string>
+	<string name="poi_historic_railway_station">Historisk jernbanestation</string>
+
+<string name="poi_club_freemasonry">Frimurerloge</string>
+	<string name="poi_club_sailing">Sejlklub</string>
+	<string name="poi_club_scout">Spejdergruppe</string>
+
+
+<string name="poi_historic_threshing_floor">Historisk tærskeplads</string>
+	<string name="poi_historic_gallows">Historisk galge</string>
+	<string name="poi_historic_railway">Historisk jernbane</string>
+
+<string name="poi_square">Plads</string>
+
+<string name="poi_building_type_church">Bygningstype: kirke</string>
+	<string name="poi_building_type_chapel">Bygningstype: kapel</string>
+	<string name="poi_building_type_mosque">Bygningstype: moské</string>
+	<string name="poi_building_type_temple">Bygningstype: tempel</string>
+	<string name="poi_building_type_cathedral">Bygningstype: katedral</string>
+	<string name="poi_building_type_monastery">Bygningstype: kloster</string>
+	<string name="poi_building_type_basilica">Bygningstype: basilika</string>
+	<string name="poi_building_type_synagogue">Bygningstype: synagoge</string>
+	<string name="poi_building_type_shrine">Bygningstype: helligdom</string>
+
+<string name="poi_artist_name">Kunstner</string>
+	<string name="poi_sculptor">Billedhugger</string>
+
+	<string name="poi_cross">Kors</string>
+	<string name="poi_summit_cross">Kors på toppen: ja</string>
+
+	<string name="poi_prison_camp">Tidligere fangelejr</string>
+	<string name="poi_concentration_camp">Type: koncentrationslejr</string>
+	<string name="poi_pow_camp">Type: krigsfangelejr</string>
+	<string name="poi_labor_camp">Type: arbejdslejr</string>
+	<string name="poi_concentration_camp_nazism">Type: nazistisk</string>
+	<string name="poi_concentration_camp_gulag">Type: gulag</string>
+
+<string name="poi_temperature">Temperatur</string>
+	<string name="poi_bathing_yes">Badning: ja</string>
+	<string name="poi_bathing_no">Badning: nej</string>
+
+<string name="poi_wiki_link">Wiki</string>
+
+
+<string name="poi_traffic_calming_island">Helleanlæg</string>
+	<string name="poi_boat_storage">Bådopbevaring</string>
+
+
+<string name="poi_conveying_yes">Transportør: ja</string>
+
+
+<string name="poi_bridge_ref">Bro ref</string>
+	<string name="poi_tunnel_ref">Tunnel ref</string>
+
+	<string name="poi_ref">Ref</string>
+
+<string name="poi_cargo_passengers">Fragt: passagerer</string>
+	<string name="poi_cargo_vehicle">Fragt: køretøj</string>
+	<string name="poi_cargo_bicycle">Fragt: cykel</string>
+	<string name="poi_cargo_container">Fragt: container</string>
+	<string name="poi_cargo_hgv">Fragt: modulvogntog</string>
+
+<string name="poi_fitness_station">Fitness station</string>
+
+<string name="poi_hackerspace">Hacklab</string>
+
+<string name="poi_wiki_lang_af">Afrikaans wiki</string>
+	<string name="poi_wiki_lang_als">Elsassisk wiki</string>
+	<string name="poi_wiki_lang_az">Aserbajdsjansk wiki</string>
+	<string name="poi_wiki_lang_bn">Bengalsk wiki</string>
+	<string name="poi_wiki_lang_bpy">Bishnupriya manipur wiki</string>
+	<string name="poi_wiki_lang_br">Bretonsk wiki</string>
+	<string name="poi_wiki_lang_cy">Walisisk wiki</string>
+	<string name="poi_wiki_lang_eo">Esperanto wiki</string>
+	<string name="poi_wiki_lang_eu">Baskisk wiki</string>
+	<string name="poi_wiki_lang_fa">Farsi wiki</string>
+	<string name="poi_wiki_lang_fy">Vestfrisisk wiki</string>
+	<string name="poi_wiki_lang_hy">Armensk wiki</string>
+	<string name="poi_wiki_lang_is">Islandsk wiki</string>
+	<string name="poi_wiki_lang_ka">Georgisk wiki</string>
+	<string name="poi_wiki_lang_ku">Kurdisk wiki</string>
+	<string name="poi_wiki_lang_la">Latinsk wiki</string>
+	<string name="poi_wiki_lang_lb">Luxembourgsk wiki</string>
+	<string name="poi_wiki_lang_mk">Makedonsk wiki</string>
+	<string name="poi_wiki_lang_ml">Malayalam wiki</string>
+	<string name="poi_wiki_lang_mr">Marathi wiki</string>
+	<string name="poi_wiki_lang_nds">Niedersachsen wiki</string>
+	<string name="poi_wiki_lang_nv">Navajo wiki</string>
+	<string name="poi_wiki_lang_os">Ossetisk wiki</string>
+	<string name="poi_wiki_lang_pms">Piemontesisk wiki</string>
+	<string name="poi_wiki_lang_sc">Sardisk wiki</string>
+	<string name="poi_wiki_lang_sh">Serbokroatisk wiki</string>
+	<string name="poi_wiki_lang_sq">Albansk wiki</string>
+	<string name="poi_wiki_lang_ta">Tamilsk wiki</string>
+	<string name="poi_wiki_lang_tl">Filippinsk wiki</string>
+
+<string name="poi_wiki_lang_bs">Bosnisk wiki</string>
+	<string name="poi_wiki_lang_ga">Irsk wiki</string>
+	<string name="poi_wiki_lang_war">Waray-waray wiki</string>
+	<string name="poi_wiki_lang_min">Minangkabau wiki</string>
+	<string name="poi_wiki_lang_kk">Kasakhisk wiki</string>
+	<string name="poi_wiki_lang_uz">Usbekisk wiki</string>
+	<string name="poi_wiki_lang_ce">Tjetjensk wiki</string>
+	<string name="poi_wiki_lang_ur">Urdu wiki</string>
+	<string name="poi_wiki_lang_oc">Occitansk wiki</string>
+	<string name="poi_wiki_lang_zhminnan">Minnan wiki</string>
+	<string name="poi_wiki_lang_mg">Malagassisk wiki</string>
+	<string name="poi_wiki_lang_tt">Tatarisk wiki</string>
+	<string name="poi_wiki_lang_jv">Javanesisk wiki</string>
+	<string name="poi_wiki_lang_ky">Kirgisisk wiki</string>
+	<string name="poi_wiki_lang_zhyue">Kantonesisk wiki</string>
+	<string name="poi_wiki_lang_ast">Asturleonesisk wiki</string>
+	<string name="poi_wiki_lang_tg">Tadjikisk wiki</string>
+	<string name="poi_wiki_lang_ba">Bashkir</string>
+	<string name="poi_wiki_lang_sco">Skotsk wiki</string>
+	<string name="poi_wiki_lang_pnb">Punjabi wiki</string>
+	<string name="poi_wiki_lang_cv">Tsjuvasjisk wiki</string>
+	<string name="poi_wiki_lang_lmo">Lombardisk wiki</string>
+	<string name="poi_wiki_lang_my">Burmesisk wiki</string>
+	<string name="poi_wiki_lang_yo">Yoruba wiki</string>
+	<string name="poi_wiki_lang_an">Aragonsk wiki</string>
+	<string name="poi_wiki_lang_ne">Nepalesisk wiki</string>
+	<string name="poi_wiki_lang_gu">Gujarati wiki</string>
+	<string name="poi_wiki_lang_scn">Siciliansk wiki</string>
+	<string name="poi_wiki_lang_bar">Bayersk wiki</string>
+	<string name="poi_wiki_lang_mn">Mongolsk wiki</string>
+	<string name="poi_wiki_lang_nap">Napolitansk wiki</string>
+
+<string name="poi_craft_electronics">Reparation af elektronik</string>
+
+<string name="poi_fireworks">Fyrværkeri butik</string>
+
+<string name="poi_aerialway_length">Længde</string>
+
+<string name="poi_internet_access_type_yes">Med internetadgang</string>
+
+	<string name="poi_health_specialty_general_yes">Sundhedsspeciale: praktiserende læge</string>
+	<string name="poi_health_specialty_ophthalmology_yes">Sundhedsspeciale: oftalmologi</string>
+	<string name="poi_health_specialty_gynaecology_yes">Sundhedsspeciale: gynækologi</string>
+	<string name="poi_health_specialty_internal_medicine_yes">Sundhedsspeciale: intern medicin</string>
+	<string name="poi_health_specialty_orthopaedics_yes">Sundhedsspeciale: ortopædkirurgi</string>
+	<string name="poi_health_specialty_otolaryngology_yes">Sundhedsspeciale: oto-rhino-laryngologi</string>
+	<string name="poi_health_specialty_paediatrics_yes">Sundhedsspeciale: pædiatri</string>
+	<string name="poi_health_specialty_paediatrics_no">Sundhedsspeciale: pædiatri: nej</string>
+	<string name="poi_health_specialty_dermatology_yes">Sundhedsspeciale: dermatologi</string>
+	<string name="poi_health_specialty_urology_yes">Sundhedsspeciale: urologi</string>
+	<string name="poi_health_specialty_surgery_yes">Sundhedsspeciale: almen kirurgi</string>
+	<string name="poi_health_specialty_radiology_yes">Sundhedsspeciale: radiologi</string>
+	<string name="poi_health_specialty_psychiatry_yes">Sundhedsspeciale: psykiatri</string>
+	<string name="poi_health_specialty_neurology_yes">Sundhedsspeciale: neurologi</string>
+	<string name="poi_health_specialty_dermatovenereology_yes">Sundhedsspeciale: dermato-venerologi</string>
+	<string name="poi_health_specialty_cardiology_yes">Sundhedsspeciale: kardiologi</string>
+	<string name="poi_health_specialty_trauma_yes">Sundhedsspeciale: traumatologi</string>
+	<string name="poi_health_specialty_biology_yes">Sundhedsspeciale: klinisk biologi</string>
+	<string name="poi_health_specialty_osteopathy_yes">Sundhedsspeciale: osteopati</string>
+	<string name="poi_health_specialty_anaesthetics_yes">Sundhedsspeciale: anæstesi</string>
+	<string name="poi_health_specialty_pulmonology_yes">Sundhedsspeciale: pneumologi</string>
+	<string name="poi_health_specialty_dental_oral_maxillo_facial_surgery_yes">Sundhedsspeciale: tand-, mund-, kæbe og ansigtskirurgi</string>
+	<string name="poi_health_specialty_maternity_yes">Sundhedsspeciale: graviditet og barsel</string>
+	<string name="poi_health_specialty_emergency_medicine_yes">Sundhedsspeciale: akutmedicin</string>
+	<string name="poi_health_specialty_emergency_medicine_no">Sundhedsspeciale: akutmedicin: nej</string>
+	<string name="poi_health_specialty_plastic_surgery_yes">Sundhedsspeciale: plastikkirurgi</string>
+	<string name="poi_health_specialty_orthodontics_yes">Sundhedsspeciale: ortodonti</string>
+	<string name="poi_health_specialty_physiotherapy_yes">Sundhedsspeciale: fysioterapi</string>
+	<string name="poi_health_specialty_biochemistry_yes">Sundhedsspeciale: biokemi</string>
+	<string name="poi_health_specialty_occupational_yes">Sundhedsspeciale: ergoterapi</string>
+	<string name="poi_health_specialty_child_psychiatry_yes">Sundhedsspeciale: børnepsykiatri</string>
+	<string name="poi_health_specialty_physiatry_yes">Sundhedsspeciale: fysisk medicin og rehabilitering</string>
+	<string name="poi_health_specialty_maxillofacial_surgery_yes">Sundhedsspeciale: ansigtskirurgi</string>
+	<string name="poi_health_specialty_diagnostic_radiology_yes">Sundhedsspeciale: diagnostisk radiologi</string>
+	<string name="poi_health_specialty_gastroenterology_yes">Sundhedsspeciale: gastroenterologi</string>
+	<string name="poi_health_specialty_dentistry_yes">Sundhedsspeciale: tandpleje</string>
+	<string name="poi_health_specialty_nephrology_yes">Sundhedsspeciale: nefrologi (nyresygdomme)</string>
+	<string name="poi_health_specialty_neurosurgery_yes">Sundhedsspeciale: neurokirurgi</string>
+	<string name="poi_health_specialty_neuropsychiatry_yes">Sundhedsspeciale: neuropsykiatri</string>
+	<string name="poi_health_specialty_endocrinology_yes">Sundhedsspeciale: endokrinologi</string>
+	<string name="poi_health_specialty_nuclear_medicine_yes">Sundhedsspeciale: nuklearmedicin</string>
+	<string name="poi_health_specialty_pathology_yes">Sundhedsspeciale: patologisk anatomi</string>
+	<string name="poi_health_specialty_oncology_yes">Sundhedsspeciale: onkologi</string>
+	<string name="poi_health_specialty_tropical_medicine_yes">Sundhedsspeciale: tropemedicin</string>
+	<string name="poi_health_specialty_tropical_medicine_no">Sundhedsspeciale: tropemedicin: nej</string>
+	<string name="poi_health_specialty_obstetrics_postnatal_yes">Sundhedsspeciale: obstetrik (postnatal)</string>
+	<string name="poi_health_specialty_obstetrics_postnatal_no">Sundhedsspeciale: obstetrik (postnatal): nej</string>
+	<string name="poi_health_specialty_obstetrics_antenatal_yes">Sundhedsspeciale: obstetrik (prænatal)</string>
+	<string name="poi_health_specialty_obstetrics_antenatal_no">Sundhedsspeciale: obstetrik (prænatal): nej</string>
+	<string name="poi_health_specialty_social_paediatrics_yes">Sundhedsspeciale: socialpædiatri</string>
+	<string name="poi_health_specialty_social_paediatrics_no">Sundhedspeciale: socialpædiatri: nej</string>
+	<string name="poi_health_specialty_obstetrics_caesarean_section_yes">Sundhedsspeciale: obstetrik (kejsersnit)</string>
+	<string name="poi_health_specialty_obstetrics_caesarean_section_no">Sundhedsspeciale: obstetrik (kejsersnit): nej</string>
+	<string name="poi_health_specialty_addiction_medicine_yes">Sundhedsspeciale: afhængighed af medicin</string>
+	<string name="poi_health_specialty_optometry_yes">Sundhedsspeciale: optometri</string>
+	<string name="poi_health_specialty_clinical_pathology_yes">Sundhedspeciale: klinisk patologi</string>
+	<string name="poi_health_specialty_speech_therapy_yes">Sundhedsspeciale: taleterapi</string>
+	<string name="poi_health_specialty_manual_therapy_yes">Sundhedsspeciale: manuelterapi</string>
+	<string name="poi_health_specialty_sports_medicine_yes">Sundhedsspeciale: sportsmedicin</string>
+	<string name="poi_health_specialty_podology_yes">Sundhedsspeciale: podologi</string>
+	<string name="poi_health_specialty_adult_psychiatry_yes">Sundhedsspeciale: voksenpsykiatri</string>
+	<string name="poi_health_specialty_acupuncture_yes">Sundhedsspeciale: akupunktur</string>
+	<string name="poi_health_specialty_homeopathy_yes">Sundhedsspeciale: homøopati</string>
+	<string name="poi_health_specialty_traditional_chinese_medicine_yes">Sundhedsspeciale: traditionel kinesiskmedicin</string>
+	<string name="poi_health_specialty_reiki_yes">Sundhedsspeciale: reiki</string>
+	<string name="poi_health_specialty_herbalism_yes">Sundhedsspeciale: plantemedicin</string>
+	<string name="poi_health_specialty_chiropractic_yes">Sundhedspeciale: kiropraktik</string>
+	<string name="poi_health_specialty_naturopathy_yes">Sundhesspeciale: naturmedicin</string>
+	<string name="poi_health_specialty_depth_psychology_yes">Sundhedsspeciale: dybdepsykologi</string>
+	<string name="poi_health_specialty_behavior_yes">Sundhedsspeciale: adfærd</string>
+
+
+<string name="poi_building_type_pyramid">Bygningstype: pyramide</string>
+
+<string name="poi_fitness_centre">Fitnesscenter</string>
+	<string name="poi_fitness">Fitness</string>
+
+<string name="poi_billiards">Billard</string>
+
+<string name="poi_microwave_oven_yes">Mikrobølgeovn: ja</string>
+	<string name="poi_microwave_oven_no">Mikrobølgeovn: nej</string>
+	<string name="poi_water_heater_yes">Vandvarmer: ja</string>
+	<string name="poi_water_heater_no">Vandvarmer: nej</string>
+
+	<string name="poi_parking_surface">Type: overflade</string>
+	<string name="poi_parking_garage_boxes">Type: garage</string>
+	<string name="poi_parking_carports">Type: carporte</string>
+
+	<string name="poi_dojo">Dojo</string>
+
+<string name="poi_gaelic_games">Gælisk sport</string>
+	<string name="poi_running">Løb</string>
+	<string name="poi_netball">Netbold</string>
+	<string name="poi_karting">Gokart</string>
+	<string name="poi_badminton">Badminton</string>
+	<string name="poi_judo">Judo</string>
+	<string name="poi_disc_golf">Disc golf</string>
+	<string name="poi_futsal">Futsal</string>
+	<string name="poi_rc_car">RC billøb</string>
+	<string name="poi_squash">Squash</string>
+	<string name="poi_shuffleboard">Shuffleboard</string>
+	<string name="poi_lacrosse">Lacrosse</string>
+	<string name="poi_boxing">Boksning</string>
+
+<string name="poi_official_name">Officielle navn</string>
+
+<string name="poi_seamark_dyke">Sømærke dige</string>
+	<string name="poi_dolphin">Delfin</string>
+
+	<string name="poi_forestry_compartment">Vejviser: skovbrug</string>
+	<string name="poi_forestry_allotment">Vejviser: skovbrug tildeling</string>
+	<string name="poi_inscription_n">Inskription: N</string>
+	<string name="poi_inscription_nw">Inskription: NV</string>
+	<string name="poi_inscription_w">Inskription: V</string>
+	<string name="poi_inscription_sw">Inskription: SV</string>
+	<string name="poi_inscription_s">Inskription: S</string>
+	<string name="poi_inscription_se">Inskription: SØ</string>
+	<string name="poi_inscription_e">Inskription: Ø</string>
+	<string name="poi_inscription_ne">Inskription: NØ</string>
+
+	<string name="poi_construction_yes">Under opførelse</string>
+
+<string name="poi_atm_yes">Hæveautomat: ja</string>
+	<string name="poi_atm_no">Hæveautomat: nej</string>
+
+<string name="poi_firepit">Bålplads</string>
+	<string name="poi_street_cabinet">Gadeskab</string>
+
+<string name="poi_fair_trade_yes">Fairtrade: ja</string>
+	<string name="poi_fair_trade_no">Fairtrade: nej</string>
+	<string name="poi_fair_trade_only">Kun fairtrade-produkter</string>
+
+<string name="poi_ice_hockey">Ishockey</string>
+	<string name="poi_bandy">Bandy</string>
+
+<string name="poi_protected_area">Beskyttet område</string>
+	<string name="poi_protection_title">Beskyttet titel</string>
+	<string name="poi_protection_object_historic">Beskyttet objekt: historisk</string>
+	<string name="poi_protection_object_nature">Beskyttet objekt: natur</string>
+	<string name="poi_protection_object_habitat">Beskyttet objekt: levested</string>
+	<string name="poi_protection_object_water">Beskyttet objekt: vand</string>
+
+<string name="poi_nuclear_explosion_country">Eksplosion: land</string>
+	<string name="poi_nuclear_explosion_site">Eksplosion: sted</string>
+	<string name="poi_nuclear_explosion_type_underground_shaft">Eksplosionstype: under jorden, skakt</string>
+	<string name="poi_nuclear_explosion_type_underground_tunnel">Eksplosionstype: under jorden, tunnel</string>
+	<string name="poi_nuclear_explosion_type_atmospheric">Eksplosionstype: atmosfærisk</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_airdrop">Eksplosionstype: atmosfærisk, nedkastning</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_surface_tower">Eksplosionstype: atmosfærisk, overflade, tårn</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_balloon">Eksplosionstype: atmosfærisk, ballon</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_atmospheric_surface">Eksplosionstype: atmosfærisk, overflade</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_water_surface_barge">Eksplosionstype: atmosfærisk, vandoverflade, pram</string>
+	<string name="poi_nuclear_explosion_type_underground">Eksplosionstype: underjordisk</string>
+	<string name="poi_nuclear_explosion_type_cratering_burst">Eksplosionstype: kraterdannelse (lavvandet underjordisk)</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_rocket_or_missile">Eksplosionstype: atmosfærisk, raket eller missil</string>
+	<string name="poi_nuclear_explosion_type_space">Eksplosionstype: rummet (højde over 80 km)</string>
+	<string name="poi_nuclear_explosion_type_underwater">Eksplosionstype: undersøisk</string>
+	<string name="poi_nuclear_explosion_date_utc">Eksplosionsdato (UTC)</string>
+	<string name="poi_nuclear_explosion_shot_name_en">Skudnavn (en)</string>
+	<string name="poi_nuclear_explosion_series">Eksplosionsserie</string>
+	<string name="poi_nuclear_explosion_purpose_nuclear_weapons_related">Eksplosionsformål: atomvåben relateret</string>
+	<string name="poi_nuclear_explosion_purpose_weapons_effects">Eksplosionsformål: våbeneffekt</string>
+	<string name="poi_nuclear_explosion_purpose_safety_experiment">Eksplosionsformål: sikkerhedseksperiment</string>
+	<string name="poi_nuclear_explosion_purpose_research_for_peaceful_applications">Eksplosionsformål: forskning for fredelige anvendelser</string>
+	<string name="poi_nuclear_explosion_purpose_fundamental_science">Eksplosionsformål: grundlæggende videnskab</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_cavity_excavation">Eksplosionsformål: industriel anvendelse, udgravning af hulrum</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_seismic_sounding">Eksplosionsformål: industriel anvendelse, seismiske pejlinger</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_oil_stimulation">Eksplosionsformål: industriel anvendelse, oliestimulering</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application">Eksplosionsformål: industriel anvendelse</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_earth_moving">Eksplosionsformål: industriel anvendelse, jordflytning</string>
+	<string name="poi_nuclear_explosion_time_utc">Eksplosionstidpunkt (UTC)</string>
+	<string name="poi_nuclear_explosion_yield">Eksplosionsudbytte</string>
+	<string name="poi_nuclear_explosion_hole">Eksplosionshul</string>
+	<string name="poi_nuclear_explosion_height_of_burst">Eksplosionenshøjde</string>
+	<string name="poi_nuclear_explosion_ground_zero_altitude">Højde over jordoverfladen</string>
+	<string name="poi_nuclear_explosion_body_wave_magnitude">Seismiskbølge størrelsesorden</string>
+	<string name="poi_nuclear_explosion_salvo_first_detonation">Eksplosionssalve: første detonation af en salvetest</string>
+	<string name="poi_nuclear_explosion_salvo_second_or_later_detonation">Eksplosionssalve: anden eller senere detonation af en salvetest</string>
+	<string name="poi_nuclear_explosion_crater_diameter">Eksplosion: kraterdiameter</string>
+	<string name="poi_nuclear_explosion_warhead">Eksplosion: sprænghoved</string>
+	<string name="poi_nuclear_explosion_device">Eksplosion: anordning</string>
+
+<string name="poi_addr_housename">Husnavn</string>
+
+<string name="poi_religion">Religiøse artikler</string>
+
+<string name="poi_plant_nursery">Planteskole</string>
+
+<string name="poi_compressed_air_yes">Trykluft: ja</string>
+	<string name="poi_compressed_air_no">Trykluft: nej</string>
+
+	<string name="poi_car_wash_yes">Bilvask: ja</string>
+
+	<string name="poi_vacuum_cleaner_yes">Støvsuger: ja</string>
+	<string name="poi_vacuum_cleaner_no">Støvsuger: nej</string>
+	<string name="poi_amenity_vacuum_cleaner">Støvsuger</string>
+
+<string name="poi_sport_free_flying">Freeflying (sport)</string>
+<string name="poi_bicycle_repair_station">Cykelreparationsstander</string>
+
+<string name="poi_water_tap">Vandhane</string>
+
+<string name="poi_button_operated_yes">Knapbetjent: ja</string>
+	<string name="poi_button_operated_no">Knapbetjent: nej</string>
+
+<string name="poi_free_flying_paragliding_yes">Paragliding: ja</string>
+	<string name="poi_free_flying_paragliding_no">Paragliding: nej</string>
+	<string name="poi_free_flying_hanggliding_yes">Hanggliding: ja</string>
+	<string name="poi_free_flying_hanggliding_no">Hanggliding: nej</string>
+	<string name="poi_free_flying_site_orientation_s">Freeflying flyvepladsorientering: S</string>
+	<string name="poi_free_flying_site_orientation_sw">Freeflying flyvepladsorientering: SV</string>
+	<string name="poi_free_flying_site_orientation_w">Freeflying flyvepladsorientering: V</string>
+	<string name="poi_free_flying_site_orientation_nw">Freeflying flyvepladsorientering: NV</string>
+	<string name="poi_free_flying_site_orientation_n">Freeflying flyvepladsorientering: N</string>
+	<string name="poi_free_flying_site_orientation_ne">Freeflying flyvepladsorientering: NØ</string>
+	<string name="poi_free_flying_site_orientation_e">Freeflying flyvepladsorientering: Ø</string>
+	<string name="poi_free_flying_site_orientation_se">Freeflying flyvepladsorientering: SØ</string>
+	<string name="poi_free_flying_no_flight_time">Ingen flyvetid (Freeflying)</string>
+	<string name="poi_free_flying_guest_guidelines_yes">Gæsteretningslinjer for freeflying: ja</string>
+	<string name="poi_free_flying_guest_guidelines_no">Gæsteretningslinjer for freeflying: nej</string>
+
+	<string name="poi_solarium">Solarium</string>
+
+<string name="poi_free_flying_site_takeoff">Freeflying flyveplads: start</string>
+	<string name="poi_free_flying_site_landing">Freeflying flyveplads: landing</string>
+	<string name="poi_free_flying_site_toplanding">Freeflying flyveplads: toplanding</string>
+	<string name="poi_free_flying_site_towing">Freeflying flyveplads: trækanordning</string>
+	<string name="poi_free_flying_site_training">"Freeflying flyveplads:  træning"</string>
+	<string name="poi_free_flying_official_yes">Freeflying funktionær: ja</string>
+	<string name="poi_free_flying_official_no">Freeflying funktionær: nej</string>
+	<string name="poi_free_flying_rigid_yes">Freeflying fastvinge: ja</string>
+	<string name="poi_free_flying_rigid_no">Freeflying fastvinge: nej</string>
+
+<string name="poi_sanitary_dump_station">Sanitær tømmestation</string>
+
+<string name="poi_medical_system_western_yes">Medicinsk system: vestlig</string>
+	<string name="poi_medical_system_chinese_yes">Medicinsk system: traditionel kinesisk</string>
+	<string name="poi_medical_system_unknown_yes">Medicinsk system: ukendt traditionel</string>
+	<string name="poi_medical_system_ayurveeda_yes">Medicinsk system: ayurveda</string>
+	<string name="poi_medical_system_kampo_yes">Medicinsk system: kampo</string>
+	<string name="poi_medical_system_mongolian_yes">Medicinsk system: traditionelt mongolsk</string>
+	<string name="poi_medical_system_tibetan_yes">Medicinsk system: traditionel tibetansk</string>
+	<string name="poi_medical_system_sidda_yes">Medicinsk system: sidda</string>
+	<string name="poi_medical_system_unani_yes">Medicinsk system: unani</string>
+
+	<string name="poi_health_service_nursing_yes">Sundhedsvæsen: sygepleje: ja</string>
+	<string name="poi_health_service_nursing_no">Sundhedsvæsen: sygepleje: nej</string>
+	<string name="poi_health_service_counselling_yes">Sundhedsvæsen: rådgivning: ja</string>
+	<string name="poi_health_service_counselling_no">Sundhedsvæsen: rådgivning: nej</string>
+	<string name="poi_health_service_examination_yes">Sundhedsvæsen: undersøgelse: ja</string>
+	<string name="poi_health_service_examination_no">Sundhedsvæsen: undersøgelse: nej</string>
+	<string name="poi_health_service_child_care_yes">Sundhedsvæsen: barnepleje: ja</string>
+	<string name="poi_health_service_child_care_no">Sundhedsvæsen: barnepleje: nej</string>
+	<string name="poi_health_service_prevention_yes">Sundhedsvæsen: forebyggelse: ja</string>
+	<string name="poi_health_service_prevention_no">Sundhedsvæsen: forebyggelse: nej</string>
+	<string name="poi_health_service_prevention_vaccination_yes">Sundhedsvæsen: vaccination: ja</string>
+	<string name="poi_health_service_prevention_vaccination_no">Sundhedsvæsen: vaccination: nej</string>
+	<string name="poi_health_service_support_yes">Sundhedsvæsen: støtte: ja</string>
+	<string name="poi_health_service_support_no">Sundhedsvæsen: støtte: nej</string>
+	<string name="poi_health_service_test_yes">Sundhedsvæsen: test: ja</string>
+	<string name="poi_health_service_test_no">Sundhedsvæsen: test: nej</string>
+
+	<string name="poi_health_facility_type_office">Medicinskkontor</string>
+	<string name="poi_health_facility_type_hospital">Sundhed facilitetstype: hospital</string>
+	<string name="poi_health_facility_type_field_hospital">Sundhedsfacilitetstype: felthospital</string>
+	<string name="poi_health_facility_type_clinic">Sundhed facilitetstype: klinik</string>
+	<string name="poi_health_facility_type_health_centre">Sundhed facilitetstype: sundhedscenter</string>
+	<string name="poi_health_facility_type_counselling_centre">Sundhedsfacilitetstype: rådgivningscenter</string>
+	<string name="poi_health_facility_type_rehabilitation">Sundhed facilitetstype: rehabilitering</string>
+	<string name="poi_health_facility_type_laboratory">Sundhedsfacilitetstype: laboratorium</string>
+	<string name="poi_health_facility_type_therapy">Sundhedsfacilitetstype: terapi</string>
+	<string name="poi_health_facility_type_department">Sundhedsfacilitetstype: institut</string>
+	<string name="poi_health_facility_type_dispensary">Sundhedsfacilitetstype: udlevering af lægemidler</string>
+	<string name="poi_health_facility_type_pharmacy">Sundhed facilitetstype: apotek</string>
+	<string name="poi_health_facility_type_first_aid">Sundhedsfacilitetstype: førstehjælp</string>
+	<string name="poi_health_facility_type_nursing_home">Sundhedsfacilitetstype: plejehjem</string>
+	<string name="poi_health_facility_type_support_group_home">Sundhedsfacilitetstype: bofællesskab</string>
+
+	<string name="poi_health_specialty_palliative_medicine_yes">Sundhedsspeciale: palliativ medicin</string>
+
+<string name="poi_suction_point">Sugepunkt</string>
+
+	<string name="poi_fire_hydrant_type_underground">Type: underjordisk</string>
+	<string name="poi_fire_hydrant_type_pillar">Type: søjle</string>
+	<string name="poi_fire_hydrant_type_dry_barrel">Type: dry barrel</string>
+	<string name="poi_fire_hydrant_type_pond">Type: dam</string>
+	<string name="poi_fire_hydrant_type_wall">Type: væg</string>
+
+<string name="poi_health_amenity_type_first_aid_kit">Førstehjælpskasse</string>
+	<string name="poi_health_amenity_type_scales">Offentlige skalaer</string>
+
+	<string name="poi_health_person_type_assistant">Sundhedspersonalerolle: assistent</string>
+	<string name="poi_health_person_type_healer">Sundhedspersonalerolle: healer</string>
+	<string name="poi_health_person_type_midwife">Sundhedspersonalerolle: jordemoder</string>
+	<string name="poi_health_person_type_nurse">Sundhedspersonalerolle: sygeplejerske</string>
+	<string name="poi_health_person_type_paramedic">Sundhedspersonalerolle: paramediciner</string>
+	<string name="poi_health_person_type_physician">Sundhedspersonalerolle: læge</string>
+	<string name="poi_health_person_type_podologist">Sundhedspersonalerolle: podologist</string>
+	<string name="poi_health_person_type_psychologist">Sundhedspersonalerolle: psykolog</string>
+	<string name="poi_health_person_type_therapist">Sundhedspersonalerolle: terapeut</string>
+	<string name="poi_health_person_type_physician_assitant">Sundhedspersonalerolle: lægeassistant</string>
+	<string name="poi_health_person_type_technician">Sundhedspersonalerolle: tekniker</string>
+	<string name="poi_health_person_type_witchdoctor">Sundhedspersonalerolle: heksedoktor</string>
+
+	<string name="poi_counselling_type_addiction_yes">Rådgivning (afhængighed): ja</string>
+	<string name="poi_counselling_type_addiction_no">Rådgivning (afhængighed): nej</string>
+	<string name="poi_counselling_type_antenatal_yes">Rådgivning (fødselsforberedelse): ja</string>
+	<string name="poi_counselling_type_antenatal_no">Rådgivning (fødselsforberedelse): nej</string>
+	<string name="poi_counselling_type_child_guidance_yes">Rådgivning (børnevejledning): ja</string>
+	<string name="poi_counselling_type_child_guidance_no">Rådgivning (børnevejledning): nej</string>
+	<string name="poi_counselling_type_couple_yes">Rådgivning (par): ja</string>
+	<string name="poi_counselling_type_couple_no">Rådgivning (par): nej</string>
+	<string name="poi_counselling_type_crisis_yes">Rådgivning (krise): ja</string>
+	<string name="poi_counselling_type_crisis_no">Rådgivning (krise): nej</string>
+	<string name="poi_counselling_type_drugs_yes">Rådgivning (narkotika): ja</string>
+	<string name="poi_counselling_type_drugs_no">Rådgivning (narkotika): nej</string>
+	<string name="poi_counselling_type_education_yes">Rådgivning (uddannelse): ja</string>
+	<string name="poi_counselling_type_education_no">Rådgivning (uddannelse): nej</string>
+	<string name="poi_counselling_type_family_yes">Rådgivning (familie): ja</string>
+	<string name="poi_counselling_type_family_no">Rådgivning (familie): nej</string>
+	<string name="poi_counselling_type_homeless_yes">Rådgivning (hjemløse): ja</string>
+	<string name="poi_counselling_type_homeless_no">Rådgivning (hjemløse): nej</string>
+	<string name="poi_counselling_type_immigrant_yes">Rådgivning (indvandrere): ja</string>
+	<string name="poi_counselling_type_immigrant_no">Rådgivning (indvandrere): nej</string>
+	<string name="poi_counselling_type_marriage_yes">Rådgivning (ægteskab): ja</string>
+	<string name="poi_counselling_type_marriage_no">Rådgivning (ægteskab): nej</string>
+	<string name="poi_counselling_type_nutrition_yes">Rådgivning (ernæring): ja</string>
+	<string name="poi_counselling_type_nutrition_no">Rådgivning (ernæring): nej</string>
+	<string name="poi_counselling_type_rehabilitation_yes">Rådgivning (rehabilitering): ja</string>
+	<string name="poi_counselling_type_rehabilitation_no">Rådgivning (rehabilitering): nej</string>
+	<string name="poi_counselling_type_sexual_yes">Rådgivning (seksuel): ja</string>
+	<string name="poi_counselling_type_sexual_no">Rådgivning (seksuel): nej</string>
+	<string name="poi_counselling_type_sexual_abuse_yes">Rådgivning (sexmisbrug): ja</string>
+	<string name="poi_counselling_type_sexual_abuse_no">Rådgivning (sexmisbrug): nej</string>
+	<string name="poi_counselling_type_victim_yes">Rådgivning (offer): ja</string>
+	<string name="poi_counselling_type_victim_no">Rådgivning (offer): nej</string>
+	<string name="poi_counselling_type_violence_yes">Rådgivning (vold): ja</string>
+	<string name="poi_counselling_type_violence_no">Rådgivning (vold): nej</string>
+
+<string name="poi_capacity_beds">Kapacitet (senge)</string>
+
+	<string name="poi_counselling_yes">Rådgivning: ja</string>
+	<string name="poi_counselling_no">Rådgivning: nej</string>
+	<string name="poi_emergency_yes">Nødsituation: ja</string>
+	<string name="poi_emergency_no">Nødsituation: nej</string>
+	<string name="poi_home_visit_yes">Hjemmebesøg: ja</string>
+	<string name="poi_home_visit_no">Hjemmebesøg: nej</string>
+
+	<string name="poi_disease_malaria_yes">Malaria: ja</string>
+	<string name="poi_disease_malaria_no">Malaria: nej</string>
+	<string name="poi_disease_ebola_yes">Ebola: ja</string>
+	<string name="poi_disease_ebola_no">Ebola: nej</string>
+	<string name="poi_disease_autism_yes">Autisme: ja</string>
+	<string name="poi_disease_autism_no">Autisme: nej</string>
+	<string name="poi_disease_aids_yes">AIDS: ja</string>
+	<string name="poi_disease_aids_no">AIDS: nej</string>
+
+<string name="poi_provided_for_infant_yes">Stillet til rådighed for spædbørn: ja</string>
+	<string name="poi_provided_for_infant_no">Stillet til rådighed for spædbørn: nej</string>
+	<string name="poi_provided_for_toddler_yes">Stillet til rådighed for småbørn: ja</string>
+	<string name="poi_provided_for_toddler_no">"Stillet til rådighed for småbørn:  nej"</string>
+	<string name="poi_provided_for_child_yes">Stillet til rådighed for børn: ja</string>
+	<string name="poi_provided_for_child_no">Stillet til rådighed for børn: nej</string>
+	<string name="poi_provided_for_adult_yes">Stillet til rådighed for voksne: ja</string>
+	<string name="poi_provided_for_adult_no">Stillet til rådighed for voksne: nej</string>
+	<string name="poi_provided_for_woman_yes">Stillet til rådighed for kvinder: ja</string>
+	<string name="poi_provided_for_woman_no">Stillet til rådighed for kvinder: nej</string>
+	<string name="poi_provided_for_senior_yes">Stillet til rådighed for seniorer: ja</string>
+	<string name="poi_provided_for_senior_no">Stillet til rådighed for seniorer: nej</string>
+	<string name="poi_provided_for_girl_yes">Stillet til rådighed for piger: ja</string>
+	<string name="poi_provided_for_girl_no">Stillet til rådighed for piger: nej</string>
+	<string name="poi_provided_for_man_yes">Stillet til rådighed for mænd: ja</string>
+	<string name="poi_provided_for_man_no">Stillet til rådighed for mænd: nej</string>
+	<string name="poi_provided_for_boy_yes">Stillet til rådighed for drenge: ja</string>
+	<string name="poi_provided_for_boy_no">Stillet til rådighed for drenge: nej</string>
+
+	<string name="poi_treat_inpatient_yes">Indlæggelse: ja</string>
+	<string name="poi_treat_inpatient_no">Indlæggelse: nej</string>
+	<string name="poi_treat_inpatient_only">Indlæggelse: eksklusiv</string>
+	<string name="poi_office_physician">Lægekontor</string>
+	<string name="poi_office_therapist">Terapeutkontor</string>
+	<string name="poi_office_podologist">Podologistkontor</string>
+	<string name="poi_office_healer">Healerkontor</string>
+	<string name="poi_office_psychologist">Psykologkontor</string>
+	<string name="poi_office_nursing_service">Sygeplejeservice</string>
+	<string name="poi_office_midwife">Jordemoderkontor</string>
+
+<string name="poi_counselling_type_nutrition_nfire_hydo">Rådgivning (ernæring): nej</string>
+	<string name="poi_fire_hydrant_diameter">Brandhane diameter</string>
+	<string name="poi_fire_hydrant_pressure">Brandhane tryk</string>
+	<string name="poi_fire_hydrant_count">Brandhane antal</string>
+	<string name="poi_fire_hydrant_flow_capacity">Brandhane flowkapacitet</string>
+	<string name="poi_fire_hydrant_position_sidewalk">Brandhane plsacering: fortov</string>
+	<string name="poi_fire_hydrant_position_green">Brandhane placering: græsplæne</string>
+	<string name="poi_fire_hydrant_position_lane">Brandhane placering: vognbane</string>
+	<string name="poi_fire_hydrant_position_parking_lot">Brandhane placering: parkeringsplads</string>
+	<string name="poi_fire_hydrant_position_street">Brandhane placering: gaden</string>
+	<string name="poi_fire_hydrant_position_underground">Brandhane placering: under jorden</string>
+	<string name="poi_fire_hydrant_style_wsh">Brandhane stil: wsh</string>
+	<string name="poi_fire_hydrant_style_water_source_main">Brandhane vandforsyningskilde: primær</string>
+	<string name="poi_fire_hydrant_style_water_source_pond">Brandhane vandforsyningskilde: dam</string>
+	<string name="poi_fire_hydrant_style_water_source_stream">Brandhane vandforsyningskilde: vandløb</string>
+	<string name="poi_fire_hydrant_style_water_source_cistern">Brandhane vandforsyningskilde: cisterne</string>
+	<string name="poi_in_service_yes">I tjeneste: ja</string>
+
+<string name="poi_street_cabinet_power">Gadeskabstype: eldistribution</string>
+	<string name="poi_street_cabinet_telecom">Gadeskabstype: tele</string>
+	<string name="poi_street_cabinet_cable_tv">Gadeskabstype: kabel-tv</string>
+	<string name="poi_street_cabinet_gas">Gadeskabstype: gas</string>
+	<string name="poi_street_cabinet_postal_service">Gadeskabstype: postvæsen</string>
+	<string name="poi_street_cabinet_waste">Gadeskabstype: affald</string>
+	<string name="poi_street_cabinet_water_management">Gadeskabstype: vandforsyning</string>
+	<string name="poi_street_cabinet_street_lighting">Gadeskabstype: gadebelysning</string>
+
+<string name="poi_military_checkpoint">Militærkontrolpost</string>
+
+<string name="poi_bicycle_parking_lockers">Garderobeskabe</string>
+	<string name="poi_bicycle_parking_tree">Cykeltræsparkering</string>
+	<string name="poi_bicycle_parking_streetpod">Streetpod</string>
+
+<string name="poi_depth">Dybde</string>
 
 </resources>

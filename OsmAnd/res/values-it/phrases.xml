@@ -46,7 +46,7 @@
 	<string name="poi_garden_centre">Articoli per Giardinaggio</string>
 	<string name="poi_gas">Negozio gas</string>
 	<string name="poi_ford">Guado</string>
-	<string name="poi_mountain_pass_yes">Passo montano</string>
+	<string name="poi_mountain_pass">Passo montano</string>
 	<string name="poi_gate">Ponte</string>
 	<string name="poi_city_wall">Mura cittadine</string>
 	<string name="poi_lift_gate">Ponte levatoio</string>
@@ -71,7 +71,7 @@
 	<string name="poi_public_transport_platform_tram">Fermata tram</string>
 	<string name="poi_public_transport_station">Stazione trasporto pubblico</string>
 	<string name="poi_bus_station">Stazione bus (obsoleto)</string>
-	<string name="poi_railway_subway_entrance">Entrata metropolitana</string>
+	<string name="poi_subway_entrance">Entrata metropolitana</string>
 	<string name="poi_subway_station">Stazione metropolitana</string>
 	<string name="poi_aerodrome">Aeroporto</string>
 	<string name="poi_helipad">Eliporto</string>
@@ -80,7 +80,7 @@
 
 	<string name="poi_anime">Negozio anime</string>
 	<string name="poi_boutique">Boutique</string>
-	<string name="poi_general">Emporio</string>
+	<string name="poi_shop_yes">Emporio</string>
 	<string name="poi_gift">Negozio regali</string>
 	<string name="poi_glaziery">Vetreria</string>
 	<string name="poi_hardware">Ferramenta</string>
@@ -712,4 +712,26 @@
 	<string name="poi_fuel_methanol">Metanolo</string>
 	<string name="poi_observation_tower">Torre di osservazione</string>
 	<string name="poi_landuse_railway">Area ferroviaria</string>
+	<string name="poi_recycling_printer_cartridges">Cartucce da stampante</string>
+	<string name="poi_recycling_cds">CD</string>
+	<string name="poi_recycling_tyres">Pneumatici</string>
+	<string name="poi_recycling_computers">Computer</string>
+	<string name="poi_recycling_hydrargyrum">Mercurio</string>
+	<string name="poi_recycling_tv_monitor">Tv, monitor</string>
+	<string name="poi_recycling_tetrapak">Tetrapak</string>
+	<string name="poi_recycling_waste_oil">Olio esausto</string>
+	<string name="poi_recycling_bottles">Bottiglie</string>
+	<string name="poi_recycling_drugs">Medicinali</string>
+	<string name="poi_recycling_christmas_trees">Alberi di Natale</string>
+	<string name="poi_recycling_light_bulbs">Lampadine</string>
+	<string name="poi_mini_roundabout">Mini rotonda</string>
+	<string name="poi_services">Area di servizio</string>
+	<string name="poi_railway_crossing">Passaggio a livello</string>
+	<string name="poi_railway_level_crossing">Passaggio a livello</string>
+	<string name="poi_parish">Ufficio parrocchiale</string>
+	<string name="poi_street_lamp">Lampione</string>
+
+	<string name="poi_ski_rental">Noleggio sci</string>
+
+	<string name="poi_ski_resort">Stazione sciistica</string>
 	</resources>

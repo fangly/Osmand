@@ -3,7 +3,10 @@ package net.osmand.plus.activities;
 import java.io.File;
 
 import net.osmand.plus.GPXUtilities.GPXFile;
+import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.activities.LocalIndexHelper.LocalIndexType;
+import android.os.Parcel;
+import android.support.annotation.NonNull;
 
 public class LocalIndexInfo {
 
@@ -26,7 +29,8 @@ public class LocalIndexInfo {
 
 	private GPXFile gpxFile;
 
-	public LocalIndexInfo(LocalIndexType type, File f, boolean backuped) {
+	public LocalIndexInfo(@NonNull LocalIndexType type, @NonNull File f, boolean backuped,
+						  @NonNull OsmandApplication app) {
 		pathToData = f.getAbsolutePath();
 		fileName = f.getName();
 		name = formatName(f.getName());
@@ -47,7 +51,8 @@ public class LocalIndexInfo {
 	}
 
 	// Special domain object represents category
-	public LocalIndexInfo(LocalIndexType type, boolean backup, String subfolder) {
+	public LocalIndexInfo(@NonNull LocalIndexType type, boolean backup, @NonNull String subfolder,
+						  @NonNull OsmandApplication app) {
 		this.type = type;
 		backupedData = backup;
 		this.subfolder = subfolder;
@@ -98,11 +103,11 @@ public class LocalIndexInfo {
 			this.loaded = false;
 		}
 	}
-	
+
 	public void setSubfolder(String subfolder) {
 		this.subfolder = subfolder;
 	}
-	
+
 	public String getSubfolder() {
 		return subfolder;
 	}
@@ -120,6 +125,10 @@ public class LocalIndexInfo {
 	}
 
 	public LocalIndexType getType() {
+		return backupedData ? LocalIndexType.DEACTIVATED : type;
+	}
+
+	public LocalIndexType getOriginalType() {
 		return type;
 	}
 
@@ -151,4 +160,27 @@ public class LocalIndexInfo {
 		return fileName;
 	}
 
+	public String getBaseName() {
+		return type.getBasename(this);
+	}
+
+
+	protected LocalIndexInfo(Parcel in) {
+		int tmpType = in.readInt();
+		this.type = tmpType == -1 ? null : LocalIndexType.values()[tmpType];
+		this.description = in.readString();
+		this.name = in.readString();
+		this.backupedData = in.readByte() != 0;
+		this.corrupted = in.readByte() != 0;
+		this.notSupported = in.readByte() != 0;
+		this.loaded = in.readByte() != 0;
+		this.subfolder = in.readString();
+		this.pathToData = in.readString();
+		this.fileName = in.readString();
+		this.singleFile = in.readByte() != 0;
+		this.kbSize = in.readInt();
+		this.expanded = in.readByte() != 0;
+	}
+
+	
 }

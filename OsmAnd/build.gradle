@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 // Global Parameters accepted
 // APK_NUMBER_VERSION - version number of apk
 // APK_VERSION - build number like #9999Z, for dev builds appended to app_version like 2.0.0 in no_translate.xml)
@@ -18,8 +17,8 @@ apply plugin: 'com.android.application'
 // Less important
 
 android {
-	compileSdkVersion 21
-	buildToolsVersion "23.0.1"
+	compileSdkVersion 23
+	buildToolsVersion "23.0.3"
 
 	signingConfigs {
 		development {
@@ -39,11 +38,10 @@ android {
 
 	defaultConfig {
 		minSdkVersion System.getenv("MIN_SDK_VERSION") ? System.getenv("MIN_SDK_VERSION").toInteger() : 14
-		targetSdkVersion 21
-
+		targetSdkVersion 23
 		versionCode System.getenv("APK_NUMBER_VERSION") ? System.getenv("APK_NUMBER_VERSION").toInteger() : versionCode
-		//versionName already assigned in code
-		//versionName System.getenv("APK_VERSION")? System.getenv("APK_VERSION").toString(): versionName
+		multiDexEnabled true
+		versionName System.getenv("APK_VERSION")? System.getenv("APK_VERSION").toString(): versionName
 	}
 
 	lintOptions {
@@ -59,7 +57,8 @@ android {
 	}
 
 	dexOptions {
-		jumboMode = true
+		incremental true
+		javaMaxHeapSize "4g"
 	}
 
 	sourceSets {
@@ -77,6 +76,9 @@ android {
 		free {
 			manifest.srcFile "AndroidManifest-free.xml"
 		}
+		freedev {
+			manifest.srcFile "AndroidManifest-freedev.xml"
+		}
 
 		legacy {
 			jniLibs.srcDirs = ["libgnustl"]
@@ -87,71 +89,75 @@ android {
 	productFlavors {
 		// ABI
 		armv7 {
-			flavorDimension "abi"
+			dimension "abi"
 			ndk {
 				abiFilter "armeabi-v7a"
 			}
 		}
 		armv5 {
-			flavorDimension "abi"
+			dimension "abi"
 			ndk {
 				abiFilter "armeabi"
 			}
 		}
 		x86 {
-			flavorDimension "abi"
+			dimension "abi"
 			ndk {
 				abiFilter "x86"
 			}
 		}
 		mips {
-			flavorDimension "abi"
+			dimension "abi"
 			ndk {
 				abiFilter "mips"
 			}
 		}
 		fat {
-			flavorDimension "abi"
+			dimension "abi"
 		}
 
 		// Version
+		freedev {
+			dimension "version"
+			applicationId "net.osmand.dev"
+		}
 		free {
-			flavorDimension "version"
+			dimension "version"
 			applicationId "net.osmand"
 		}
 		full {
-			flavorDimension "version"
+			dimension "version"
 			applicationId "net.osmand.plus"
 		}
 
 		// CoreVersion
 		legacy {
-			flavorDimension "coreversion"
+			dimension "coreversion"
 		}
 
 		qtcore {
-			flavorDimension "coreversion"
+			dimension "coreversion"
 		}
 
 		qtcoredebug {
-			flavorDimension "coreversion"
+			dimension "coreversion"
 		}
 	}
 
 	buildTypes {
 		debug {
-                    applicationIdSuffix '.debug'
-                    resValue "string", "authority", "net.osmand.plus.debug.fileprovider"
-		    // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
-		    // minifyEnabled true
-		    // proguardFiles 'proguard-project.txt'
+			applicationIdSuffix '.debug'
+			resValue "string", "authority", "net.osmand.plus.debug.fileprovider"
+			// proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+			// minifyEnabled true
+			// proguardFiles 'proguard-project.txt'
 			signingConfig signingConfigs.development
 		}
 		release {
-                    resValue "string", "authority", "net.osmand.plus.fileprovider"
-		    // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
-		    // minifyEnabled true
-		    //proguardFiles 'proguard-project.txt'
+			resValue "string", "authority", "net.osmand.plus.fileprovider"
+			// proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+			// minifyEnabled true
+			//proguardFiles 'proguard-project.txt'
 			signingConfig signingConfigs.publishing
 		}
 	}
@@ -187,6 +193,24 @@ task updateNoTranslate(type: Copy) {
 	into 'res/values/'
 }
 
+task validateTranslate {
+	println "Validating translations"
+
+	file("res").eachFileRecurse groovy.io.FileType.FILES, {
+		if (it.name == "strings.xml" || it.name == "phrases.xml") {
+			it.eachLine { line ->
+				if (line.contains("\$ s") || line.contains("\$ d") || line.contains("\$ f") ||
+						line.contains(" \$s") || line.contains(" \$d") || line.contains(" \$f") ||
+						line.contains("1\$ ") || line.contains("2\$ ") || line.contains("3\$ ") ||
+						(line.contains("% \$") || line.contains("% 1") ||
+								line.contains("% 2") || line.contains("% 3"))) {
+					throw new GradleException("Incorrect translation " + it.getAbsolutePath() + " " + line);
+				}
+			}
+		}
+	}
+}
+
 task collectVoiceAssets(type: Sync) {
 	from "../../resources/voice"
 	into "assets/voice"
@@ -201,15 +225,27 @@ task collectFonts(type: Copy) {
 	include "*.ttf"
 }
 
-task collectHelpContentsAssets(type: Sync) {
-	from "../../help/help"
-	into "assets/help"
-	include "*.html"
-	include "images/**/*.png"
+task collectHelpContentsStyle(type: Copy) {
+	from("../../help/website/help/") {
+		include "style.css"
+	}
+	into "assets"
+}
 
-	from "assets/"
-	into "assets/help"
-	include "style.css"
+
+task collectHelpContentsAssets(type: Copy) {
+	from("../../help/website/help") {
+		include "about.html"
+		include "changes.html"
+		include "faq.html"
+		include "technical-articles.html"
+		include "map-legend.html"
+	}
+	from("../../help/website/feature_articles") {
+		include "*.html"
+	}
+
+	into "assets/feature_articles"
 }
 
 task collectRoutingResources(type: Sync) {
@@ -219,13 +255,13 @@ task collectRoutingResources(type: Sync) {
 }
 
 task collectMiscResources(type: Copy) {
-    into "src/net/osmand/osm"
-    from("../../resources/obf_creation") {
-        include "rendering_types.xml"
-    }
-    from("../../resources/poi") {
-        include "poi_types.xml"
-    }
+	into "src/net/osmand/osm"
+	from("../../resources/obf_creation") {
+		include "rendering_types.xml"
+	}
+	from("../../resources/poi") {
+		include "poi_types.xml"
+	}
 }
 
 task collectRenderingStylesResources(type: Sync) {
@@ -250,12 +286,14 @@ task collectExternalResources << {}
 collectExternalResources.dependsOn collectVoiceAssets,
 		collectFonts,
 		collectHelpContentsAssets,
+		collectHelpContentsStyle,
 		collectRoutingResources,
 		collectRenderingStylesResources,
 		collectRegionsInfoResources,
 		collectMiscResources,
 		copyStyleIcons,
-		updateNoTranslate
+		updateNoTranslate,
+		validateTranslate
 // tasks.whenTaskAdded { task ->
 //	if (task.name.startsWith("generate") && task.name.endsWith("Resources")) {
 //		task.dependsOn collectExternalResources
@@ -293,10 +331,17 @@ tasks.withType(JavaCompile) {
 	compileTask -> compileTask.dependsOn << [collectExternalResources, buildOsmAndCore, cleanupDuplicatesInCore]
 }
 
+task appStart(type: Exec) {
+	// linux 
+	commandLine 'adb', 'shell', 'am', 'start', '-n', 'net.osmand.plus/net.osmand.plus.activities.MapActivity'
+	// windows
+	// commandLine 'cmd', '/c', 'adb', 'shell', 'am', 'start', '-n', 'net.osmand.plus/net.osmand.plus.activities.MapActivity'      
+}
+
 clean.dependsOn 'cleanNoTranslate'
 
 task cleanNoTranslate() {
-    delete ('res/values/no_translate.xml')
+	delete('res/values/no_translate.xml')
 }
 
 repositories {
@@ -311,26 +356,18 @@ repositories {
 }
 
 dependencies {
-	compile project(path: ":OsmAnd-java", configuration: "android")
-	compile project(":eclipse-compile:design")
-	compile project(":eclipse-compile:cardview")
-//	compile project(":eclipse-compile:recyclerview")
-	compile fileTree(
-			dir: "libs",
-			include: ["*.jar"],
-			exclude: [
-					"QtAndroid-bundled.jar",
-					"QtAndroidAccessibility-bundled.jar",
-					"OsmAndCore_android.jar",
-					"OsmAndCore_wrapper.jar"])
-	// compile "com.github.ksoichiro:android-observablescrollview:1.5.0"
-	//	 compile "com.android.support:appcompat-v7:22.2.1"
-	// compile "com.github.shell-software:fab:1.0.5"
-	//	compile 'com.android.support:design:22.2.1'
+	compile project(path: ':OsmAnd-java', configuration: 'android')
+	// compile project(':eclipse-compile:design')
+	// compile project(':eclipse-compile:cardview')
+	// compile project(':eclipse-compile:gridlayout')
+	compile 'com.android.support:gridlayout-v7:23.3.0'
+	compile 'com.android.support:cardview-v7:23.3.0'
+	compile 'com.android.support:appcompat-v7:23.3.0'
+        compile 'com.android.support:design:23.3.0'
+	compile fileTree(include: ['*.jar'], exclude: ['QtAndroid-bundled.jar', 'QtAndroidAccessibility-bundled.jar', 'OsmAndCore_android.jar', 'OsmAndCore_wrapper.jar', 'android-support-multidex.jar'], dir: 'libs')
 	legacyCompile "net.osmand:OsmAndCore_android:0.1-SNAPSHOT@jar"
 	qtcoredebugCompile "net.osmand:OsmAndCore_androidNativeDebug:0.1-SNAPSHOT@aar"
 	qtcoredebugCompile "net.osmand:OsmAndCore_android:0.1-SNAPSHOT@aar"
 	qtcoreCompile "net.osmand:OsmAndCore_androidNativeRelease:0.1-SNAPSHOT@aar"
 	qtcoreCompile "net.osmand:OsmAndCore_android:0.1-SNAPSHOT@aar"
-
 }

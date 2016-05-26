@@ -307,7 +307,7 @@ public class RoutingContext {
 		return original;
 	}
 	
-	public void loadSubregionTile(final RoutingSubregionTile ts, boolean loadObjectsInMemory, List<RouteDataObject> toLoad) {
+	public void loadSubregionTile(final RoutingSubregionTile ts, boolean loadObjectsInMemory, List<RouteDataObject> toLoad, TLongHashSet excludeNotAllowed) {
 		boolean wasUnloaded = ts.isUnloaded();
 		int ucount = ts.getUnloadCont();
 		if (nativeLib == null) {
@@ -321,8 +321,18 @@ public class RoutingContext {
 					toLoad.addAll(res);
 				} else {
 					for(RouteDataObject ro : res){
-						if(ro != null && config.router.acceptLine(ro)) {
-							ts.add(ro);
+						if(ro != null) {
+							if(config.router.acceptLine(ro)) {
+								if(excludeNotAllowed != null && !excludeNotAllowed.contains(ro.getId())) {
+									ts.add(ro);
+								}
+							} else if(excludeNotAllowed != null && ro.getId() > 0){
+								excludeNotAllowed.add(ro.getId());
+								if(ts.excludedIds == null ){
+									ts.excludedIds = new TLongHashSet();
+								}
+								ts.excludedIds.add(ro.getId());
+							}
 						}
 					}
 				}
@@ -500,9 +510,22 @@ public class RoutingContext {
 			}
 			List<RoutingSubregionTile> subregions = indexedSubregions.get(tileId);
 			if (subregions != null) {
+				boolean load = false;
 				for (RoutingSubregionTile ts : subregions) {
 					if (!ts.isLoaded()) {
-						loadSubregionTile(ts, loadOptions == OPTION_IN_MEMORY_LOAD, null);
+						load = true;
+					}
+				}
+				if (load) {
+					TLongHashSet excludeIds = new TLongHashSet();
+					for (RoutingSubregionTile ts : subregions) {
+						if (!ts.isLoaded()) {
+							loadSubregionTile(ts, loadOptions == OPTION_IN_MEMORY_LOAD, null, excludeIds);
+						} else {
+							if(ts.excludedIds != null) {
+								excludeIds.addAll(ts.excludedIds);
+							}
+						}
 					}
 				}
 			}
@@ -621,6 +644,7 @@ public class RoutingContext {
 		private NativeRouteSearchResult searchResult = null;
 		private int isLoaded = 0;
 		private TLongObjectMap<RouteSegment> routes = null;
+		private TLongHashSet excludedIds = null;
 
 		public RoutingSubregionTile(RouteSubregion subregion) {
 			this.subregion = subregion;
@@ -731,6 +755,7 @@ public class RoutingContext {
 			}
 			searchResult = null;
 			routes = null;
+			excludedIds = null;
 		}
 		
 		public void setLoadedNonNative(){

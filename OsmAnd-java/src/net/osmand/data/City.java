@@ -17,7 +17,7 @@ public class City extends MapObject {
 
 		private double radius;
 
-		private CityType(double radius) {
+		CityType(double radius) {
 			this.radius = radius;
 		}
 
@@ -33,10 +33,10 @@ public class City extends MapObject {
 			if (place == null) {
 				return null;
 			}
-			if("township".equals(place)) {
+			if ("township".equals(place)) {
 				return CityType.TOWN;
 			}
-			if("borough".equals(place)) {
+			if ("borough".equals(place)) {
 				return CityType.SUBURB;
 			}
 			for (CityType t : CityType.values()) {
@@ -58,8 +58,9 @@ public class City extends MapObject {
 		return new City(postcode, POSTCODE_INTERNAL_ID--);
 	}
 
+
 	public City(CityType type) {
-		if(type == null) {
+		if (type == null) {
 			throw new NullPointerException();
 		}
 		this.type = type;
@@ -79,7 +80,6 @@ public class City extends MapObject {
 		return type == null;
 	}
 	
-
 	public String getPostcode() {
 		return postcode;
 	}
@@ -109,23 +109,21 @@ public class City extends MapObject {
 		return type;
 	}
 
-	public Collection<Street> getStreets() {
+	public List<Street> getStreets() {
 		return listOfStreets;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		if(isPostcode()) {
-			return "Postcode : " + getName(); //$NON-NLS-1$ //$NON-NLS-2$
+		if (isPostcode()) {
+			return "Postcode : " + getName() + " " + getLocation(); //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		return "City [" + type + "] " + getName(); //$NON-NLS-1$ //$NON-NLS-2$
+		return "City [" + type + "] " + getName() + " " + getLocation(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 	public Street getStreetByName(String name) {
-		for(Street s : listOfStreets) {
-			if(s.getName().equalsIgnoreCase(name)) {
+		for (Street s : listOfStreets) {
+			if (s.getName().equalsIgnoreCase(name)) {
 				return s;
 			}
 		}
@@ -142,8 +140,15 @@ public class City extends MapObject {
 		this.isin = isin;
 	}
 
-	
-
-	
+	public void mergeWith(City city) {
+		for (Street street : city.listOfStreets) {
+			if (listOfStreets.contains(street)) {
+				listOfStreets.get(listOfStreets.indexOf(street)).mergeWith(street);
+			} else {
+				listOfStreets.add(street);
+			}
+		}
+		copyNames(city);
+	}
 
 }

@@ -47,6 +47,8 @@ public class VoiceRouter {
 	private long lastAnnouncedOffRoute = 0;
 	private long waitAnnouncedSpeedLimit = 0;
 	private long waitAnnouncedOffRoute = 0;
+	private boolean suppressDest = false;
+	private boolean announceBackOnRoute = false;
 
 	// private long lastTimeRouteRecalcAnnounced = 0;
 	
@@ -123,7 +125,7 @@ public class VoiceRouter {
 		// turn prompt starts either at distance, or additionally (TURN_IN and TURN only) if actual-lead-time(currentSpeed) < maximum-lead-time(defined by default speed)
 		if(router.getAppMode().isDerivedRoutingFrom(ApplicationMode.CAR)) {
 			PREPARE_LONG_DISTANCE = 3500;             // [105 sec @ 120 km/h]
-			// Do not play prompts for PREPARE_LONG_DISTANCE, test for Issue #1411
+			// Issue 1411: Do not play prompts for PREPARE_LONG_DISTANCE, not needed.
 			PREPARE_LONG_DISTANCE_END = 3000 + 1000;  // [ 90 sec @ 120 km/h]
 			PREPARE_DISTANCE = 1500;                  // [125 sec]
 			PREPARE_DISTANCE_END = 1200;      	  // [100 sec]
@@ -219,6 +221,7 @@ public class VoiceRouter {
 			if (p != null) {
 				notifyOnVoiceMessage();
 				p.offRoute(dist).play();
+				announceBackOnRoute = true;
 			}
 			if(waitAnnouncedOffRoute == 0) {
 				waitAnnouncedOffRoute = 60000;	
@@ -231,9 +234,12 @@ public class VoiceRouter {
 
 	public void announceBackOnRoute() {
 		CommandBuilder p = getNewCommandPlayerToPlay();
-		if (p != null) {
-			notifyOnVoiceMessage();
-			p.backOnRoute().play();
+		if (announceBackOnRoute == true) {
+			if (p != null) {
+				notifyOnVoiceMessage();
+				p.backOnRoute().play();
+			}
+			announceBackOnRoute = false;
 		}
 	}
 
@@ -349,6 +355,10 @@ public class VoiceRouter {
 					notifyOnVoiceMessage();
 					p.attention(type+"").play();
 				}
+				//See Issue 2377: Announce destination again - after some motorway tolls roads split shortly after the toll
+				if (type == AlarmInfoType.TOLL_BOOTH) {
+					suppressDest = false;
+				}
 			}
 		}
 	}
@@ -398,10 +408,10 @@ public class VoiceRouter {
 	*/
 	protected void updateStatus(Location currentLocation, boolean repeat) {
 		// Directly after turn: goAhead (dist), unless:
-		// < PREPARE_LONG_DISTANCE (e.g. 3500m): playPrepareTurn
-		// < PREPARE_DISTANCE (e.g. 1500m): playPrepareTurn
-		// < TURN_IN_DISTANCE (e.g. 390m or 30sec): playMakeTurnIn
-		// < TURN_DISTANCE (e.g. 50m or 7sec): playMakeTurn
+		// < PREPARE_LONG_DISTANCE (e.g. 3500m):         playPrepareTurn (-not played any more-)
+		// < PREPARE_DISTANCE      (e.g. 1500m):         playPrepareTurn ("Turn after ...")
+		// < TURN_IN_DISTANCE      (e.g. 390m or 30sec): playMakeTurnIn  ("Turn in ...")
+		// < TURN_DISTANCE         (e.g. 50m or 7sec):   playMakeTurn    ("Turn ...")
 		float speed = DEFAULT_SPEED;
 		if (currentLocation != null && currentLocation.hasSpeed()) {
 			speed = Math.max(currentLocation.getSpeed(), speed);
@@ -419,7 +429,9 @@ public class VoiceRouter {
 		if (next != nextRouteDirection) {
 			nextRouteDirection = next;
 			currentStatus = STATUS_UNKNOWN;
+			suppressDest = false;
 			playedAndArriveAtTarget = false;
+			announceBackOnRoute = false;
 			if (playGoAheadDist != -1) {
 				playGoAheadDist = 0;
 			}
@@ -429,7 +441,7 @@ public class VoiceRouter {
 			if (dist == 0) {
 				return;
 			} else if (needsInforming()) {
-				playGoAhead(dist, getSpeakableStreetName(currentSegment, next));
+				playGoAhead(dist, getSpeakableStreetName(currentSegment, next, false));
 				return;
 			} else if (currentStatus == STATUS_TOLD) {
 				// nothing said possibly that's wrong case we should say before that
@@ -439,28 +451,33 @@ public class VoiceRouter {
 		}
 
 		if (currentStatus == STATUS_UNKNOWN) {
-			// Tell goAhead distance after (1) route calculation if no other prompt is due, or (2) after a turn if next turn is more than PREPARE_LONG_DISTANCE away
+			// Play "Continue for ..." if (1) after route calculation no other prompt is due, or (2) after a turn if next turn is more than PREPARE_LONG_DISTANCE away
 			if ((playGoAheadDist == -1) || (dist > PREPARE_LONG_DISTANCE)) {
 				playGoAheadDist = dist - 80;
 			}
 		}
 
-		NextDirectionInfo nextNextInfo = router.getNextRouteDirectionInfoAfter(nextInfo, new NextDirectionInfo(), !repeat);
+		NextDirectionInfo nextNextInfo = router.getNextRouteDirectionInfoAfter(nextInfo, new NextDirectionInfo(), true);  //I think "true" is correct here, not "!repeat"
+		//Note: getNextRouteDirectionInfoAfter(nextInfo, x, y).distanceTo is distance from nextInfo, not from current position!
+
+		// STATUS_TURN = "Turn (now)"
 		if ((repeat || statusNotPassed(STATUS_TURN)) && isDistanceLess(speed, dist, TURN_DISTANCE, TURN_DEFAULT_SPEED)) {
-			if (next.distance < TURN_IN_DISTANCE_END && nextNextInfo != null) {
-				playMakeTurn(currentSegment, next, nextNextInfo.directionInfo);
+			if (nextNextInfo.distanceTo < TURN_IN_DISTANCE_END && nextNextInfo != null) {
+				playMakeTurn(currentSegment, next, nextNextInfo);
 			} else {
 				playMakeTurn(currentSegment, next, null);
 			}
-			if(next.distance < TURN_IN_DISTANCE && isTargetPoint(nextNextInfo)) {
+			if(nextNextInfo.distanceTo < TURN_IN_DISTANCE && isTargetPoint(nextNextInfo)) {
 				if(!next.getTurnType().goAhead()) {  // avoids isolated "and arrive.." prompt
 					andSpeakArriveAtPoint(nextNextInfo);
 				}
 			}
 			nextStatusAfter(STATUS_TURN);
+
+		// STATUS_TURN_IN = "Turn in ..."
 		} else if ((repeat || statusNotPassed(STATUS_TURN_IN)) && isDistanceLess(speed, dist, TURN_IN_DISTANCE, 0f)) {
 			if (repeat || dist >= TURN_IN_DISTANCE_END) {
-				if ((isDistanceLess(speed, next.distance, TURN_DISTANCE, 0f) || next.distance < TURN_IN_DISTANCE_END) &&
+				if ((isDistanceLess(speed, nextNextInfo.distanceTo, TURN_DISTANCE, 0f) || nextNextInfo.distanceTo < TURN_IN_DISTANCE_END) &&
 						nextNextInfo != null) {
 					playMakeTurnIn(currentSegment, next, dist, nextNextInfo.directionInfo);
 				} else {
@@ -469,6 +486,8 @@ public class VoiceRouter {
 				playAndArriveAtDestination(repeat, nextInfo, currentSegment);
 			}
 			nextStatusAfter(STATUS_TURN_IN);
+
+		// STATUS_PREPARE = "Turn after ..."
 		} else if ((repeat || statusNotPassed(STATUS_PREPARE)) && (dist <= PREPARE_DISTANCE)) {
 			if (repeat || dist >= PREPARE_DISTANCE_END) {
 				if (!repeat && (next.getTurnType().keepLeft() || next.getTurnType().keepRight())){
@@ -479,18 +498,22 @@ public class VoiceRouter {
 				}
 			}
 			nextStatusAfter(STATUS_PREPARE);
+
+		// STATUS_LONG_PREPARE =  also "Turn after ...", we skip this now, users said this is obsolete
 		} else if ((repeat || statusNotPassed(STATUS_LONG_PREPARE)) && (dist <= PREPARE_LONG_DISTANCE)) {
 			if (repeat || dist >= PREPARE_LONG_DISTANCE_END) {
 				playPrepareTurn(currentSegment, next, dist);
 				playAndArriveAtDestination(repeat, nextInfo, currentSegment);
 			}
 			nextStatusAfter(STATUS_LONG_PREPARE);
+
+		// STATUS_UNKNOWN = "Continue for ..." if (1) after route calculation no other prompt is due, or (2) after a turn if next turn is more than PREPARE_LONG_DISTANCE away
 		} else if (statusNotPassed(STATUS_UNKNOWN)) {
 			// strange how we get here but
 			nextStatusAfter(STATUS_UNKNOWN);
 		} else if (repeat || (statusNotPassed(STATUS_PREPARE) && dist < playGoAheadDist)) {
 			playGoAheadDist = 0;
-			playGoAhead(dist, getSpeakableStreetName(currentSegment, next));
+			playGoAhead(dist, getSpeakableStreetName(currentSegment, next, false));
 		}
 	}
 
@@ -499,7 +522,7 @@ public class VoiceRouter {
 		RouteDirectionInfo next = nextInfo.directionInfo;
 		if(isTargetPoint(nextInfo) && (!playedAndArriveAtTarget || repeat)) {
 			if(next.getTurnType().goAhead()) {
-				playGoAhead(nextInfo.distanceTo, getSpeakableStreetName(currentSegment, next));
+				playGoAhead(nextInfo.distanceTo, getSpeakableStreetName(currentSegment, next, false));
 				andSpeakArriveAtPoint(nextInfo);
 				playedAndArriveAtTarget = true;
 			} else if(nextInfo.distanceTo <= 2 * TURN_IN_DISTANCE) {
@@ -538,21 +561,36 @@ public class VoiceRouter {
 		}
 	}
 
-	public Term getSpeakableStreetName(RouteSegmentResult currentSegment, RouteDirectionInfo i) {
+	public Term getSpeakableStreetName(RouteSegmentResult currentSegment, RouteDirectionInfo i, boolean includeDest) {
 		if(i == null || !router.getSettings().SPEAK_STREET_NAMES.get()){
 			return empty;
 		}
 		if (player != null && player.supportsStructuredStreetNames()) {
-			Struct next = new Struct(new Term[] { getTermString(getSpeakablePointName(i.getRef())),
-					getTermString(getSpeakablePointName(i.getStreetName())),
-					getTermString(getSpeakablePointName(i.getDestinationName())) });
+			Term next = empty;
+			//Issue 2377: Play Dest here only if not already previously announced, to avoid repetition
+			if (includeDest == true) {
+				next = new Struct(new Term[] { getTermString(getSpeakablePointName(i.getRef())),
+						getTermString(getSpeakablePointName(i.getStreetName())),
+						getTermString(getSpeakablePointName(i.getDestinationName())) });
+			} else {
+				next = new Struct(new Term[] { getTermString(getSpeakablePointName(i.getRef())),
+						getTermString(getSpeakablePointName(i.getStreetName())),
+						empty });
+			}
 			Term current = empty;
 			if (currentSegment != null) {
-				
-				RouteDataObject obj = currentSegment.getObject();
-				current = new Struct(new Term[] { getTermString(getSpeakablePointName(obj.getRef())),
-						getTermString(getSpeakablePointName(obj.getName(settings.MAP_PREFERRED_LOCALE.get()))),
-						getTermString(getSpeakablePointName(obj.getDestinationName(settings.MAP_PREFERRED_LOCALE.get()))) });
+				//Issue 2377: Play Dest here only if not already previously announced, to avoid repetition
+				if (includeDest == true) {
+					RouteDataObject obj = currentSegment.getObject();
+					current = new Struct(new Term[] { getTermString(getSpeakablePointName(obj.getRef())),
+							getTermString(getSpeakablePointName(obj.getName(settings.MAP_PREFERRED_LOCALE.get()))),
+							getTermString(getSpeakablePointName(obj.getDestinationName(settings.MAP_PREFERRED_LOCALE.get()))) });
+				} else {
+					RouteDataObject obj = currentSegment.getObject();
+					current = new Struct(new Term[] { getTermString(getSpeakablePointName(obj.getRef())),
+							getTermString(getSpeakablePointName(obj.getName(settings.MAP_PREFERRED_LOCALE.get()))),
+							empty });
+				}
 			}
 			Struct voice = new Struct("voice", next, current );
 			return voice;
@@ -594,13 +632,13 @@ public class VoiceRouter {
 			String tParam = getTurnType(next.getTurnType());
 			if(tParam != null){
 				notifyOnVoiceMessage();
-				play.prepareTurn(tParam, dist, getSpeakableStreetName(currentSegment, next)).play();
+				play.prepareTurn(tParam, dist, getSpeakableStreetName(currentSegment, next, true)).play();
 			} else if(next.getTurnType().isRoundAbout()){
 				notifyOnVoiceMessage();
-				play.prepareRoundAbout(dist, next.getTurnType().getExitOut(), getSpeakableStreetName(currentSegment, next)).play();
+				play.prepareRoundAbout(dist, next.getTurnType().getExitOut(), getSpeakableStreetName(currentSegment, next, true)).play();
 			} else if(next.getTurnType().getValue() == TurnType.TU || next.getTurnType().getValue() == TurnType.TRU){
 				notifyOnVoiceMessage();
-				play.prepareMakeUT(dist, getSpeakableStreetName(currentSegment, next)).play();
+				play.prepareMakeUT(dist, getSpeakableStreetName(currentSegment, next, true)).play();
 			} 
 		}
 	}
@@ -611,28 +649,31 @@ public class VoiceRouter {
 			String tParam = getTurnType(next.getTurnType());
 			boolean isPlay = true;
 			if (tParam != null) {
-				play.turn(tParam, dist, getSpeakableStreetName(currentSegment, next));
+				play.turn(tParam, dist, getSpeakableStreetName(currentSegment, next, true));
+				suppressDest = true;
 			} else if (next.getTurnType().isRoundAbout()) {
-				play.roundAbout(dist, next.getTurnType().getTurnAngle(), next.getTurnType().getExitOut(), getSpeakableStreetName(currentSegment, next));
+				play.roundAbout(dist, next.getTurnType().getTurnAngle(), next.getTurnType().getExitOut(), getSpeakableStreetName(currentSegment, next, true));
+				//Other than in prepareTurn, in prepareRoundabout we do not announce destination, so we can repeat it one more time
+				suppressDest = false;
 			} else if (next.getTurnType().getValue() == TurnType.TU || next.getTurnType().getValue() == TurnType.TRU) {
-				play.makeUT(dist, getSpeakableStreetName(currentSegment, next));
+				play.makeUT(dist, getSpeakableStreetName(currentSegment, next, true));
+				suppressDest = true;
 			} else {
 				isPlay = false;
 			}
-			// small preparation to next after next
+			// 'then keep' preparation for next after next. (Also announces an interim straight segment, which is not pronounced above.)
 			if (pronounceNextNext != null) {
 				TurnType t = pronounceNextNext.getTurnType();
 				isPlay = true;
-				if (next.getTurnType().getValue() == TurnType.C && 
-						TurnType.C != t.getValue()) {
-					play.goAhead(dist, getSpeakableStreetName(currentSegment, next));
+				if (t.getValue() != TurnType.C && next.getTurnType().getValue() == TurnType.C) {
+					play.goAhead(dist, getSpeakableStreetName(currentSegment, next, true));
 				}
-				if (TurnType.TL == t.getValue() || TurnType.TSHL == t.getValue() || TurnType.TSLL == t.getValue()
-						|| TurnType.TU == t.getValue() || TurnType.KL == t.getValue()) {
-					play.then().bearLeft( getSpeakableStreetName(currentSegment, next));
-				} else if (TurnType.TR == t.getValue() || TurnType.TSHR == t.getValue() || TurnType.TSLR == t.getValue()
-						|| TurnType.KR == t.getValue()) {
-					play.then().bearRight( getSpeakableStreetName(currentSegment, next));
+				if (t.getValue() == TurnType.TL || t.getValue() == TurnType.TSHL || t.getValue() == TurnType.TSLL
+						|| t.getValue() == TurnType.TU || t.getValue() == TurnType.KL ) {
+					play.then().bearLeft( getSpeakableStreetName(currentSegment, next, false));
+				} else if (t.getValue() == TurnType.TR || t.getValue() == TurnType.TSHR || t.getValue() == TurnType.TSLR
+						|| t.getValue() == TurnType.TRU || t.getValue() == TurnType.KR) {
+					play.then().bearRight( getSpeakableStreetName(currentSegment, next, false));
 				}
 			}
 			if(isPlay){
@@ -657,37 +698,49 @@ public class VoiceRouter {
 		}
 	}
 
-	private void playMakeTurn(RouteSegmentResult currentSegment, RouteDirectionInfo next, RouteDirectionInfo nextNext) {
+	private void playMakeTurn(RouteSegmentResult currentSegment, RouteDirectionInfo next, NextDirectionInfo nextNextInfo) {
 		CommandBuilder play = getNewCommandPlayerToPlay();
 		if(play != null){
 			String tParam = getTurnType(next.getTurnType());
 			boolean isplay = true;
 			if(tParam != null){
-				play.turn(tParam, getSpeakableStreetName(currentSegment, next));
+				play.turn(tParam, getSpeakableStreetName(currentSegment, next, !suppressDest));
 			} else if(next.getTurnType().isRoundAbout()){
-				play.roundAbout(next.getTurnType().getTurnAngle(), next.getTurnType().getExitOut(),  getSpeakableStreetName(currentSegment, next));
+				play.roundAbout(next.getTurnType().getTurnAngle(), next.getTurnType().getExitOut(), getSpeakableStreetName(currentSegment, next, !suppressDest));
 			} else if(next.getTurnType().getValue() == TurnType.TU || next.getTurnType().getValue() == TurnType.TRU){
-				play.makeUT( getSpeakableStreetName(currentSegment, next));
-				// do not say it
-//				} else if(next.getTurnType().getValue() == TurnType.C)){
-//					play.goAhead();
+				play.makeUT(getSpeakableStreetName(currentSegment, next, !suppressDest));
+			// do not announce goAHeads
+			//} else if(next.getTurnType().getValue() == TurnType.C)){
+			//	play.goAhead();
 			} else {
 				isplay = false;
 			}
 			// add turn after next
-			if (nextNext != null) {
-				String t2Param = getTurnType(nextNext.getTurnType());
-				if (t2Param != null) {
-					if(isplay) { play.then(); }
-					play.turn(t2Param, next.distance, empty);
-				} else if (nextNext.getTurnType().isRoundAbout()) {
-					if(isplay) { play.then(); }
-					play.roundAbout(next.distance, nextNext.getTurnType().getTurnAngle(), nextNext.getTurnType().getExitOut(), empty);
-				} else if (nextNext.getTurnType().getValue() == TurnType.TU) {
-					if(isplay) { play.then(); }
-					play.makeUT(next.distance, empty);
+			if ((nextNextInfo != null) && (nextNextInfo.directionInfo != null)) {
+
+				// This case only needed should we want a prompt at the end of straight segments (equivalent of makeTurn) when nextNextInfo should be announced again there.
+				if (nextNextInfo.directionInfo.getTurnType().getValue() != TurnType.C && next.getTurnType().getValue() == TurnType.C) {
+					play.goAhead();
+					isplay = true;
 				}
-				isplay = true;
+
+				String t2Param = getTurnType(nextNextInfo.directionInfo.getTurnType());
+				if (t2Param != null) {
+					if(isplay) {
+						play.then();
+						play.turn(t2Param, nextNextInfo.distanceTo, empty);
+					}
+				} else if (nextNextInfo.directionInfo.getTurnType().isRoundAbout()) {
+					if(isplay) {
+						play.then();
+						play.roundAbout(nextNextInfo.distanceTo, nextNextInfo.directionInfo.getTurnType().getTurnAngle(), nextNextInfo.directionInfo.getTurnType().getExitOut(), empty);
+					}
+				} else if (nextNextInfo.directionInfo.getTurnType().getValue() == TurnType.TU) {
+					if(isplay) {
+						play.then();
+						play.makeUT(nextNextInfo.distanceTo, empty);
+					}
+				}
 			}
 			if(isplay){
 				notifyOnVoiceMessage();
@@ -745,6 +798,7 @@ public class VoiceRouter {
 					notifyOnVoiceMessage();
 					play.routeRecalculated(router.getLeftDistance(), router.getLeftTime()).play();
 					currentStatus = STATUS_UNKNOWN;
+					suppressDest = false;
 					// lastTimeRouteRecalcAnnounced = System.currentTimeMillis();
 				}
 			} else {
@@ -752,6 +806,7 @@ public class VoiceRouter {
 				play.newRouteCalculated(router.getLeftDistance(), router.getLeftTime()).play();
 				playGoAheadDist = -1;
 				currentStatus = STATUS_UNKNOWN;
+				suppressDest = false;
 			}
 		} else if (player == null) {
 			pendingCommand = new VoiceCommandPending(!newRoute ? VoiceCommandPending.ROUTE_RECALCULATED
@@ -760,6 +815,7 @@ public class VoiceRouter {
 				playGoAheadDist = -1;
 			}
 			currentStatus = STATUS_UNKNOWN;
+			suppressDest = false;
 		}
 		nextRouteDirection = null;
 	}

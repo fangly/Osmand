@@ -1,12 +1,11 @@
 package net.osmand.plus.activities.search;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,10 +32,9 @@ import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.OsmandSettings;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.MapActivity;
-import net.osmand.plus.activities.OsmAndListFragment;
 import net.osmand.plus.activities.search.SearchActivity.SearchActivityChild;
+import net.osmand.plus.base.OsmAndListFragment;
 import net.osmand.plus.dashboard.DashLocationFragment;
-import net.osmand.plus.dialogs.DirectionsDialogs;
 import net.osmand.plus.helpers.SearchHistoryHelper;
 import net.osmand.plus.helpers.SearchHistoryHelper.HistoryEntry;
 import net.osmand.util.MapUtils;
@@ -80,7 +78,7 @@ public class SearchHistoryFragment extends OsmAndListFragment implements SearchA
 	}
 	
 	private void clearWithConfirmation() {
-		Builder bld = new AlertDialog.Builder(getActivity());
+		AlertDialog.Builder bld = new AlertDialog.Builder(getActivity());
 		bld.setMessage(R.string.confirmation_to_clear_history);
 		bld.setPositiveButton(R.string.shared_string_yes, new DialogInterface.OnClickListener() {
 
@@ -201,8 +199,8 @@ public class SearchHistoryFragment extends OsmAndListFragment implements SearchA
 	private void selectModelOptions(final HistoryEntry model, View v) {
 		final PopupMenu optionsMenu = new PopupMenu(getActivity(), v);
 		MenuItem item = optionsMenu.getMenu().add(
-				R.string.shared_string_delete).setIcon(
-				getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_delete_dark));
+				R.string.shared_string_remove).setIcon(
+				getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_delete_dark));
 		item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
@@ -241,7 +239,7 @@ public class SearchHistoryFragment extends OsmAndListFragment implements SearchA
 			DashLocationFragment.updateLocationView(!searchAroundLocation, location, heading, direction, distanceText, 
 					historyEntry.getLat(), historyEntry.getLon(), screenOrientation, getMyApplication(), getActivity()); 
 			ImageButton options = (ImageButton) row.findViewById(R.id.options);
-			options.setImageDrawable(getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_overflow_menu_white));
+			options.setImageDrawable(getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_overflow_menu_white));
 			options.setVisibility(View.VISIBLE);
 			options.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -270,13 +268,13 @@ public class SearchHistoryFragment extends OsmAndListFragment implements SearchA
 		PointDescription pd = historyEntry.getName();
 		nameText.setText(pd.getSimpleName(activity, false), BufferType.SPANNABLE);
 		ImageView icon = ((ImageView) row.findViewById(R.id.icon));
-		icon.setImageDrawable(ic.getContentIcon(getItemIcon(historyEntry.getName())));
+		icon.setImageDrawable(ic.getThemedIcon(getItemIcon(historyEntry.getName())));
 
 		String typeName = historyEntry.getName().getTypeName();
 		if (typeName != null && !typeName.isEmpty()) {
 			ImageView group = (ImageView) row.findViewById(R.id.type_name_icon);
 			group.setVisibility(View.VISIBLE);
-			group.setImageDrawable(ic.getContentIcon(R.drawable.ic_small_group));
+			group.setImageDrawable(ic.getThemedIcon(R.drawable.ic_small_group));
 			((TextView) row.findViewById(R.id.type_name)).setText(typeName);
 		} else {
 			row.findViewById(R.id.type_name_icon).setVisibility(View.GONE);

@@ -3,17 +3,17 @@ package net.osmand.plus.download;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import net.osmand.OsmAndCollator;
+import net.osmand.map.OsmandRegions;
+import net.osmand.map.WorldRegion;
+import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-
-import net.osmand.OsmAndCollator;
-import net.osmand.map.OsmandRegions;
-import net.osmand.plus.OsmandApplication;
-import net.osmand.plus.R;
-import net.osmand.plus.WorldRegion;
 
 @SuppressLint("DefaultLocale")
 public class DownloadResourceGroup {
@@ -35,15 +35,15 @@ public class DownloadResourceGroup {
 		HILLSHADE_HEADER(R.string.download_hillshade_maps),
 		OTHER_MAPS_HEADER(R.string.download_select_map_types),
 		// headers with voice items
-		VOICE_HEADER_REC(R.string.index_name_voice),
 		VOICE_HEADER_TTS(R.string.index_name_tts_voice),
+		VOICE_HEADER_REC(R.string.index_name_voice),
 		// headers with resources
 		OTHER_MAPS_GROUP(R.string.download_select_map_types),
 		VOICE_GROUP(R.string.voices),
 		SUBREGIONS(R.string.regions),
 		// screen items
-		VOICE_REC(R.string.index_name_voice),
 		VOICE_TTS(R.string.index_name_tts_voice),
+		VOICE_REC(R.string.index_name_voice),
 		OTHER_MAPS(R.string.download_select_map_types),
 		WORLD(-1),
 		REGION(-1);
@@ -101,32 +101,34 @@ public class DownloadResourceGroup {
 		this.parentGroup = parentGroup;
 	}
 
-	public WorldRegion getIndexItemRegion(IndexItem item) {
-		DownloadResourceGroup group = getIndexItemGroup(item);
+	public static WorldRegion getRegion(DownloadResourceGroup group) {
 		if (group != null) {
 			if (group.getRegion() != null) {
 				return group.getRegion();
 			} else if (group.getParentGroup() != null) {
-				return group.getParentGroup().getRegion();
+				return getRegion(group.getParentGroup());
+			} else {
+				return null;
 			}
+		} else {
+			return null;
 		}
-		return null;
 	}
 
-	public DownloadResourceGroup getIndexItemGroup(IndexItem item) {
+	public DownloadResourceGroup getRegionGroup(WorldRegion region) {
 		DownloadResourceGroup res = null;
-		for (DownloadResourceGroup group : getGroups()) {
-			if (group.getIndividualResources() != null) {
-				for (IndexItem i : group.getIndividualResources()) {
-					if (i == item) {
-						res = group;
+		if (this.region == region) {
+			res = this;
+		} else if (groups != null) {
+			for (DownloadResourceGroup group : groups) {
+				if (group.region == region) {
+					res = group;
+					break;
+				} else {
+					res = group.getRegionGroup(region);
+					if (res != null) {
 						break;
 					}
-				}
-			} else {
-				res = group.getIndexItemGroup(item);
-				if (res != null) {
-					break;
 				}
 			}
 		}
@@ -225,6 +227,7 @@ public class DownloadResourceGroup {
 	}
 	
 	public void addItem(IndexItem i) {
+		i.setRelatedGroup(this);
 		individualResources.add(i);
 	}
 	
@@ -316,7 +319,7 @@ public class DownloadResourceGroup {
 	
 	public String getName(Context ctx) {
 		if (region != null) {
-			return region.getName();
+			return region.getLocaleName();
 		} else if (type != null && type.resId != -1) {
 			return ctx.getString(type.resId);
 		} else {
@@ -331,4 +334,7 @@ public class DownloadResourceGroup {
 		return parentGroup.getUniqueId() + "#" + id;
 	}
 
+	public String getId() {
+		return id;
+	}
 }

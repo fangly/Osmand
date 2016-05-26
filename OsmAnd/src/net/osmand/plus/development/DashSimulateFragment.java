@@ -1,8 +1,5 @@
 package net.osmand.plus.development;
 
-import net.osmand.plus.OsmAndLocationProvider;
-import net.osmand.plus.R;
-import net.osmand.plus.dashboard.DashBaseFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,10 +11,27 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import net.osmand.plus.OsmAndLocationProvider;
+import net.osmand.plus.R;
+import net.osmand.plus.dashboard.DashBaseFragment;
+import net.osmand.plus.dashboard.DashboardOnMap;
+import net.osmand.plus.dashboard.tools.DashFragmentData;
+
 public class DashSimulateFragment extends DashBaseFragment {
 
-	public static final String TAG = "DASH_SIMULATE_FRAGMENT";
-	public static final int TITLE_ID = R.string.simulate_your_location;
+	private static final String TAG = "DASH_SIMULATE_FRAGMENT";
+	private static final int TITLE_ID = R.string.simulate_your_location;
+
+	private static final DashFragmentData.ShouldShowFunction SHOULD_SHOW_FUNCTION =
+			new DashboardOnMap.DefaultShouldShow() {
+				@Override
+				public int getTitleId() {
+					return TITLE_ID;
+				}
+			};
+	static final DashFragmentData FRAGMENT_DATA = new DashFragmentData(DashSimulateFragment.TAG,
+			DashSimulateFragment.class,
+			SHOULD_SHOW_FUNCTION, 150, null);
 
 	@Override
 	public void onOpenDash() {
@@ -25,9 +39,11 @@ public class DashSimulateFragment extends DashBaseFragment {
 		boolean routeAnimating = loc.getLocationSimulation().isRouteAnimating();
 		((TextView) getView().findViewById(R.id.name)).setText(routeAnimating ? R.string.animate_route_off
 				: R.string.animate_route);
-		((ImageButton) getView().findViewById(R.id.stop)).setImageDrawable(
-				!routeAnimating ? getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_play_dark)
-						: getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_rec_stop));
+		ImageButton actionButton = (ImageButton) getView().findViewById(R.id.stop);
+		actionButton.setImageDrawable(
+				!routeAnimating ? getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_play_dark)
+						: getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_rec_stop));
+		actionButton.setContentDescription(getString(routeAnimating ? R.string.animate_route_off : R.string.animate_route));
 
 	}
 
@@ -50,7 +66,9 @@ public class DashSimulateFragment extends DashBaseFragment {
 			}
 		};
 		item.setOnClickListener(listener);
-		((ImageButton) item.findViewById(R.id.stop)).setOnClickListener(listener);
+		ImageButton actionButton = (ImageButton) item.findViewById(R.id.stop);
+		actionButton.setOnClickListener(listener);
+		actionButton.setContentDescription(getString(R.string.animate_route));
 		((TextView) item.findViewById(R.id.name)).setText(R.string.animate_route);
 		item.findViewById(R.id.divider).setVisibility(View.VISIBLE);
 

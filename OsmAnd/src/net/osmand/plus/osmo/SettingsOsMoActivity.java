@@ -1,8 +1,6 @@
 package net.osmand.plus.osmo;
 
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -11,13 +9,13 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
+import android.support.v7.app.AlertDialog;
 import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.osmand.access.AccessibleToast;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.SettingsBaseActivity;
@@ -71,11 +69,6 @@ public class SettingsOsMoActivity extends SettingsBaseActivity {
 		showGroupNotifiations.setSummary(R.string.osmo_show_group_notifications_descr);
 		grp.addPreference(showGroupNotifiations);
 		
-		CheckBoxPreference useHttps = createCheckBoxPreference(settings.OSMO_USE_HTTPS);
-		useHttps.setTitle(R.string.osmo_use_https);
-		useHttps.setSummary(R.string.osmo_use_https_descr);
-		grp.addPreference(useHttps);
-		
 //		if (OsmandPlugin.isDevelopment()) {
 			debugPref = new Preference(this);
 			debugPref.setTitle(R.string.osmo_settings_debug);
@@ -87,12 +80,13 @@ public class SettingsOsMoActivity extends SettingsBaseActivity {
 
 	private void updateDebugPref() {
 		final OsMoPlugin plugin = OsMoPlugin.getEnabledPlugin(OsMoPlugin.class);
+		assert plugin != null;
 		OsMoService service = plugin.getService();
 		OsMoTracker tracker = plugin.getTracker();
 		StringBuilder s = new StringBuilder();
 		if(service.isConnected()) {
 			int seconds = (int) ((System.currentTimeMillis() - service.getConnectionTime()) / 1000);
-			s.append(getString(R.string.osmo_conn_successfull, Algorithms.formatDuration(seconds))).append("\n");
+			s.append(getString(R.string.osmo_conn_successfull, Algorithms.formatDuration(seconds, getMyApplication().accessibilityEnabled()))).append("\n");
 			SessionInfo si = service.getCurrentSessionInfo();
 			if(si == null) {
 				s.append(getString(R.string.osmo_auth_pending)).append("\n");
@@ -104,7 +98,7 @@ public class SettingsOsMoActivity extends SettingsBaseActivity {
 			if(err == null) {
 				err = "...";
 			}
-			s.append(getString(R.string.osmo_io_error) + err).append("\n");
+			s.append(getString(R.string.osmo_io_error)).append(err).append("\n");
 		}
 		s.append(getString(R.string.osmo_locations_sent,
 				tracker.getLocationsSent(),
@@ -117,9 +111,10 @@ public class SettingsOsMoActivity extends SettingsBaseActivity {
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		final OsMoPlugin plugin = OsMoPlugin.getEnabledPlugin(OsMoPlugin.class);
+		assert plugin != null;
 		if (preference == debugPref) {
 			updateDebugPref();
-			Builder bld = new AlertDialog.Builder(this);
+			AlertDialog.Builder bld = new AlertDialog.Builder(this);
 			StringBuilder bs = new StringBuilder();
 			List<String> hs = plugin.getService().getHistoryOfCommands();
 			if(hs != null) {
@@ -154,11 +149,10 @@ public class SettingsOsMoActivity extends SettingsBaseActivity {
 			OsMoService service = plugin.getService();
 			SessionInfo ci = service.getCurrentSessionInfo();
 			if(ci == null || ci.trackerId == null) {
-				AccessibleToast.makeText(this, R.string.osmo_auth_pending, Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, R.string.osmo_auth_pending, Toast.LENGTH_SHORT).show();
 			} else {
 				ShareDialog dlg = new ShareDialog(this);
 				dlg.setTitle(getString(R.string.osmo_tracker_id));
-				dlg.setAction(getString(R.string.osmo_regenerate_login_ids), getRegenerateAction());
 				dlg.viewContent(ci.trackerId);
 				String url = OsMoService.SHARE_TRACKER_URL+Uri.encode(ci.trackerId);
 				dlg.shareURLOrText(ci.trackerId, getString(R.string.osmo_tracker_id_share, ci.trackerId, "", url), null);
@@ -166,27 +160,6 @@ public class SettingsOsMoActivity extends SettingsBaseActivity {
 			}
 		}
 		return super.onPreferenceClick(preference);
-	}
-	
-	private Runnable getRegenerateAction() {
-		return new Runnable() {
-			
-			@Override
-			public void run() {
-				Builder bld = new AlertDialog.Builder(SettingsOsMoActivity.this);
-				bld.setMessage(R.string.osmo_regenerate_login_ids_confirm);
-				bld.setPositiveButton(R.string.shared_string_yes, new OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						final OsMoPlugin plugin = OsMoPlugin.getEnabledPlugin(OsMoPlugin.class);
-						plugin.getService().pushCommand(OsMoService.REGENERATE_CMD);
-					}
-				});
-				bld.setNegativeButton(R.string.shared_string_no, null);
-				bld.show();
-			}
-		};
 	}
 
 	@Override
@@ -196,6 +169,7 @@ public class SettingsOsMoActivity extends SettingsBaseActivity {
 		if (id.equals(settings.OSMO_AUTO_CONNECT.getId())) {
 			if ((Boolean) newValue) {
 				final OsMoPlugin plugin = OsMoPlugin.getEnabledPlugin(OsMoPlugin.class);
+				assert plugin != null;
 				plugin.getService().connect(false);
 			}
 //			sendLocationsref.setEnabled(settings.OSMO_AUTO_CONNECT.get());

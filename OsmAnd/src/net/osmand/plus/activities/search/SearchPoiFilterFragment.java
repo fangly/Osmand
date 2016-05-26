@@ -3,29 +3,6 @@
  */
 package net.osmand.plus.activities.search;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import net.osmand.CollatorStringMatcher;
-import net.osmand.CollatorStringMatcher.StringMatcherMode;
-import net.osmand.access.AccessibleToast;
-import net.osmand.data.LatLon;
-import net.osmand.osm.AbstractPoiType;
-import net.osmand.osm.PoiType;
-import net.osmand.plus.IconsCache;
-import net.osmand.plus.OsmandApplication;
-import net.osmand.plus.OsmandPlugin;
-import net.osmand.plus.R;
-import net.osmand.plus.activities.OsmAndListFragment;
-import net.osmand.plus.activities.search.SearchActivity.SearchActivityChild;
-import net.osmand.plus.poi.NominatimPoiFilter;
-import net.osmand.plus.poi.PoiFiltersHelper;
-import net.osmand.plus.poi.PoiUIFilter;
-import net.osmand.plus.rastermaps.OsmandRasterMapsPlugin;
-import net.osmand.plus.render.RenderingIcons;
-import net.osmand.plus.resources.ResourceManager;
-import net.osmand.util.Algorithms;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,18 +10,45 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.PopupMenu;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.osmand.CollatorStringMatcher;
+import net.osmand.CollatorStringMatcher.StringMatcherMode;
+import net.osmand.data.LatLon;
+import net.osmand.osm.AbstractPoiType;
+import net.osmand.osm.PoiType;
+import net.osmand.plus.IconsCache;
+import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.OsmandPlugin;
+import net.osmand.plus.R;
+import net.osmand.plus.activities.search.SearchActivity.SearchActivityChild;
+import net.osmand.plus.base.OsmAndListFragment;
+import net.osmand.plus.poi.NominatimPoiFilter;
+import net.osmand.plus.poi.PoiFiltersHelper;
+import net.osmand.plus.poi.PoiUIFilter;
+import net.osmand.plus.rastermaps.OsmandRasterMapsPlugin;
+import net.osmand.plus.render.RenderingIcons;
+import net.osmand.plus.resources.ResourceManager;
+import net.osmand.util.Algorithms;
+
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 
@@ -62,18 +66,18 @@ public class SearchPoiFilterFragment extends OsmAndListFragment implements Searc
             Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.searchpoi, container, false);
         v.findViewById(R.id.SearchFilterLayout).setVisibility(View.VISIBLE);
-        ((EditText)v.findViewById(R.id.edit)).setHint(R.string.search_poi_category_hint);
+        ((EditText)v.findViewById(R.id.searchEditText)).setHint(R.string.search_poi_category_hint);
         ((ImageView)v.findViewById(R.id.search_icon)).setImageDrawable(
-        		getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_search_dark));
+        		getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_search_dark));
         
-        setupSearchEditText((EditText) v.findViewById(R.id.edit));
+        setupSearchEditText((EditText) v.findViewById(R.id.searchEditText));
         setupOptions((ImageView) v.findViewById(R.id.options));
         v.findViewById(R.id.poiSplitbar).setVisibility(View.GONE);
         return v;
     }
 	
 	private void setupOptions(ImageView options) {
-		options.setImageDrawable(getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_overflow_menu_white));
+		options.setImageDrawable(getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_overflow_menu_white));
 		options.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -104,7 +108,20 @@ public class SearchPoiFilterFragment extends OsmAndListFragment implements Searc
 					currentTask.cancel(true);
 				}
 				currentTask = new SearchPoiByNameTask();
-				currentTask.execute(s.toString());
+				currentTask.execute(s.toString().trim());
+			}
+		});
+		searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				boolean handled = false;
+				if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+					final PoiUIFilter poiFilter = getApp().getPoiFilters().getSearchByNamePOIFilter();
+					poiFilter.setFilterByName(searchEditText.getText().toString());
+					showFilterActivity(poiFilter.getFilterId());
+					handled = true;
+				}
+				return handled;
 			}
 		});
 	}
@@ -139,9 +156,17 @@ public class SearchPoiFilterFragment extends OsmAndListFragment implements Searc
 					filters.add(pf);
 				}
 			}
-			Map<String, AbstractPoiType> res = 
-					app.getPoiTypes().getAllTypesTranslatedNames(new CollatorStringMatcher(s, StringMatcherMode.CHECK_STARTS_FROM_SPACE));
-			for(AbstractPoiType p : res.values()) {
+			List<AbstractPoiType> res = app.getPoiTypes().getAllTypesTranslatedNames(
+					new CollatorStringMatcher(s, StringMatcherMode.CHECK_STARTS_FROM_SPACE));
+			final Collator inst = Collator.getInstance();
+			Collections.sort(res, new Comparator<AbstractPoiType>() {
+				@Override
+				public int compare(AbstractPoiType lhs, AbstractPoiType rhs) {
+					return inst.compare(lhs.getTranslation(), rhs.getTranslation());
+				}
+				
+			});
+			for(AbstractPoiType p : res) {
 				filters.add(p);
 			}
 			filters.add(poiFilters.getSearchByNamePOIFilter());
@@ -184,10 +209,10 @@ public class SearchPoiFilterFragment extends OsmAndListFragment implements Searc
 
 	@Override
 	public void onListItemClick(ListView listView, View v, int position, long id) {
-		final Object item = ((PoiFiltersAdapter) getListAdapter()).getItem(position);
+		final Object item = getListAdapter().getItem(position);
 		ResourceManager rm = getApp().getResourceManager();
 		if (!rm.containsAmenityRepositoryToSearch(false)) {
-			AccessibleToast.makeText(getActivity(), R.string.data_to_search_poi_not_available, Toast.LENGTH_LONG);
+			Toast.makeText(getActivity(), R.string.data_to_search_poi_not_available, Toast.LENGTH_LONG);
 			return;
 		}
 		if (item instanceof PoiUIFilter) {
@@ -217,6 +242,7 @@ public class SearchPoiFilterFragment extends OsmAndListFragment implements Searc
 	private void showFilterActivity(String filterId) {
 		final Intent newIntent = new Intent(getActivity(), SearchPOIActivity.class);
 		newIntent.putExtra(SearchPOIActivity.AMENITY_FILTER, filterId);
+		newIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		updateIntentToLaunch(newIntent);
 		startActivityForResult(newIntent, 0);
 	}
@@ -268,8 +294,8 @@ public class SearchPoiFilterFragment extends OsmAndListFragment implements Searc
 			String name;
 			if (item instanceof PoiUIFilter) {
 				final PoiUIFilter model = (PoiUIFilter) item;
-				if (RenderingIcons.containsBigIcon(model.getSimplifiedId())) {
-					icon.setImageDrawable(RenderingIcons.getBigIcon(getActivity(), model.getSimplifiedId()));
+				if (RenderingIcons.containsBigIcon(model.getIconId())) {
+					icon.setImageDrawable(RenderingIcons.getBigIcon(getActivity(), model.getIconId()));
 				} else if(PoiUIFilter.BY_NAME_FILTER_ID.equals(model.getFilterId()) || 
 						model instanceof NominatimPoiFilter){
 					icon.setImageResource(R.drawable.mx_name_finder);
@@ -305,7 +331,7 @@ public class SearchPoiFilterFragment extends OsmAndListFragment implements Searc
 		final PopupMenu optionsMenu = new PopupMenu(getActivity(), v);
 
 		MenuItem item = optionsMenu.getMenu().add(R.string.poi_filter_custom_filter)
-				.setIcon(iconsCache.getContentIcon(R.drawable.ic_action_filter_dark));
+				.setIcon(iconsCache.getThemedIcon(R.drawable.ic_action_filter_dark));
 		item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {

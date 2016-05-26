@@ -1,20 +1,5 @@
 package net.osmand.plus.activities.search;
 
-import net.osmand.access.AccessibleToast;
-import net.osmand.data.LatLon;
-import net.osmand.data.PointDescription;
-import net.osmand.plus.OsmandApplication;
-import net.osmand.plus.OsmandSettings;
-import net.osmand.plus.R;
-import net.osmand.plus.TargetPointsHelper;
-import net.osmand.plus.activities.MapActivity;
-import net.osmand.plus.dialogs.DirectionsDialogs;
-import net.osmand.plus.dialogs.FavoriteDialogs;
-import net.osmand.plus.helpers.FileNameTranslationHelper;
-import net.osmand.plus.helpers.AndroidUiHelper;
-import net.osmand.plus.resources.RegionAddressRepository;
-import net.osmand.util.Algorithms;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -33,6 +18,16 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.osmand.data.LatLon;
+import net.osmand.data.PointDescription;
+import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.OsmandSettings;
+import net.osmand.plus.R;
+import net.osmand.plus.activities.MapActivity;
+import net.osmand.plus.helpers.FileNameTranslationHelper;
+import net.osmand.plus.resources.RegionAddressRepository;
+import net.osmand.util.Algorithms;
+
 public class SearchAddressFragment extends Fragment {
 
 	public static final String SELECT_ADDRESS_POINT_INTENT_KEY = "SELECT_ADDRESS_POINT_INTENT_KEY";
@@ -40,12 +35,9 @@ public class SearchAddressFragment extends Fragment {
 	private static final boolean ENABLE_ONLINE_ADDRESS = false; // disabled moved to poi search
 	public static final String SELECT_ADDRESS_POINT_LAT = "SELECT_ADDRESS_POINT_LAT";
 	public static final String SELECT_ADDRESS_POINT_LON = "SELECT_ADDRESS_POINT_LON";
-	private static final int NAVIGATE_TO = 0;
-	private static final int ADD_WAYPOINT = 1;
 	private static final int SHOW_ON_MAP = 2;
 	private static final int ONLINE_SEARCH = 3;
 	private static final int SELECT_POINT = 4;
-	private static final int ADD_TO_FAVORITE = 5;
 	
 	private Button streetButton;
 	private Button cityButton;
@@ -84,17 +76,14 @@ public class SearchAddressFragment extends Fragment {
 	@Override
 	public void onCreateOptionsMenu(Menu onCreate, MenuInflater inflater) {
 		Menu menu = onCreate;
-		boolean portrait = AndroidUiHelper.isOrientationPortrait(getActivity());
 		if(getActivity() instanceof SearchActivity) {
-			if (portrait) {
-				menu = ((SearchActivity) getActivity()).getClearToolbar(true).getMenu();
-			} else {
-				((SearchActivity) getActivity()).getClearToolbar(false);
-			}
+			((SearchActivity) getActivity()).getClearToolbar(false);
 		}
 		if(getActivity() instanceof SearchAddressActivity) {
 			MenuItem menuItem = menu.add(0, SELECT_POINT, 0, "");
 			MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+			if (getApplication().accessibilityEnabled())
+				menuItem.setTitle(R.string.shared_string_ok);
 			menuItem = menuItem.setIcon(R.drawable.ic_action_done);
 			menuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 				@Override
@@ -104,34 +93,7 @@ public class SearchAddressFragment extends Fragment {
 				}
 			});
 		} else {
-			MenuItem menuItem = menu.add(0, NAVIGATE_TO, 0, R.string.context_menu_item_directions_to);
-			MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-			menuItem = menuItem.setIcon(R.drawable.ic_action_gdirections_dark);
-			menuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-				@Override
-				public boolean onMenuItemClick(MenuItem item) {
-					select(NAVIGATE_TO);
-					return true;
-				}
-			});
-			TargetPointsHelper targets = getApplication().getTargetPointsHelper();
-			if (targets.getPointToNavigate() != null) {
-				menuItem = menu.add(0, ADD_WAYPOINT, 0, R.string.context_menu_item_intermediate_point);
-				MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-				menuItem = menuItem.setIcon(R.drawable.ic_action_flage_dark);
-			} else {
-				menuItem = menu.add(0, ADD_WAYPOINT, 0, R.string.context_menu_item_destination_point);
-				MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-				menuItem = menuItem.setIcon(R.drawable.ic_action_flag_dark);
-			}
-			menuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-				@Override
-				public boolean onMenuItemClick(MenuItem item) {
-					select(ADD_WAYPOINT);
-					return true;
-				}
-			});
-			menuItem = menu.add(0, SHOW_ON_MAP, 0, R.string.shared_string_show_on_map);
+			MenuItem menuItem = menu.add(0, SHOW_ON_MAP, 0, R.string.shared_string_show_on_map);
 			MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
 			menuItem = menuItem.setIcon(R.drawable.ic_action_marker_dark);
 
@@ -139,18 +101,6 @@ public class SearchAddressFragment extends Fragment {
 				@Override
 				public boolean onMenuItemClick(MenuItem item) {
 					select(SHOW_ON_MAP);
-					return true;
-				}
-			});
-			
-			menuItem = menu.add(0, ADD_TO_FAVORITE, 0, R.string.shared_string_add_to_favorites);
-			MenuItemCompat.setShowAsAction(menuItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-			menuItem = menuItem.setIcon(R.drawable.ic_action_fav_dark);
-
-			menuItem.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-				@Override
-				public boolean onMenuItemClick(MenuItem item) {
-					select(ADD_TO_FAVORITE);
 					return true;
 				}
 			});
@@ -192,6 +142,10 @@ public class SearchAddressFragment extends Fragment {
 			newIntent.putExtra(SearchActivity.SEARCH_LAT, location.getLatitude());
 			newIntent.putExtra(SearchActivity.SEARCH_LON, location.getLongitude());
 		}
+		
+		if(intent != null && getActivity() instanceof SearchAddressActivity) {
+			newIntent.putExtra(SearchByNameAbstractActivity.SELECT_ADDRESS, true);
+		}
 		return newIntent;
 	}
 	
@@ -225,7 +179,7 @@ public class SearchAddressFragment extends Fragment {
 			}
 		});
 		OsmandApplication app = getApplication();
-		Drawable icon = getApplication().getIconsCache().getContentIcon(R.drawable.ic_action_remove_dark);
+		Drawable icon = getApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_remove_dark);
 		((ImageView)findViewById(R.id.ResetBuilding)).setBackgroundDrawable(icon);
 		findViewById(R.id.ResetBuilding).setOnClickListener(new View.OnClickListener(){
 			@Override
@@ -366,7 +320,7 @@ public class SearchAddressFragment extends Fragment {
 	
 	public void select(int mode) {
 		if (searchPoint == null) {
-			AccessibleToast.makeText(getActivity(), R.string.please_select_address, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), R.string.please_select_address, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		AddressInformation ai = new AddressInformation();
@@ -389,13 +343,7 @@ public class SearchAddressFragment extends Fragment {
 			pointDescription.setTypeName(getRegionName());
 		}
 
-		if(mode == ADD_TO_FAVORITE) {
-			Bundle b = new Bundle();
-			Dialog dlg = FavoriteDialogs.createAddFavouriteDialog(getActivity(), b);
-			dlg.show();
-			FavoriteDialogs.prepareAddFavouriteDialog(getActivity(), dlg, b, searchPoint.getLatitude(), searchPoint.getLongitude(),
-					pointDescription);
-		} else if(mode == SELECT_POINT ){
+		if(mode == SELECT_POINT ){
 			Intent intent = getActivity().getIntent();
 			intent.putExtra(SELECT_ADDRESS_POINT_INTENT_KEY, ai.objectName);
 			intent.putExtra(SELECT_ADDRESS_POINT_LAT, searchPoint.getLatitude());
@@ -403,11 +351,7 @@ public class SearchAddressFragment extends Fragment {
 			getActivity().setResult(SELECT_ADDRESS_POINT_RESULT_OK, intent);
 			getActivity().finish();
 		} else {
-			if (mode == NAVIGATE_TO) {
-				DirectionsDialogs.directionsToDialogAndLaunchMap(getActivity(), searchPoint.getLatitude(), searchPoint.getLongitude(),  pointDescription);
-			} else if (mode == ADD_WAYPOINT) {
-				DirectionsDialogs.addWaypointDialogAndLaunchMap(getActivity(), searchPoint.getLatitude(), searchPoint.getLongitude(), pointDescription);
-			} else if (mode == SHOW_ON_MAP) {
+			if (mode == SHOW_ON_MAP) {
 				osmandSettings.setMapLocationToShow(searchPoint.getLatitude(), searchPoint.getLongitude(), ai.zoom, pointDescription);
 				MapActivity.launchMapActivityMoveToTop(getActivity());
 			}

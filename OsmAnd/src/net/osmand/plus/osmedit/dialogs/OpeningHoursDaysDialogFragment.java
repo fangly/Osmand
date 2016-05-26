@@ -10,7 +10,7 @@ import android.text.format.DateFormat;
 
 import net.osmand.PlatformUtil;
 import net.osmand.plus.R;
-import net.osmand.plus.osmedit.BasicDataFragment;
+import net.osmand.plus.osmedit.BasicEditPoiFragment;
 import net.osmand.util.OpeningHoursParser;
 
 import org.apache.commons.logging.Log;
@@ -66,10 +66,10 @@ public class OpeningHoursDaysDialogFragment extends DialogFragment {
 							days[(first + 5 + i) % 7] = dayToShow[i];
 						}
 						if (createNew) {
-							OpeningHoursHoursDialogFragment.createInstance(item, positionToAdd, true)
+							OpeningHoursHoursDialogFragment.createInstance(item, positionToAdd, true, 0)
 									.show(getFragmentManager(), "TimePickerDialogFragment");
 						} else {
-							((BasicDataFragment) getParentFragment())
+							((BasicEditPoiFragment) getParentFragment())
 									.setBasicOpeningHoursRule(item, positionToAdd);
 						}
 					}

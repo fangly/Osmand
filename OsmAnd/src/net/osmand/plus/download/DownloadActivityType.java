@@ -1,15 +1,6 @@
 package net.osmand.plus.download;
 
-import static net.osmand.IndexConstants.BINARY_MAP_INDEX_EXT;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import android.content.Context;
 
 import net.osmand.AndroidUtils;
 import net.osmand.IndexConstants;
@@ -22,10 +13,20 @@ import net.osmand.util.Algorithms;
 
 import org.xmlpull.v1.XmlPullParser;
 
-import android.content.Context;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import static net.osmand.IndexConstants.BINARY_MAP_INDEX_EXT;
 
 public class DownloadActivityType {
-	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
 	private static Map<String, DownloadActivityType> byTag = new HashMap<>();
 	
 	public static final DownloadActivityType NORMAL_FILE =
@@ -62,6 +63,7 @@ public class DownloadActivityType {
 	public DownloadActivityType(int stringResource, String tag, int orderIndex) {
 		this.stringResource = stringResource;
 		this.tag = tag;
+		this.orderIndex = orderIndex;
 		byTag.put(tag, this);
 		iconResource = R.drawable.ic_map;
 	}
@@ -192,7 +194,7 @@ public class DownloadActivityType {
 		if (this== DownloadActivityType.ROADS_FILE) {
 			return "&road=yes";
 		} else if (this == DownloadActivityType.LIVE_UPDATES_FILE) {
-			return "&osmc=yes";
+			return "&aosmc=yes";
 		} else if (this == DownloadActivityType.SRTM_COUNTRY_FILE) {
 			return "&srtmcountry=yes";
 		} else if (this == DownloadActivityType.WIKIPEDIA_FILE) {
@@ -266,26 +268,26 @@ public class DownloadActivityType {
 			}
 			return getBasename(indexItem);
 		}
-		final String bn = getBasename(indexItem);
-		if (bn.endsWith(FileNameTranslationHelper.WIKI_NAME)){
-			return FileNameTranslationHelper.getWikiName(ctx,bn);
+		final String basename = getBasename(indexItem);
+		if (basename.endsWith(FileNameTranslationHelper.WIKI_NAME)){
+			return FileNameTranslationHelper.getWikiName(ctx,basename);
 		}
 //		if (this == HILLSHADE_FILE){
 //			return FileNameTranslationHelper.getHillShadeName(ctx, osmandRegions, bn);
 //		}
-		final String lc = bn.toLowerCase();
+		final String lc = basename.toLowerCase();
 		String std = FileNameTranslationHelper.getStandardMapName(ctx, lc);
 		if (std != null) {
 			return std;
 		}
-		if (bn.contains("addresses-nationwide")) {
-			final int ind = bn.indexOf("addresses-nationwide");
-			String downloadName = bn.substring(0, ind - 1) + bn.substring(ind + "addresses-nationwide".length());
+		if (basename.contains("addresses-nationwide")) {
+			final int ind = basename.indexOf("addresses-nationwide");
+			String downloadName = basename.substring(0, ind - 1) + basename.substring(ind + "addresses-nationwide".length());
 			return osmandRegions.getLocaleName(downloadName, includingParent) +
 					" "+ ctx.getString(R.string.index_item_nation_addresses);
 		}
 
-		return osmandRegions.getLocaleName(bn, includingParent);
+		return osmandRegions.getLocaleName(basename, includingParent);
 	}
 	
 	public String getTargetFileName(IndexItem item) {
@@ -332,7 +334,7 @@ public class DownloadActivityType {
 		}
 		return fileName;
 	}
-	
+
 
 	public String getBasename(IndexItem indexItem) {
 		String fileName = indexItem.fileName;

@@ -2,7 +2,7 @@
 <resources><string name="poi_bakery">Pekařství</string>
 	<string name="poi_alcohol">Obchod s alkoholem</string>
 	<string name="poi_convenience">Samoobsluha</string>
-	<string name="poi_mall">Obchodní dům</string>
+	<string name="poi_mall">Nákupní centrum</string>
 	<string name="poi_beverages">Obchod s nápoji</string>
 	<string name="poi_butcher">Masna</string>
 	<string name="poi_deli">Delikatesy</string>
@@ -15,7 +15,7 @@
 	<string name="poi_art">Obchod uměním</string>
 	<string name="poi_baby_goods">Dětské zboží</string>
 	<string name="poi_bathroom_furnishing">Vybavení koupelen</string>
-	<string name="poi_bed">Vybavení ložnic</string>
+	<string name="poi_bed">Obchod s lůžkovinami</string>
 	<string name="poi_boutique">Módní butik</string>
 	<string name="poi_chemist">Drogerie</string>
 	<string name="poi_clothes_children">Dětské oblečení</string>
@@ -28,7 +28,7 @@
 	<string name="poi_kiosk">Kiosek</string>
 	<string name="poi_kitchen">Kuchyňské studio</string>
 	<string name="poi_musical_instrument">Hudební nástroje</string>
-	<string name="poi_optician">Optik</string>
+	<string name="poi_optician">Oční optika</string>
 	<string name="poi_pet">Zverimex</string>
 	<string name="poi_sports">Sportovní vybavení</string>
 	<string name="poi_toys">Hračkářství</string>
@@ -41,7 +41,7 @@
 	<string name="poi_fire_extinguisher">Hasicí přístroj</string>
 	<string name="poi_ambulance_station">Ambulance</string>
 	<string name="poi_ford">Brod</string>
-	<string name="poi_mountain_pass_yes">Horské sedlo</string>
+	<string name="poi_mountain_pass">Horské sedlo</string>
 	<string name="poi_gate">Brána</string>
 	<string name="poi_toll_booth">Mýtné</string>
 	<string name="poi_border_control">Hraniční kontrola</string>
@@ -78,7 +78,7 @@
 	<string name="poi_vineyard">Vinohrad</string>
 	<string name="poi_school">Škola</string>
 	<string name="poi_kindergarten">Školka</string>
-	<string name="poi_college">Kolej</string>
+	<string name="poi_college">Střední škola</string>
 	<string name="poi_university">Univerzita</string>
 
 	<string name="poi_prison">Vězení</string>
@@ -160,7 +160,7 @@
 	<string name="poi_craft_shoemaker">Obuvník</string>
 	<string name="poi_craft_stonemason">Kameník</string>
 	<string name="poi_craft_tailor">Krejčí</string>
-	<string name="poi_craft_tiler">Pokrývač</string>
+	<string name="poi_craft_tiler">Obkladač</string>
 	<string name="poi_craft_tinsmith">Klempíř</string>
 	<string name="poi_beauty">Salón krásy</string>
 	<string name="poi_hairdresser">Kadeřník</string>
@@ -216,7 +216,7 @@
 	<string name="poi_city_wall">Městská hradba</string>
 	<string name="poi_lift_gate">Zvedací brána</string>
 	<string name="poi_traffic_calming_bump">Retardér</string>
-	<string name="poi_traffic_calming_hump">Retardér</string>
+	<string name="poi_traffic_calming_hump">Dlouhý retardér</string>
 	<string name="poi_vehicle_inspection">Kontrola vozidel</string>
 	<string name="poi_parking_entrance">Vjezd parkoviště</string>
 	<string name="poi_tram_stop">Zastávka tramvaje</string>
@@ -227,7 +227,7 @@
 	<string name="poi_tourism">Turistika</string>
 	<string name="poi_entertainment">Volný čas</string>
 	<string name="poi_sustenance">Občerstvení</string>
-	<string name="poi_osmwiki">Wikipedia</string>
+	<string name="poi_osmwiki">Wikipedie</string>
 	<string name="poi_user_defined_other">Uživatelsky definovaný</string>
 	
 	<string name="poi_wine">Vinotéka</string>
@@ -292,7 +292,7 @@
 	<string name="poi_erotic">Sexshop</string>
 	<string name="poi_fishing">Rybářské potřeby</string>
 	<string name="poi_frame">Obrazy a rámy</string>
-	<string name="poi_general">Smíšený obchod</string>
+	<string name="poi_shop_yes">Smíšený obchod</string>
 	<string name="poi_gift">Suvenýry/Dárky</string>
 	<string name="poi_hifi">Audiotechnika</string>
 	<string name="poi_medical_supply">Zdravotnické potřeby</string>
@@ -352,7 +352,7 @@
 	<string name="poi_railway_station">Železniční stanice</string>
 	<string name="poi_railway_platform">Železniční nástupiště</string>
 	<string name="poi_halt">Železniční zastávka</string>
-	<string name="poi_railway_subway_entrance">Vchod do metra</string>
+	<string name="poi_subway_entrance">Vchod do metra</string>
 	<string name="poi_subway_station">Stanice metra</string>
 	<string name="poi_railway_buffer_stop">Železniční zarážka</string>
 	<string name="poi_taxi">Stanoviště taxi</string>
@@ -596,7 +596,7 @@
 	<string name="poi_viewpoint">Rozhledna/Vyhlídka</string>
 	<string name="poi_camp_site">Kemp</string>
 	<string name="poi_caravan_site">Autokemp</string>
-	<string name="poi_picnic_site">Výletní místo</string>
+	<string name="poi_picnic_site">Místo pro piknik</string>
 	<string name="poi_spring">Pramen</string>
 	<string name="poi_hot_spring">Horký pramen</string>
 	<string name="poi_geyser">Gejzír</string>
@@ -679,7 +679,7 @@
 	<string name="poi_craft_plasterer">Štukatér</string>
 	<string name="poi_craft_pottery">Hrnčíř</string>
 	<string name="poi_craft_rigger">Výroba stěžňů, ráhen, plachet a lanoví pro plachetnice</string>
-	<string name="poi_craft_roofer">Střešní konstrukce</string>
+	<string name="poi_craft_roofer">Pokrývač</string>
 	<string name="poi_craft_saddler">Sedlář</string>
 	<string name="poi_craft_sailmaker">Výroba a opravy plachet pro lodě</string>
 	<string name="poi_craft_sawmill">Pila</string>
@@ -688,7 +688,7 @@
 	<string name="poi_craft_sun_protection">Ochrany proti slunci</string>
 	<string name="poi_craft_sweep">Úklid</string>
 	<string name="poi_craft_upholsterer">Čalouník</string>
-	<string name="poi_craft_watchmaker">Hodinář</string>
+	<string name="poi_craft_watchmaker">Opravář hodinek</string>
 	<string name="poi_craft_window_construction">Výroba oken</string>
 
 	<string name="poi_funeral_directors">Pohřební ústav</string>
@@ -697,7 +697,7 @@
 	<string name="poi_massage">Masážní salón</string>
 	<string name="poi_dry_cleaning">Chemická čistírna</string>
 	<string name="poi_laundry">Prádelna</string>
-	<string name="poi_car_sharing">Půjčovna aut</string>
+	<string name="poi_car_sharing">Sdílení aut</string>
 	<string name="poi_boat_sharing">Půjčovna lodí</string>
 	<string name="poi_dock">Dok</string>
 	<string name="poi_toilets">Toaleta</string>
@@ -721,7 +721,7 @@
 	<string name="poi_water">Voda</string>
 	<string name="poi_wetland">Mokřina</string>
 	<string name="poi_wood">Háj</string>
-	<string name="poi_anchor_berth">Kotviště</string>
+	<string name="poi_anchor_berth">Kotvící místo</string>
 	<string name="poi_beacon_cardinal">Směrový maják</string>
 	<string name="poi_beacon_special_purpose">Maják pro speciální účely</string>
 	<string name="poi_berth">Kotviště</string>
@@ -748,7 +748,7 @@
 	<string name="poi_seamark_light_minor">Menší světlo, vodní značka</string>
 	<string name="poi_seamark_light_float">Plovoucí světlo, vodní značka</string>
 	<string name="poi_seamark_light_vessel">Kotvící světlo, vodní značka</string>
-	<string name="poi_mooring">Kotviště</string>
+	<string name="poi_mooring">Místo k uvázání lodí</string>
 	<string name="poi_notice">Upozornění, vodní značka</string>
 	<string name="poi_pile">Podpěra</string>
 	<string name="poi_radar_transponder">Radar, vodní značka</string>
@@ -859,18 +859,18 @@
 	<string name="poi_groyne">Pobřežní hráz</string>
 
 	<string name="poi_power_cable_distribution_cabinet">Kabelová rozvodní skříň</string>
-	<string name="poi_basin">Nádrž</string>
+	<string name="poi_basin">Nádrž na dešťovou vodu</string>
 	<string name="poi_conservation">Chráněné území</string>
 
 	<string name="poi_crane">Jeřáb</string>
 	<string name="poi_tourism_attraction">Turistická atrakce</string>
 	<string name="poi_religious">Náboženská oblast</string>
-	<string name="poi_cutline">Výsek lesa</string>
+	<string name="poi_cutline">Průsek lesa</string>
 	<string name="poi_tree">Strom</string>
-	<string name="poi_bollard">Patník</string>
+	<string name="poi_bollard">Sloupek</string>
 	<string name="poi_cycle_barrier">Cyklo překážka</string>
 	<string name="poi_motorcycle_barrier">Překážka pro motocykly</string>
-	<string name="poi_block">Balvan</string>
+	<string name="poi_block">Blok</string>
 	<string name="poi_bus_trap">Autobusová uzávěra</string>
 	<string name="poi_cattle_grid">Mříž proti dobytku</string>
 	<string name="poi_full_height_turnstile">Vysoký turniket</string>
@@ -883,22 +883,22 @@
 	<string name="poi_sally_port">Vstup do pevnosti</string>
 	<string name="poi_swing_gate">Otočná závora</string>
 	<string name="poi_turnstile">Turniket</string>
-	<string name="poi_barrier_entrance">Vstup</string>
+	<string name="poi_barrier_entrance">Průchod ve zdi nebo plotu</string>
 	<string name="poi_entrance_main">Hlavní vchod</string>
 	<string name="poi_entrance">Vchod</string>
 	<string name="poi_entrance_exit">Východ</string>
 
 	<string name="poi_highway_crossing">Přechod pro chodce</string>
 
-	<string name="poi_icn_ref">Mezinárodní cyklistická síť</string>
-	<string name="poi_ncn_ref">Národní cyklistická síť</string>
-	<string name="poi_rcn_ref">Regionální cyklistická síť</string>
-	<string name="poi_lcn_ref">Lokální cyklistická síť</string>
+	<string name="poi_icn_ref">Bod mezinárodní cyklistické sítě</string>
+	<string name="poi_ncn_ref">Bod národní cyklistické sítě</string>
+	<string name="poi_rcn_ref">Bod regionální cyklistické sítě</string>
+	<string name="poi_lcn_ref">Bod lokální cyklistické sítě</string>
 
-	<string name="poi_iwn_ref">Mezinárodní pěší síť</string>
-	<string name="poi_nwn_ref">Národní pěší síť</string>
-	<string name="poi_rwn_ref">Regionální pěší síť</string>
-	<string name="poi_lwn_ref">Lokální pěší síť</string>
+	<string name="poi_iwn_ref">Bod mezinárodní pěší sítě</string>
+	<string name="poi_nwn_ref">Bod národní pěší sítě</string>
+	<string name="poi_rwn_ref">Bod regionální pěší sítě</string>
+	<string name="poi_lwn_ref">Bod lokální pěší sítě</string>
 
 	<string name="poi_opening_hours">Otevírací hodiny</string>
 	<string name="poi_description">Popis</string>
@@ -913,13 +913,13 @@
 	<string name="poi_operator">Provozovatel</string>
 	<string name="poi_brand">Značka</string>
 
-	<string name="poi_enforcement_traffic_signals">Vynucení:semafory</string>
-	<string name="poi_enforcement_maxspeed">Vynucení:maximální rychlost</string>
-	<string name="poi_enforcement_maxheight">Vynucení:maximální výška</string>
-	<string name="poi_enforcement_mindistance">Vynucení:minimální vzdálenost</string>
-	<string name="poi_enforcement_check">Vynucení:kontrola</string>
-	<string name="poi_enforcement_access">Vynucení:přístup</string>
-	<string name="poi_enforcement_toll">Vynucení:mýto</string>
+	<string name="poi_enforcement_traffic_signals">Vynucení: světelná signalizace</string>
+	<string name="poi_enforcement_maxspeed">Vynucení: maximální rychlost</string>
+	<string name="poi_enforcement_maxheight">Vynucení: maximální výška</string>
+	<string name="poi_enforcement_mindistance">Vynucení: minimální vzdálenost</string>
+	<string name="poi_enforcement_check">Vynucení: kontrola</string>
+	<string name="poi_enforcement_access">Vynucení: přístup</string>
+	<string name="poi_enforcement_toll">Vynucení: mýto</string>
 
 <string name="poi_fee_yes">Poplatek</string>
 
@@ -1026,20 +1026,20 @@
 	<string name="poi_denomination_roman_catholic">Římskokatolicismus</string>
 	<string name="poi_denomination_orthodox">Pravoslaví</string>
 	<string name="poi_denomination_lutheran">Luteránství</string>
-	<string name="poi_board_type_astronomy">Informace o astronomii</string>
+	<string name="poi_board_type_astronomy">Informační značení: astronomie</string>
 
-<string name="poi_board_type_technology">Informace o technologii</string>
-	<string name="poi_board_type_public_transport">Informace o veřejné dopravě</string>
-	<string name="poi_board_type_geology">Informace o geologii</string>
-	<string name="poi_board_type_plants">Informace o rostlinách</string>
-	<string name="poi_board_type_notice">Deska s oznámením</string>
+<string name="poi_board_type_technology">Informační značení: technologie</string>
+	<string name="poi_board_type_public_transport">Informační značení: veřejná doprava</string>
+	<string name="poi_board_type_geology">Informační značení: geologie</string>
+	<string name="poi_board_type_plants">Informační značení: rostliny</string>
+	<string name="poi_board_type_notice">Vývěska</string>
 	<string name="poi_information_tactile_map">Haptická mapa</string>
 	<string name="poi_information_tactile_model">Dotykový model</string>
 	<string name="poi_information_bicyclemap">Cyklistická mapa</string>
 	<string name="poi_information_audioguide">Audioprůvodce</string>
-	<string name="poi_information_history">Informace o historii</string>
-	<string name="poi_information_wildlife">Informace o divočině</string>
-	<string name="poi_information_nature">Informace o přírodě</string>
+	<string name="poi_information_history">Informační značení: historie</string>
+	<string name="poi_information_wildlife">Informační značení: živočich</string>
+	<string name="poi_information_nature">Informační značení: příroda</string>
 	<string name="poi_information_hikingmap">Turistická mapa</string>
 	<string name="poi_information_terminal">Informační terminál</string>
 	<string name="poi_information_office">Informační kancelář</string>
@@ -1078,19 +1078,19 @@
 	<string name="poi_military_office">Vojenský úřad</string>
 	<string name="poi_email">E-mail</string>
 	<string name="poi_fax">Fax</string>
-	<string name="poi_facebook">Facebook</string>
-	<string name="poi_twitter">Twitter</string>
+	<string name="facebook">Facebook</string>
+	<string name="twitter">Twitter</string>
 	<string name="poi_skype">Skype</string>
 	<string name="poi_youtube">YouTube</string>
 	<string name="poi_instagram">Instagram</string>
-	<string name="poi_vk">VKontakte</string>
+	<string name="vk">VKontakte</string>
 	<string name="poi_google_plus">Google+</string>
 	<string name="poi_mobile">Mobilní telefon</string>
 	<string name="poi_height">Výška</string>
 	<string name="poi_ele">Nadmořská výška</string>
 	<string name="poi_fee_no">Žádný poplatek</string>
-	<string name="poi_drinking_water_yes">Pitná voda</string>
-	<string name="poi_drinking_water_no">Nepitná voda</string>
+	<string name="poi_drinking_water_yes">Pitná voda: ano</string>
+	<string name="poi_drinking_water_no">Pitná voda: ne</string>
 	<string name="poi_seasonal_yes">Sezónní</string>
 	<string name="poi_seasonal_no">Nesezónní</string>
 	<string name="poi_seasonal_dry_season">Období sucha</string>
@@ -1115,8 +1115,8 @@
 	<string name="poi_trade_building_supplies">Stavebniny</string>
 	<string name="poi_trade_agricultural_supplies">Zemědělské potřeby</string>
 	<string name="poi_population">Obyvatelstvo</string>
-	<string name="poi_parking_underground">Podzemí</string>
-	<string name="poi_parking_multi_storey">Vícepodlažní</string>
+	<string name="poi_parking_underground">Typ: podzemí</string>
+	<string name="poi_parking_multi_storey">Typ: vícepodlažní</string>
 
 	<string name="poi_bicycle_parking_building">Speciální budova</string>
 	<string name="poi_bicycle_parking_shed">Přístřešek</string>
@@ -1146,7 +1146,7 @@
 	<string name="poi_collection_times">Čas vybírání pošty</string>
 	<string name="poi_supervised_yes">Střežené</string>
 	<string name="poi_supervised_no">Nestřežené</string>
-	<string name="poi_crossing_traffic_signals">Se semafory</string>
+	<string name="poi_crossing_traffic_signals">Se světelnou signalizací</string>
 	<string name="poi_crossing_uncontrolled">Neřízený</string>
 	<string name="poi_crossing_unmarked">Nevyznačený</string>
 	<string name="poi_access_destination">Přístup jen k cíli</string>
@@ -1155,21 +1155,21 @@
 	<string name="poi_access_delivery">Přístup jen pro zásobování</string>
 	<string name="poi_access_agricultural">Přístup pro zemědělské účely</string>
 
-	<string name="poi_content_silage">Siláž (obsah)</string>
-	<string name="poi_content_water">Voda (obsah)</string>
-	<string name="poi_content_oil">Ropa (obsah)</string>
-	<string name="poi_content_fuel">Palivo (obsah)</string>
-	<string name="poi_content_manure">Hnůj (obsah)</string>
-	<string name="poi_content_wine">Víno (obsah)</string>
-	<string name="poi_content_sewage">Kanalizace (obsah)</string>
-	<string name="poi_content_gas">Plyn (obsah)</string>
-	<string name="poi_content_biomass">Biomasa (obsah)</string>
-	<string name="poi_content_wastewater">Odpadní vody (obsah)</string>
-	<string name="poi_content_crop">Plodiny (obsah)</string>
-	<string name="poi_content_fodder">Krmivo (obsah)</string>
-	<string name="poi_content_beer">Pivo (obsah)</string>
-	<string name="poi_content_salt">Sůl (obsah)</string>
-	<string name="poi_content_grain">Zrno (obsah)</string>
+	<string name="poi_content_silage">Obsah: siláž</string>
+	<string name="poi_content_water">Obsah: voda</string>
+	<string name="poi_content_oil">Obsah: ropa</string>
+	<string name="poi_content_fuel">Obsah: palivo</string>
+	<string name="poi_content_manure">Obsah: hnůj</string>
+	<string name="poi_content_wine">Obsah: víno</string>
+	<string name="poi_content_sewage">Obsah: splašky</string>
+	<string name="poi_content_gas">Obsah: plyn</string>
+	<string name="poi_content_biomass">Obsah: biomasa</string>
+	<string name="poi_content_wastewater">Obsah: odpadní voda</string>
+	<string name="poi_content_crop">Obsah: plodiny</string>
+	<string name="poi_content_fodder">Obsah: krmivo</string>
+	<string name="poi_content_beer">Obsah: pivo</string>
+	<string name="poi_content_salt">Obsah: sůl</string>
+	<string name="poi_content_grain">Obsah: zrno</string>
 
 	<string name="poi_trade_wood">Dřevo</string>
 	<string name="poi_trade_tile">Kachličky</string>
@@ -1213,10 +1213,10 @@
 	<string name="poi_urban">Město</string>
 	<string name="poi_rural">Venkov</string>
 
-	<string name="poi_animal_shelter_dog">Útulek pro psy</string>
-	<string name="poi_animal_shelter_cat">Útulek pro kočky</string>
-	<string name="poi_animal_shelter_dog_cat">Útulek pro psy a kočky</string>
-	<string name="poi_animal_shelter_bird">Útočiště pro ptáky</string>
+	<string name="poi_animal_shelter_dog">Typ útulku: pes</string>
+	<string name="poi_animal_shelter_cat">Typ útulku: kočky</string>
+	<string name="poi_animal_shelter_dog_cat">Typ útulku: pes, kočka</string>
+	<string name="poi_animal_shelter_bird">Typ útulku: pták</string>
 
 	<string name="poi_seats">Sedačky</string>
 	<string name="poi_backrest_yes">Opěradlo: ano</string>
@@ -1234,27 +1234,27 @@
 	<string name="poi_covered_no">Bez přístřešku</string>
 
 	<string name="poi_smoking_no">Zákaz kouření</string>
-	<string name="poi_smoking_outside">Kouření je povoleno pouze venku</string>
-	<string name="poi_smoking_yes">Kouření je povoleno</string>
-	<string name="poi_smoking_separated">Kouření je povoleno v samostatné neoddělené místnosti</string>
-	<string name="poi_smoking_isolated">Kouření je povoleno v samostatné oddělené místnosti</string>
+	<string name="poi_smoking_outside">Kouření povoleno pouze venku</string>
+	<string name="poi_smoking_yes">Kouření povoleno</string>
+	<string name="poi_smoking_separated">Kouření povoleno v samostatné místnosti</string>
+	<string name="poi_smoking_isolated">Kouření povoleno v oddělené místnosti</string>
 	<string name="poi_smoking_dedicated">Výhradně pro kuřáky</string>
 
-	<string name="poi_toll_yes">Účtována platba mýtného</string>
-	<string name="poi_toll_no">Není účtována platba mýtného</string>
-	<string name="poi_toll_hgv_yes">Platba mýtného je účtována jen pro nákladní vozidla</string>
+	<string name="poi_toll_yes">Mýto</string>
+	<string name="poi_toll_no">Žádné mýto</string>
+	<string name="poi_toll_hgv_yes">Mýto jen pro nákladní vozidla</string>
 	<string name="poi_tactile_paving_yes">Se značením pro nevidomé</string>
 	<string name="poi_tactile_paving_no">Bez značení pro nevidomé</string>
 	<string name="poi_traffic_signals_sound_yes">Se zvukovou signalizací</string>
 	<string name="poi_traffic_signals_sound_no">Bez zvukové signalizace</string>
-	<string name="poi_traffic_signals_sound_walk">"Se zvukovou signalizací  v případě, že je chůze povolena"</string>
+	<string name="poi_traffic_signals_sound_walk">Se zvukovou signalizací pokud je chůze povolena</string>
 
 	<string name="poi_rescue_station">Záchranná stanice</string>
 
 	<string name="poi_services">Odpočívadlo se službami</string>
 	<string name="poi_mini_roundabout">Malý kruhový objezd</string>
 	<string name="poi_railway_crossing">Železniční přechod pro chodce</string>
-	<string name="poi_railway_level_crossing"/>
+	<string name="poi_railway_level_crossing">Železniční přejezd</string>
 	<string name="poi_horse_riding">Jízda na koni</string>
 	<string name="poi_garden">Zahrada</string>
 
@@ -1277,4 +1277,388 @@
 	<string name="poi_denomination_sunni">Sunnitství</string>
 	<string name="poi_denomination_protestant">Protestantské</string>
 	<string name="poi_denomination_methodist">Metodistické</string>
+	<string name="poi_tourism_yes">Turistický objekt</string>
+	<string name="poi_cairn">Mohyla</string>
+
+	<string name="poi_aeroway_fuel">Letecká čerpací stanice</string>
+	<string name="poi_escape_lane">Únikový pruh</string>
+
+	<string name="poi_motorcycle_repair">Motocyklová opravna</string>
+	<string name="poi_highway_steps">Schody</string>
+	<string name="poi_kiln">Pec</string>
+	<string name="poi_square">Náměstí</string>
+
+	<string name="poi_water_point">Pitná voda</string>
+
+	<string name="poi_honey">Med</string>
+
+	<string name="poi_animal_shelter">Útulek pro zvířata</string>
+	<string name="poi_animal_boarding">Zvířecí hotel</string>
+	<string name="poi_internet_access_yes">Internetové připojení: ano</string>
+	<string name="poi_defibrillator">Defibrilátor</string>
+	<string name="poi_defibrillator_yes">Defibrilátor: ano</string>
+
+	<string name="poi_office_camping">Kancelář kempu</string>
+	<string name="poi_traffic_calming_island">Dopravní ostrůvek</string>
+	<string name="poi_denomination_evangelical">Evangelický</string>
+	<string name="poi_denomination_russian_orthodox">Ruský pravoslavný</string>
+	<string name="poi_denomination_mormon">Mormonský</string>
+	<string name="poi_denomination_jehovahs_witness">Svědků Jehovových</string>
+	<string name="poi_denomination_greek_orthodox">Řecký pravoslavný</string>
+	<string name="poi_denomination_reformed">Kalvinistický</string>
+	<string name="poi_denomination_seventh_day_adventist">Adventistů sedmého dne</string>
+	<string name="poi_denomination_new_apostolic">Novoapoštolský</string>
+	<string name="poi_denomination_church_of_england">Anglikánská církev</string>
+	<string name="poi_denomination_greek_catholic">Řeckokatolický</string>
+	<string name="poi_denomination_tibetan">Tibetský</string>
+	<string name="poi_denomination_salvation_army">Armáda spásy</string>
+	<string name="poi_denomination_quaker">Kvakerský</string>
+	<string name="poi_denomination_bulgarian_orthodox">Bulharský pravoslavný</string>
+	<string name="poi_denomination_adventist">Adventistický</string>
+	<string name="poi_denomination_nazarene">Nazaretánský</string>
+	<string name="poi_denomination_serbian_orthodox">Srbský pravoslavný</string>
+	<string name="poi_denomination_armenian_apostolic">Arménský apoštolský</string>
+	<string name="poi_denomination_dutch_reformed">Holanský kalvinistický</string>
+	<string name="poi_denomination_apostolic">Apoštolský</string>
+	<string name="poi_denomination_latter_day_saints">Ježíše Krista Svatých posledních dnů</string>
+	<string name="poi_denomination_church_of_christ">Církev Ježíše Krista</string>
+	<string name="poi_denomination_romanian_orthodox">Římský pravoslavný</string>
+	<string name="poi_denomination_coptic_orthodox">Koptský pravoslavný</string>
+	<string name="poi_internet_access_no">Přístup k internetu: ne</string>
+
+	<string name="poi_kent_carriage_gap">Kent carriage gap (překážka bránící vjezdu automobilů)</string>
+	<string name="poi_route_hiking_ref_poi">Rozcestník turistických tras</string>
+
+	<string name="poi_wheelchair_no">Invalidní vozík: není dovoleno</string>
+	<string name="poi_wheelchair_limited">Kolečkové křeslo: s omezením</string>
+	<string name="poi_content_slurry">Obsah: blátovitý</string>
+	<string name="poi_bicycle_parking_anchors">Kotvy pro bicykly</string>
+	<string name="poi_bird_hide">Místo pro sledování ptactva</string>
+	<string name="poi_outdoor_seating_no">Bez venkovního sezení</string>
+	<string name="poi_outdoor_seating_yes">Venkovní sezení</string>
+	<string name="poi_outdoor_seating_terrace">Venkovní sezení: terasa</string>
+	<string name="poi_outdoor_seating_sidewalk">Venkovní sezení: chodník</string>
+	<string name="poi_outdoor_seating_pedestrian_zone">Venkovní sezení: pěší zóna</string>
+	<string name="poi_outdoor_seating_garden">Venkovní sezení: zahrada</string>
+	<string name="poi_outdoor_seating_patio">Venkovní sezení: nádvoří</string>
+
+	<string name="poi_toilets_yes">S toaletami</string>
+	<string name="poi_toilets_no">Bez toalet</string>
+	<string name="poi_toilets_wheelchair_yes">Toalety dostupné na vozíku: ano</string>
+	<string name="poi_toilets_wheelchair_no">Toalety dostupné na vozíku: ne</string>
+	<string name="poi_toilets_access_customers">Toalety pro: zaměstnance</string>
+	<string name="poi_toilets_access_public">Toalety pro: veřejnost</string>
+
+	<string name="poi_vending_parking_tickets">Parkovací lístky</string>
+	<string name="poi_vending_cigarettes">Cigarety</string>
+	<string name="poi_vending_excrement_bags">Pytlíky na exkrementy</string>
+	<string name="poi_vending_public_transport_tickets">Lístky na veřejnou dopravu</string>
+	<string name="poi_vending_drinks">Nápoje</string>
+	<string name="poi_vending_sweets">Sladkosti</string>
+	<string name="poi_vending_parcel_pickup_mail_in">Balíky a dopisy</string>
+	<string name="poi_vending_condoms">Kondomy</string>
+	<string name="poi_vending_stamps">Známky</string>
+	<string name="poi_vending_bicycle_tube">Cykloduše</string>
+	<string name="poi_vending_food">Jídlo</string>
+	<string name="poi_vending_drinks_food">Jídlo a nápoje</string>
+	<string name="poi_vending_parcel_pickup">Balíky</string>
+	<string name="poi_vending_milk">Mléko</string>
+	<string name="poi_vending_chewing_gums">Žvýkačky</string>
+	<string name="poi_vending_parking_tickets_public_transport_tickets">Parkovací lístky; lístky na veřejnou dopravu</string>
+	<string name="poi_vending_coffee">Káva</string>
+	<string name="poi_vending_toll">Platba mýta</string>
+	<string name="poi_vending_toys">Hračky</string>
+	<string name="poi_vending_ice_cream">Zmrzlina</string>
+	<string name="poi_vending_sim_cards">SIM karty</string>
+
+	<string name="poi_resource_clay">Antuka</string>
+	<string name="poi_resource_coal">Uhlí</string>
+	<string name="poi_beach_sand">Typ pláže: písčitá</string>
+	<string name="poi_beach_shingle">Typ pláže: oblázky</string>
+	<string name="poi_beach_rocky">Typ pláže: kamenitá</string>
+
+	<string name="poi_chimney">Komín</string>
+	<string name="poi_palm">Palma</string>
+	<string name="poi_cypress">Cypřiš</string>
+	<string name="poi_bench_yes">S lavičkou</string>
+	<string name="poi_bench_no">Bez lavičky</string>
+	<string name="poi_waste_basket_yes">S odpadkovým košem</string>
+	<string name="poi_waste_basket_no">Bez odpadkového koše</string>
+
+	<string name="poi_shelter_type_public_transport">Přístřešek pro: hromadnou dopravu</string>
+	<string name="poi_shelter_type_picnic_shelter">Přístřešek pro: piknik</string>
+	<string name="poi_shelter_type_weather_shelter">Přístřešek pro: špatné počasí</string>
+	<string name="poi_internet_access_type_wlan">Připojení k internetu: kabel</string>
+	<string name="poi_internet_access_type_no">Bez přístupu k internetu</string>
+	<string name="poi_internet_access_type_yes">S přístupem k internetu</string>
+
+	<string name="poi_tunnel_car">Silniční tunel</string>
+	<string name="poi_tunnel_pedestrian">Podchod</string>
+	<string name="poi_tunnel_railway">Železniční tunel</string>
+	<string name="poi_bridge_car">Silniční most</string>
+	<string name="poi_bridge_pedestrian">Nadchod</string>
+	<string name="poi_bridge_bicycle">Nadjezd pro cyklisty</string>
+	<string name="poi_bridge_railway">Železniční most</string>
+	<string name="poi_bridge_waterway">Akvadukt</string>
+	<string name="poi_lit_yes">Osvětlení: ano</string>
+	<string name="poi_lit_no">Osvětlení: ne</string>
+
+	<string name="poi_surface_unpaved">Nezpevněný povrch</string>
+	<string name="poi_surface_paved">Zpevněný povrch</string>
+	<string name="poi_street_lamp">Pouliční lampa</string>
+
+	<string name="poi_shoes_children">Dětská obuv</string>
+	<string name="poi_shoes_women">Dámská obuv</string>
+	<string name="poi_shoes_sport">Sportovní obuv</string>
+	<string name="poi_shoes_men">Pánská obuv</string>
+	<string name="poi_shoes_orthopedic">Ortopedická obuv</string>
+
+	<string name="poi_massage_thai">Thajské masáže</string>
+	<string name="poi_massage_sexual">Erotické masáže</string>
+	<string name="poi_massage_chinese">Čínské masáže</string>
+	<string name="poi_massage_therapeutic">Rehabilitační masáže</string>
+
+	<string name="poi_openfire_yes">Otevřený oheň dovolen</string>
+	<string name="poi_openfire_no">Otevřený oheň zakázán</string>
+	<string name="poi_shower_yes">Sprcha: ano</string>
+	<string name="poi_shower_no">Sprcha: ne</string>
+	<string name="poi_shower_hot">Horká sprcha</string>
+	<string name="poi_shower_outdoor">Venkovní sprcha</string>
+	<string name="poi_shower_cold">Studená sprcha</string>
+	<string name="poi_power_supply_yes">Elektropřípojka</string>
+	<string name="poi_power_supply_no">Bez elektropřípojky</string>
+	<string name="poi_power_supply_cee_17_blue">Zásuvka:CEE 17 modrá</string>
+	<string name="poi_power_supply_cee_7_4">Zásuvka: CEE 7/4</string>
+	<string name="poi_power_supply_cee_7_5">Zásuvka: CEE 7/5</string>
+	<string name="poi_power_supply_nema_5_15">Zásuvka: NEMA 5-15</string>
+
+	<string name="poi_capacity_tents">Kapacita stanů</string>
+	<string name="poi_capacity_caravans">Kapacita karavanů</string>
+	<string name="poi_dog_yes">Psi povoleni</string>
+	<string name="poi_dog_no">Psi zakázáni</string>
+
+	<string name="poi_wheelchair_description">Popis pro vozíčkáře</string>
+	<string name="poi_handrail_yes">Madlo: ano</string>
+	<string name="poi_handrail_no">Madlo: ne</string>
+	<string name="poi_ramp_yes">Rampa: ano</string>
+	<string name="poi_ramp_no">Rampa: ne</string>
+	<string name="poi_ramp_wheelchair_yes">Rampa pro vozíčkáře: ano</string>
+	<string name="poi_ramp_wheelchair_no">Rampa pro vozíčkáře: ne</string>
+	<string name="poi_step_count">Počet schodů</string>
+	<string name="poi_material_wood">Ze dřeva</string>
+	<string name="poi_material_metal">Z kovu</string>
+	<string name="poi_material_reinforced_concrete">Železobetonový</string>
+	<string name="poi_material_concrete">Betonový</string>
+	<string name="poi_material_steel">Z oceli</string>
+	<string name="poi_material_stone">Z kamene</string>
+	<string name="poi_material_masonry">Zděné</string>
+	<string name="poi_material_brick">Z cihel</string>
+	<string name="poi_material_plastic">Z plastu</string>
+	<string name="poi_material_sandstone">Z pískovce</string>
+	<string name="poi_material_granite_stone">Ze žuly</string>
+	<string name="poi_material_metal_wood">Z kovu; dřeva</string>
+	<string name="poi_material_glass">Ze skla</string>
+	<string name="poi_material_bronze">Z bronzu</string>
+	<string name="poi_material_earth">Z hlíny</string>
+	<string name="poi_material_composite">Z kompozitu</string>
+	<string name="poi_material_limestone">Z vápence</string>
+	<string name="poi_material_marble">Z mramoru</string>
+	<string name="poi_material_aluminium">Z hliníku</string>
+
+	<string name="poi_building_type_church">Budova: kostel</string>
+	<string name="poi_building_type_chapel">Budova: kaple</string>
+	<string name="poi_building_type_mosque">Budova: mešita</string>
+	<string name="poi_building_type_temple">Budova: chrám</string>
+	<string name="poi_building_type_cathedral">Budova: katedrála</string>
+	<string name="poi_building_type_monastery">Budova: klášter</string>
+	<string name="poi_building_type_basilica">Budova: bazilika</string>
+	<string name="poi_building_type_synagogue">Budova: synagoga</string>
+	<string name="poi_cross">Kříž</string>
+	<string name="poi_piste_grooming_scooter">Úprava trati: skútr</string>
+	<string name="poi_piste_grooming_no">Trať bez úpravy</string>
+	<string name="poi_piste_grooming_mogul">Úprava trati: boule</string>
+
+	<string name="poi_garden_type_residential">Obytná zahrada</string>
+	<string name="poi_garden_type_community">Komunitní zahrada</string>
+	<string name="poi_garden_type_private">Soukromá zahrada</string>
+	<string name="poi_garden_type_botanical">Botanická zahrada</string>
+
+	<string name="poi_garden_style_french">Francouzská zahrada</string>
+	<string name="poi_garden_style_english">Anglická zahrada</string>
+	<string name="poi_garden_style_japanese">Japonská zahrada</string>
+
+	<string name="poi_capacity">Kapacita</string>
+	<string name="poi_capacity_disabled_yes">Určeno pro postižené</string>
+	<string name="poi_capacity_disabled_no">Nevhodné pro postižené</string>
+	<string name="poi_aerialway_occupancy">Kapacita kabinky/křesla/vozidla</string>
+	<string name="poi_aerialway_capacity">Kapacita za hodinu</string>
+	<string name="poi_aerialway_access_entry">Jen pro vstup</string>
+	<string name="poi_aerialway_access_exit">Jen východ</string>
+	<string name="poi_aerialway_access_both">Vstup a východ</string>
+	<string name="poi_brewery_additional">Značka piva</string>
+	<string name="poi_microbrewery_yes">Minipivovar</string>
+	<string name="poi_microbrewery_no">Bez minipivovaru</string>
+
+	<string name="poi_fireplace_yes">Ohniště</string>
+	<string name="poi_fireplace_no">Bez ohniště</string>
+
+	<string name="poi_leisure_common">Běžná rekreační oblast</string>
+	<string name="poi_windfall">Polom</string>
+	<string name="poi_rtsa_scale">Stupnice RTSA</string>
+
+	<string name="poi_piste_difficulty_easy">Obtížnost sjezdovky: lehká</string>
+	<string name="poi_piste_difficulty_intermediate">Obtížnost sjezdovky: střední</string>
+	<string name="poi_piste_difficulty_advanced">Obtížnost sjezdovky: pokročilí</string>
+	<string name="poi_piste_difficulty_novice">Obtížnost sjezdovky: začátečníci</string>
+	<string name="poi_piste_difficulty_expert">Obtížnost sjezdovky: zkušení</string>
+	<string name="poi_piste_difficulty_freeride">Obtížnost sjezdovky: volný sjezd</string>
+	<string name="poi_piste_grooming_classic">Úprava tratě: klasická</string>
+	<string name="poi_piste_grooming_classic_skating">Úprava tratě: klasická+bruslení na lyžích</string>
+	<string name="poi_piste_grooming_backcountry">Úprava tratě: přes krajinu</string>
+	<string name="poi_piste_grooming_skating">Úprava tratě: bruslení na lyžích</string>
+	<string name="poi_garden_style_kitchen">Zahradní styl: kuchyň</string>
+	<string name="poi_garden_style_rosarium">Zahradní styl: rozárium</string>
+	<string name="poi_capacity_disabled">Vyhrazená místa pro invalidy</string>
+	<string name="poi_capacity_women_yes">Vyhrazená místa pro ženy</string>
+	<string name="poi_capacity_women_no">Žádná vyhrazená místa pro ženy</string>
+	<string name="poi_capacity_women">Vyhrazená místa pro ženy</string>
+	<string name="poi_capacity_pupils">Vyhrazená místa pro studenty</string>
+	<string name="poi_capacity_teachers">Vyhrazená místa pro učitele</string>
+	<string name="poi_capacity_parent_yes">Vyhrazená místa pro rodiče</string>
+	<string name="poi_capacity_parent_no">Žádná vyhrazená místa pro rodiče</string>
+	<string name="poi_capacity_parent">Vyhrazená místa pro rodiče</string>
+
+	<string name="poi_aerialway_duration">Průměrný čas cesty v minutách</string>
+	<string name="poi_aerialway_bubble_yes">Kryt</string>
+	<string name="poi_aerialway_bubble_no">Bez krytu</string>
+	<string name="poi_aerialway_heating_yes">Topení</string>
+	<string name="poi_aerialway_heating_no">Bez topení</string>
+	<string name="poi_aerialway_bicycle_yes">Kola: povolená</string>
+	<string name="poi_aerialway_bicycle_no">Kola: nepovolená</string>
+	<string name="poi_aerialway_bicycle_summer">Kola: povolená jen v létě</string>
+	<string name="poi_aerialway_summer_access_entry">Letní přístup: jen vstup</string>
+	<string name="poi_aerialway_summer_access_exit">Letní přístup: jen východ</string>
+	<string name="poi_aerialway_summer_access_both">Letní přístup: vstup a východ</string>
+
+	<string name="poi_stars_1">Hvězdy: 1 (Turistický)</string>
+	<string name="poi_stars_1s">Hvězdy: 1S (Vyšší turistický)</string>
+	<string name="poi_stars_2">Hvězdy: 2 (Standard)</string>
+	<string name="poi_stars_2s">Hvězdy: 2 (Vyšší standard)</string>
+	<string name="poi_stars_3">Hvězdy: 3 (Komfort)</string>
+	<string name="poi_stars_3s">Hvězdy: 3S (Vyšší komfort)</string>
+	<string name="poi_stars_4">Hvězdy: 4 (První třída)</string>
+	<string name="poi_stars_4s">Hvězdy: 4S (Vyšší první třída)</string>
+	<string name="poi_stars_5">Hvězdy: 5 (Luxus)</string>
+	<string name="poi_stars_5s">Hvězdy: 5S (Vyšší luxus)</string>
+	<string name="poi_stars_6">Hvězdy: 6</string>
+	<string name="poi_stars_7">Hvězdy: 7</string>
+	<string name="poi_rooms">Místnosti</string>
+
+	<string name="poi_love_hotel">Hodinový hotel</string>
+
+	<string name="poi_payment_coins_yes">Přijímá mince</string>
+	<string name="poi_payment_coins_no">Nepřijímá mince</string>
+	<string name="poi_payment_coins_0.5">Přijímá mince $0.5</string>
+	<string name="poi_payment_coins_50c12">Přijímá mince 50c, 1€, a 2€</string>
+	<string name="poi_payment_telephone_cards_yes">Přijímá telefonní karty</string>
+	<string name="poi_payment_telephone_cards_no">Nepřijímá telefonní karty</string>
+	<string name="poi_payment_credit_cards_yes">Přijímá kreditní karty</string>
+	<string name="poi_payment_credit_cards_no">Nepřijímá kreditní karty</string>
+	<string name="poi_payment_notes_yes">Přijímá bankovky</string>
+	<string name="poi_payment_notes_no">Nepřijímá bankovky</string>
+	<string name="poi_payment_electronic_purses_yes">Přijímá elektronické peněženky</string>
+	<string name="poi_payment_electronic_purses_no">Nepřijímá elektronické peněženky</string>
+	<string name="poi_payment_cash_yes">Přijímá hotovost</string>
+	<string name="poi_payment_cash_no">Nepřijímá hotovost</string>
+	<string name="poi_payment_debit_cards_yes">Přijímá platební karty</string>
+	<string name="poi_payment_debit_cards_no">Nepřijímá platební karty</string>
+	<string name="poi_payment_bitcoin_yes">Přijímá Bitcoiny</string>
+	<string name="poi_payment_bitcoin_no">Nepřijímá Bitcoiny</string>
+	<string name="poi_payment_visa_yes">Přijímá Visa karty</string>
+	<string name="poi_payment_visa_no">Nepřijímá Visa karty</string>
+	<string name="poi_payment_mastercard_yes">Přijímá MasterCard karty</string>
+	<string name="poi_payment_mastercard_no">Nepřijímá MasterCard karty</string>
+	<string name="poi_payment_none">Bez poplatku</string>
+	<string name="poi_payment_account_cards_yes">Přijímá účtové karty</string>
+	<string name="poi_payment_account_cards_no">Nepřijímá účtové karty</string>
+	<string name="poi_payment_maestro_yes">Přijímá Maestro karty</string>
+	<string name="poi_payment_maestro_no">Nepřijímá Maestro karty</string>
+	<string name="poi_payment_american_express_yes">Přijímá American Express (AMEX) karty</string>
+	<string name="poi_payment_american_express_no">Nepřijímá American Express (AMEX) karty</string>
+	<string name="poi_payment_diners_club_yes">Přijímá Diners Club karty</string>
+	<string name="poi_payment_diners_club_no">Nepřijímá Diners Club karty</string>
+	<string name="poi_payment_dkv_yes">Přijímá DKV</string>
+	<string name="poi_payment_dkv_no">Nepřijímá DKV</string>
+	<string name="poi_payment_uta_yes">Přijímá UTA karty</string>
+	<string name="poi_payment_uta_no">Nepřijímá UTA karty</string>
+	<string name="poi_payment_efectivo_yes">Přijímá Efectivo</string>
+	<string name="poi_payment_efectivo_no">Nepřijímá Efectivo</string>
+	<string name="poi_payment_girocard_yes">Přijímá Girocard</string>
+	<string name="poi_payment_girocard_no">Nepřijímá Girocard</string>
+	<string name="poi_payment_discover_card_yes">Přijímá Discover karty</string>
+	<string name="poi_payment_discover_card_no">Nepřijímá Discover karty</string>
+	<string name="poi_payment_visa_electron_yes">Přijímá Visa Electron karty</string>
+	<string name="poi_payment_visa_electron_no">Nepřijímá Visa Electron karty</string>
+	<string name="poi_payment_litecoin_yes">Přijímá Litecoin</string>
+	<string name="poi_payment_litecoin_no">Nepřijímá Litecoin</string>
+	<string name="poi_payment_cheque_yes">Přijímá šeky</string>
+	<string name="poi_payment_cheque_no">Nepřijímá šeky</string>
+	<string name="poi_payment_pikepass_yes">Přijímá PIKEPASS</string>
+	<string name="poi_payment_pikepass_no">Nepřijímá PIKEPASS</string>
+	<string name="poi_payment_pikepass_designated">Přijímá PIKEPASS (designated)</string>
+	<string name="poi_payment_visa_debit_yes">Přijímá Visa platební karty</string>
+	<string name="poi_payment_visa_debit_no">Nepřijímá Visa platební karty</string>
+	<string name="poi_payment_cryptocurrencies_no">Nepřijímá kryptoměny</string>
+	<string name="poi_payment_others_yes">Přijímá jiné platební metody</string>
+	<string name="poi_payment_others_no">Nepřijímá jiné platební metody</string>
+	<string name="poi_payment_routex_yes">Přijímá Routex palivové karty</string>
+	<string name="poi_payment_routex_no">Nepřijímá Routex palivové karty</string>
+	<string name="poi_payment_bancomat_yes">Přijímá Bancomat</string>
+	<string name="poi_payment_bancomat_no">Nepřijímá Bancomat</string>
+	<string name="poi_payment_icsf_yes">Přijímá karty IC s předplaceným jízdným</string>
+	<string name="poi_payment_icsf_no">Nepřijímá karty IC s předplaceným jízdným</string>
+	<string name="poi_payment_prepaid_ticket_yes">Přijímá předplacené lístky</string>
+	<string name="poi_payment_jcb_yes">Přijímá JCB karty</string>
+	<string name="poi_payment_jcb_no">Nepřijímá JCB karty</string>
+	<string name="poi_payment_laser_yes">Přijímá Laser karty</string>
+	<string name="poi_payment_laser_no">Nepřijímá Laser karty</string>
+	<string name="poi_payment_ep_quick_yes">Přijímá Quick karty</string>
+	<string name="poi_payment_ep_quick_no">Nepřijímá Quick karty</string>
+	<string name="poi_payment_eurowag_yes">Přijímá Eurowag karty</string>
+	<string name="poi_payment_eurowag_no">Nepřijímá Eurowag karty</string>
+	<string name="poi_payment_e_zpass_yes">Přijímá E‑ZPass</string>
+	<string name="poi_payment_e_zpass_no">Nepřijímá E‑ZPass</string>
+	<string name="poi_payment_euroshell_yes">Přijímá Euroshell palivové karty</string>
+	<string name="poi_payment_euroshell_no">Nepřijímá Euroshell palivové karty</string>
+	<string name="poi_payment_kitcard_yes">Přijímá KITCard</string>
+	<string name="poi_payment_kitcard_no">Nepřijímá KITCard</string>
+	<string name="poi_payment_westfalen_card_yes">Přijímá Westfalen karty</string>
+	<string name="poi_payment_westfalen_card_no">Nepřijímá Westfalen karty</string>
+	<string name="poi_payment_v_pay_yes">Přijímá V PAY karty</string>
+	<string name="poi_payment_v_pay_no">Nepřijímá V PAY karty</string>
+	<string name="poi_payment_dogecoin_yes">Přijímá Dogecoin</string>
+	<string name="poi_payment_dogecoin_no">Nepřijímá Dogecoin</string>
+	<string name="poi_payment_cibus_yes">Přijímá Cibus karty</string>
+	<string name="poi_payment_cibus_no">Nepřijímá Cibus karty</string>
+	<string name="poi_payment_wire_transfer_yes">Přijímá bankovní převody</string>
+	<string name="poi_payment_wire_transfer_no">Nepřijímá bankovní převody</string>
+	<string name="poi_payment_ep_cash_yes">Přijímá Geldkarte hotovostní karty</string>
+	<string name="poi_payment_ep_cash_no">Nepřijímá Geldkarte hotovostní karty</string>
+	<string name="poi_payment_ep_proton_yes">Přijímá Proton karty</string>
+	<string name="poi_payment_ep_proton_no">Nepřijímá Proton karty</string>
+	<string name="poi_payment_ep_avant_yes">Přijímá AvantCard</string>
+	<string name="poi_payment_ep_avant_no">Nepřijímá AvantCard</string>
+	<string name="poi_payment_ep_mep_yes">Přijímá MEP</string>
+	<string name="poi_payment_ep_mep_no">Nepřijímá MEP</string>
+	<string name="poi_payment_ep_minipay_yes">Přijímá Minipay</string>
+	<string name="poi_payment_ep_minipay_no">Nepřijímá Minipay</string>
+	<string name="poi_payment_ep_minicash_yes">Přijímá MiniCash</string>
+	<string name="poi_payment_ep_minicash_no">Nepřijímá MiniCash</string>
+	<string name="poi_internet_access_type_wired">Přístup k internetu: drátový</string>
+	<string name="poi_internet_access_type_terminal">Přístup k internetu: terminál</string>
+	<string name="poi_internet_access_type_public">Přístup k internetu: veřejný</string>
+	<string name="poi_internet_access_type_service">Přístup k internetu: služební</string>
+	<string name="poi_denomination_anglican">Anglikánské</string>
+	<string name="poi_denomination_presbyterian">Presbyteriánství</string>
+	<string name="poi_denomination_episcopal">Episkopální</string>
 	</resources>

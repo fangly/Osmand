@@ -1,35 +1,10 @@
 package net.osmand.plus.monitoring;
 
-import gnu.trove.list.array.TIntArrayList;
-
-import java.util.List;
-
-import net.osmand.Location;
-import net.osmand.ValueHolder;
-import net.osmand.plus.ApplicationMode;
-import net.osmand.plus.ContextMenuAdapter;
-import net.osmand.plus.ContextMenuAdapter.OnContextMenuClick;
-import net.osmand.plus.NavigationService;
-import net.osmand.plus.OsmAndFormatter;
-import net.osmand.plus.OsmAndTaskManager.OsmAndTaskRunnable;
-import net.osmand.plus.OsmandApplication;
-import net.osmand.plus.OsmandPlugin;
-import net.osmand.plus.OsmandSettings;
-import net.osmand.plus.R;
-import net.osmand.plus.activities.MapActivity;
-import net.osmand.plus.activities.SavingTrackHelper;
-import net.osmand.plus.dashboard.DashboardOnMap;
-import net.osmand.plus.dashboard.tools.DashFragmentData;
-import net.osmand.plus.views.MapInfoLayer;
-import net.osmand.plus.views.OsmandMapLayer.DrawSettings;
-import net.osmand.plus.views.OsmandMapTileView;
-import net.osmand.plus.views.mapwidgets.TextInfoWidget;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -42,6 +17,31 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+
+import net.osmand.Location;
+import net.osmand.ValueHolder;
+import net.osmand.plus.ApplicationMode;
+import net.osmand.plus.ContextMenuAdapter;
+import net.osmand.plus.ContextMenuItem;
+import net.osmand.plus.GPXUtilities.WptPt;
+import net.osmand.plus.NavigationService;
+import net.osmand.plus.OsmAndFormatter;
+import net.osmand.plus.OsmAndTaskManager.OsmAndTaskRunnable;
+import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.OsmandPlugin;
+import net.osmand.plus.OsmandSettings;
+import net.osmand.plus.R;
+import net.osmand.plus.activities.MapActivity;
+import net.osmand.plus.activities.SavingTrackHelper;
+import net.osmand.plus.dashboard.tools.DashFragmentData;
+import net.osmand.plus.views.MapInfoLayer;
+import net.osmand.plus.views.OsmandMapLayer.DrawSettings;
+import net.osmand.plus.views.OsmandMapTileView;
+import net.osmand.plus.views.mapwidgets.TextInfoWidget;
+
+import java.util.List;
+
+import gnu.trove.list.array.TIntArrayList;
 
 public class OsmandMonitoringPlugin extends OsmandPlugin {
 	private static final String ID = "osmand.monitoring";
@@ -90,6 +90,12 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 		return app.getString(R.string.record_plugin_name);
 	}
 
+
+	@Override
+	public String getHelpFileName() {
+		return "feature_articles/trip-recording-plugin.html";
+	}
+
 	@Override
 	public void registerLayers(MapActivity activity) {
 		registerWidget(activity);
@@ -123,17 +129,30 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 	@Override
 	public void registerMapContextMenuActions(final MapActivity mapActivity, final double latitude, final double longitude,
 			ContextMenuAdapter adapter, Object selectedObj) {
-		OnContextMenuClick listener = new OnContextMenuClick() {
+		ContextMenuAdapter.ItemClickListener listener = new ContextMenuAdapter.ItemClickListener() {
 			@Override
-			public boolean onContextMenuClick(ArrayAdapter<?> adapter, int resId, int pos, boolean isChecked) {
+			public boolean onContextMenuClick(ArrayAdapter<ContextMenuItem> adapter, int resId, int pos, boolean isChecked) {
 				if (resId == R.string.context_menu_item_add_waypoint) {
-					mapActivity.getMapActions().addWaypoint(latitude, longitude);
+					mapActivity.getContextMenu().addWptPt();
+				} else if (resId == R.string.context_menu_item_edit_waypoint) {
+					mapActivity.getContextMenu().editWptPt();
 				}
 				return true;
 			}
 		};
-		adapter.item(R.string.context_menu_item_add_waypoint).iconColor(R.drawable.ic_action_gnew_label_dark)
-		.listen(listener).reg();
+		adapter.addItem(new ContextMenuItem.ItemBuilder()
+				.setTitleId(R.string.context_menu_item_add_waypoint, mapActivity)
+				.setIcon(R.drawable.ic_action_gnew_label_dark)
+				.setListener(listener).createItem());
+		if (selectedObj instanceof WptPt) {
+			WptPt pt = (WptPt) selectedObj;
+			if (app.getSelectedGpxHelper().getSelectedGPXFile(pt) != null) {
+				adapter.addItem(new ContextMenuItem.ItemBuilder()
+						.setTitleId(R.string.context_menu_item_edit_waypoint, mapActivity)
+						.setIcon(R.drawable.ic_action_edit_dark)
+						.setListener(listener).createItem());
+			}
+		}
 	}
 	
 	public static final int[] SECONDS = new int[] {0, 1, 2, 3, 5, 10, 15, 30, 60, 90};
@@ -241,7 +260,7 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 	private void controlDialog(final Activity map) {
 		final boolean wasTrackMonitored = settings.SAVE_GLOBAL_TRACK_TO_GPX.get();
 		
-		Builder bld = new AlertDialog.Builder(map);
+		AlertDialog.Builder bld = new AlertDialog.Builder(map);
 		final TIntArrayList items = new TIntArrayList();
 		if(wasTrackMonitored) {
 			items.add(R.string.gpx_monitoring_stop);
@@ -313,19 +332,32 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 		app.getTaskManager().runInBackground(new OsmAndTaskRunnable<Void, Void, Void>() {
 
 			@Override
-			protected Void doInBackground(Void... params) {
+			protected void onPreExecute() {
 				isSaving = true;
+				if (monitoringControl != null) {
+					monitoringControl.updateInfo(null);
+				}
+			}
+
+			@Override
+			protected Void doInBackground(Void... params) {
 				try {
 					SavingTrackHelper helper = app.getSavingTrackHelper();
 					helper.saveDataToGpx(app.getAppCustomization().getTracksDir());
 					helper.close();
-					app.getNotificationHelper().showNotification();
 				} finally {
-					isSaving = false;
+					app.getNotificationHelper().showNotification();
 				}
 				return null;
 			}
 
+			@Override
+			protected void onPostExecute(Void aVoid) {
+				isSaving = false;
+				if (monitoringControl != null) {
+					monitoringControl.updateInfo(null);
+				}
+			}
 		}, (Void) null);
 	}
 
@@ -333,6 +365,7 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 		settings.SAVE_GLOBAL_TRACK_TO_GPX.set(false);
 		if (app.getNavigationService() != null) {
 			app.getNavigationService().stopIfNeeded(app, NavigationService.USED_BY_GPX);
+			app.getNotificationHelper().showNotification();
 		}
 	}
 
@@ -347,15 +380,8 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 				settings.SAVE_GLOBAL_TRACK_INTERVAL.set(vs.value);
 				settings.SAVE_GLOBAL_TRACK_TO_GPX.set(true);
 				settings.SAVE_GLOBAL_TRACK_REMEMBER.set(choice.value);
-
-				if (settings.SAVE_GLOBAL_TRACK_INTERVAL.get() < 30000) {
-					settings.SERVICE_OFF_INTERVAL.set(0);
-				} else {
-					//Use SERVICE_OFF_INTERVAL > 0 to conserve power for longer GPX recording intervals
-					settings.SERVICE_OFF_INTERVAL.set(settings.SAVE_GLOBAL_TRACK_INTERVAL.get());
-				}
-
-				app.startNavigationService(NavigationService.USED_BY_GPX);
+				int interval = settings.SAVE_GLOBAL_TRACK_INTERVAL.get();
+				app.startNavigationService(NavigationService.USED_BY_GPX, interval < 30000? 0 : interval);
 			}
 		};
 		if(choice.value || map == null) {
@@ -375,7 +401,7 @@ public class OsmandMonitoringPlugin extends OsmandPlugin {
 
 	public static void showIntervalChooseDialog(final Context uiCtx, final String patternMsg,
 			String title, final int[] seconds, final int[] minutes, final ValueHolder<Boolean> choice, final ValueHolder<Integer> v, OnClickListener onclick){
-		Builder dlg = new AlertDialog.Builder(uiCtx);
+		AlertDialog.Builder dlg = new AlertDialog.Builder(uiCtx);
 		dlg.setTitle(title);
 		WindowManager mgr = (WindowManager) uiCtx.getSystemService(Context.WINDOW_SERVICE);
 		DisplayMetrics dm = new DisplayMetrics();

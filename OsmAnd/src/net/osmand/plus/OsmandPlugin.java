@@ -1,9 +1,12 @@
 package net.osmand.plus;
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 
 import net.osmand.IProgress;
@@ -52,6 +55,7 @@ public abstract class OsmandPlugin {
 
 	public abstract int getAssetResourceName();
 
+	@DrawableRes
 	public int getLogoResourceId() {
 		return R.drawable.ic_extension_dark;
 	}
@@ -90,6 +94,10 @@ public abstract class OsmandPlugin {
 	}
 
 	public void disable(OsmandApplication app) {
+	}
+
+	public String getHelpFileName() {
+		return null;
 	}
 
 	public static void initPlugins(OsmandApplication app) {
@@ -202,6 +210,21 @@ public abstract class OsmandPlugin {
 	}
 
 	public void mapActivityDestroy(MapActivity activity) {
+	}
+
+	public void mapActivityScreenOff(MapActivity activity) {
+	}
+
+	@TargetApi(Build.VERSION_CODES.M)
+	public void handleRequestPermissionsResult(int requestCode, String[] permissions,
+											   int[] grantResults) {
+	}
+
+	public static final void onRequestPermissionsResult(int requestCode, String[] permissions,
+														int[] grantResults) {
+		for (OsmandPlugin plugin : getAvailablePlugins()) {
+			plugin.handleRequestPermissionsResult(requestCode, permissions, grantResults);
+		}
 	}
 
 	public boolean destinationReached() {
@@ -337,6 +360,11 @@ public abstract class OsmandPlugin {
 		}
 	}
 
+	public static void onMapActivityScreenOff(MapActivity activity) {
+		for (OsmandPlugin plugin : getEnabledPlugins()) {
+			plugin.mapActivityScreenOff(activity);
+		}
+	}
 
 	public static boolean onDestinationReached() {
 		boolean b = true;
@@ -431,5 +459,4 @@ public abstract class OsmandPlugin {
 			p.addMyPlacesTab(favoritesActivity, mTabs, intent);
 		}
 	}
-
 }

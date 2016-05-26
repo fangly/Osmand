@@ -1,6 +1,5 @@
 package net.osmand.plus.helpers;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,9 +8,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
+
 import net.osmand.IndexConstants;
-import net.osmand.access.AccessibleToast;
 import net.osmand.data.FavouritePoint;
 import net.osmand.plus.FavouritesDbHelper;
 import net.osmand.plus.GPXUtilities;
@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Koen Rabaey
@@ -65,11 +66,13 @@ public class GpxImportHelper {
 
 		if (fileName != null && fileName.endsWith(KML_SUFFIX)) {
 			handleKmlImport(intentUri, fileName, saveFile);
-		} else if (fileName != null && (fileName.contains("favourite")|| 
-				fileName.contains("favorite"))) {
-			handleFavouritesImport(intentUri, fileName, saveFile);
+//Issue 2275
+//		} else if (fileName != null && (fileName.contains("favourite")|| 
+//				fileName.contains("favorite"))) {
+//			handleFavouritesImport(intentUri, fileName, saveFile);
 		} else {
-			handleGpxImport(intentUri, fileName, saveFile);
+//			handleGpxImport(intentUri, fileName, saveFile);
+			handleFavouritesImport(intentUri, fileName, saveFile);
 		}
 	}
 
@@ -160,7 +163,7 @@ public class GpxImportHelper {
 			}
 		}.execute();
 	}
-	
+
 	private void importFavoritesImpl(final GPXFile gpxFile) {
 		new AsyncTask<Void, Void, GPXUtilities.GPXFile>() {
 			ProgressDialog progress = null;
@@ -178,6 +181,7 @@ public class GpxImportHelper {
 					favoritesHelper.deleteFavourite(favourite, false);
 					favoritesHelper.addFavourite(favourite, false);
 				}
+				favoritesHelper.sortAll();
 				favoritesHelper.saveCurrentPointsIntoFile();
 				return null;
 			}
@@ -185,7 +189,7 @@ public class GpxImportHelper {
 			@Override
 			protected void onPostExecute(GPXUtilities.GPXFile result) {
 				progress.dismiss();
-				AccessibleToast.makeText(mapActivity, R.string.fav_imported_sucessfully, Toast.LENGTH_LONG).show();
+				Toast.makeText(mapActivity, R.string.fav_imported_sucessfully, Toast.LENGTH_LONG).show();
 				final Intent newIntent = new Intent(mapActivity, application.getAppCustomization().getFavoritesActivity());
 				mapActivity.startActivity(newIntent);
 			}
@@ -239,17 +243,16 @@ public class GpxImportHelper {
 	private void handleResult(final GPXUtilities.GPXFile result, final String name, final boolean save) {
 		if (result != null) {
 			if (result.warning != null) {
-				AccessibleToast.makeText(mapActivity, result.warning, Toast.LENGTH_LONG).show();
+				Toast.makeText(mapActivity, result.warning, Toast.LENGTH_LONG).show();
 			} else {
 				if (save) {
 					new SaveAsyncTask(result, name).execute();
-				}
-				else {
+				} else {
 					showGpxOnMap(result);
 				}
 			}
 		} else {
-			AccessibleToast.makeText(mapActivity, R.string.error_reading_gpx, Toast.LENGTH_LONG).show();
+			Toast.makeText(mapActivity, R.string.error_reading_gpx, Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -260,6 +263,7 @@ public class GpxImportHelper {
 			warning = application.getString(R.string.error_reading_gpx);
 		} else {
 			final File importDir = application.getAppPath(IndexConstants.GPX_IMPORT_DIR);
+			//noinspection ResultOfMethodCallIgnored
 			importDir.mkdirs();
 			if (importDir.exists() && importDir.isDirectory() && importDir.canWrite()) {
 				final GPXUtilities.WptPt pt = gpxFile.findPointToShow();
@@ -280,7 +284,7 @@ public class GpxImportHelper {
 	private File getFileToSave(final String fileName, final File importDir, final GPXUtilities.WptPt pt) {
 		final StringBuilder builder = new StringBuilder(fileName);
 		if ("".equals(fileName)) {
-			builder.append("import_").append(new SimpleDateFormat("HH-mm_EEE").format(new Date(pt.time))).append(GPX_SUFFIX); //$NON-NLS-1$
+			builder.append("import_").append(new SimpleDateFormat("HH-mm_EEE", Locale.US).format(new Date(pt.time))).append(GPX_SUFFIX); //$NON-NLS-1$
 		}
 		if (fileName.endsWith(KML_SUFFIX)) {
 			builder.replace(builder.length() - KML_SUFFIX.length(), builder.length(), GPX_SUFFIX);
@@ -307,7 +311,7 @@ public class GpxImportHelper {
 		@Override
 		protected void onPostExecute(final String warning) {
 			final String msg = warning == null ? MessageFormat.format(application.getString(R.string.gpx_saved_sucessfully), result.path) : warning;
-			AccessibleToast.makeText(mapActivity, msg, Toast.LENGTH_LONG).show();
+			Toast.makeText(mapActivity, msg, Toast.LENGTH_LONG).show();
 
 			showGpxOnMap(result);
 		}
@@ -347,17 +351,17 @@ public class GpxImportHelper {
 	}
 
 	private List<FavouritePoint> asFavourites(final List<GPXUtilities.WptPt> wptPts) {
-		final List<FavouritePoint> favourites = new ArrayList<FavouritePoint>();
+		final List<FavouritePoint> favourites = new ArrayList<>();
 
 		for (GPXUtilities.WptPt p : wptPts) {
 			if (p.category != null) {
 				final FavouritePoint fp = new FavouritePoint(p.lat, p.lon, p.name, p.category);
+				if (p.desc != null) {
+					fp.setDescription(p.desc);
+				}
 				favourites.add(fp);
 			} else if (p.name != null) {
-				int c;
-				if ((c = p.name.lastIndexOf('_')) != -1) {
-					favourites.add(new FavouritePoint(p.lat, p.lon, p.name.substring(0, c), p.name.substring(c + 1)));
-				}
+				favourites.add(new FavouritePoint(p.lat, p.lon, p.name, ""));
 			}
 		}
 
@@ -365,13 +369,13 @@ public class GpxImportHelper {
 	}
 
 	/**
-	   * Checks, whether the child directory is a subdirectory of the parent
-	   * directory.
-	   *
-	   * @param parent the parent directory.
-	   * @param child the suspected child directory.
-	   * @return true if the child is a subdirectory of the parent directory.
-	   */
+	 * Checks, whether the child directory is a subdirectory of the parent
+	 * directory.
+	 *
+	 * @param parent the parent directory.
+	 * @param child  the suspected child directory.
+	 * @return true if the child is a subdirectory of the parent directory.
+	 */
 	public boolean isSubDirectory(File parent, File child) {
 		try {
 			parent = parent.getCanonicalFile();

@@ -1,9 +1,18 @@
 package net.osmand.plus.activities;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnMultiChoiceClickListener;
+import android.content.Intent;
+import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
+import android.support.v7.app.AlertDialog;
 
 import net.osmand.plus.ApplicationMode;
 import net.osmand.plus.DeviceAdminRecv;
@@ -18,19 +27,10 @@ import net.osmand.plus.routing.RouteProvider.RouteService;
 import net.osmand.router.GeneralRouter;
 import net.osmand.router.GeneralRouter.RoutingParameter;
 import net.osmand.router.GeneralRouter.RoutingParameterType;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.admin.DevicePolicyManager;
-import android.content.ComponentName;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnMultiChoiceClickListener;
-import android.content.Intent;
-import android.os.Bundle;
-import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceScreen;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class SettingsNavigationActivity extends SettingsBaseActivity {
 
@@ -115,7 +115,7 @@ public class SettingsNavigationActivity extends SettingsBaseActivity {
 
 		Integer[] intValues = new Integer[] { 0, 5, 10, 15, 20, 25, 30, 45, 60, 90};
 		entries = new String[intValues.length];
-		entries[0] = getString(R.string.auto_follow_route_never);
+		entries[0] = getString(R.string.shared_string_never);
 		for (int i = 1; i < intValues.length; i++) {
 			entries[i] = (int) intValues[i] + " " + getString(R.string.int_seconds);
 		}
@@ -199,17 +199,18 @@ public class SettingsNavigationActivity extends SettingsBaseActivity {
 		if (!mode.isDerivedRoutingFrom(ApplicationMode.CAR)) {
 			category.removePreference(speedLimitExceed);
 		}
-		
-		Integer[] delayIntervals = new Integer[] { -1, 3, 5, 7, 10, 15, 20 };
-		String[] delayIntervalNames = new String[delayIntervals.length];
-		for (int i = 0; i < delayIntervals.length; i++) {
-			if (i == 0) {
-				delayIntervalNames[i] = getString(R.string.auto_follow_route_never);
-			} else {
-				delayIntervalNames[i] = delayIntervals[i] + " " + getString(R.string.int_seconds);
-			}
-		}
-		registerListPreference(settings.DELAY_TO_START_NAVIGATION, screen, delayIntervalNames, delayIntervals);
+
+		// deprecated 2.2
+//		Integer[] delayIntervals = new Integer[] { -1, 3, 5, 7, 10, 15, 20 };
+//		String[] delayIntervalNames = new String[delayIntervals.length];
+//		for (int i = 0; i < delayIntervals.length; i++) {
+//			if (i == 0) {
+//				delayIntervalNames[i] = getString(R.string.auto_follow_route_never);
+//			} else {
+//				delayIntervalNames[i] = delayIntervals[i] + " " + getString(R.string.int_seconds);
+//			}
+//		}
+		// registerListPreference(settings.DELAY_TO_START_NAVIGATION, screen, delayIntervalNames, delayIntervals);
 
 
 		if(getIntent() != null && getIntent().hasExtra(INTENT_SKIP_DIALOG)) {
@@ -271,8 +272,11 @@ public class SettingsNavigationActivity extends SettingsBaseActivity {
 						for(Object o : vls) {
 							svlss[i++] = o.toString();
 						}
-						basePref = createListPreference(settings.getCustomRoutingProperty(p.getId()), 
-								p.getPossibleValueDescriptions(), svlss, SettingsBaseActivity.getRoutingStringPropertyName(this, p.getId(), p.getName()), SettingsBaseActivity.getRoutingStringPropertyDescription(this, p.getId(), p.getDescription()));
+						basePref = createListPreference(settings.getCustomRoutingProperty(p.getId(), 
+								p.getType() == RoutingParameterType.NUMERIC ? "0.0" : "-"), 
+								p.getPossibleValueDescriptions(), svlss, 
+								SettingsBaseActivity.getRoutingStringPropertyName(this, p.getId(), p.getName()), 
+								SettingsBaseActivity.getRoutingStringPropertyDescription(this, p.getId(), p.getDescription()));
 					}
 					basePref.setTitle(SettingsBaseActivity.getRoutingStringPropertyName(this, p.getId(), p.getName()));
 					basePref.setSummary(SettingsBaseActivity.getRoutingStringPropertyDescription(this, p.getId(), p.getDescription()));
@@ -388,7 +392,7 @@ public class SettingsNavigationActivity extends SettingsBaseActivity {
 	}
 	
 	private void confirmSpeedCamerasDlg() {
-		Builder bld = new AlertDialog.Builder(this);
+		AlertDialog.Builder bld = new AlertDialog.Builder(this);
 		bld.setMessage(R.string.confirm_usage_speed_cameras);
 		bld.setPositiveButton(R.string.shared_string_yes, new DialogInterface.OnClickListener() {
 			
@@ -402,7 +406,7 @@ public class SettingsNavigationActivity extends SettingsBaseActivity {
 	}
 
 	public AlertDialog showBooleanSettings(String[] vals, final OsmandPreference<Boolean>[] prefs, final CharSequence title) {
-		Builder bld = new AlertDialog.Builder(this);
+		AlertDialog.Builder bld = new AlertDialog.Builder(this);
 		boolean[] checkedItems = new boolean[prefs.length];
 		for (int i = 0; i < prefs.length; i++) {
 			checkedItems[i] = prefs[i].get();

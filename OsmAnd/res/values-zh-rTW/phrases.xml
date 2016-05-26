@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="poi_shop">商店</string>
 		<string name="poi_shop_food">食品商店</string>
 	<string name="poi_emergency">緊急救助</string>
@@ -68,7 +68,7 @@
 	<string name="poi_baby_goods">嬰幼童商店</string>
 	<string name="poi_bag">包包店</string>
 	<string name="poi_bathroom_furnishing">浴室裝備</string>
-	<string name="poi_bed">臥室裝備</string>
+	<string name="poi_bed">寢具商店</string>
 	<string name="poi_boutique">時尚精品</string>
 	<string name="poi_carpet">地毯店</string>
 	<string name="poi_charity">慈善義賣店</string>
@@ -90,7 +90,7 @@
 	<string name="poi_furniture">傢俱店</string>
 	<string name="poi_garden_centre">園藝中心</string>
 	<string name="poi_gas">瓦斯行</string>
-	<string name="poi_general">雜貨店</string>
+	<string name="poi_shop_yes">雜貨店</string>
 	<string name="poi_gift">禮品店</string>
 	<string name="poi_glaziery">玻璃行</string>
 	<string name="poi_hardware">五金店</string>
@@ -152,7 +152,7 @@
 	<string name="poi_emergency_access_point">森林緊急利用點</string>
 
 	<string name="poi_ford">低窪路段</string>
-	<string name="poi_mountain_pass_yes">隘口</string>
+	<string name="poi_mountain_pass">隘口</string>
 	<string name="poi_gate">門</string>
 	<string name="poi_city_wall">城牆</string>
 	<string name="poi_lift_gate">電動柵欄</string>
@@ -215,7 +215,7 @@
 	<string name="poi_railway_station">火車站</string>
 	<string name="poi_railway_platform">鐵路月台</string>
 	<string name="poi_halt">火車站</string>
-	<string name="poi_railway_subway_entrance">捷運入口</string>
+	<string name="poi_subway_entrance">捷運入口</string>
 	<string name="poi_subway_station">捷運車站</string>
 	<string name="poi_railway_buffer_stop">鐵路止衝擋</string>
 	<string name="poi_taxi">計程車站</string>
@@ -322,7 +322,7 @@
 	<string name="poi_training">培訓設施</string>
 	<string name="poi_university">大學</string>
 
-	<string name="poi_social_facility">公共設施</string>
+	<string name="poi_social_facility">社會設施</string>
 	<string name="poi_courthouse">法院</string>
 	<string name="poi_prison">監獄</string>
 	<string name="poi_register_office">民事登記處</string>
@@ -948,7 +948,7 @@
 
 	<string name="poi_email">電子郵件</string>
 	<string name="poi_fax">傳真</string>
-	<string name="poi_facebook">臉書</string>
+	<string name="facebook">臉書</string>
 	<string name="poi_mobile">行動電話</string>
 	<string name="poi_animal_shelter_dog">收容所類型：狗</string>
 	<string name="poi_animal_shelter_cat">收容所：貓</string>
@@ -1041,11 +1041,11 @@
 	<string name="poi_supervised_yes">有監管</string>
 	<string name="poi_supervised_no">沒有監管</string>
 	<string name="poi_mill_pond">磨房水塘</string>
-	<string name="poi_twitter">Twitter</string>
+	<string name="twitter">Twitter</string>
 	<string name="poi_skype">Skype</string>
 	<string name="poi_youtube">Youtube</string>
 	<string name="poi_instagram">Instagram</string>
-	<string name="poi_vk">VKontakte</string>
+	<string name="vk">VKontakte</string>
 	<string name="poi_google_plus">Google+</string>
 	<string name="poi_perfumery">香水商店</string>
 
@@ -1166,8 +1166,8 @@
 
 	<string name="poi_population">人口數</string>
 
-	<string name="poi_parking_underground">地下</string>
-	<string name="poi_parking_multi_storey">多層</string>
+	<string name="poi_parking_underground">類型：地下</string>
+	<string name="poi_parking_multi_storey">類型：多層</string>
 
 	<string name="poi_bicycle_parking_stands">立台</string>
 	<string name="poi_bicycle_parking_wall_loops">壁掛架</string>
@@ -1347,7 +1347,7 @@
 
 <string name="poi_rtsa_scale">RTSA 的難度</string>
 
-<string name="poi_pump">泵浦</string>
+<string name="poi_pump_yes">泵浦</string>
 
 	<string name="poi_piste_difficulty_easy">滑雪道難度：容易</string>
 	<string name="poi_piste_difficulty_intermediate">滑雪道難度：中等</string>
@@ -1376,7 +1376,7 @@
 
 <string name="poi_capacity">容量</string>
 	<string name="poi_capacity_disabled_yes">身障人士專用場所</string>
-	<string name="poi_capacity_disabled_no">無身障人士專用場所</string>
+	<string name="poi_capacity_disabled_no">非身障人士專用場所</string>
 	<string name="poi_capacity_disabled">身障人士專用場所</string>
 	<string name="poi_capacity_women_yes">婦女專用場所</string>
 	<string name="poi_capacity_women_no">無婦女專用場所</string>
@@ -1400,7 +1400,7 @@
 	<string name="poi_aerialway_access_entry">入口</string>
 	<string name="poi_aerialway_access_exit">出口</string>
 	<string name="poi_aerialway_access_both">出入口</string>
-	<string name="poi_wheelchair_no">輪椅：不允許</string>
+	<string name="poi_wheelchair_no">輪椅：無法進入</string>
 	<string name="poi_wheelchair_limited">輪椅：有限的</string>
 	<string name="poi_aerialway_summer_access_entry">夏季通行：只能進入</string>
 	<string name="poi_aerialway_summer_access_exit">夏季通行：只能出去</string>
@@ -1509,7 +1509,7 @@
 	<string name="poi_payment_dogecoin_no">不接受多吉幣</string>
 	<string name="poi_inscription">碑文</string>
 
-<string name="poi_memorial_cross">十字架</string>
+<string name="poi_memorial_cross">十字形</string>
 	<string name="poi_memorial_vehicle">車輛</string>
 	<string name="poi_memorial_obelisk">方尖碑</string>
 
@@ -1610,9 +1610,9 @@
 	<string name="poi_microbrewery_yes">自釀酒廠</string>
 	<string name="poi_microbrewery_no">無自釀酒廠</string>
 
-	<string name="poi_takeaway_yes">腳架</string>
-	<string name="poi_takeaway_no">無腳架</string>
-	<string name="poi_takeaway_only">只有腳架</string>
+	<string name="poi_takeaway_yes">外帶</string>
+	<string name="poi_takeaway_no">無外帶</string>
+	<string name="poi_takeaway_only">只有外帶</string>
 
 	<string name="poi_delivery_yes">外送</string>
 	<string name="poi_delivery_no">沒外送</string>
@@ -1826,7 +1826,7 @@
 	<string name="poi_internet_access_type_wired">網際網路存取類型：有線網路</string>
 	<string name="poi_internet_access_type_public">網際網路存取類型：公共網路</string>
 	<string name="poi_internet_access_type_service">網際網路存取類型：網路服務</string>
-	<string name="poi_internet_access_type_no">網際網路存取類型：無</string>
+	<string name="poi_internet_access_type_no">無網際網路存取</string>
 
 	<string name="poi_maxwidth">最大寬度</string>
 	<string name="poi_iata">IATA 編碼</string>
@@ -1944,7 +1944,7 @@
 
 	<string name="poi_historic_yes">歷史物件</string>
 	<string name="poi_surveillance_yes">監視器：有</string>
-	<string name="poi_shop_yes">有商店</string>
+	<string name="poi_shop_additional_yes">有商店</string>
 
 	<string name="poi_service_bicycle_retail_yes">自行車零售：有</string>
 	<string name="poi_service_bicycle_retail_no">自行車零售：無</string>
@@ -2026,8 +2026,8 @@
 
 	<string name="poi_fuel_91ul">91UL 燃料</string>
 	<string name="poi_fuel_100ll">100LL 燃料</string>
-	<string name="poi_autogas">液化石油氣</string>
-	<string name="poi_jeta1">Jet A-1 燃料</string>
+	<string name="poi_fuel_autogas">液化石油氣</string>
+	<string name="poi_fuel_jeta1">Jet A-1 燃料</string>
 	<string name="poi_fuel_adblue">AdBlue 燃料</string>
 
 	<string name="poi_fuel_wood">燃料：木材</string>
@@ -2040,4 +2040,383 @@
 
 	<string name="poi_crop_rice">作物：水稻</string>
 	<string name="poi_crop_grass">作物：牧草</string>
+	<string name="poi_crop_corn">作物：玉米</string>
+	<string name="poi_crop_cereal">作物：穀類</string>
+	<string name="poi_crop_sugarcane">作物：甘蔗</string>
+	<string name="poi_crop_wheat">作物：小麥</string>
+	<string name="poi_crop_soy">作物：大豆</string>
+	<string name="poi_crop_barley">作物：大麥</string>
+	<string name="poi_crop_vegetables">作物：蔬菜</string>
+	<string name="poi_crop_hop">作物：啤酒花</string>
+	<string name="poi_crop_rape">作物：油菜[</string>
+	<string name="poi_crop_beet">作物：甜菜</string>
+	<string name="poi_crop_lavender">作物：薰衣草</string>
+	<string name="poi_crop_tea">作物：茶</string>
+	<string name="poi_crop_coffee">作物：咖啡</string>
+	<string name="poi_crop_poultry">作物：家禽</string>
+	<string name="poi_crop_sunflower">作物：向日葵</string>
+	<string name="poi_crop_raspberry">作物：覆盆子</string>
+	<string name="poi_crop_tobacco">作物：煙草</string>
+	<string name="poi_crop_strawberry">作物：草莓</string>
+	<string name="poi_crop_vegetables_flowers">作物：蔬菜、花卉</string>
+	<string name="poi_crop_cassava">作物：樹薯</string>
+	<string name="poi_crop_cranberry">作物：蔓越莓</string>
+	<string name="poi_crop_asparagus">作物：蘆筍</string>
+	<string name="poi_crop_flowers">作物：花卉</string>
+
+	<string name="poi_surveillance_indoor">監視器：室內</string>
+	<string name="poi_surveillance_outdoor">監視器：戶外</string>
+	<string name="poi_surveillance_public">監視器：公共場所</string>
+
+	<string name="poi_clothes_women">女性衣物</string>
+	<string name="poi_clothes_underwear">內衣</string>
+	<string name="poi_clothes_men">男性服裝</string>
+	<string name="poi_clothes_wedding">婚紗禮服</string>
+	<string name="poi_clothes_sports">運動服</string>
+	<string name="poi_clothes_babies">嬰兒服</string>
+	<string name="poi_clothes_denim">牛仔服裝</string>
+	<string name="poi_clothes_workwear">工作服</string>
+	<string name="poi_clothes_hats">帽子</string>
+	<string name="poi_tourism_yes">觀光目的</string>
+	<string name="poi_clothes_fur">毛皮</string>
+	<string name="poi_clothes_leather">皮革</string>
+	<string name="poi_clothes_costumes">服裝</string>
+	<string name="poi_clothes_traditional">傳統服裝</string>
+	<string name="poi_clothes_suits">西裝</string>
+	<string name="poi_clothes_maternity">孕婦裝</string>
+	<string name="poi_clothes_vintage">典型服裝</string>
+	<string name="poi_clothes_oversize">特大服裝</string>
+	<string name="poi_clothes_schoolwear">校服</string>
+	<string name="poi_clothes_swimwear">泳裝</string>
+	<string name="poi_clothes_socks">襪子</string>
+	<string name="poi_clothes_shirts">襯衫</string>
+	<string name="poi_clothes_dance">跳舞服裝</string>
+	<string name="poi_clothes_military">軍服</string>
+
+	<string name="poi_historic_milestone">歷史事件里程碑</string>
+
+	<string name="poi_shoes_children">兒童鞋</string>
+	<string name="poi_shoes_women">女鞋</string>
+	<string name="poi_shoes_sport">運動鞋</string>
+	<string name="poi_shoes_men">男鞋</string>
+	<string name="poi_shoes_orthopedic">矯形鞋</string>
+
+	<string name="poi_historic_manor">歷史上著名宅邸</string>
+	<string name="poi_castle_type_stately">城堡類型：莊嚴</string>
+	<string name="poi_castle_type_defensive">城堡類型：防禦</string>
+	<string name="poi_castle_type_fortress">城堡類型：堡壘</string>
+	<string name="poi_castle_type_palace">城堡類型：宮殿</string>
+	<string name="poi_castle_type_kremlin">城堡類型：克里姆林宮</string>
+	<string name="poi_castle_type_defensive_stately">城堡類型：防禦、莊嚴</string>
+	<string name="poi_castle_type_castrum">城堡類型：古羅馬兵營</string>
+	<string name="poi_castle_type_shiro">城堡類型：城</string>
+
+	<string name="poi_massage_thai">按摩：泰式</string>
+	<string name="poi_massage_sexual">按摩：情趣</string>
+	<string name="poi_massage_chinese">按摩：中式</string>
+	<string name="poi_massage_yes">按摩服務</string>
+	<string name="poi_massage_therapeutic">按摩：治療</string>
+
+	<string name="poi_sauna_yes">三溫暖服務</string>
+	<string name="poi_solarium_yes">日光浴服務</string>
+
+	<string name="poi_tents_yes">允許宿營</string>
+	<string name="poi_tents_no">不允許宿營</string>
+	<string name="poi_openfire_yes">允許用火</string>
+	<string name="poi_openfire_no">不允許用火</string>
+	<string name="poi_backcountry_yes">野外露營</string>
+	<string name="poi_backcountry_no">野外露營：否</string>
+	<string name="poi_scout_yes">偵察營：是</string>
+	<string name="poi_scout_no">偵察營：否</string>
+	<string name="poi_group_only_yes">只有群組：是</string>
+	<string name="poi_group_only_no">只有群組：否</string>
+	<string name="poi_washing_machine_yes">清洗機：有</string>
+	<string name="poi_washing_machine_no">清洗機：無</string>
+	<string name="poi_shower_yes">淋浴：有</string>
+	<string name="poi_shower_no">淋浴：無</string>
+	<string name="poi_shower_hot">淋浴：熱的</string>
+	<string name="poi_shower_outdoor">淋浴：戶外</string>
+	<string name="poi_shower_cold">淋浴：冷的</string>
+	<string name="poi_shower_indoor">淋浴：室內</string>
+	<string name="poi_caravans_yes">露營拖車：可以</string>
+	<string name="poi_caravans_no">露營拖車：不可</string>
+	<string name="poi_power_supply_yes">電源供應：有</string>
+	<string name="poi_power_supply_no">電源供應：無</string>
+	<string name="poi_power_supply_cee_17_blue">電源供應(插座)：CEE 17 藍色</string>
+	<string name="poi_power_supply_cee_7_4">電源供應(插座)：CEE 7/4</string>
+	<string name="poi_power_supply_cee_7_5">電源供應(插座)：CEE 7/5</string>
+	<string name="poi_power_supply_nema_5_15">電源供應(插座)：NEMA 5-15</string>
+
+	<string name="poi_capacity_tents">最大帳篷</string>
+	<string name="poi_capacity_caravans">最大露營拖車</string>
+	<string name="poi_dog_yes">允許狗入內</string>
+	<string name="poi_dog_no">不允許狗入內</string>
+
+	<string name="poi_traffic_calming_island">安全島</string>
+	<string name="poi_impromptu_yes">即興：是</string>
+	<string name="poi_impromptu_no">即興：否</string>
+	<string name="poi_refugee_yes">為難民的福利設施</string>
+	<string name="poi_refugee_no">難民：無</string>
+
+	<string name="poi_sanitary_dump_station_yes">衛生轉儲站：有</string>
+	<string name="poi_sanitary_dump_station_no">衛生轉儲站：無</string>
+	<string name="poi_sanitary_dump_station_customers">衛生轉儲站：僅客戶</string>
+	<string name="poi_social_facility_group_home">社會設施：團體家屋</string>
+	<string name="poi_social_facility_assisted_living">社會設施：輔助生活</string>
+	<string name="poi_social_facility_outreach">社會設施：推廣</string>
+	<string name="poi_social_facility_food_bank">社會設施：食物銀行</string>
+	<string name="poi_social_facility_shelter">社會設施：收容所</string>
+	<string name="poi_social_facility_ambulatory_care">社會設施：門診</string>
+	<string name="poi_social_facility_workshop">社會設施：工場</string>
+	<string name="poi_social_facility_day_care">社會設施：日間護理</string>
+
+	<string name="poi_social_facility_for_senior">目標社群：老年人</string>
+	<string name="poi_social_facility_for_child">目標社群：兒童</string>
+	<string name="poi_social_facility_for_orphan">目標社群：孤兒</string>
+	<string name="poi_social_facility_for_disabled">目標社群：身心障礙者</string>
+	<string name="poi_social_facility_for_mental_health">目標社群：精神疾病患者</string>
+	<string name="poi_social_facility_for_juvenile">目標社群：青少年</string>
+	<string name="poi_social_facility_for_homeless">目標社群：無家可歸者</string>
+	<string name="poi_social_facility_for_migrant">目標社群：移民</string>
+	<string name="poi_social_facility_for_underprivileged">目標社群：貧困者</string>
+	<string name="poi_social_facility_for_drug_addicted">目標社群：吸毒成癮者</string>
+	<string name="poi_social_facility_for_unemployed">目標社群：失業者</string>
+	<string name="poi_social_facility_for_diseased">目標社群：病患者</string>
+	<string name="poi_social_facility_for_child_juvenile">目標社群：兒童；青少年</string>
+
+	<string name="poi_internet_access_type_yes">有網際網路存取</string>
+
+	<string name="poi_theatre_genre_philharmonic">文藝類型：愛樂團體</string>
+	<string name="poi_theatre_genre_musical">文藝類型：音樂</string>
+	<string name="poi_theatre_genre_drama">文藝類型：戲劇</string>
+	<string name="poi_theatre_genre_opera">文藝類型：歌劇</string>
+	<string name="poi_theatre_genre_cabaret">文藝類型：歌舞</string>
+	<string name="poi_theatre_genre_puppet">文藝類型：木偶</string>
+	<string name="poi_theatre_genre_comedy">文藝類型：喜劇</string>
+	<string name="poi_theatre_genre_chamber_music">文藝類型：室內樂</string>
+	<string name="poi_theatre_genre_marionette">文藝類型：線木偶</string>
+	<string name="poi_theatre_genre_ballet">文藝類型：芭蕾舞</string>
+	<string name="poi_theatre_genre_shadow_play">文藝類型：皮影戲</string>
+
+	<string name="poi_bandstand">演奏台</string>
+	<string name="poi_kiln">窯</string>
+	<string name="poi_product_brick">產品：磚</string>
+	<string name="poi_product_quicklime">產品：生石灰</string>
+	<string name="poi_product_leather">產品：皮革</string>
+	<string name="poi_product_lime">產品：石灰</string>
+	<string name="poi_product_beer">產品：啤酒</string>
+	<string name="poi_product_charcoal">產品：木炭</string>
+	<string name="poi_product_meat">產品：肉品</string>
+
+	<string name="poi_wheelchair_description">輪椅使用者說明</string>
+	<string name="poi_blind_description">爲盲人的說明</string>
+	<string name="poi_deaf_description">爲聾人的說明</string>
+
+	<string name="poi_highway_steps">樓梯</string>
+	<string name="poi_handrail_yes">扶手：有</string>
+	<string name="poi_handrail_no">扶手：無</string>
+	<string name="poi_ramp_yes">斜坡道：有</string>
+	<string name="poi_ramp_no">斜坡道：無</string>
+	<string name="poi_ramp_wheelchair_yes">供輪椅的斜坡道：有</string>
+	<string name="poi_ramp_wheelchair_no">供輪椅的斜坡道：無</string>
+	<string name="poi_ramp_stroller_yes">斜坡道(折疊式)：有</string>
+	<string name="poi_ramp_stroller_no">斜坡道(折疊式)：無</string>
+	<string name="poi_ramp_bicycle_yes">供自行車的斜坡道：有</string>
+	<string name="poi_ramp_bicycle_no">供自行車的斜坡道：無</string>
+	<string name="poi_ramp_luggage_yes">供行李的斜坡道：有</string>
+	<string name="poi_ramp_luggage_no">供行李的斜坡道：無</string>
+	<string name="poi_step_count">步行計數</string>
+	<string name="poi_step_condition_even">步行條件：平坦</string>
+	<string name="poi_step_condition_uneven">步行條件：不平坦</string>
+	<string name="poi_step_condition_rough">步行條件：高低不平</string>
+
+	<string name="poi_cairn">錐形石堆</string>
+
+	<string name="poi_memorial_fassade_decoration">立面裝飾</string>
+	<string name="poi_defibrillator">電擊器</string>
+	<string name="poi_defibrillator_yes">電擊器：有</string>
+
+	<string name="poi_tomb_tumulus">類型：古墳</string>
+	<string name="poi_tomb_war_grave">類型：戰爭墳墓</string>
+	<string name="poi_tomb_rock_cut">類型：岩石切割</string>
+	<string name="poi_tomb_hypogeum">類型：地下墓室</string>
+	<string name="poi_tomb_vault">類型：墓穴</string>
+	<string name="poi_tomb_columbarium">類型：靈骨塔</string>
+	<string name="poi_tomb_mausoleum">類型：陵墓</string>
+	<string name="poi_tomb_sarcophagus">類型：石棺</string>
+	<string name="poi_tomb_crypt">類型：地穴</string>
+	<string name="poi_tomb_pyramid">類型：金字塔</string>
+
+	<string name="poi_historic_civilization_ancient_roman">文明：古羅馬 (西元前 753 年 - 西元 284 年)</string>
+	<string name="poi_historic_civilization_nuragic">文明：nuragic (西元前18世紀 – 西元前2世紀)</string>
+	<string name="poi_historic_civilization_etruscan">文明：伊特魯里亞 (西元前12世紀 - 西元前6世紀)</string>
+	<string name="poi_historic_civilization_prehistoric">文明：史前的</string>
+	<string name="poi_historic_civilization_ancient_greek">文明：古希臘</string>
+	<string name="poi_historic_civilization_roman">文明：羅馬</string>
+	<string name="poi_historic_civilization_byzantine">文明：拜占庭 (西元285年 - 西元1453 年)</string>
+	<string name="poi_historic_civilization_imperial_chinese">文明：中國皇朝 (西元前221年 - 西元1911年)</string>
+	<string name="poi_historic_civilization_ancient_egyptian">文明：古埃及 (到西元前332年爲止)</string>
+	<string name="poi_historic_civilization_celtic">文明：凱爾特</string>
+	<string name="poi_historic_civilization_western_roman">文明：西方羅馬 (西元285年 – 西元476年)</string>
+	<string name="poi_historic_civilization_mycenaean">文明：美錫尼</string>
+	<string name="poi_historic_civilization_dacian">文明：達基亞</string>
+	<string name="poi_historic_civilization_hernici">文明：hernici</string>
+	<string name="poi_historic_civilization_greek_egyptian">文明：希臘埃及 (西元前332年 – 西元前30年)</string>
+	<string name="poi_historic_civilization_roman_and_byzantine_egyptian">文明：羅馬和拜占庭、埃及</string>
+	<string name="poi_historic_civilization_helladic">文明：希臘青銅期</string>
+	<string name="poi_historic_civilization_cycladic">文明：基克拉澤斯</string>
+	<string name="poi_historic_civilization_minoan">文明：米諾</string>
+	<string name="poi_historic_civilization_tiahuanacota">文明：蒂亞瓦納科</string>
+
+	<string name="poi_animal_training">動物訓練</string>
+	<string name="poi_animal_training_dog">訓狗</string>
+	<string name="poi_animal_training_horse">訓馬</string>
+
+	<string name="poi_horse_yes">准許馬進出</string>
+	<string name="poi_horse_no">不准許馬進出</string>
+	<string name="poi_animal_yes">准許動物進出</string>
+	<string name="poi_animal_no">不准許動物進出</string>
+
+	<string name="poi_stone_type_conciliation_cross">類型：和解十字架</string>
+	<string name="poi_stone_type_coat_of_arms">類型：紋章</string>
+
+	<string name="poi_material_wood">原材料：木頭</string>
+	<string name="poi_material_metal">原材料：金屬</string>
+	<string name="poi_material_reinforced_concrete">原材料：鋼筋混凝土</string>
+	<string name="poi_material_concrete">原材料：混凝土</string>
+	<string name="poi_material_steel">原材料：鋼鐵</string>
+	<string name="poi_material_stone">原材料：石頭</string>
+	<string name="poi_material_masonry">原材料：磚石</string>
+	<string name="poi_material_brick">原材料：磚</string>
+	<string name="poi_material_plastic">原材料：塑膠</string>
+	<string name="poi_material_sandstone">原材料：砂岩</string>
+	<string name="poi_material_granite_stone">原材料：花崗石</string>
+	<string name="poi_material_metal_wood">原材料：金屬、木頭</string>
+	<string name="poi_material_glass">原材料：玻璃</string>
+	<string name="poi_material_bronze">原材料：青銅</string>
+	<string name="poi_material_earth">原材料：土</string>
+	<string name="poi_material_composite">原材料：合成物</string>
+	<string name="poi_material_limestone">原材料：石灰石</string>
+	<string name="poi_material_marble">原材料：大理石</string>
+	<string name="poi_material_aluminium">原材料：鋁</string>
+
+	<string name="poi_site_type_megalith">類型：巨石</string>
+	<string name="poi_site_type_tumulus">類型：古墳</string>
+	<string name="poi_site_type_fortification">類型：防禦</string>
+	<string name="poi_site_type_settlement">類型：居地</string>
+	<string name="poi_site_type_city">類型：城市</string>
+	<string name="poi_wiki_lang_af">南非文維基</string>
+	<string name="poi_wiki_lang_als">阿爾薩斯文維基</string>
+	<string name="poi_wiki_lang_az">亞塞拜然文維基</string>
+	<string name="poi_wiki_lang_bn">孟加拉文維基</string>
+	<string name="poi_wiki_lang_bpy">比什奴普萊利亞文維基</string>
+	<string name="poi_wiki_lang_br">布列塔尼文維基</string>
+	<string name="poi_wiki_lang_bs">波士尼亞文維基</string>
+	<string name="poi_wiki_lang_cy">威爾斯文維基</string>
+	<string name="poi_wiki_lang_eo">世界語維基</string>
+	<string name="poi_wiki_lang_eu">巴斯克文維基</string>
+	<string name="poi_wiki_lang_fa">波斯文維基</string>
+	<string name="poi_wiki_lang_fy">菲士蘭文維基</string>
+	<string name="poi_wiki_lang_ga">愛爾蘭文維基</string>
+	<string name="poi_wiki_lang_hy">亞美尼亞文維基</string>
+	<string name="poi_wiki_lang_is">冰島文維基</string>
+	<string name="poi_wiki_lang_ka">喬治亞文維基</string>
+	<string name="poi_wiki_lang_ku">庫德文維基</string>
+	<string name="poi_wiki_lang_la">拉丁文維基</string>
+	<string name="poi_wiki_lang_lb">盧森堡文維基</string>
+	<string name="poi_wiki_lang_mk">馬其頓文維基</string>
+	<string name="poi_wiki_lang_ml">馬拉雅拉姆文維基</string>
+	<string name="poi_wiki_lang_mr">馬拉地文維基</string>
+	<string name="poi_wiki_lang_nds">下撒克遜文維基</string>
+	<string name="poi_wiki_lang_nv">納瓦荷文維基</string>
+	<string name="poi_wiki_lang_os">奧塞提亞文維基</string>
+	<string name="poi_wiki_lang_pms">皮埃蒙特文維基</string>
+	<string name="poi_wiki_lang_sc">薩丁尼亞島文維基</string>
+	<string name="poi_wiki_lang_sh">塞爾維亞-克羅埃西亞文維基</string>
+	<string name="poi_wiki_lang_sq">阿爾巴尼亞文維基</string>
+	<string name="poi_wiki_lang_ta">坦米爾文維基</string>
+	<string name="poi_wiki_lang_tl">菲律賓語維基</string>
+
+	<string name="poi_wiki_lang_war">瓦瑞語維基</string>
+	<string name="poi_wiki_lang_min">米南佳保語維基</string>
+	<string name="poi_wiki_lang_kk">哈薩克文維基</string>
+	<string name="poi_wiki_lang_uz">烏茲別克文維基</string>
+	<string name="poi_wiki_lang_ce">車臣語維基</string>
+	<string name="poi_wiki_lang_ur">烏爾都語維基</string>
+	<string name="poi_wiki_lang_oc">奧克語維基</string>
+	<string name="poi_wiki_lang_zhminnan">閩南語維基</string>
+	<string name="poi_wiki_lang_mg">馬拉加斯語維基</string>
+	<string name="poi_wiki_lang_tt">韃靼語維基</string>
+	<string name="poi_wiki_lang_jv">爪哇語維基</string>
+	<string name="poi_wiki_lang_ky">吉爾吉斯語維基</string>
+	<string name="poi_wiki_lang_zhyue">粵語維基</string>
+	<string name="poi_fireworks">煙火商店</string>
+
+	<string name="poi_aerialway_length">長度</string>
+
+<string name="poi_wiki_lang_ast">阿斯圖爾-萊昂語維基</string>
+	<string name="poi_wiki_lang_tg">塔吉克語維基</string>
+	<string name="poi_wiki_lang_ba">巴什基爾語維基</string>
+	<string name="poi_wiki_lang_sco">低地蘇格蘭語維基</string>
+	<string name="poi_wiki_lang_pnb">旁遮普語維基</string>
+	<string name="poi_wiki_lang_cv">楚瓦什語維基</string>
+	<string name="poi_wiki_lang_lmo">倫巴底語維基</string>
+	<string name="poi_wiki_lang_my">緬甸語維基</string>
+	<string name="poi_wiki_lang_yo">約魯巴語維基</string>
+	<string name="poi_wiki_lang_an">亞拉岡語維基</string>
+	<string name="poi_wiki_lang_ne">尼泊爾語維基</string>
+	<string name="poi_wiki_lang_gu">古吉拉特語維基</string>
+	<string name="poi_wiki_lang_scn">西西里語維基</string>
+	<string name="poi_wiki_lang_bar">巴伐利亞語維基</string>
+	<string name="poi_wiki_lang_mn">蒙古語維基</string>
+	<string name="poi_wiki_lang_nap">那不勒斯語維基</string>
+
+	<string name="poi_craft_electronics">3C產品維修</string>
+	<string name="poi_historic_period_nuragic">歷史時期：nuragic</string>
+	<string name="poi_historic_period_stone_bronze_undetermined">歷史時期：石器時代 / 青銅器時代 (未確定)</string>
+	<string name="poi_historic_period_bronze_age">歷史時期：青銅器時代</string>
+	<string name="poi_historic_period_principate">歷史時期：元首制 (西元前27年 - 西元284年)</string>
+	<string name="poi_historic_period_classical_greece">歷史時期：古希臘 (西元前5 - 4)</string>
+	<string name="poi_historic_period_archaic_greece">歷史時期：古希臘</string>
+	<string name="poi_historic_period_iron_age">歷史時期：鐵器時代</string>
+	<string name="poi_historic_period_roman_republic">歷史時期：羅馬共和國 (西元前508年 – 西元前27年)</string>
+	<string name="poi_historic_period_hellenistic_greece">歷史時期：希臘化時代的希臘</string>
+	<string name="poi_historic_period_new_kingdom">歷史時期：新王國 (西元前1550年 - 1069年)</string>
+	<string name="poi_historic_period_middle_kingdom">歷史時期：中王國 (西元前2055年 - 1650年)</string>
+	<string name="poi_historic_period_predynastic_egypt">歷史時期：前王朝時期埃及</string>
+	<string name="poi_historic_period_early_dynastic_period">歷史時期：早王朝時期 (西元前3100 - 2686年)</string>
+	<string name="poi_historic_period_old_kingdom">歷史時期：古王國 (西元前2686年 – 2181年)</string>
+	<string name="poi_historic_period_first_intermediate_period">歷史時期：第一中間期 (西元前2181年 - 2055年)</string>
+	<string name="poi_historic_period_second_intermediate_period">歷史時期：第二中間期 (西元前1650年 - 1550年)</string>
+	<string name="poi_historic_period_third_intermediate_period">"歷史時期：第三中間期 (西元前1069年 - 664年) "</string>
+	<string name="poi_historic_period_first_persian_period">歷史時期：第一波斯時期</string>
+	<string name="poi_historic_period_late_period">歷史時期：後期 (西元前664 - 332年)</string>
+	<string name="poi_historic_period_second_persian_period">歷史時期：第二波斯時期</string>
+	<string name="poi_historic_period_alexander_the_great">歷史時期：亞歷山大大帝</string>
+	<string name="poi_historic_period_ptolemaic_egypt">歷史時期：托勒密埃及 (西元前305年 - 西元前30年)</string>
+	<string name="poi_historic_period_christian_egypt">歷史時期：基督教埃及</string>
+	<string name="poi_historic_period_byzantine_egypt">歷史時期：拜占庭埃及 (西元前30年 - 西元641年)</string>
+	<string name="poi_historic_period_persian_occupation">歷史時期：波斯佔領期</string>
+	<string name="poi_historic_period_greek_dark_ages">歷史時期：希臘黑暗時代 (西元前1100年 - 800年)</string>
+	<string name="poi_historic_period_roman_greece">歷史時期：羅馬希臘 (西元前146年 - 西元330年)</string>
+	<string name="poi_historic_period_roman_kingdom">歷史時期：羅馬王國 (西元前753年 – 西元前509年)</string>
+	<string name="poi_historic_period_dominate">歷史時期：統治 (西元285年 - 西元476年)</string>
+	<string name="poi_historic_era_mesolithic">歷史時期：中石器時代</string>
+	<string name="poi_historic_era_neolithic">歷史時代：新石器時代</string>
+	<string name="poi_historic_era_chalcolithic">歷史時期：銅、石器並用時代 (西元前四 - 三千年)</string>
+
+	<string name="poi_historic_stone">文物石器</string>
+	<string name="poi_health_specialty_orthopaedics_yes">醫療專業：骨科</string>
+	<string name="poi_health_specialty_otolaryngology_yes">醫療專業：耳鼻喉科</string>
+	<string name="poi_health_specialty_paediatrics_yes">醫療專業：小兒科</string>
+	<string name="poi_health_specialty_paediatrics_no">醫療專業：小兒科：無</string>
+	<string name="poi_health_specialty_dermatology_yes">醫療專業：皮膚科</string>
+	<string name="poi_health_specialty_urology_yes">醫療專業：泌尿科</string>
+	<string name="poi_health_specialty_surgery_yes">醫療專業：一般外科</string>
+	<string name="poi_health_specialty_radiology_yes">醫療專業：放射科</string>
+	<string name="poi_health_specialty_psychiatry_yes">醫療專業：精神科</string>
+	<string name="poi_health_specialty_neurology_yes">醫療專業：神經科</string>
+	<string name="poi_seamark_dyke">防波堤</string>
+	<string name="poi_historic_period_villager">歷史時期：村民 (時代 I, II, 1580 BC – 133 AC)</string>
+	<string name="poi_historic_period_urban">歷史時期：城市（時代，133 AC - 374 AC）</string>
 	</resources>

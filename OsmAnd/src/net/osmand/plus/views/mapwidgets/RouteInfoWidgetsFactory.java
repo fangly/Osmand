@@ -1,14 +1,36 @@
 package net.osmand.plus.views.mapwidgets;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
+import android.graphics.BlurMaskFilter.Blur;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.hardware.GeomagneticField;
+import android.os.BatteryManager;
+import android.text.format.DateFormat;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import net.osmand.Location;
 import net.osmand.binary.RouteDataObject;
 import net.osmand.data.LatLon;
 import net.osmand.data.RotatedTileBox;
+import net.osmand.plus.MapMarkersHelper.MapMarker;
 import net.osmand.plus.OsmAndFormatter;
 import net.osmand.plus.OsmAndLocationProvider;
 import net.osmand.plus.OsmandApplication;
@@ -21,6 +43,7 @@ import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.base.MapViewTrackingUtilities;
 import net.osmand.plus.helpers.AndroidUiHelper;
 import net.osmand.plus.helpers.WaypointHelper;
+import net.osmand.plus.mapcontextmenu.other.MapRouteInfoMenu;
 import net.osmand.plus.routing.AlarmInfo;
 import net.osmand.plus.routing.AlarmInfo.AlarmInfoType;
 import net.osmand.plus.routing.RouteCalculationResult.NextDirectionInfo;
@@ -30,26 +53,17 @@ import net.osmand.plus.views.AnimateDraggingMapThread;
 import net.osmand.plus.views.OsmandMapLayer.DrawSettings;
 import net.osmand.plus.views.OsmandMapTileView;
 import net.osmand.plus.views.TurnPathHelper;
-import net.osmand.plus.views.controls.MapRouteInfoControl;
+import net.osmand.plus.views.mapwidgets.MapWidgetRegistry.WidgetState;
 import net.osmand.router.RouteResultPreparation;
 import net.osmand.router.TurnType;
 import net.osmand.util.Algorithms;
 import net.osmand.util.MapUtils;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Paint.Style;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.text.format.DateFormat;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RouteInfoWidgetsFactory {
 
@@ -136,18 +150,10 @@ public class RouteInfoWidgetsFactory {
 					NextDirectionInfo r = routingHelper.getNextRouteDirectionInfo(calc1, true);
 					if (!deviatedFromRoute) {
 						if (r != null) {
-							// next turn is very close (show next next with false to speak)
-//							if (r.imminent >= 0 && r.imminent < 2) {
-//								r = routingHelper.getNextRouteDirectionInfoAfter(r, calc1, false);
-//							} else {
-								r = routingHelper.getNextRouteDirectionInfo(calc1, true);
-								if (r != null) {
-									r = routingHelper.getNextRouteDirectionInfoAfter(r, calc1, true);
-								}
-//							}
+							r = routingHelper.getNextRouteDirectionInfoAfter(r, calc1, true);
 						}
 					}
-					if (r != null && r.distanceTo > 0&& r.directionInfo != null) {
+					if (r != null && r.distanceTo > 0 && r.directionInfo != null) {
 						turnType = r.directionInfo.getTurnType();
 						turnImminent = r.imminent;
 						nextTurnDistance = r.distanceTo;
@@ -185,11 +191,56 @@ public class RouteInfoWidgetsFactory {
 		// initial state 
 		return nextTurnInfo;
 	}
-	
-	
 
 
 
+	public static class TimeControlWidgetState extends WidgetState {
+
+		public static final int TIME_CONTROL_WIDGET_STATE_ARRIVAL_TIME = R.id.time_control_widget_state_arrival_time;
+		public static final int TIME_CONTROL_WIDGET_STATE_TIME_TO_GO = R.id.time_control_widget_state_time_to_go;
+
+		private final OsmandPreference<Boolean> showArrival;
+
+		public TimeControlWidgetState(OsmandApplication ctx) {
+			super(ctx);
+			showArrival = ctx.getSettings().SHOW_ARRIVAL_TIME_OTHERWISE_EXPECTED_TIME;
+		}
+
+		@Override
+		public int getMenuTitleId() {
+			return showArrival.get() ? R.string.access_arrival_time : R.string.map_widget_time;
+		}
+
+		@Override
+		public int getMenuIconId() {
+			return showArrival.get() ? R.drawable.ic_action_time : R.drawable.ic_action_time_to_distance;
+		}
+
+		@Override
+		public int getMenuItemId() {
+			return showArrival.get() ? TIME_CONTROL_WIDGET_STATE_ARRIVAL_TIME : TIME_CONTROL_WIDGET_STATE_TIME_TO_GO;
+		}
+
+		@Override
+		public int[] getMenuTitleIds() {
+			return new int[]{R.string.access_arrival_time, R.string.map_widget_time};
+		}
+
+		@Override
+		public int[] getMenuIconIds() {
+			return new int[]{R.drawable.ic_action_time, R.drawable.ic_action_time_to_distance};
+		}
+
+		@Override
+		public int[] getMenuItemIds() {
+			return new int[]{TIME_CONTROL_WIDGET_STATE_ARRIVAL_TIME, TIME_CONTROL_WIDGET_STATE_TIME_TO_GO};
+		}
+
+		@Override
+		public void changeState(int stateId) {
+			showArrival.set(stateId == TIME_CONTROL_WIDGET_STATE_ARRIVAL_TIME);
+		}
+	}
 
 	public TextInfoWidget createTimeControl(final MapActivity map){
 		final RoutingHelper routingHelper = map.getRoutingHelper();
@@ -204,6 +255,7 @@ public class RouteInfoWidgetsFactory {
 			
 			@Override
 			public boolean updateInfo(DrawSettings drawSettings) {
+				setIcons(showArrival.get() ? time : timeToGo, showArrival.get() ? timeN : timeToGoN);
 				int time = 0;
 				if (routingHelper != null && routingHelper.isRouteCalculated()) {
 					//boolean followingMode = routingHelper.isFollowingMode();
@@ -273,7 +325,7 @@ public class RouteInfoWidgetsFactory {
 					if (DateFormat.is24HourFormat(ctx)) {
 						setText(DateFormat.format("k:mm", time).toString(), null); //$NON-NLS-1$
 					} else {
-						setText(DateFormat.format("h:mm", time).toString(), 
+						setText(DateFormat.format("h:mm", time).toString(),
 								DateFormat.format("aa", time).toString()); //$NON-NLS-1$
 					}
 				}
@@ -284,8 +336,46 @@ public class RouteInfoWidgetsFactory {
 		plainTimeControl.setIcons(R.drawable.widget_time_day, R.drawable.widget_time_night);
 		return plainTimeControl;
 	}
-	
-	
+
+
+	public TextInfoWidget createBatteryControl(final MapActivity map){
+		final int battery = R.drawable.widget_battery_day;
+		final int batteryN = R.drawable.widget_battery_night;
+		final int batteryCharging = R.drawable.widget_battery_charging_day;
+		final int batteryChargingN = R.drawable.widget_battery_charging_night;
+		final OsmandApplication ctx = map.getMyApplication();
+		final TextInfoWidget batteryControl = new TextInfoWidget(map) {
+			private long cachedLeftTime = 0;
+
+			@Override
+			public boolean updateInfo(DrawSettings drawSettings) {
+				long time = System.currentTimeMillis();
+				if (time - cachedLeftTime > 1000) {
+					cachedLeftTime = time;
+					Intent batteryIntent = ctx.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+					int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+					int scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+					int status = batteryIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+
+					if (level == -1 || scale == -1 || status == -1) {
+						setText("?", null);
+						setIcons(battery, batteryN);
+					} else {
+						boolean charging = ((status == BatteryManager.BATTERY_STATUS_CHARGING) ||
+								(status == BatteryManager.BATTERY_STATUS_FULL));
+						setText(String.format("%d%%", (level * 100) / scale), null );
+						setIcons(charging ? batteryCharging : battery, charging ? batteryChargingN : batteryN);
+					}
+				}
+				return false;
+			};
+		};
+		batteryControl.setText(null, null);
+		batteryControl.setIcons(battery, batteryN);
+		return batteryControl;
+	}
+
+
 	public TextInfoWidget createMaxSpeedControl(final MapActivity map) {
 		final RoutingHelper rh = map.getMyApplication().getRoutingHelper();
 		final OsmAndLocationProvider locationProvider = map.getMyApplication().getLocationProvider();
@@ -389,7 +479,9 @@ public class RouteInfoWidgetsFactory {
 		public DistanceToPointInfoControl(MapActivity ma, int res, int resNight) {
 			super(ma);
 			this.view = ma.getMapView();
-			setIcons(res, resNight);
+			if (res != 0 && resNight != 0) {
+				setIcons(res, resNight);
+			}
 			setText(null, null);
 			setOnClickListener(new View.OnClickListener() {
 
@@ -399,7 +491,7 @@ public class RouteInfoWidgetsFactory {
 				}
 			});
 		}
-		
+
 		protected void click(final OsmandMapTileView view) {
 			AnimateDraggingMapThread thread = view.getAnimatedDraggingThread();
 			LatLon pointToNavigate = getPointToNavigate();
@@ -494,8 +586,150 @@ public class RouteInfoWidgetsFactory {
 		};
 		return distanceControl;
 	}
-	
-	
+
+
+	public static class BearingWidgetState extends WidgetState {
+
+		public static final int BEARING_WIDGET_STATE_RELATIVE_BEARING = R.id.bearing_widget_state_relative_bearing;
+		public static final int BEARING_WIDGET_STATE_MAGNETIC_BEARING = R.id.bearing_widget_state_magnetic_bearing;
+
+		private final OsmandPreference<Boolean> showRelativeBearing;
+
+		public BearingWidgetState(OsmandApplication ctx) {
+			super(ctx);
+			showRelativeBearing = ctx.getSettings().SHOW_RELATIVE_BEARING_OTHERWISE_REGULAR_BEARING;
+		}
+
+		@Override
+		public int getMenuTitleId() {
+			return showRelativeBearing.get() ? R.string.map_widget_bearing : R.string.map_widget_magnetic_bearing;
+		}
+
+		@Override
+		public int getMenuIconId() {
+			return showRelativeBearing.get() ? R.drawable.ic_action_relative_bearing : R.drawable.ic_action_bearing;
+		}
+
+		@Override
+		public int getMenuItemId() {
+			return showRelativeBearing.get() ? BEARING_WIDGET_STATE_RELATIVE_BEARING : BEARING_WIDGET_STATE_MAGNETIC_BEARING;
+		}
+
+		@Override
+		public int[] getMenuTitleIds() {
+			return new int[]{R.string.map_widget_magnetic_bearing, R.string.map_widget_bearing};
+		}
+
+		@Override
+		public int[] getMenuIconIds() {
+			return new int[]{R.drawable.ic_action_bearing, R.drawable.ic_action_relative_bearing};
+		}
+
+		@Override
+		public int[] getMenuItemIds() {
+			return new int[]{BEARING_WIDGET_STATE_MAGNETIC_BEARING, BEARING_WIDGET_STATE_RELATIVE_BEARING};
+		}
+
+		@Override
+		public void changeState(int stateId) {
+			showRelativeBearing.set(stateId == BEARING_WIDGET_STATE_RELATIVE_BEARING);
+		}
+	}
+
+	public TextInfoWidget createBearingControl(final MapActivity map) {
+		final int bearingResId = R.drawable.widget_bearing_day;
+		final int bearingNightResId = R.drawable.widget_bearing_night;
+		final int relativeBearingResId = R.drawable.widget_relative_bearing_day;
+		final int relativeBearingNightResId = R.drawable.widget_relative_bearing_night;
+		final OsmandApplication ctx = map.getMyApplication();
+		final OsmandPreference<Boolean> showRelativeBearing = ctx.getSettings().SHOW_RELATIVE_BEARING_OTHERWISE_REGULAR_BEARING;
+
+		final TextInfoWidget bearingControl = new TextInfoWidget(map) {
+			private int cachedDegrees;
+
+			public LatLon getPointToNavigate() {
+				TargetPoint p = map.getPointToNavigate();
+				return p == null ? null : p.point;
+			}
+
+			@Override
+			public boolean updateInfo(DrawSettings drawSettings) {
+				boolean relative = showRelativeBearing.get();
+				boolean modeChanged = setIcons(relative ? relativeBearingResId : bearingResId, relative ? relativeBearingNightResId : bearingNightResId);
+				setContentTitle(relative ? R.string.map_widget_bearing : R.string.map_widget_magnetic_bearing);
+				int b = getBearing(relative);
+				if (degreesChanged(cachedDegrees, b) || modeChanged) {
+					cachedDegrees = b;
+					if (b != -1000) {
+						setText(String.valueOf(b) + "°" + (relative ? "" : " M"), null);
+					} else {
+						setText(null, null);
+					}
+					return true;
+				}
+				return false;
+			}
+
+			public int getBearing(boolean relative) {
+				int d = -1000;
+				Location myLocation = getOsmandApplication().getLocationProvider().getLastKnownLocation();
+				LatLon l = getPointToNavigate();
+				if (l == null) {
+					List<MapMarker> markers = getOsmandApplication().getMapMarkersHelper().getSortedMapMarkers();
+					if (markers.size() > 0) {
+						l = markers.get(0).point;
+					}
+				}
+				if (myLocation != null && l != null) {
+					Location dest = new Location("");
+					dest.setLatitude(l.getLatitude());
+					dest.setLongitude(l.getLongitude());
+					dest.setBearing(myLocation.bearingTo(dest));
+					GeomagneticField destGf = new GeomagneticField((float) dest.getLatitude(), (float) dest.getLongitude(), (float) dest.getAltitude(),
+							System.currentTimeMillis());
+					float bearingToDest = dest.getBearing() - destGf.getDeclination();
+					if (relative) {
+						float b = -1000;
+						Float heading = getOsmandApplication().getLocationProvider().getHeading();
+						if (((myLocation.hasSpeed() && myLocation.getSpeed() < 11) || !myLocation.hasBearing())
+								&& heading != null) {
+							b = heading;
+						} else if (myLocation.hasBearing()) {
+							GeomagneticField myLocGf = new GeomagneticField((float) myLocation.getLatitude(), (float) myLocation.getLongitude(), (float) myLocation.getAltitude(),
+									System.currentTimeMillis());
+							b = myLocation.getBearing() - myLocGf.getDeclination();
+						}
+						if (b > -1000) {
+							bearingToDest -= b;
+							if (bearingToDest > 180f) {
+								bearingToDest -= 360f;
+							} else if (bearingToDest < -180f) {
+								bearingToDest += 360f;
+							}
+							d = (int) bearingToDest;
+						}
+					} else {
+						d = (int) bearingToDest;
+					}
+				}
+				return d;
+			}
+		};
+
+		bearingControl.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showRelativeBearing.set(!showRelativeBearing.get());
+				map.refreshMap();
+			}
+
+		});
+		bearingControl.setText(null, null);
+		bearingControl.setIcons(!showRelativeBearing.get() ? bearingResId : relativeBearingResId,
+				!showRelativeBearing.get() ? bearingNightResId : relativeBearingNightResId);
+		return bearingControl;
+	}
 	
 	private static Path getPathFromTurnType(List<Path> paths, int laneType, Path defaultType, float coef) {
 		if(laneType == 0) {
@@ -516,7 +750,8 @@ public class RouteInfoWidgetsFactory {
 		paths.set(laneType, p);
 		return p;
 	}
-	
+
+
 	public static class LanesControl {
 		private MapViewTrackingUtilities trackingUtilities;
 		private OsmAndLocationProvider locationProvider;
@@ -583,8 +818,8 @@ public class RouteInfoWidgetsFactory {
 						dist = r.distanceTo;
 					}
 				} else {
-					int di = MapRouteInfoControl.getDirectionInfo();
-					if (di >= 0 && MapRouteInfoControl.isControlVisible()
+					int di = MapRouteInfoMenu.getDirectionInfo();
+					if (di >= 0 && MapRouteInfoMenu.isControlVisible()
 							&& di < rh.getRouteDirections().size()) {
 						RouteDirectionInfo next = rh.getRouteDirections().get(di);
 						if (next != null) {
@@ -629,32 +864,44 @@ public class RouteInfoWidgetsFactory {
 	
 	
 	private static class LanesDrawable extends Drawable {
-		int[] lanes = null; 
+		int[] lanes = null;
 		boolean imminent = false;
 		private Context ctx;
 		private ArrayList<Path> paths = new ArrayList<Path>();
+		private Map<TurnPathHelper.TurnResource, Bitmap> bitmapCache = new HashMap<TurnPathHelper.TurnResource, Bitmap>();
 		private Paint paintBlack;
 		private Path laneStraight;
+		private final Bitmap laneStraightBitmap;
 		private Paint paintRouteDirection;
+		private Paint paintSecondTurn;
 		private float scaleCoefficient;
 		private int height;
 		private int width;
 		private static final float miniCoeff = 2f;
-		
-		public LanesDrawable(Context ctx, float scaleCoefficent) {
+		private final boolean leftSide;
+
+		public LanesDrawable(MapActivity ctx, float scaleCoefficent) {
 			this.ctx = ctx;
+			OsmandSettings settings = ctx.getMyApplication().getSettings();
+			leftSide = settings.DRIVING_REGION.get().leftHandDriving;
+
 			this.scaleCoefficient = scaleCoefficent;
 			laneStraight = getPathFromTurnType(paths, TurnType.C, null, scaleCoefficient / miniCoeff);
+			laneStraightBitmap = TurnPathHelper.getBitmapFromTurnType(ctx.getResources(), bitmapCache, TurnType.C, 0, 0, TurnPathHelper.FIRST_TURN, scaleCoefficient / miniCoeff, leftSide);
 			paintBlack = new Paint();
 			paintBlack.setStyle(Style.STROKE);
 			paintBlack.setColor(Color.BLACK);
 			paintBlack.setAntiAlias(true);
 			paintBlack.setStrokeWidth(2.5f);
 			
-			paintRouteDirection = new Paint();
-			paintRouteDirection.setStyle(Style.FILL);
+			paintRouteDirection = new Paint(Paint.ANTI_ALIAS_FLAG);
+			paintRouteDirection.setStyle(Style.FILL_AND_STROKE);
 			paintRouteDirection.setColor(ctx.getResources().getColor(R.color.nav_arrow));
-			paintRouteDirection.setAntiAlias(true);
+
+			paintSecondTurn = new Paint(Paint.ANTI_ALIAS_FLAG);
+			paintSecondTurn.setStyle(Style.FILL_AND_STROKE);
+			paintSecondTurn.setColor(ctx.getResources().getColor(R.color.nav_arrow_distant));
+
 		}
 
 		public void updateBounds() {
@@ -674,8 +921,83 @@ public class RouteInfoWidgetsFactory {
 			return width;
 		}
 
+
 		@Override
 		public void draw(Canvas canvas) {
+			float w = 72 * scaleCoefficient / miniCoeff;
+
+			Bitmap src = Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Bitmap.Config.ARGB_8888);
+			// setup canvas for painting
+			Canvas srcCanvas = new Canvas(src);
+			// setup default color
+			srcCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+
+			//to change color immediately when needed
+			if (lanes != null && lanes.length > 0) {
+				srcCanvas.save();
+				// canvas.translate((int) (16 * scaleCoefficient), 0);
+				for (int i = 0; i < lanes.length; i++) {
+					if ((lanes[i] & 1) == 1) {
+						paintRouteDirection.setColor(imminent ? ctx.getResources().getColor(R.color.nav_arrow_imminent) :
+								ctx.getResources().getColor(R.color.nav_arrow));
+					} else {
+						paintRouteDirection.setColor(ctx.getResources().getColor(R.color.nav_arrow_distant));
+					}
+					int turnType = TurnType.getPrimaryTurn(lanes[i]);
+					int secondTurnType = TurnType.getSecondaryTurn(lanes[i]);
+					int thirdTurnType = TurnType.getTertiaryTurn(lanes[i]);
+
+					float coef = scaleCoefficient / miniCoeff;
+					if(thirdTurnType > 0){
+						Bitmap bSecond = null;
+						bSecond = TurnPathHelper.getBitmapFromTurnType(ctx.getResources(), bitmapCache, turnType, 
+								secondTurnType, thirdTurnType, TurnPathHelper.THIRD_TURN, coef, leftSide);
+						if (bSecond != null){
+							paintSecondTurn.setColorFilter(new PorterDuffColorFilter(paintSecondTurn.getColor(), PorterDuff.Mode.SRC_ATOP));
+							srcCanvas.drawBitmap(bSecond, 0f, 0f, paintSecondTurn);
+						}
+					}
+					if(secondTurnType > 0){
+						Bitmap bSecond = null;
+						bSecond = TurnPathHelper.getBitmapFromTurnType(ctx.getResources(), bitmapCache, turnType, 
+								secondTurnType, thirdTurnType, TurnPathHelper.SECOND_TURN, coef, leftSide);
+						if (bSecond != null){
+							paintSecondTurn.setColorFilter(new PorterDuffColorFilter(paintSecondTurn.getColor(), PorterDuff.Mode.SRC_ATOP));
+							srcCanvas.drawBitmap(bSecond, 0f, 0f, paintSecondTurn);
+						}
+					}
+					Bitmap b = TurnPathHelper.getBitmapFromTurnType(ctx.getResources(), bitmapCache, turnType, 
+							secondTurnType, thirdTurnType, TurnPathHelper.FIRST_TURN, coef, leftSide);
+					if(b != null) {
+						paintRouteDirection.setColorFilter(new PorterDuffColorFilter(paintRouteDirection.getColor(), PorterDuff.Mode.SRC_ATOP));
+						srcCanvas.drawBitmap(b, 0f, 0f, paintRouteDirection);
+						srcCanvas.translate(w, 0);
+					}
+				}
+				srcCanvas.restore();
+			}
+
+			// create a blur paint for capturing alpha
+			Paint ptBlur = new Paint();
+			float density = ctx.getResources().getDisplayMetrics().density;
+			ptBlur.setMaskFilter(new BlurMaskFilter(1.66f * density, Blur.OUTER));
+			int[] offsetXY = new int[2];
+			// capture alpha into a bitmap
+			Bitmap bmAlpha = src.extractAlpha(ptBlur, offsetXY);
+			// create a color paint
+			Paint ptAlphaColor = new Paint();
+			ptAlphaColor.setColor(0xFF000000);
+			// paint color for captured alpha region (bitmap)
+			canvas.drawBitmap(bmAlpha, offsetXY[0], offsetXY[1], ptAlphaColor);
+			// free memory
+			bmAlpha.recycle();
+
+			// paint the image source
+			canvas.drawBitmap(src, 0, 0, null);
+		}
+
+		//@Override
+		public void drawOld(Canvas canvas) {
 			float w = 72 * scaleCoefficient / miniCoeff;
 			//to change color immediately when needed
 			if (lanes != null && lanes.length > 0) {
@@ -849,6 +1171,7 @@ public class RouteInfoWidgetsFactory {
 						}
 					} else if(alarm.getType() == AlarmInfoType.TOLL_BOOTH) {
 						//image done by drawing red ring
+						text = "$";
 					} else if(alarm.getType() == AlarmInfoType.TRAFFIC_CALMING) {
 						if(settings.DRIVING_REGION.get().americanSigns){
 							locimgId = R.drawable.warnings_traffic_calming_us;
@@ -906,10 +1229,14 @@ public class RouteInfoWidgetsFactory {
 	
 	
 	public static boolean distChanged(int oldDist, int dist){
-		if(oldDist != 0 && Math.abs(oldDist - dist) < 10){
+		if (oldDist != 0 && Math.abs(oldDist - dist) < 10) {
 			return false;
 		}
 		return true;
+	}
+
+	public static boolean degreesChanged(int oldDegrees, int degrees){
+		return Math.abs(oldDegrees - degrees) >= 1;
 	}
 
 	public AlarmWidget createAlarmInfoControl(OsmandApplication app, MapActivity map) {

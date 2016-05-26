@@ -1,5 +1,15 @@
 package net.osmand.plus.resources;
 
+import net.osmand.IndexConstants;
+import net.osmand.PlatformUtil;
+import net.osmand.binary.BinaryMapIndexReader;
+import net.osmand.osm.io.NetworkUtils;
+import net.osmand.plus.R;
+import net.osmand.util.Algorithms;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -12,16 +22,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
-
-import net.osmand.IndexConstants;
-import net.osmand.PlatformUtil;
-import net.osmand.binary.BinaryMapIndexReader;
-import net.osmand.osm.io.NetworkUtils;
-import net.osmand.plus.R;
-import net.osmand.util.Algorithms;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
 
 public class IncrementalChangesManager {
 
@@ -119,7 +119,7 @@ public class IncrementalChangesManager {
 	}
 	
 	protected static String formatSize(long vl) {
-		return (float) ((vl * 1000 / (1 << 20l)) / 1000.0f) + "";
+		return (vl * 1000 / (1 << 20l)) / 1000.0f + "";
 	}
 	
 	public static long calculateSize(List<IncrementalUpdate> list) {
@@ -287,7 +287,7 @@ public class IncrementalChangesManager {
 	
 	private List<IncrementalUpdate> getIncrementalUpdates(String file, long timestamp) throws IOException,
 			XmlPullParserException {
-		String url = URL + "?timestamp=" + timestamp + "&file=" + URLEncoder.encode(file);
+		String url = URL + "?aosmc=true&timestamp=" + timestamp + "&file=" + URLEncoder.encode(file);
 		HttpURLConnection conn = NetworkUtils.getHttpURLConnection(url);
 		XmlPullParser parser = PlatformUtil.newXMLPullParser();
 		parser.setInput(conn.getInputStream(), "UTF-8");
@@ -319,15 +319,7 @@ public class IncrementalChangesManager {
 			iul.errorMessage = resourceManager.getContext().getString(R.string.no_updates_available);
 			return iul;
 		}
-		long timestamp = ruf.mainFileInit;
-		for (RegionUpdate ru : ruf.monthUpdates.values()) {
-			timestamp = Math.max(ru.obfCreated, timestamp);
-		}
-		for (List<RegionUpdate> l : ruf.dayUpdates.values()) {
-			for (RegionUpdate ru : l) {
-				timestamp = Math.max(ru.obfCreated, timestamp);
-			}
-		}
+		long timestamp = getTimestamp(ruf);
 		try {
 			List<IncrementalUpdate> lst = getIncrementalUpdates(fileName, timestamp);
 			for(IncrementalUpdate iu : lst) {
@@ -341,5 +333,70 @@ public class IncrementalChangesManager {
 		return iul;
 	}
 
-	
+	public long getUpdatesSize(String fileName){
+		RegionUpdateFiles ruf = regions.get(fileName.toLowerCase());
+		if(ruf == null) {
+			return 0;
+		}
+		long size = 0;
+		for (List<RegionUpdate> regionUpdates : ruf.dayUpdates.values()) {
+			for (RegionUpdate regionUpdate : regionUpdates) {
+				size += regionUpdate.file.length();
+			}
+		}
+		for (RegionUpdate regionUpdate : ruf.monthUpdates.values()) {
+			size += regionUpdate.file.length();
+		}
+		return size;
+	}
+
+	public void deleteUpdates(String fileName){
+		RegionUpdateFiles ruf = regions.get(fileName.toLowerCase());
+		if(ruf == null) {
+			return;
+		}
+		for (List<RegionUpdate> regionUpdates : ruf.dayUpdates.values()) {
+			for (RegionUpdate regionUpdate : regionUpdates) {
+				boolean successful = Algorithms.removeAllFiles(regionUpdate.file);
+				if (successful) {
+					resourceManager.closeFile(regionUpdate.file.getName());
+				}
+			}
+		}
+		for (RegionUpdate regionUpdate : ruf.monthUpdates.values()) {
+			boolean successful = Algorithms.removeAllFiles(regionUpdate.file);
+			if (successful) {
+				resourceManager.closeFile(regionUpdate.file.getName());
+			}
+		}
+	}
+
+	public long getTimestamp(String fileName) {
+		RegionUpdateFiles ruf = regions.get(fileName.toLowerCase());
+		if(ruf == null) {
+			return System.currentTimeMillis();
+		}
+		return getTimestamp(ruf);
+	}
+
+	public long getMapTimestamp(String fileName) {
+		RegionUpdateFiles ruf = regions.get(fileName.toLowerCase());
+		if(ruf == null) {
+			return System.currentTimeMillis();
+		}
+		return ruf.mainFileInit;
+	}
+
+	private long getTimestamp(RegionUpdateFiles ruf) {
+		long timestamp = ruf.mainFileInit;
+		for (RegionUpdate ru : ruf.monthUpdates.values()) {
+			timestamp = Math.max(ru.obfCreated, timestamp);
+		}
+		for (List<RegionUpdate> l : ruf.dayUpdates.values()) {
+			for (RegionUpdate ru : l) {
+				timestamp = Math.max(ru.obfCreated, timestamp);
+			}
+		}
+		return timestamp;
+	}
 }

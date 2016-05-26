@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<dimen name="undo_bottom_offset">15dp</dimen>
+	<dimen name="touch_slop">32dp</dimen>
+
     <dimen name="list_item_height">50dp</dimen>
 	<dimen name="list_header_height">40dp</dimen>
 	<dimen name="dashboard_map_top_padding">240dp</dimen>
@@ -54,7 +57,8 @@
 	<dimen name="map_route_buttons_width">60dp</dimen>
 	<dimen name="map_route_buttons_height">54dp</dimen>
 	<dimen name="map_route_buttons_height_land">48dp</dimen>
-	
+	<dimen name="map_mode_button_width">56dp</dimen>
+
 	<dimen name="map_address_height">40dp</dimen>
 	<dimen name="map_button_size">52dp</dimen>
 	<dimen name="map_small_button_size">44dp</dimen>
@@ -85,7 +89,8 @@
 	<dimen name="map_button_stroke">1dp</dimen>
 	<dimen name="map_button_stroke_dark">1dp</dimen>
 	<dimen name="map_route_planning_land_width">320dp</dimen>
-	<dimen name="map_route_planning_max_height">280dp</dimen>
+	<dimen name="map_route_planning_land_width_minus_shadow">306dp</dimen>
+	<dimen name="map_route_planning_max_height">330dp</dimen>
 	<dimen name="map_minwidth_widget">100dp</dimen>
 	
 	
@@ -101,7 +106,23 @@
 	<dimen name="dash_margin">2dp</dimen>
 	<dimen name="dash_margin_h">6dp</dimen>
 
+
+	<!-- ContextMenu -->
+	<dimen name="context_menu_top_shadow_h">20dp</dimen>
+    <dimen name="context_menu_icon_top_padding">17dp</dimen>
+    <dimen name="context_menu_first_line_top_margin">14dp</dimen>
+    <dimen name="context_menu_first_line_bottom_margin">16dp</dimen>
+    <dimen name="context_menu_second_line_top_margin">4dp</dimen>
+    <dimen name="context_menu_top_right_button_min_width">76dp</dimen>
+    <dimen name="context_menu_button_padding_x">10dp</dimen>
+    <dimen name="context_menu_buttons_top_margin">-16dp</dimen>
+    <dimen name="context_menu_buttons_padding_bottom">4dp</dimen>
+    <dimen name="context_menu_progress_min_height">52dp</dimen>
+    <dimen name="context_menu_progress_cancel_button_size">44dp</dimen>
+    <dimen name="context_menu_action_buttons_h">54dp</dimen>
+
 	<dimen name="fab_size_with_shadow">62dp</dimen>
+    <dimen name="fab_margin_right">12dp</dimen>
 
     <!-- TextSizes -->
     <dimen name="default_list_text_size_large">19sp</dimen>

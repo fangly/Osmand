@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
@@ -23,12 +22,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import net.osmand.access.AccessibleToast;
 import net.osmand.plus.IconsCache;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.OsmandPlugin;
-import net.osmand.plus.ProgressImplementation;
 import net.osmand.plus.R;
+import net.osmand.plus.activities.MapActivity;
+import net.osmand.plus.dialogs.ProgressDialogFragment;
+import net.osmand.plus.osmedit.dialogs.SendPoiDialogFragment;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class OsmEditsUploadListenerHelper implements OsmEditsUploadListener {
 			}
 		}
 		if (uploaded == pointsNum) {
-			AccessibleToast.makeText(activity,
+			Toast.makeText(activity,
 					MessageFormat.format(numberFormat, uploaded),
 					Toast.LENGTH_LONG)
 					.show();
@@ -67,9 +67,24 @@ public class OsmEditsUploadListenerHelper implements OsmEditsUploadListener {
 			Log.v(TAG, "in if1");
 			OsmPoint point = loadErrorsMap.keySet().iterator().next();
 			String message = loadErrorsMap.get(point);
-			DialogFragment dialogFragment =
-					UploadingErrorDialogFragment.getInstance(message, point);
-			dialogFragment.show(activity.getSupportFragmentManager(), "error_loading");
+			if (message.equals(activity.getString(R.string.auth_failed))) {
+				SendPoiDialogFragment dialogFragment =
+						SendPoiDialogFragment.createInstance(new OsmPoint[]{point});
+				if (activity instanceof MapActivity) {
+					dialogFragment.setPoiUploader(new SendPoiDialogFragment.SimpleProgressDialogPoiUploader() {
+						@NonNull
+						@Override
+						protected MapActivity getMapActivity() {
+							return (MapActivity) activity;
+						}
+					});
+				}
+				dialogFragment.show(activity.getSupportFragmentManager(), "error_loading");
+			} else {
+				DialogFragment dialogFragment =
+						UploadingErrorDialogFragment.getInstance(message, point);
+				dialogFragment.show(activity.getSupportFragmentManager(), "error_loading");
+			}
 		} else {
 			UploadingMultipleErrorDialogFragment dialogFragment =
 					UploadingMultipleErrorDialogFragment.createInstance(loadErrorsMap);
@@ -79,25 +94,19 @@ public class OsmEditsUploadListenerHelper implements OsmEditsUploadListener {
 	}
 
 	private static void showUploadItemsProgressDialog(Fragment fragment, OsmPoint[] toUpload) {
-		FragmentActivity activity = fragment.getActivity();
+		MapActivity activity = (MapActivity) fragment.getActivity();
 		OsmEditingPlugin plugin = OsmandPlugin.getEnabledPlugin(OsmEditingPlugin.class);
-		OpenstreetmapRemoteUtil remotepoi = new OpenstreetmapRemoteUtil(activity);
-		OsmBugsRemoteUtil remotebug = new OsmBugsRemoteUtil((OsmandApplication) activity.getApplication());
-
 		OsmEditsUploadListenerHelper helper = new OsmEditsUploadListenerHelper(activity,
 				activity.getResources().getString(R.string.local_openstreetmap_were_uploaded));
 
-		Resources resources = activity.getResources();
-		ProgressDialog dialog = ProgressImplementation.createProgressDialog(
-				activity,
-				resources.getString(R.string.uploading),
-				resources.getString(R.string.local_openstreetmap_uploading),
-				ProgressDialog.STYLE_HORIZONTAL).getDialog();
+		ProgressDialogFragment dialog = ProgressDialogFragment.createInstance(
+				R.string.uploading,
+				R.string.local_openstreetmap_uploading,
+				ProgressDialog.STYLE_HORIZONTAL);
+		dialog.show(activity.getSupportFragmentManager(), ProgressDialogFragment.TAG);
 		UploadOpenstreetmapPointAsyncTask uploadTask = new UploadOpenstreetmapPointAsyncTask(
-				dialog, helper, plugin, remotepoi, remotebug, toUpload.length, false);
+				dialog, helper, plugin, toUpload.length, false, false);
 		uploadTask.execute(toUpload);
-
-		dialog.show();
 	}
 
 	public static final class UploadingErrorDialogFragment extends DialogFragment {
@@ -114,20 +123,22 @@ public class OsmEditsUploadListenerHelper implements OsmEditsUploadListener {
 			builder.setTitle(getResources().getString(R.string.failed_to_upload))
 					.setMessage(MessageFormat.format(
 							getResources().getString(R.string.error_message_pattern), errorMessage))
-					.setPositiveButton(R.string.shared_string_ok, null)
-					.setNeutralButton(getResources().getString(R.string.delete_change),
-							new DialogInterface.OnClickListener() {
-								public void onClick(@Nullable DialogInterface dialog, int id) {
-									OsmEditingPlugin plugin =
-											OsmandPlugin.getEnabledPlugin(OsmEditingPlugin.class);
-									if (point.getGroup() == OsmPoint.Group.BUG) {
-										plugin.getDBBug().deleteAllBugModifications(
-												(OsmNotesPoint) point);
-									} else if (point.getGroup() == OsmPoint.Group.POI) {
-										plugin.getDBPOI().deletePOI((OpenstreetmapPoint) point);
-									}
-								}
-							});
+					.setPositiveButton(R.string.shared_string_ok, null);
+			builder.setNeutralButton(getResources().getString(R.string.delete_change),
+					new DialogInterface.OnClickListener() {
+						public void onClick(@Nullable DialogInterface dialog, int id) {
+							OsmEditingPlugin plugin =
+									OsmandPlugin.getEnabledPlugin(OsmEditingPlugin.class);
+							assert point != null;
+							assert plugin != null;
+							if (point.getGroup() == OsmPoint.Group.BUG) {
+								plugin.getDBBug().deleteAllBugModifications(
+										(OsmNotesPoint) point);
+							} else if (point.getGroup() == OsmPoint.Group.POI) {
+								plugin.getDBPOI().deletePOI((OpenstreetmapPoint) point);
+							}
+						}
+					});
 			return builder.create();
 		}
 
@@ -155,6 +166,7 @@ public class OsmEditsUploadListenerHelper implements OsmEditsUploadListener {
 			boolean[] hasErrors = arguments.getBooleanArray(HAS_ERROR);
 			final OsmPoint[] points = (OsmPoint[]) arguments.getSerializable(POINTS_WITH_ERRORS);
 			int successfulUploads = 0;
+			assert hasErrors != null;
 			for (boolean hasError : hasErrors) {
 				if (!hasError) {
 					successfulUploads++;
@@ -242,7 +254,7 @@ public class OsmEditsUploadListenerHelper implements OsmEditsUploadListener {
 		@Override
 		public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 			View row = convertView;
-			PointHolder holder = null;
+			PointHolder holder;
 
 			if (row == null) {
 				LayoutInflater inflater = context.getLayoutInflater();
@@ -261,8 +273,8 @@ public class OsmEditsUploadListenerHelper implements OsmEditsUploadListener {
 			holder.pointNameTextView.setText(pointWrapper.point);
 			IconsCache cache = ((OsmandApplication) context.getApplication()).getIconsCache();
 			holder.checkedUncheckedImageView.setImageDrawable(pointWrapper.hasError ?
-					cache.getContentIcon(R.drawable.ic_action_remove_dark) :
-					cache.getContentIcon(R.drawable.ic_action_done));
+					cache.getThemedIcon(R.drawable.ic_action_remove_dark) :
+					cache.getThemedIcon(R.drawable.ic_action_done));
 
 			return row;
 		}

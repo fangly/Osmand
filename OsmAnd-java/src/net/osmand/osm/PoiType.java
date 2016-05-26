@@ -13,10 +13,13 @@ public class PoiType extends AbstractPoiType {
 	private String osmValue;
 	private String osmValue2;
 	
+	
+	private String nameTag;
 	private boolean text;
 	private boolean nameOnly;
 	private boolean relation;
-	
+	private int order = 90;
+
 
 	public PoiType(MapPoiTypes poiTypes, PoiCategory category, String name) {
 		super(name, poiTypes);
@@ -118,6 +121,14 @@ public class PoiType extends AbstractPoiType {
     public void setText(boolean text) {
     	this.text = text;
     }
+    
+    public String getNameTag() {
+		return nameTag;
+	}
+    
+    public void setNameTag(String nameTag) {
+		this.nameTag = nameTag;
+	}
 
 	public boolean isNameOnly() {
 		return nameOnly;
@@ -135,6 +146,14 @@ public class PoiType extends AbstractPoiType {
 		this.relation = relation;
 	}
 
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
 	@Override
 	public String toString() {
 		return "PoiType{" +
@@ -148,6 +167,7 @@ public class PoiType extends AbstractPoiType {
 				", text=" + text +
 				", nameOnly=" + nameOnly +
 				", relation=" + relation +
+				", order=" + order +
 				'}';
 	}
 }

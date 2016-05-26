@@ -1,5 +1,11 @@
 package net.osmand.plus.download;
 
+import net.osmand.IndexConstants;
+import net.osmand.map.OsmandRegions;
+import net.osmand.map.WorldRegion;
+import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.download.DownloadOsmandIndexesHelper.AssetIndexItem;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -11,31 +17,68 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import net.osmand.IndexConstants;
-import net.osmand.plus.OsmandApplication;
-import net.osmand.plus.WorldRegion;
-import net.osmand.plus.download.DownloadOsmandIndexesHelper.AssetIndexItem;
-
 public class DownloadResources extends DownloadResourceGroup {
 	public boolean isDownloadedFromInternet = false;
+	public boolean downloadFromInternetFailed = false;
 	public boolean mapVersionIsIncreased = false;
 	public OsmandApplication app;
 	private Map<String, String> indexFileNames = new LinkedHashMap<>();
 	private Map<String, String> indexActivatedFileNames = new LinkedHashMap<>();
 	private List<IndexItem> rawResources;
+	private Map<WorldRegion, List<IndexItem> > groupByRegion;
 	private List<IndexItem> itemsToUpdate = new ArrayList<>();
-	//public static final String WORLD_BASEMAP_KEY = "world_basemap.obf.zip";
 	public static final String WORLD_SEAMARKS_KEY = "world_seamarks_basemap";
 	
 	
 	public DownloadResources(OsmandApplication app) {
 		super(null, DownloadResourceGroupType.WORLD, "");
-		this.region = app.getWorldRegion();
+		this.region = app.getRegions().getWorldRegion();
 		this.app = app;
 	}
 	
 	public List<IndexItem> getItemsToUpdate() {
 		return itemsToUpdate;
+	}
+
+	public IndexItem getWorldBaseMapItem() {
+		DownloadResourceGroup worldMaps = getSubGroupById(DownloadResourceGroupType.WORLD_MAPS.getDefaultId());
+		IndexItem worldMap = null;
+		if (worldMaps != null) {
+			List<IndexItem> list = worldMaps.getIndividualResources();
+			if (list != null) {
+				for (IndexItem ii : list) {
+					if (ii.getBasename().equalsIgnoreCase(WorldRegion.WORLD_BASEMAP)) {
+						worldMap = ii;
+						break;
+					}
+				}
+			}
+		}
+		return worldMap;
+	}
+
+	public IndexItem getIndexItem(String fileName) {
+		IndexItem res = null;
+		if (rawResources == null) {
+			return null;
+		}
+		for (IndexItem item : rawResources) {
+			if (fileName.equals(item.getFileName())) {
+				res = item;
+				break;
+			}
+		}
+		return res;
+	}
+
+	public List<IndexItem> getIndexItems(WorldRegion region) {
+		if (groupByRegion != null) {
+			List<IndexItem> res = groupByRegion.get(region);
+			if (res != null) {
+				return res;
+			}
+		}
+		return new LinkedList<>();
 	}
 
 	public void updateLoadedFiles() {
@@ -59,33 +102,33 @@ public class DownloadResources extends DownloadResourceGroup {
 	public boolean checkIfItemOutdated(IndexItem item, java.text.DateFormat format) {
 		boolean outdated = false;
 		String sfName = item.getTargetFileName();
-		String indexactivateddate = indexActivatedFileNames.get(sfName);
-		String indexfilesdate = indexFileNames.get(sfName);
+		String indexActivatedDate = indexActivatedFileNames.get(sfName);
+		String indexFilesDate = indexFileNames.get(sfName);
 		item.setDownloaded(false);
 		item.setOutdated(false);
-		if(indexactivateddate == null && indexfilesdate == null) {
-			return outdated;
+		if (indexActivatedDate == null && indexFilesDate == null) {
+			return false;
 		}
 		item.setDownloaded(true);
 		String date = item.getDate(format);
 		boolean parsed = false;
-		if(indexactivateddate != null) {
+		if (indexActivatedDate != null) {
 			try {
-				item.setLocalTimestamp(format.parse(indexactivateddate).getTime());
+				item.setLocalTimestamp(format.parse(indexActivatedDate).getTime());
 				parsed = true;
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-		if (!parsed && indexfilesdate != null) {
+		if (!parsed && indexFilesDate != null) {
 			try {
-				item.setLocalTimestamp(format.parse(indexfilesdate).getTime());
+				item.setLocalTimestamp(format.parse(indexFilesDate).getTime());
 				parsed = true;
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-		if (date != null && !date.equals(indexactivateddate) && !date.equals(indexfilesdate)) {
+		if (date != null && !date.equals(indexActivatedDate) && !date.equals(indexFilesDate)) {
 			if ((item.getType() == DownloadActivityType.NORMAL_FILE && !item.extra)
 					|| item.getType() == DownloadActivityType.ROADS_FILE
 					|| item.getType() == DownloadActivityType.WIKIPEDIA_FILE
@@ -202,19 +245,14 @@ public class DownloadResources extends DownloadResourceGroup {
 		otherMapsGroup.addGroup(otherMapsScreen);
 
 		DownloadResourceGroup voiceGroup = new DownloadResourceGroup(this, DownloadResourceGroupType.VOICE_GROUP);
-		DownloadResourceGroup voiceScreenRec = new DownloadResourceGroup(voiceGroup, DownloadResourceGroupType.VOICE_REC);
 		DownloadResourceGroup voiceScreenTTS = new DownloadResourceGroup(voiceGroup, DownloadResourceGroupType.VOICE_TTS);
-		DownloadResourceGroup voiceRec = new DownloadResourceGroup(voiceGroup, DownloadResourceGroupType.VOICE_HEADER_REC);
+		DownloadResourceGroup voiceScreenRec = new DownloadResourceGroup(voiceGroup, DownloadResourceGroupType.VOICE_REC);
 		DownloadResourceGroup voiceTTS = new DownloadResourceGroup(voiceGroup, DownloadResourceGroupType.VOICE_HEADER_TTS);
+		DownloadResourceGroup voiceRec = new DownloadResourceGroup(voiceGroup, DownloadResourceGroupType.VOICE_HEADER_REC);
 
 		DownloadResourceGroup worldMaps = new DownloadResourceGroup(this, DownloadResourceGroupType.WORLD_MAPS);
 		Map<WorldRegion, List<IndexItem> > groupByRegion = new LinkedHashMap<WorldRegion, List<IndexItem>>();
-		
-		Map<String, WorldRegion> downloadIdForRegion = new LinkedHashMap<String, WorldRegion>();
-		for(WorldRegion wg : region.getFlattenedSubregions()) {
-			downloadIdForRegion.put(wg.getDownloadsId(), wg);
-		}
-		
+		OsmandRegions regs = app.getRegions();
 		for (IndexItem ii : resources) {
 			if (ii.getType() == DownloadActivityType.VOICE_FILE) {
 				if (ii.getFileName().endsWith(IndexConstants.TTSVOICE_INDEX_EXT_ZIP)) {
@@ -225,7 +263,7 @@ public class DownloadResources extends DownloadResourceGroup {
 				continue;
 			}
 			String basename = ii.getBasename().toLowerCase();
-			WorldRegion wg = downloadIdForRegion.get(basename);
+			WorldRegion wg = regs.getRegionDataByDownloadName(basename);
 			if (wg != null) {
 				if (!groupByRegion.containsKey(wg)) {
 					groupByRegion.put(wg, new ArrayList<IndexItem>());
@@ -239,6 +277,8 @@ public class DownloadResources extends DownloadResourceGroup {
 				}
 			}
 		}
+		this.groupByRegion = groupByRegion;
+
 		LinkedList<WorldRegion> queue = new LinkedList<WorldRegion>();
 		LinkedList<DownloadResourceGroup> parent = new LinkedList<DownloadResourceGroup>();
 		DownloadResourceGroup worldSubregions = new DownloadResourceGroup(this, DownloadResourceGroupType.SUBREGIONS);
@@ -282,8 +322,8 @@ public class DownloadResources extends DownloadResourceGroup {
 
 		voiceScreenTTS.addGroup(voiceTTS);
 		voiceScreenRec.addGroup(voiceRec);
-		voiceGroup.addGroup(voiceScreenRec);
 		voiceGroup.addGroup(voiceScreenTTS);
+		voiceGroup.addGroup(voiceScreenRec);
 		addGroup(voiceGroup);
 
 		createHillshadeSRTMGroups();
@@ -291,7 +331,6 @@ public class DownloadResources extends DownloadResourceGroup {
 		updateLoadedFiles();
 		return true;
 	}
-
 
 
 }

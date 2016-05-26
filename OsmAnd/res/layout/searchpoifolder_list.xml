@@ -23,12 +23,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-		android:maxLines="1"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
 		tools:text="@string/lorem_ipsum"
     	android:layout_marginRight="@dimen/list_content_padding"/>
          
     <ImageView
         android:id="@+id/options"
+        android:contentDescription="@string/search_poi_filter"
         android:layout_width="@dimen/list_item_height"
 		android:layout_gravity="center_vertical"
         android:layout_height="@dimen/list_item_height"

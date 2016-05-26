@@ -17,6 +17,7 @@ import android.widget.TextView;
 import net.osmand.plus.OsmandPlugin;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.PluginActivity;
+import net.osmand.plus.dashboard.tools.DashFragmentData;
 import net.osmand.plus.development.OsmandDevelopmentPlugin;
 
 import java.util.ArrayList;
@@ -30,7 +31,14 @@ import java.util.List;
  */
 public class DashPluginsFragment extends DashBaseFragment {
 	public static final String TAG = "DASH_PLUGINS_FRAGMENT";
-	public static final int TITLE_ID = R.string.prefs_plugins;
+	private static final int TITLE_ID = R.string.prefs_plugins;
+	public static final DashFragmentData.ShouldShowFunction SHOULD_SHOW_FUNCTION =
+			new DashboardOnMap.DefaultShouldShow() {
+				@Override
+				public int getTitleId() {
+					return TITLE_ID;
+				}
+			};
 	private List<OsmandPlugin> plugins;
 
 	private View.OnClickListener getListener(final OsmandPlugin plugin) {
@@ -122,10 +130,12 @@ public class DashPluginsFragment extends DashBaseFragment {
 		ImageButton logoView = (ImageButton) pluginView.findViewById(R.id.plugin_logo);
 		if (plugin.isActive()) {
 			logoView.setBackgroundResource(R.drawable.bg_plugin_logo_enabled);
+			logoView.setContentDescription(getString(R.string.shared_string_disable));
 		} else {
 			TypedArray attributes = getActivity().getTheme().obtainStyledAttributes(
 					new int[]{R.attr.bg_plugin_logo_disabled});
 			logoView.setBackgroundDrawable(attributes.getDrawable(0));
+			logoView.setContentDescription(getString(plugin.needsInstallation() ? R.string.access_shared_string_not_installed : R.string.shared_string_enable));
 			attributes.recycle();
 		}
 	}

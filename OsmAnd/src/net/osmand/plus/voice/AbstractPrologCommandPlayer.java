@@ -1,14 +1,8 @@
 package net.osmand.plus.voice;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import android.content.Context;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 import net.osmand.IndexConstants;
 import net.osmand.PlatformUtil;
@@ -22,6 +16,15 @@ import net.osmand.plus.api.AudioFocusHelper;
 
 import org.apache.commons.logging.Log;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
 import alice.tuprolog.InvalidLibraryException;
 import alice.tuprolog.InvalidTheoryException;
 import alice.tuprolog.NoSolutionException;
@@ -32,9 +35,6 @@ import alice.tuprolog.Struct;
 import alice.tuprolog.Term;
 import alice.tuprolog.Theory;
 import alice.tuprolog.Var;
-import android.content.Context;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 
 public abstract class AbstractPrologCommandPlayer implements CommandPlayer, StateChangedListener<ApplicationMode> {
 
@@ -103,6 +103,7 @@ public abstract class AbstractPrologCommandPlayer implements CommandPlayer, Stat
 		int notificationId = 1;
 		NotificationCompat.Builder notificationBuilder =
 				new NotificationCompat.Builder(ctx)
+						.setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
 						.setSmallIcon(R.drawable.icon)
 						.setContentTitle(ctx.getString(R.string.app_name))
 						.setContentText(message)
@@ -117,11 +118,13 @@ public abstract class AbstractPrologCommandPlayer implements CommandPlayer, Stat
 
 	@Override
 	public void stateChanged(ApplicationMode change) {
-		prologSystem.getTheoryManager().retract(new Struct("appMode", new Var()));
-		prologSystem.getTheoryManager()
+		if(prologSystem != null) {
+			prologSystem.getTheoryManager().retract(new Struct("appMode", new Var()));
+			prologSystem.getTheoryManager()
 				.assertA(
 						new Struct("appMode", new Struct(ctx.getSettings().APPLICATION_MODE.get().getStringKey()
 								.toLowerCase())), true, "", true);
+		}
 	}
 	
 	private void init(String voiceProvider, OsmandSettings settings, String configFile) throws CommandPlayerException {
@@ -256,6 +259,9 @@ public abstract class AbstractPrologCommandPlayer implements CommandPlayer, Stat
 
 	@Override
 	public void clear() {
+		if(ctx != null && ctx.getSettings() != null) {
+			ctx.getSettings().APPLICATION_MODE.removeListener(this);
+		}
 		ctx = null;
 		prologSystem = null;
 	}

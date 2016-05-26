@@ -15,6 +15,7 @@ import android.text.style.ImageSpan;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import net.osmand.IndexConstants;
 import net.osmand.plus.OsmAndLocationProvider;
 import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.OsmandPlugin;
@@ -34,19 +35,16 @@ import java.util.List;
  */
 public class FavoritesActivity extends TabActivity {
 
-//	private static final String FAVOURITES_INFO = "FAVOURITES_INFO";
-	private static final String TRACKS = "TRACKS";
 	public static final int  GPX_TAB = R.string.shared_string_my_tracks;
 	public static final int  FAV_TAB = R.string.shared_string_my_favorites;
-//	private static final String SELECTED_TRACK = "SELECTED_TRACK";
-	public static String TAB_PARAM = "TAB_PARAM";
-	protected List<WeakReference<Fragment>> fragList = new ArrayList<WeakReference<Fragment>>();
+	protected List<WeakReference<Fragment>> fragList = new ArrayList<>();
 	private int tabSize;
 
 	@Override
 	public void onCreate(Bundle icicle) {
 		((OsmandApplication) getApplication()).applyTheme(this);
 		super.onCreate(icicle);
+		//noinspection ConstantConditions
 		getSupportActionBar().setTitle(R.string.shared_string_my_places);
 		getSupportActionBar().setElevation(0);
 
@@ -56,8 +54,6 @@ public class FavoritesActivity extends TabActivity {
 		setTabs(mTabs);
 		// setupHomeButton();
 	}
-	
-	
 
 	private void setTabs(List<TabItem> mTabs) {
 		PagerSlidingTabStrip mSlidingTabLayout = (PagerSlidingTabStrip) findViewById(R.id.sliding_tabs);
@@ -77,7 +73,7 @@ public class FavoritesActivity extends TabActivity {
 	}
 
 	private List<TabItem> getTabItems() {
-		File[] lf = ((OsmandApplication) getApplication()).getAppPath(TRACKS).listFiles();
+		File[] lf = ((OsmandApplication) getApplication()).getAppPath(IndexConstants.GPX_INDEX_DIR).listFiles();
 		boolean hasGpx = false;
 		if (lf != null) {
 			for (File t : lf) {
@@ -88,10 +84,10 @@ public class FavoritesActivity extends TabActivity {
 			}
 		}
 
-		List<TabItem> mTabs = new ArrayList<TabItem>();
-		mTabs.add(getTabIndicator(R.string.shared_string_my_favorites, FavoritesTreeFragment.class));
+		List<TabItem> mTabs = new ArrayList<>();
+		mTabs.add(getTabIndicator(FAV_TAB, FavoritesTreeFragment.class));
 		if (hasGpx) {
-			mTabs.add(getTabIndicator(R.string.shared_string_my_tracks, AvailableGPXFragment.class));
+			mTabs.add(getTabIndicator(GPX_TAB, AvailableGPXFragment.class));
 		}
 		OsmandPlugin.addMyPlacesTabPlugins(this, mTabs, getIntent());
 		return mTabs;
@@ -99,7 +95,7 @@ public class FavoritesActivity extends TabActivity {
 
 	@Override
 	public void onAttachFragment(Fragment fragment) {
-		fragList.add(new WeakReference<Fragment>(fragment));
+		fragList.add(new WeakReference<>(fragment));
 	}
 
 	@Override

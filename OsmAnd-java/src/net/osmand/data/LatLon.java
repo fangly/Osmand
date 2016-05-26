@@ -15,11 +15,11 @@ public class LatLon implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(latitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(longitude);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		int temp;
+		temp = (int)Math.floor(latitude * 10000);
+		result = prime * result + temp;
+		temp = (int)Math.floor(longitude * 10000);
+		result = prime * result + temp;
 		return result;
 	}
 
@@ -31,12 +31,10 @@ public class LatLon implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+
 		LatLon other = (LatLon) obj;
-		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
-			return false;
-		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
-			return false;
-		return true;
+		return Math.abs(latitude - other.latitude) < 0.00001
+				&& Math.abs(longitude - other.longitude) < 0.00001;
 	}
 
 	@Override

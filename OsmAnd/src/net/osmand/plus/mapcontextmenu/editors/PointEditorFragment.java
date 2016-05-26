@@ -3,7 +3,6 @@ package net.osmand.plus.mapcontextmenu.editors;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.osmand.AndroidUtils;
 import net.osmand.data.LatLon;
 import net.osmand.data.QuadPoint;
 import net.osmand.data.RotatedTileBox;
@@ -33,31 +33,16 @@ import net.osmand.plus.R;
 import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.mapcontextmenu.MapContextMenu;
 import net.osmand.plus.mapcontextmenu.MapContextMenuFragment;
-import net.osmand.plus.mapcontextmenu.editors.dialogs.SelectCategoryDialogFragment;
 import net.osmand.plus.views.AnimateDraggingMapThread;
 import net.osmand.plus.views.OsmandMapTileView;
 import net.osmand.plus.widgets.AutoCompleteTextViewEx;
 import net.osmand.util.Algorithms;
 
-import static android.util.TypedValue.COMPLEX_UNIT_DIP;
-
 public abstract class PointEditorFragment extends Fragment {
 
 	private View view;
 	private int mainViewHeight;
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		getEditor().saveState(outState);
-	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		if (savedInstanceState != null)
-			getEditor().restoreState(savedInstanceState);
-	}
+	private EditText nameEdit;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -68,9 +53,38 @@ public abstract class PointEditorFragment extends Fragment {
 
 		view = inflater.inflate(R.layout.point_editor_fragment, container, false);
 
+		getEditor().updateLandscapePortrait();
+		getEditor().updateNightMode();
+
+		if (getEditor().isLandscapeLayout()) {
+			AndroidUtils.setBackground(view.getContext(), view, !getEditor().isLight(),
+					R.drawable.bg_left_menu_light, R.drawable.bg_left_menu_dark);
+		} else {
+			AndroidUtils.setBackground(view.getContext(), view.findViewById(R.id.title_view), !getEditor().isLight(),
+					R.drawable.bg_point_editor_view_light, R.drawable.bg_point_editor_view_dark);
+		}
+
+		View editorScrollView = view.findViewById(R.id.editor_scroll_view);
+		if (editorScrollView != null && getEditor().isLandscapeLayout()) {
+			if (getEditor().isLight()) {
+				editorScrollView.setBackgroundColor(getResources().getColor(R.color.ctx_menu_info_view_bg_light));
+			} else {
+				editorScrollView.setBackgroundColor(getResources().getColor(R.color.ctx_menu_info_view_bg_dark));
+			}
+		}
+		View descriptionInfoView = view.findViewById(R.id.description_info_view);
+		if (descriptionInfoView != null) {
+			if (getEditor().isLight()) {
+				descriptionInfoView.setBackgroundColor(getResources().getColor(R.color.ctx_menu_info_view_bg_light));
+			} else {
+				descriptionInfoView.setBackgroundColor(getResources().getColor(R.color.ctx_menu_info_view_bg_dark));
+			}
+		}
+
 		Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
 		toolbar.setTitle(getToolbarTitle());
 		toolbar.setNavigationIcon(getMyApplication().getIconsCache().getIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+		toolbar.setNavigationContentDescription(R.string.access_shared_string_navigate_up);
 		toolbar.setTitleTextColor(getResources().getColor(getResIdFromAttribute(getMapActivity(), R.attr.pstsTextColor)));
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
@@ -79,7 +93,17 @@ public abstract class PointEditorFragment extends Fragment {
 			}
 		});
 
-		Button saveButton = (Button)toolbar.findViewById(R.id.save_button);
+		View scrollViewHeader = view.findViewById(R.id.editor_scroll_view_header);
+		if (scrollViewHeader != null) {
+			scrollViewHeader.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					dismiss();
+				}
+			});
+		}
+
+		Button saveButton = (Button) toolbar.findViewById(R.id.save_button);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -87,7 +111,15 @@ public abstract class PointEditorFragment extends Fragment {
 			}
 		});
 
-		ImageButton deleteButton = (ImageButton)toolbar.findViewById(R.id.delete_button);
+		ImageButton okButton = (ImageButton) toolbar.findViewById(R.id.ok_button);
+		okButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				savePressed();
+			}
+		});
+
+		ImageButton deleteButton = (ImageButton) toolbar.findViewById(R.id.delete_button);
 		deleteButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -96,21 +128,28 @@ public abstract class PointEditorFragment extends Fragment {
 		});
 
 		if (getEditor().isNew()) {
+			okButton.setVisibility(View.GONE);
 			deleteButton.setVisibility(View.GONE);
 		} else {
 			saveButton.setVisibility(View.GONE);
 		}
 
 		TextView headerCaption = (TextView) view.findViewById(R.id.header_caption);
+		AndroidUtils.setTextPrimaryColor(view.getContext(), headerCaption, !getEditor().isLight());
 		headerCaption.setText(getHeaderCaption());
 		TextView nameCaption = (TextView) view.findViewById(R.id.name_caption);
+		AndroidUtils.setTextSecondaryColor(view.getContext(), nameCaption, !getEditor().isLight());
 		nameCaption.setText(getNameCaption());
 		TextView categoryCaption = (TextView) view.findViewById(R.id.category_caption);
+		AndroidUtils.setTextSecondaryColor(view.getContext(), categoryCaption, !getEditor().isLight());
 		categoryCaption.setText(getCategoryCaption());
 
-		EditText nameEdit = (EditText) view.findViewById(R.id.name_edit);
+		nameEdit = (EditText) view.findViewById(R.id.name_edit);
+		AndroidUtils.setTextPrimaryColor(view.getContext(), nameEdit, !getEditor().isLight());
+		AndroidUtils.setHintTextSecondaryColor(view.getContext(), nameEdit, !getEditor().isLight());
 		nameEdit.setText(getNameInitValue());
 		AutoCompleteTextViewEx categoryEdit = (AutoCompleteTextViewEx) view.findViewById(R.id.category_edit);
+		AndroidUtils.setTextPrimaryColor(view.getContext(), categoryEdit, !getEditor().isLight());
 		categoryEdit.setText(getCategoryInitValue());
 		categoryEdit.setFocusable(false);
 		categoryEdit.setOnTouchListener(new View.OnTouchListener() {
@@ -127,6 +166,8 @@ public abstract class PointEditorFragment extends Fragment {
 		});
 
 		EditText descriptionEdit = (EditText) view.findViewById(R.id.description_edit);
+		AndroidUtils.setTextPrimaryColor(view.getContext(), descriptionEdit, !getEditor().isLight());
+		AndroidUtils.setHintTextSecondaryColor(view.getContext(), descriptionEdit, !getEditor().isLight());
 		if (getDescriptionInitValue() != null) {
 			descriptionEdit.setText(getDescriptionInitValue());
 		}
@@ -139,6 +180,15 @@ public abstract class PointEditorFragment extends Fragment {
 		ImageView descriptionImage = (ImageView) view.findViewById(R.id.description_image);
 		descriptionImage.setImageDrawable(getRowIcon(R.drawable.ic_action_note_dark));
 
+		if (getMyApplication().accessibilityEnabled()) {
+			headerCaption.setFocusable(true);
+			nameCaption.setFocusable(true);
+			categoryCaption.setFocusable(true);
+			nameEdit.setHint(R.string.access_hint_enter_name);
+			categoryEdit.setHint(R.string.access_hint_enter_category);
+			descriptionEdit.setHint(R.string.access_hint_enter_description);
+		}
+
 		runLayoutListener();
 
 		return view;
@@ -146,15 +196,24 @@ public abstract class PointEditorFragment extends Fragment {
 
 	public Drawable getRowIcon(int iconId) {
 		IconsCache iconsCache = getMyApplication().getIconsCache();
-		boolean light = getMyApplication().getSettings().isLightContent();
 		return iconsCache.getIcon(iconId,
-				light ? R.color.icon_color : R.color.icon_color_light);
+				getEditor().isLight() ? R.color.icon_color : R.color.icon_color_light);
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
 		getMapActivity().getContextMenu().setBaseFragmentVisibility(false);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (getEditor().isNew()) {
+			nameEdit.selectAll();
+			nameEdit.requestFocus();
+			AndroidUtils.softKeyboardDelayed(nameEdit);
+		}
 	}
 
 	@Override
@@ -170,7 +229,6 @@ public abstract class PointEditorFragment extends Fragment {
 			save(false);
 		}
 		super.onDestroyView();
-
 		getActivity().findViewById(R.id.MapHudButtonsOverlay).setVisibility(View.VISIBLE);
 	}
 
@@ -183,7 +241,7 @@ public abstract class PointEditorFragment extends Fragment {
 		RotatedTileBox box = map.getCurrentRotatedTileBox();
 		int origMarkerY = (int)box.getPixYFromLatLon(markerLat, markerLon);
 
-		int markerPaddingPx = dpToPx(MapContextMenuFragment.MARKER_PADDING_DP);
+		int markerPaddingPx = AndroidUtils.dpToPx(getMapActivity(), MapContextMenuFragment.MARKER_PADDING_DP);
 
 		int y = view.getHeight() - mainViewHeight;
 
@@ -231,19 +289,33 @@ public abstract class PointEditorFragment extends Fragment {
 				} else {
 					obs.removeGlobalOnLayoutListener(this);
 				}
+				updateScrollHeaderHeight();
 				adjustMapPosition(true);
 			}
 
 		});
 	}
 
+	private void updateScrollHeaderHeight() {
+		View scrollViewHeader = view.findViewById(R.id.editor_scroll_view_header);
+		if (scrollViewHeader != null) {
+			View scrollView = view.findViewById(R.id.editor_scroll_view);
+			int headerHeight = scrollView.getHeight() - mainViewHeight;
+			ViewGroup.LayoutParams p = scrollViewHeader.getLayoutParams();
+			p.height = headerHeight;
+			scrollViewHeader.setLayoutParams(p);
+		}
+	}
+
 	private void hideKeyboard() {
 		InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-		View currentFocus =  getActivity().getCurrentFocus();
-		if (currentFocus != null) {
-			IBinder windowToken = currentFocus.getWindowToken();
-			if (windowToken != null) {
-				inputMethodManager.hideSoftInputFromWindow(windowToken, 0);
+		if (inputMethodManager != null) {
+			View currentFocus = getActivity().getCurrentFocus();
+			if (currentFocus != null) {
+				IBinder windowToken = currentFocus.getWindowToken();
+				if (windowToken != null) {
+					inputMethodManager.hideSoftInputFromWindow(windowToken, 0);
+				}
 			}
 		}
 	}
@@ -273,10 +345,16 @@ public abstract class PointEditorFragment extends Fragment {
 
 	public void setCategory(String name) {
 		AutoCompleteTextViewEx categoryEdit = (AutoCompleteTextViewEx) view.findViewById(R.id.category_edit);
-		String n = name.length() == 0 ? getString(R.string.shared_string_favorites) : name;
+		String n = name.length() == 0 ? getDefaultCategoryName() : name;
 		categoryEdit.setText(n);
 		ImageView categoryImage = (ImageView) view.findViewById(R.id.category_image);
 		categoryImage.setImageDrawable(getCategoryIcon());
+		ImageView nameImage = (ImageView) view.findViewById(R.id.name_image);
+		nameImage.setImageDrawable(getNameIcon());
+	}
+
+	protected String getDefaultCategoryName() {
+		return getString(R.string.shared_string_none);
 	}
 
 	protected MapActivity getMapActivity() {
@@ -296,7 +374,6 @@ public abstract class PointEditorFragment extends Fragment {
 
 	public void dismiss(boolean includingMenu) {
 		if (includingMenu) {
-			//getMapActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 			getMapActivity().getSupportFragmentManager().popBackStack();
 			getMapActivity().getContextMenu().close();
 		} else {
@@ -328,7 +405,7 @@ public abstract class PointEditorFragment extends Fragment {
 	public String getCategoryTextValue() {
 		AutoCompleteTextViewEx categoryEdit = (AutoCompleteTextViewEx) view.findViewById(R.id.category_edit);
 		String name = categoryEdit.getText().toString().trim();
-		return name.equals(getString(R.string.shared_string_favorites)) ? "" : name;
+		return name.equals(getDefaultCategoryName()) ? "" : name;
 	}
 
 	public String getDescriptionTextValue() {
@@ -337,14 +414,8 @@ public abstract class PointEditorFragment extends Fragment {
 		return Algorithms.isEmpty(res) ? null : res;
 	}
 
-	// Utils
-	private int dpToPx(float dp) {
-		Resources r = getActivity().getResources();
-		return (int) TypedValue.applyDimension(
-				COMPLEX_UNIT_DIP,
-				dp,
-				r.getDisplayMetrics()
-		);
+	protected Drawable getPaintedIcon(int iconId, int color) {
+		IconsCache iconsCache = getMapActivity().getMyApplication().getIconsCache();
+		return iconsCache.getPaintedIcon(iconId, color);
 	}
-
 }

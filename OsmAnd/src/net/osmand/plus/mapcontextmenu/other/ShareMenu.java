@@ -27,7 +27,7 @@ public class ShareMenu extends BaseMenuController {
 		MESSAGE(R.drawable.ic_action_message, R.string.shared_string_send),
 		CLIPBOARD(R.drawable.ic_action_copy, R.string.shared_string_copy),
 		GEO(R.drawable.ic_world_globe_dark, R.string.share_geo),
-		QR_CODE(R.drawable.ic_action_qrcode, R.string.share_qr_code);
+		QR_CODE(R.drawable.ic_action_qrcode, R.string.shared_string_qr_code);
 
 		final int iconResourceId;
 		final int titleResourceId;
@@ -86,7 +86,7 @@ public class ShareMenu extends BaseMenuController {
 		if (!Algorithms.isEmpty(title)) {
 			sb.append(title).append("\n");
 		}
-		sb.append(getMapActivity().getString(R.string.search_tabs_location)).append(": ");
+		sb.append(getMapActivity().getString(R.string.shared_string_location)).append(": ");
 		sb.append(geoUrl).append("\n").append(httpUrl);
 		String sms = sb.toString();
 		switch (item) {

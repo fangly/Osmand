@@ -28,28 +28,55 @@ import static android.util.TypedValue.COMPLEX_UNIT_DIP;
 
 public class ColorDialogs {
 	public static int[] paletteColors = new int[] {
-			R.string.color_red,
-			R.string.color_pink,
-			R.string.color_orange,
-			R.string.color_brown,
-			R.string.color_yellow,
-			R.string.color_lightblue,
-			R.string.color_blue,
-			R.string.color_green
+			R.string.rendering_value_red_name,
+			R.string.rendering_value_orange_name,
+			R.string.rendering_value_yellow_name,
+			R.string.rendering_value_lightgreen_name,
+			R.string.rendering_value_green_name,
+			R.string.rendering_value_lightblue_name,
+			R.string.rendering_value_blue_name,
+			R.string.rendering_value_purple_name,
+			R.string.rendering_value_pink_name,
+			R.string.rendering_value_brown_name
 	};
 	
 	public static int[] pallette = new int[] {
 			0xb4d00d0d,
-			0xb4e044bb,
 			0xb4ff5020,
-			0xb48e2512,
 			0xb4eeee10,
+			0xb488e030,
+			0xb400842b,
 			0xb410c0f0,
 			0xb41010a0,
-			0xb488e030
+			0xb4a71de1,
+			0xb4e044bb,
+			0xb48e2512
 	};
 
-	
+	public static String[] paletteColorTags = new String[] {
+			"red",
+			"orange",
+			"yellow",
+			"lightgreen",
+			"green",
+			"lightblue",
+			"blue",
+			"purple",
+			"pink",
+			"brown"
+	};
+
+	public static int getColorByTag(String tag) {
+		String t = tag.toLowerCase();
+		for (int i = 0; i < paletteColorTags.length; i++) {
+			String colorTag = paletteColorTags[i];
+			if (colorTag.equals(t)) {
+				return pallette[i];
+			}
+		}
+		return 0;
+	}
+
 	public static void setupColorSpinner(Context ctx, int selectedColor, final Spinner colorSpinner, 
 			final TIntArrayList colors) {
 		 OnItemSelectedListener listener = new OnItemSelectedListener() {
@@ -80,7 +107,7 @@ public class ColorDialogs {
         }
         if(selection == -1) {
         	colors.insert(0, selectedColor);
-        	colorNames.add(0, colorToString(selectedColor));
+        	colorNames.add(0, ((OsmandApplication)ctx.getApplicationContext()).accessibilityEnabled() ? ctx.getString(R.string.access_default_color) : colorToString(selectedColor));
         	selection = 0;
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_item, colorNames) {

@@ -1,9 +1,25 @@
 package net.osmand.plus.download.ui;
 
-import java.io.File;
-import java.text.DateFormat;
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.PopupMenu;
+import android.util.TypedValue;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import net.osmand.access.AccessibleToast;
+import net.osmand.map.WorldRegion;
 import net.osmand.plus.OsmandPlugin;
 import net.osmand.plus.R;
 import net.osmand.plus.Version;
@@ -16,26 +32,10 @@ import net.osmand.plus.download.DownloadResources;
 import net.osmand.plus.download.IndexItem;
 import net.osmand.plus.download.ui.LocalIndexesFragment.LocalIndexOperationTask;
 import net.osmand.plus.helpers.FileNameTranslationHelper;
-import net.osmand.plus.openseamapsplugin.NauticalMapsPlugin;
 import net.osmand.plus.srtmplugin.SRTMPlugin;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.PopupMenu;
-import android.util.TypedValue;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import java.io.File;
+import java.text.DateFormat;
 
 public class ItemViewHolder {
 
@@ -58,13 +58,13 @@ public class ItemViewHolder {
 	
 	boolean showTypeInDesc;
 	boolean showTypeInName;
+	boolean showParentRegionName;
 	boolean showRemoteDate;
 	boolean silentCancelDownload;
 	boolean showProgressInDesc;
 	
 	private DateFormat dateFormat;
 
-	
 
 	private enum RightButtonAction {
 		DOWNLOAD,
@@ -80,11 +80,14 @@ public class ItemViewHolder {
 		dateFormat = android.text.format.DateFormat.getMediumDateFormat(context);
 		progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
 		rightButton = (Button) view.findViewById(R.id.rightButton);
-		leftImageView = (ImageView) view.findViewById(R.id.leftImageView);
+		leftImageView = (ImageView) view.findViewById(R.id.icon);
 		descrTextView = (TextView) view.findViewById(R.id.description);
-		rightImageButton = (ImageView) view.findViewById(R.id.rightImageButton);
-		nameTextView = (TextView) view.findViewById(R.id.name);
-		
+		rightImageButton = (ImageView) view.findViewById(R.id.secondaryIcon);
+		nameTextView = (TextView) view.findViewById(R.id.title);
+
+		ViewCompat.setAccessibilityDelegate(view, context.getAccessibilityAssistant());
+		ViewCompat.setAccessibilityDelegate(rightButton, context.getAccessibilityAssistant());
+		ViewCompat.setAccessibilityDelegate(rightImageButton, context.getAccessibilityAssistant());
 
 		TypedValue typedValue = new TypedValue();
 		Resources.Theme theme = context.getTheme();
@@ -96,6 +99,11 @@ public class ItemViewHolder {
 	
 	public void setShowRemoteDate(boolean showRemoteDate) {
 		this.showRemoteDate = showRemoteDate;
+	}
+	
+	
+	public void setShowParentRegionName(boolean showParentRegionName) {
+		this.showParentRegionName = showParentRegionName;
 	}
 	
 	public void setShowProgressInDescr(boolean b) {
@@ -114,17 +122,14 @@ public class ItemViewHolder {
 		this.showTypeInName = showTypeInName;
 	}
 
-
-	// FIXME don't initialize on every row 
 	private void initAppStatusVariables() {
-		srtmDisabled = OsmandPlugin.getEnabledPlugin(SRTMPlugin.class) == null;
-		nauticalPluginDisabled = OsmandPlugin.getEnabledPlugin(NauticalMapsPlugin.class) == null;
-		freeVersion = Version.isFreeVersion(context.getMyApplication());
-		OsmandPlugin srtmPlugin = OsmandPlugin.getPlugin(SRTMPlugin.class);
-		srtmNeedsInstallation = srtmPlugin == null || srtmPlugin.needsInstallation();
+		srtmDisabled = context.isSrtmDisabled();
+		nauticalPluginDisabled = context.isNauticalPluginDisabled();
+		freeVersion = context.isFreeVersion();
+		srtmNeedsInstallation = context.isSrtmNeedsInstallation();
 	}
 
-	public void bindIndexItem(final IndexItem indexItem, final DownloadResourceGroup parentOptional) {
+	public void bindIndexItem(final IndexItem indexItem) {
 		initAppStatusVariables();
 		boolean isDownloading = context.getDownloadThread().isDownloading(indexItem);
 		int progress = -1;
@@ -136,7 +141,7 @@ public class ItemViewHolder {
 		if(showTypeInName) {
 			nameTextView.setText(indexItem.getType().getString(context));
 		} else {
-			nameTextView.setText(indexItem.getVisibleName(context, context.getMyApplication().getRegions(), false));
+			nameTextView.setText(indexItem.getVisibleName(context, context.getMyApplication().getRegions(), showParentRegionName));
 		}
 		if(!disabled) {
 			nameTextView.setTextColor(textColorPrimary);
@@ -187,7 +192,7 @@ public class ItemViewHolder {
 				double mb = indexItem.getArchiveSizeMB();
 				String v ;
 				if (progress != -1) {
-					v = context.getString(R.string.value_downloaded_from_max, mb * progress / 100, mb);
+					v = context.getString(R.string.value_downloaded_of_max, mb * progress / 100, mb);
 				} else {
 					v = context.getString(R.string.file_size_in_mb, mb);
 				}
@@ -207,6 +212,10 @@ public class ItemViewHolder {
 
 	protected void download(IndexItem indexItem, DownloadResourceGroup parentOptional) {
 		boolean handled = false;
+		if(parentOptional != null) {
+			WorldRegion region = DownloadResourceGroup.getRegion(parentOptional);
+			context.setDownloadItem(region, indexItem.getTargetFile(context.getMyApplication()).getAbsolutePath());
+		}
 		if (indexItem.getType() == DownloadActivityType.ROADS_FILE && parentOptional != null) {
 			for (IndexItem ii : parentOptional.getIndividualResources()) {
 				if (ii.getType() == DownloadActivityType.NORMAL_FILE) {
@@ -241,7 +250,7 @@ public class ItemViewHolder {
 	private boolean checkDisabledAndClickAction(final IndexItem item) {
 		RightButtonAction clickAction = getClickAction(item);
 		boolean disabled = clickAction != RightButtonAction.DOWNLOAD;
-		OnClickListener action = getRightButtonAction(item, clickAction, null);
+		OnClickListener action = getRightButtonAction(item, clickAction);
 		if (clickAction != RightButtonAction.DOWNLOAD) {
 			rightButton.setText(R.string.get_plugin);
 			rightButton.setVisibility(View.VISIBLE);
@@ -253,10 +262,13 @@ public class ItemViewHolder {
 			final boolean isDownloading = context.getDownloadThread().isDownloading(item);
 			if (isDownloading) {
 				rightImageButton.setImageDrawable(getContentIcon(context, R.drawable.ic_action_remove_dark));
+				rightImageButton.setContentDescription(context.getString(R.string.shared_string_cancel));
 			} else if(item.isDownloaded() && !item.isOutdated()) {
 				rightImageButton.setImageDrawable(getContentIcon(context, R.drawable.ic_overflow_menu_white));
+				rightImageButton.setContentDescription(context.getString(R.string.shared_string_more));
 			} else {
 				rightImageButton.setImageDrawable(getContentIcon(context, R.drawable.ic_action_import));
+				rightImageButton.setContentDescription(context.getString(R.string.shared_string_download));
 			}
 			rightImageButton.setOnClickListener(action);
 		}
@@ -284,7 +296,7 @@ public class ItemViewHolder {
 		return clickAction;
 	}
 
-	public OnClickListener getRightButtonAction(final IndexItem item, final RightButtonAction clickAction, final DownloadResourceGroup parentOptional) {
+	public OnClickListener getRightButtonAction(final IndexItem item, final RightButtonAction clickAction) {
 		if (clickAction != RightButtonAction.DOWNLOAD) {
 			return new View.OnClickListener() {
 				@Override
@@ -298,7 +310,7 @@ public class ItemViewHolder {
 					case ASK_FOR_SEAMARKS_PLUGIN:
 						context.startActivity(new Intent(context, context.getMyApplication().getAppCustomization()
 								.getPluginsActivity()));
-						AccessibleToast.makeText(context.getApplicationContext(),
+						Toast.makeText(context.getApplicationContext(),
 								context.getString(R.string.activate_seamarks_plugin), Toast.LENGTH_SHORT).show();
 						break;
 					case ASK_FOR_SRTM_PLUGIN_PURCHASE:
@@ -308,7 +320,7 @@ public class ItemViewHolder {
 					case ASK_FOR_SRTM_PLUGIN_ENABLE:
 						context.startActivity(new Intent(context, context.getMyApplication().getAppCustomization()
 								.getPluginsActivity()));
-						AccessibleToast.makeText(context, context.getString(R.string.activate_srtm_plugin),
+						Toast.makeText(context, context.getString(R.string.activate_srtm_plugin),
 								Toast.LENGTH_SHORT).show();
 						break;
 					case DOWNLOAD:
@@ -328,9 +340,9 @@ public class ItemViewHolder {
 							context.makeSureUserCancelDownload(item);
 						}
 					} else if(item.isDownloaded() && !item.isOutdated()){
-						contextMenu(v, item, parentOptional);
+						contextMenu(v, item, item.getRelatedGroup());
 					} else {
-						download(item, parentOptional);
+						download(item, item.getRelatedGroup());
 					}
 				}
 			};
@@ -343,8 +355,8 @@ public class ItemViewHolder {
 		
 		final File fl = indexItem.getTargetFile(context.getMyApplication());
 		if (fl.exists()) {
-			item = optionsMenu.getMenu().add(R.string.shared_string_delete).setIcon(
-							context.getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_remove_dark));
+			item = optionsMenu.getMenu().add(R.string.shared_string_remove).setIcon(
+							context.getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_remove_dark));
 			item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 				@Override
 				public boolean onMenuItemClick(MenuItem item) {
@@ -361,8 +373,8 @@ public class ItemViewHolder {
 						tp = indexItem.getBasename().contains("tts") ? LocalIndexType.TTS_VOICE_DATA
 								: LocalIndexType.VOICE_DATA;
 					}
-					final LocalIndexInfo info = new LocalIndexInfo(tp, fl, false);
-					Builder confirm = new Builder(context);
+					final LocalIndexInfo info = new LocalIndexInfo(tp, fl, false, context.getMyApplication());
+					AlertDialog.Builder confirm = new AlertDialog.Builder(context);
 					confirm.setPositiveButton(R.string.shared_string_yes, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
@@ -380,7 +392,7 @@ public class ItemViewHolder {
 			});
 		}
 		item = optionsMenu.getMenu().add(R.string.shared_string_download)
-				.setIcon(context.getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_import));
+				.setIcon(context.getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_import));
 		item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
@@ -393,10 +405,10 @@ public class ItemViewHolder {
 	}
 
 	private Drawable getContentIcon(DownloadActivity context, int resourceId) {
-		return context.getMyApplication().getIconsCache().getContentIcon(resourceId);
+		return context.getMyApplication().getIconsCache().getThemedIcon(resourceId);
 	}
 
 	private Drawable getContentIcon(DownloadActivity context, int resourceId, int color) {
-		return context.getMyApplication().getIconsCache().getPaintedContentIcon(resourceId, color);
+		return context.getMyApplication().getIconsCache().getPaintedIcon(resourceId, color);
 	}
 }

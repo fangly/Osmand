@@ -1,11 +1,16 @@
 package net.osmand.plus.activities;
 
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import net.osmand.PlatformUtil;
-import net.osmand.access.AccessibleToast;
 import net.osmand.data.QuadRect;
 import net.osmand.data.RotatedTileBox;
 import net.osmand.map.ITileSource;
@@ -23,18 +28,8 @@ import net.osmand.util.MapUtils;
 
 import org.apache.commons.logging.Log;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.text.MessageFormat;
+import java.util.List;
 
 public class DownloadTilesDialog {
 
@@ -54,11 +49,11 @@ public class DownloadTilesDialog {
 	public void openDialog(){
 		BaseMapLayer mainLayer = mapView.getMainLayer();
 		if(!(mainLayer instanceof MapTileLayer) || !((MapTileLayer) mainLayer).isVisible()){
-			AccessibleToast.makeText(ctx, R.string.maps_could_not_be_downloaded, Toast.LENGTH_SHORT).show();
+			Toast.makeText(ctx, R.string.maps_could_not_be_downloaded, Toast.LENGTH_SHORT).show();
 		}
 		final ITileSource mapSource = ((MapTileLayer) mainLayer).getMap();
 		if(mapSource == null || !mapSource.couldBeDownloadedFromInternet()){
-			AccessibleToast.makeText(ctx, R.string.maps_could_not_be_downloaded, Toast.LENGTH_SHORT).show();
+			Toast.makeText(ctx, R.string.maps_could_not_be_downloaded, Toast.LENGTH_SHORT).show();
 			return;
 		}
 		final RotatedTileBox rb = mapView.getCurrentRotatedTileBox();
@@ -67,7 +62,7 @@ public class DownloadTilesDialog {
 		final int zoom = rb.getZoom();
 		
 		// calculate pixel rectangle
-		Builder builder = new AlertDialog.Builder(ctx);
+		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 		LayoutInflater inflater = (LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.download_tiles, null);
 		

@@ -1,7 +1,6 @@
 package net.osmand.plus;
 
 import net.osmand.PlatformUtil;
-import net.osmand.access.AccessibleToast;
 import net.osmand.plus.monitoring.OsmandMonitoringPlugin;
 import net.osmand.plus.osmo.OsMoPlugin;
 import android.app.AlarmManager;
@@ -19,6 +18,7 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
+import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -32,7 +32,9 @@ public class NavigationService extends Service implements LocationListener {
 	public static int USED_BY_NAVIGATION = 1;
 	public static int USED_BY_GPX = 2;
 	public static int USED_BY_LIVE = 4;
+	public static int USED_BY_WAKE_UP = 8;
 	public final static String USAGE_INTENT = "SERVICE_USED_BY";
+	public final static String USAGE_OFF_INTERVAL = "SERVICE_OFF_INTERVAL";
 
 	private NavigationServiceBinder binder = new NavigationServiceBinder();
 
@@ -94,17 +96,6 @@ public class NavigationService extends Service implements LocationListener {
 		if ((usedBy & usageIntent) > 0) {
 			usedBy -= usageIntent;
 		}
-
-		if (usedBy == 2) {
-			//reset SERVICE_OFF_INTERVAL to automatic settings for USED_BY_GPX
-			if (settings.SAVE_GLOBAL_TRACK_INTERVAL.get() < 30000) {
-				settings.SERVICE_OFF_INTERVAL.set(0);
-			} else {
-				//Use SERVICE_OFF_INTERVAL > 0 to conserve power for longer GPX recording intervals
-				settings.SERVICE_OFF_INTERVAL.set(settings.SAVE_GLOBAL_TRACK_INTERVAL.get());
-			}
-		}
-
 		if (usedBy == 0) {
 			final Intent serviceIntent = new Intent(ctx, NavigationService.class);
 			ctx.stopService(serviceIntent);
@@ -117,10 +108,9 @@ public class NavigationService extends Service implements LocationListener {
 		final OsmandApplication app = (OsmandApplication) getApplication();
 		settings = app.getSettings();
 		usedBy = intent.getIntExtra(USAGE_INTENT, 0);
+		serviceOffInterval = intent.getIntExtra(USAGE_OFF_INTERVAL, 0);
 		if ((usedBy & USED_BY_NAVIGATION) != 0) {
 			serviceOffInterval = 0;
-		} else {
-			serviceOffInterval = settings.SERVICE_OFF_INTERVAL.get();
 		}
 		// use only gps provider
 		serviceOffProvider = LocationManager.GPS_PROVIDER;
@@ -142,6 +132,9 @@ public class NavigationService extends Service implements LocationListener {
 			LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 			try {
 				locationManager.requestLocationUpdates(serviceOffProvider, 0, 0, NavigationService.this);
+			} catch (SecurityException e) {
+				Toast.makeText(this, R.string.no_location_permission, Toast.LENGTH_LONG).show();
+				Log.d(PlatformUtil.TAG, "Location service permission not granted"); //$NON-NLS-1$
 			} catch (IllegalArgumentException e) {
 				Toast.makeText(this, R.string.gps_not_available, Toast.LENGTH_LONG).show();
 				Log.d(PlatformUtil.TAG, "GPS location provider not available"); //$NON-NLS-1$
@@ -154,29 +147,12 @@ public class NavigationService extends Service implements LocationListener {
 
 		// registering icon at top level
 		// Leave icon visible even for navigation for proper display
-		startForeground(NotificationHelper.NOTIFICATION_SERVICE_ID, 
-				app.getNotificationHelper().buildNotificationInStatusBar().build());
+		Builder ntf = app.getNotificationHelper().buildNotificationInStatusBar();
+		if (ntf != null) {
+			startForeground(NotificationHelper.NOTIFICATION_SERVICE_ID, ntf.build());
+		}
 		return START_REDELIVER_INTENT;
 	}
-	
-	protected void stopService() {
-		if (settings.SAVE_GLOBAL_TRACK_TO_GPX.get()) {
-			settings.SAVE_GLOBAL_TRACK_TO_GPX.set(false);
-		}
-		OsMoPlugin osmoPlugin = OsmandPlugin.getEnabledPlugin(OsMoPlugin.class);
-		if (osmoPlugin != null) {
-			if (osmoPlugin.getTracker().isEnabledTracker()) {
-				osmoPlugin.getTracker().disableTracker();
-			}
-		}
-		OsmandMonitoringPlugin monitoringPlugin =
-				OsmandPlugin.getEnabledPlugin(OsmandMonitoringPlugin.class);
-		if (monitoringPlugin != null) {
-			monitoringPlugin.stopRecording();
-		}
-		NavigationService.this.stopSelf();
-	}
-
 	
 	
 
@@ -198,7 +174,11 @@ public class NavigationService extends Service implements LocationListener {
 		usedBy = 0;
 		// remove updates
 		LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-		locationManager.removeUpdates(this);
+		try {
+			locationManager.removeUpdates(this);
+		} catch (SecurityException e) {
+			Log.d(PlatformUtil.TAG, "Location service permission not granted"); //$NON-NLS-1$
+		}
 
 		if (!isContinuous()) {
 			WakeLock lock = getLock(this);
@@ -221,7 +201,11 @@ public class NavigationService extends Service implements LocationListener {
 			if (!isContinuous()) {
 				// unregister listener and wait next time
 				LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-				locationManager.removeUpdates(this);
+				try {
+					locationManager.removeUpdates(this);
+				} catch (SecurityException e) {
+					Log.d(PlatformUtil.TAG, "Location service permission not granted"); //$NON-NLS-1$
+				}
 				WakeLock lock = getLock(this);
 				if (lock.isHeld()) {
 					lock.release();
@@ -234,7 +218,7 @@ public class NavigationService extends Service implements LocationListener {
 
 	@Override
 	public void onProviderDisabled(String provider) {
-		AccessibleToast.makeText(this, getString(R.string.off_router_service_no_gps_available), Toast.LENGTH_LONG).show();
+		Toast.makeText(this, getString(R.string.off_router_service_no_gps_available), Toast.LENGTH_LONG).show();
 	}
 
 

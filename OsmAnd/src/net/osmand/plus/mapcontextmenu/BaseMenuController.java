@@ -9,26 +9,39 @@ import net.osmand.plus.helpers.AndroidUiHelper;
 
 public abstract class BaseMenuController {
 
-	public final static float LANDSCAPE_WIDTH_DP = 350f;
+	public final static float LANDSCAPE_WIDTH_DP = 366f;
 
 	private MapActivity mapActivity;
 	private boolean portraitMode;
 	private boolean largeDevice;
-	private boolean light;
+	private boolean nightMode;
 
 	public BaseMenuController(MapActivity mapActivity) {
 		this.mapActivity = mapActivity;
+		init();
+	}
+
+	private void init() {
 		portraitMode = AndroidUiHelper.isOrientationPortrait(mapActivity);
 		largeDevice = AndroidUiHelper.isXLargeDevice(mapActivity);
-		light = mapActivity.getMyApplication().getSettings().isLightContent();
+		updateNightMode();
 	}
 
 	public MapActivity getMapActivity() {
 		return mapActivity;
 	}
 
+	public void setMapActivity(MapActivity mapActivity) {
+		this.mapActivity = mapActivity;
+		init();
+	}
+
 	public boolean isLight() {
-		return light;
+		return !nightMode;
+	}
+
+	public void updateNightMode() {
+		nightMode = mapActivity.getMyApplication().getDaynightHelper().isNightModeForMapControls();
 	}
 
 	public boolean isLandscapeLayout() {
@@ -59,13 +72,27 @@ public abstract class BaseMenuController {
 		}
 	}
 
+	protected Drawable getIconOrig(int iconId) {
+		IconsCache iconsCache = getMapActivity().getMyApplication().getIconsCache();
+		return iconsCache.getIcon(iconId, 0);
+	}
+
 	protected Drawable getIcon(int iconId) {
-		return getIcon(iconId, R.color.icon_color, R.color.icon_color_light);
+		return getIcon(iconId, isLight() ? R.color.icon_color : R.color.icon_color_light);
+	}
+
+	protected Drawable getIcon(int iconId, int colorId) {
+		IconsCache iconsCache = getMapActivity().getMyApplication().getIconsCache();
+		return iconsCache.getIcon(iconId, colorId);
+	}
+
+	protected Drawable getPaintedIcon(int iconId, int color) {
+		IconsCache iconsCache = getMapActivity().getMyApplication().getIconsCache();
+		return iconsCache.getPaintedIcon(iconId, color);
 	}
 
 	protected Drawable getIcon(int iconId, int colorLightId, int colorDarkId) {
 		IconsCache iconsCache = getMapActivity().getMyApplication().getIconsCache();
-		return iconsCache.getIcon(iconId,
-				isLight() ? colorLightId : colorDarkId);
+		return iconsCache.getIcon(iconId, isLight() ? colorLightId : colorDarkId);
 	}
 }

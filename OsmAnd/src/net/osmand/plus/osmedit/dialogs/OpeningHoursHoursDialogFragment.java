@@ -14,27 +14,33 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import net.osmand.plus.R;
-import net.osmand.plus.osmedit.BasicDataFragment;
+import net.osmand.plus.osmedit.BasicEditPoiFragment;
 import net.osmand.util.OpeningHoursParser;
 
 public class OpeningHoursHoursDialogFragment extends DialogFragment {
-	public static final String IS_START = "is_start";
-	public static final String BASIC_OPENING_HOUR_RULE = "basic_opening_hour_rule";
-	public static final String POSITION_TO_ADD = "position_to_add";
+	private static final String IS_START = "is_start";
+	private static final String BASIC_OPENING_HOUR_RULE = "basic_opening_hour_rule";
+	private static final String RULE_POSITION = "rule_position";
+	private static final String TIME_POSITION = "time_position";
 
 	@NonNull
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		Bundle args = getArguments();
 		final boolean isStart = args.getBoolean(IS_START);
-		final int positionToAdd = args.getInt(POSITION_TO_ADD);
-		final boolean createNew = positionToAdd == -1;
 		final OpeningHoursParser.BasicOpeningHourRule item = (OpeningHoursParser.BasicOpeningHourRule)
 				args.getSerializable(BASIC_OPENING_HOUR_RULE);
-		AlertDialog.Builder builder =
-				new AlertDialog.Builder(getActivity());
+		final int rulePosition = args.getInt(RULE_POSITION);
+		final int timePosition = args.getInt(TIME_POSITION);
 
-		int time = isStart ? item.getStartTime() : item.getEndTime();
+		boolean newTimeSpan = timePosition == item.timesSize();
+		if (newTimeSpan) {
+			item.addTimeRange(9 * 60, 18 * 60);
+		}
+		final boolean createNew = rulePosition == -1 || newTimeSpan;
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+		int time = isStart ? item.getStartTime(timePosition) : item.getEndTime(timePosition);
 		int hour = time / 60;
 		int minute = time - hour * 60;
 
@@ -53,18 +59,18 @@ public class OpeningHoursHoursDialogFragment extends DialogFragment {
 								int hourOfDay = timePicker.getCurrentHour();
 								int time = minute + hourOfDay * 60;
 								if (isStart && createNew) {
-									item.setStartTime(time);
+									item.setStartTime(time, timePosition);
 									OpeningHoursHoursDialogFragment
-											.createInstance(item, positionToAdd, false)
+											.createInstance(item, rulePosition, false, timePosition)
 											.show(getFragmentManager(), "TimePickerDialogFragment");
 								} else {
 									if (isStart) {
-										item.setStartTime(time);
+										item.setStartTime(time, timePosition);
 									} else {
-										item.setEndTime(time);
+										item.setEndTime(time, timePosition);
 									}
-									((BasicDataFragment) getParentFragment())
-											.setBasicOpeningHoursRule(item, positionToAdd);
+									((BasicEditPoiFragment) getParentFragment())
+											.setBasicOpeningHoursRule(item, rulePosition);
 								}
 							}
 						})
@@ -94,13 +100,15 @@ public class OpeningHoursHoursDialogFragment extends DialogFragment {
 
 	public static OpeningHoursHoursDialogFragment createInstance(
 			@NonNull OpeningHoursParser.BasicOpeningHourRule item,
-			int positionToAdd,
-			boolean isStart) {
+			int rulePosition,
+			boolean isStart,
+			int timePosition) {
 		OpeningHoursHoursDialogFragment fragment = new OpeningHoursHoursDialogFragment();
 		Bundle bundle = new Bundle();
 		bundle.putSerializable(BASIC_OPENING_HOUR_RULE, item);
-		bundle.putSerializable(POSITION_TO_ADD, positionToAdd);
+		bundle.putInt(RULE_POSITION, rulePosition);
 		bundle.putBoolean(IS_START, isStart);
+		bundle.putInt(TIME_POSITION, timePosition);
 		fragment.setArguments(bundle);
 		return fragment;
 	}

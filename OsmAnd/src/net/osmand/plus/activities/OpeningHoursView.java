@@ -1,20 +1,10 @@
 package net.osmand.plus.activities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-
-import net.osmand.plus.OsmandApplication;
-import net.osmand.plus.R;
-import net.osmand.util.OpeningHoursParser.BasicOpeningHourRule;
-import net.osmand.util.OpeningHoursParser.OpeningHoursRule;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +15,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
+
+import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.R;
+import net.osmand.util.OpeningHoursParser.BasicOpeningHourRule;
+import net.osmand.util.OpeningHoursParser.OpeningHoursRule;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
 
 public class OpeningHoursView {
 	
@@ -122,7 +122,7 @@ public class OpeningHoursView {
 			}
 			TextView label = (TextView)row.findViewById(R.id.label);
 			ImageView icon = (ImageView)row.findViewById(R.id.remove);
-			icon.setBackgroundDrawable(app.getIconsCache().getContentIcon(R.drawable.ic_action_remove_dark));
+			icon.setBackgroundDrawable(app.getIconsCache().getThemedIcon(R.drawable.ic_action_remove_dark));
 			if(selectedRule == position){
 				label.setTypeface(null, Typeface.BOLD);
 				label.setTextSize(22);
@@ -160,7 +160,7 @@ public class OpeningHoursView {
 	}
 	
 	public void showDaysDialog(final BasicOpeningHourRule item, final int positionToAdd) {
-		Builder b = new AlertDialog.Builder(ctx);
+		AlertDialog.Builder b = new AlertDialog.Builder(ctx);
 
 		boolean add = positionToAdd > -1;
 		Calendar inst = Calendar.getInstance();

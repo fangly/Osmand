@@ -1,32 +1,30 @@
 package net.osmand.plus.base;
 
-import java.io.File;
-import java.util.ArrayList;
-
-import net.osmand.PlatformUtil;
-import net.osmand.access.AccessibleAlertBuilder;
-import net.osmand.data.LatLon;
-import net.osmand.plus.GPXUtilities;
-import net.osmand.plus.GPXUtilities.GPXFile;
-import net.osmand.plus.TargetPointsHelper.TargetPoint;
-import net.osmand.plus.OsmandApplication;
-import net.osmand.plus.OsmandSettings;
-import net.osmand.plus.R;
-import net.osmand.plus.TargetPointsHelper;
-import net.osmand.plus.activities.MapActivity;
-import net.osmand.plus.routing.RoutingHelper;
-import net.osmand.plus.routing.RouteProvider.GPXRouteParamsBuilder;
-
-import org.apache.commons.logging.Log;
-
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.widget.TextView;
+
+import net.osmand.PlatformUtil;
+import net.osmand.data.LatLon;
+import net.osmand.plus.GPXUtilities;
+import net.osmand.plus.GPXUtilities.GPXFile;
+import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.OsmandSettings;
+import net.osmand.plus.R;
+import net.osmand.plus.TargetPointsHelper;
+import net.osmand.plus.TargetPointsHelper.TargetPoint;
+import net.osmand.plus.activities.MapActivity;
+import net.osmand.plus.routing.RouteProvider.GPXRouteParamsBuilder;
+import net.osmand.plus.routing.RoutingHelper;
+
+import org.apache.commons.logging.Log;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class FailSafeFuntions {
 	private static boolean quitRouteRestoreDialog = false;
@@ -49,7 +47,7 @@ public class FailSafeFuntions {
 
 				@Override
 				public void run() {
-					Builder builder = new AccessibleAlertBuilder(ma);
+					AlertDialog.Builder builder = new AlertDialog.Builder(ma);
 					final TextView tv = new TextView(ma);
 					tv.setText(ma.getString(R.string.continue_follow_previous_route_auto, delay + ""));
 					tv.setPadding(7, 5, 7, 5);
@@ -169,10 +167,12 @@ public class FailSafeFuntions {
 			app.getSettings().FOLLOW_THE_GPX_ROUTE.set(null);
 		}
 		routingHelper.setGpxParams(gpxRoute);
-		app.getTargetPointsHelper().setStartPoint(null, false, null);
+		if (app.getTargetPointsHelper().getPointToStart() == null) {
+			app.getTargetPointsHelper().setStartPoint(null, false, null);
+		}
 		app.getSettings().FOLLOW_THE_ROUTE.set(true);
 		routingHelper.setFollowingMode(true);
-		app.getTargetPointsHelper().updateRouteAndReferesh(true);
+		app.getTargetPointsHelper().updateRouteAndRefresh(true);
 		app.initVoiceCommandPlayer(ma);
 		if(ma.getDashboard().isVisible()) {
 			ma.getDashboard().hideDashboard();
@@ -182,6 +182,9 @@ public class FailSafeFuntions {
 	private static void notRestoreRoutingMode(MapActivity ma, OsmandApplication app){
 		ma.updateApplicationModeSettings();
 		app.getRoutingHelper().clearCurrentRoute(null, new ArrayList<LatLon>());
+		if (app.getSettings().USE_MAP_MARKERS.get()) {
+			app.getTargetPointsHelper().removeAllWayPoints(false, false);
+		}
 		ma.refreshMap();
 	}
 

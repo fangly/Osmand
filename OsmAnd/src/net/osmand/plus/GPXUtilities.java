@@ -1,6 +1,26 @@
 
 package net.osmand.plus;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.support.annotation.ColorInt;
+
+import net.osmand.Location;
+import net.osmand.PlatformUtil;
+import net.osmand.data.LocationPoint;
+import net.osmand.data.PointDescription;
+import net.osmand.data.RotatedTileBox;
+import net.osmand.plus.views.OsmandMapTileView;
+import net.osmand.plus.views.Renderable;
+import net.osmand.util.Algorithms;
+
+import org.apache.commons.logging.Log;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,20 +48,6 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.TimeZone;
 
-import net.osmand.Location;
-import net.osmand.PlatformUtil;
-import net.osmand.data.LocationPoint;
-import net.osmand.data.PointDescription;
-import net.osmand.util.Algorithms;
-
-import org.apache.commons.logging.Log;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import android.content.Context;
-import android.graphics.Color;
-
 public class GPXUtilities {
 	public final static Log log = PlatformUtil.getLog(GPXUtilities.class);
 
@@ -59,8 +65,9 @@ public class GPXUtilities {
 			}
 			return extensions;
 		}
-		
-		public int getColor(int defColor) {
+
+		@ColorInt
+		public int getColor(@ColorInt int defColor) {
 			if(extensions != null && extensions.containsKey("color")) {
 				try {
 					return Color.parseColor(extensions.get("color").toUpperCase());
@@ -97,8 +104,40 @@ public class GPXUtilities {
 		public double ele = Double.NaN;
 		public double speed = 0;
 		public double hdop = Double.NaN;
+		public boolean deleted = false;
+		public int colourARGB = 0;					// point colour (used for altitude/speed colouring)
+		public double distance = 0.0;				// cumulative distance, if in a track
 
 		public WptPt() {
+		}
+
+//		public WptPt(WptPt toCopy) {
+//			this.lat = toCopy.lat;
+//			this.lon = toCopy.lon;
+//			if (toCopy.name != null) {
+//				this.name = new String(toCopy.name);
+//			}
+//			if (toCopy.link != null) {
+//				this.link = new String(toCopy.link);
+//			}
+//			if (toCopy.category != null) {
+//				this.category = new String(toCopy.category);
+//			}
+//			this.time = toCopy.time;
+//			this.ele = toCopy.ele;
+//			this.speed = toCopy.speed;
+//			this.hdop = toCopy.hdop;
+//			this.deleted = toCopy.deleted;
+//			this.colourARGB = toCopy.colourARGB;
+//			this.distance = toCopy.distance;
+//		}
+
+		public void setDistance(double dist) {
+			distance = dist;
+		}
+
+		public double getDistance() {
+			return distance;
 		}
 
 		@Override
@@ -136,11 +175,39 @@ public class GPXUtilities {
 			return true;
 		}
 
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			result = prime * result + ((category == null) ? 0 : category.hashCode());
+			result = prime * result + ((desc == null) ? 0 : desc.hashCode());
+			result = prime * result + ((lat == 0) ? 0 : Double.valueOf(lat).hashCode());
+			result = prime * result + ((lon == 0) ? 0 : Double.valueOf(lon).hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null || getClass() != obj.getClass())
+				return false;
+			WptPt other = (WptPt) obj;
+			return Algorithms.objectEquals(other.name, name)
+					&& Algorithms.objectEquals(other.category, category)
+					&& Algorithms.objectEquals(other.lat, lat)
+					&& Algorithms.objectEquals(other.lon, lon)
+					&& Algorithms.objectEquals(other.desc, desc);
+		}
 	}
 
 	public static class TrkSegment extends GPXExtensions {
 		public List<WptPt> points = new ArrayList<WptPt>();
-		
+		private OsmandMapTileView view;
+
+		public List<Renderable.RenderableSegment> renders = new ArrayList<>();
+
 		public List<GPXTrackAnalysis> splitByDistance(double meters) {
 			return split(getDistanceMetric(), getTimeSplit(), meters);
 		}
@@ -155,6 +222,11 @@ public class GPXUtilities {
 			return convert(splitSegments);
 		}
 
+		public void drawRenderers(double zoom, Paint p, Canvas c, RotatedTileBox tb) {
+			for (Renderable.RenderableSegment rs : renders) {
+				rs.drawSegment(zoom, p, c, tb);
+			}
+		}
 	}
 
 	public static class Track extends GPXExtensions {
@@ -553,6 +625,7 @@ public class GPXUtilities {
 		public List<Track> tracks = new ArrayList<Track>();
 		public List<WptPt> points = new ArrayList<WptPt>();
 		public List<Route> routes = new ArrayList<Route>();
+		
 		public String warning = null;
 		public String path = "";
 		public boolean showCurrentTrack;
@@ -580,7 +653,7 @@ public class GPXUtilities {
 			return g ;
 		}
 
-		
+
 		public boolean hasRtePt() {
 			for(Route r : routes) {
 				if(r.points.size() > 0) {
@@ -594,7 +667,7 @@ public class GPXUtilities {
 			return points.size() > 0;
 		}
 		
-		public boolean hasTrkpt() {
+		public boolean hasTrkPt() {
 			for(Track t  : tracks) {
 				for (TrkSegment ts : t.segments) {
 					if (ts.points.size() > 0) {
@@ -604,14 +677,60 @@ public class GPXUtilities {
 			}
 			return false;
 		}
-		
+
+		public WptPt addWptPt(double lat, double lon, long time, String description, String name, String category, int color) {
+			double latAdjusted = Double.parseDouble(latLonFormat.format(lat));
+			double lonAdjusted = Double.parseDouble(latLonFormat.format(lon));
+			final WptPt pt = new WptPt(latAdjusted, lonAdjusted, time, Double.NaN, 0, Double.NaN);
+			pt.name = name;
+			pt.category = category;
+			pt.desc = description;
+			if (color != 0) {
+				pt.setColor(color);
+			}
+
+			points.add(pt);
+			modifiedTime = System.currentTimeMillis();
+
+			return pt;
+		}
+
+		public void updateWptPt(WptPt pt, double lat, double lon, long time, String description, String name, String category, int color) {
+			int index = points.indexOf(pt);
+
+			double latAdjusted = Double.parseDouble(latLonFormat.format(lat));
+			double lonAdjusted = Double.parseDouble(latLonFormat.format(lon));
+
+			pt.lat = latAdjusted;
+			pt.lon = lonAdjusted;
+			pt.time = time;
+			pt.desc = description;
+			pt.name = name;
+			pt.category = category;
+			if (color != 0) {
+				pt.setColor(color);
+			}
+
+			if (index != -1) {
+				points.set(index, pt);
+			}
+			modifiedTime = System.currentTimeMillis();
+		}
+
+		public boolean deleteWptPt(WptPt pt) {
+			modifiedTime = System.currentTimeMillis();
+			return points.remove(pt);
+		}
+
 		public List<TrkSegment> processRoutePoints() {
 			List<TrkSegment> tpoints = new ArrayList<TrkSegment>();
 			if (routes.size() > 0) {
 				for (Route r : routes) {
-					TrkSegment sgmt = new TrkSegment();
-					tpoints.add(sgmt);
-					sgmt.points.addAll(r.points);
+					if (r.points.size() > 0) {
+						TrkSegment sgmt = new TrkSegment();
+						tpoints.add(sgmt);
+						sgmt.points.addAll(r.points);
+					}
 				}
 			}
 			return tpoints;
@@ -709,7 +828,7 @@ public class GPXUtilities {
 
 	public static String writeGpx(Writer output, GPXFile file, OsmandApplication ctx) {
 		try {
-			SimpleDateFormat format = new SimpleDateFormat(GPX_TIME_FORMAT);
+			SimpleDateFormat format = new SimpleDateFormat(GPX_TIME_FORMAT, Locale.US);
 			format.setTimeZone(TimeZone.getTimeZone("UTC"));
 			XmlSerializer serializer = PlatformUtil.newSerializer();
 			serializer.setOutput(output);
@@ -890,7 +1009,7 @@ public class GPXUtilities {
 
 	public static GPXFile loadGPXFile(Context ctx, InputStream f) {
 		GPXFile res = new GPXFile();
-		SimpleDateFormat format = new SimpleDateFormat(GPX_TIME_FORMAT);
+		SimpleDateFormat format = new SimpleDateFormat(GPX_TIME_FORMAT, Locale.US);
 		format.setTimeZone(TimeZone.getTimeZone("UTC"));
 		try {
 			XmlPullParser parser = PlatformUtil.newXMLPullParser();
@@ -1107,7 +1226,5 @@ public class GPXUtilities {
 		if (from.warning != null) {
 			to.warning = from.warning;
 		}
-
 	}
-
 }

@@ -7,7 +7,7 @@
     android:background="?attr/spinnerListBackground"
     android:clickable="true"
     android:orientation="vertical"
-    tools:context="net.osmand.plus.osmedit.EditPoiFragment">
+    tools:context="net.osmand.plus.osmedit.EditPoiDialogFragment">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -21,7 +21,7 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -47,8 +47,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/poi_dialog_name"
-                        android:imeOptions="actionSend"
-                        android:inputType="text"
+                        android:imeOptions="actionNext"
+                        android:inputType="textCapSentences"
                         tools:text="@string/lorem_ipsum"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -62,6 +62,7 @@
                 <!--android:layout_marginLeft="72dp"-->
                 <ImageButton
                     android:id="@+id/poiTypeButton"
+                    android:contentDescription="@string/poi_dialog_poi_type"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="bottom"
@@ -90,6 +91,7 @@
 
                 <ImageButton
                     android:id="@+id/onlineDocumentationButton"
+                    android:contentDescription="@string/shared_string_help"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_gravity="bottom"
@@ -103,8 +105,8 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/bg_color"
                 app:layout_scrollFlags="scroll"
-                app:tabIndicatorColor="?attr/pstsIndicatorColor"
-                app:tabSelectedTextColor="?attr/pstsIndicatorColor"
+                app:tabIndicatorColor="@color/osmand_orange"
+                app:tabSelectedTextColor="@color/osmand_orange"
                 app:tabTextColor="@android:color/darker_gray"/>
         </android.support.design.widget.AppBarLayout>
 

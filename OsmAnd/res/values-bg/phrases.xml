@@ -88,7 +88,7 @@
 	<string name="poi_furniture">Магазин за мебели</string>
 	<string name="poi_garden_centre">Градински център</string>
 	<string name="poi_gas">Магазин за втечнен газ</string>
-	<string name="poi_general">Смесен магазин</string>
+	<string name="poi_shop_yes">Смесен магазин</string>
 	<string name="poi_gift">Магазин за подаръци</string>
 	<string name="poi_hardware">Железария</string>
 	<string name="poi_hearing_aids">Слухови апарати</string>
@@ -125,7 +125,7 @@
 	<string name="poi_fire_hose">Пожарен шланг</string>
 	<string name="poi_ambulance_station">Спешна медицинска помощ</string>
 	<string name="poi_ford">Брод</string>
-	<string name="poi_mountain_pass_yes">Планински проход</string>
+	<string name="poi_mountain_pass">Планински проход</string>
 	<string name="poi_gate">Порта</string>
 	<string name="poi_city_wall">Градска стена</string>
 	<string name="poi_lift_gate">Вдигаща се врата</string>
@@ -142,7 +142,7 @@
 	<string name="poi_mobile_phone">Магазин за мобилни телефони</string>
 	<string name="poi_motorcycle">Магазин за мотоциклети</string>
 	<string name="poi_musical_instrument">Музикални инструменти</string>
-	<string name="poi_newsagent">Информационна агенция</string>
+	<string name="poi_newsagent">Будка за вестници</string>
 	<string name="poi_optician">Очен лекар</string>
 	<string name="poi_tableware">Магазин за кухненски съдове</string>
 	<string name="poi_trade">Търговски пункт</string>
@@ -230,7 +230,7 @@
 	<string name="poi_fuel_biogas">E85</string>
 	<string name="poi_vehicle_ramp">Рампа за МПС</string>
 	<string name="poi_parking_entrance">Вход към паркинг</string>
-	<string name="poi_railway_subway_entrance">Вход към метро</string>
+	<string name="poi_subway_entrance">Вход към метро</string>
 	<string name="poi_bicycle_parking">Паркинг за велосипеди</string>
 
 	<string name="poi_aerialway_gondola">Гондола</string>
@@ -258,7 +258,7 @@
 	<string name="poi_recycling_plastic_bottles">Пластмасови бутилки</string>
 	<string name="poi_recycling_waste">Отпадък (черни пликове)</string>
 	<string name="poi_recycling_plastic_packaging">Пластмасови опаковки</string>
-	<string name="poi_recycling_newspaper">Вестник</string>
+	<string name="poi_recycling_newspaper">Хартия</string>
 	<string name="poi_recycling_magazines">Списания</string>
 	<string name="poi_recycling_paper_packaging">Хартиени опаковки</string>
 	<string name="poi_recycling_wood">Дърво</string>
@@ -372,5 +372,48 @@
 	<string name="poi_internet_access_wired">Интернет достъп: кабелен</string>
 	<string name="poi_internet_access_public">Интернет достъп: публичен</string>
 	<string name="poi_internet_access_service">Интернет достъп: услуга</string>
+
+	<string name="poi_traffic_enforcement">Пътни ограничения</string>
+	<string name="poi_pastry">Сладкарница</string>
+	<string name="poi_doityourself">Магазин Домашни потреби</string>
+	<string name="poi_doors">Врати</string>
+	<string name="poi_fashion">Моден магазин</string>
+	<string name="poi_model">Умалени модели</string>
+	<string name="poi_wiki_lang_az">Уики на азърбайджански</string>
+	<string name="poi_wiki_place">Уикипедия</string>
+	<string name="poi_wiki_lang_en">Уики на английски</string>
+	<string name="poi_wiki_lang_bg">Уики на български</string>
+	<string name="poi_telephone_exchange">Телефонна централа</string>
+
+	<string name="poi_bureau_de_change">Обменно бюро</string>
+	<string name="poi_bank">Банка</string>
+	<string name="poi_payment_notes_yes">Приемат се банкноти</string>
+	<string name="poi_payment_notes_no">Банкноти не се приемат</string>
+	<string name="poi_payment_bankaxess_yes">BankAxess се приема</string>
+	<string name="poi_payment_bankaxess_no">BankAxess не се приема</string>
+	<string name="poi_social_facility_food_bank">Социален механизъм: Хранителна банка</string>
+	<string name="poi_denomination_bulgarian_orthodox">Българско православие</string>
+	<string name="poi_fitness_centre">Фитнес център</string>
+	<string name="poi_fitness">Фитнес</string>
+
+	<string name="poi_aerialway_length">Дължина</string>
+
+	<string name="poi_ref">Номер</string>
+
+	<string name="poi_sculptor">Скулптор</string>
+
+	<string name="poi_square">Площад</string>
+	<string name="poi_townhall">Община</string>
+	<string name="poi_employment_agency">Служба по заетостта</string>
+	<string name="poi_it">ИТ офис</string>
+	<string name="poi_advertising_agency">Рекламна агенция</string>
+	<string name="poi_studio">Студио</string>
+	<string name="poi_bookmaker">Букмейкър</string>
+	<string name="poi_association">Асоциация</string>
+	<string name="poi_financial">Финансов офис</string>
+	<string name="poi_political_party">Клуб на политическа партия</string>
+	<string name="poi_notary">Нотариус</string>
+	<string name="poi_foundation">Фондация</string>
+	<string name="poi_tax_advisor">Данъчен съветник</string>
 
 	</resources>

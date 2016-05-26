@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><resources><string name="address_search_desc">Mencari alamat</string>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources><string name="address_search_desc">Mencari alamat</string>
   <string name="navpoint_search_desc">Koordinat</string>
   <string name="transport_search_desc">Mencari transportasi</string>
   <string name="favourites_search_desc">Mencari favorit</string>
@@ -17,8 +18,7 @@
 	<string name="hno">Nomor rumah</string>
     <string name="website">Website</string>
 	<string name="phone">Telp</string>
-    <string name="tip_recent_changes_1_3_t">"Perubahan pada 1.5:
-\n\t* Holo Theme (kustomisasi tema) "</string>
+    
     <string name="monitoring_settings">Layanan pencatatan &amp; Mode Sleep</string>
     <string name="monitoring_settings_descr">Atur bagaimana ingin mencatat perjalanan dan mengaktifkan mode sleep</string>
     
@@ -33,22 +33,9 @@
     <string name="local_openstreetmap_act_title">Modifikasi OSM</string>
     <string name="shared_string_more_actions">Perintah lain</string>
     
-	<string name="tip_recent_changes_1_2_t">"Perbaikan pada 1.2.1:
-\n\t*Perbaikan Geo Intent (Foursquare, c:geo)
-\n\t*Perbaikan getaran layar saat navigasi
-\n\t*Perbaikan kecil lain
-\nPerubahan pada 1.2:
-\n\t* Perbaikan bug (routing lebih baik, pencarian, AV recording, voice prompts, beberapa perbaikan tampilan)
-\n\t* Konfigurasi overlay hillshade yang lebih mudah (membutuhkan plugin Contour Lines)
-\n\t* Sekarang bsia menerima link lokasi dari maps.google.com
-\n\t* Widget baru (GPS info)
-\n\t* Menambahkan dukungan banyak window untuk Samsung
-\n\t* Filter Kalman untuk kompas
-\n\t* Dukungan Pebble watch "</string>
+	
     <string name="map_widget_gps_info">Info GPS</string>
-    <string name="tip_recent_changes_1_1_4_t">"Perubahan pada 1.1.4:
-\n\t* redesain UI
-\n\t* Perbaikan bug "</string>
+    
     <string name="access_arrival_time">Waktu tiba</string>
     <string name="shared_string_map">Peta</string>
     <string name="prefer_motorways">Utamakan jalan raya</string>
@@ -59,10 +46,31 @@
     
     <string name="local_indexes_cat_av">Data Audio/Video</string>
     <string name="about_version">Versi :</string>
-    <string name="about_settings">Tentang</string>
+    <string name="shared_string_about">Tentang</string>
     <string name="about_settings_descr">Info versi, lisensi, anggota</string>
     
     <string name="local_index_tile_data_downloadable">Dapat di download: %1$s</string>
     <string name="shared_string_no">No</string>
 	<string name="shared_string_yes">Yes</string>
-	</resources>
+	<string name="donations">Donasi</string>
+    <string name="number_of_recipients">Jumlah penerima</string>
+    <string name="osm_user_stat">Sunting %1$s, peringkat %2$s, total suntingan %3$s</string>
+    <string name="osm_editors_ranking">Peringkat OSM Editors</string>
+    <string name="osm_live_subscription">Berlangganan OSM Live</string>
+    <string name="osm_live_subscribe_btn">Berlangganan</string>
+    <string name="osm_live_email_desc">Kami membutuhkan hal itu untuk menyediakan kepada anda informasi tentang kontribusi</string>
+    <string name="osm_live_user_public_name">Nama Publik</string>
+    <string name="osm_live_hide_user_name">Jangan tampilkan nama saya dilaporan</string>
+    <string name="osm_live_support_region">Regional yang didukung</string>
+    <string name="osm_live_month_cost">Biaya bulanan</string>
+    <string name="osm_live_month_cost_desc">Pembayaran bulanan</string>
+    <string name="osm_live_active">Aktif</string>
+    <string name="osm_live_not_active">Tidak Aktif</string>
+    <string name="osm_live_enter_email">Harap masukkan alamat surel yang benar</string>
+    <string name="osm_live_enter_user_name">Harap masukkan Nama Publik</string>
+    <string name="osm_live_thanks">Terima kasih untuk berlangganan pembaruan langsung!</string>
+    <string name="osm_live_region_desc">Sebagian donasi anda akan dikirim ke pengguna OSM yang memasukkan perubahan ke map diregion tersebut</string>
+    <string name="osm_live_subscription_settings">Pengaturan berlangganan</string>
+    <string name="osm_live_ask_for_purchase">Harap beli berlangganan OSM Live terlebih dahulu</string>
+
+    </resources>

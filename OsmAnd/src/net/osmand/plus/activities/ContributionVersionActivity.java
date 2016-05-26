@@ -1,32 +1,11 @@
 package net.osmand.plus.activities;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.text.MessageFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import net.osmand.AndroidUtils;
-import net.osmand.access.AccessibleToast;
-import net.osmand.osm.io.NetworkUtils;
-import net.osmand.plus.R;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +14,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.osmand.AndroidUtils;
+import net.osmand.osm.io.NetworkUtils;
+import net.osmand.plus.R;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URLConnection;
+import java.text.MessageFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class ContributionVersionActivity extends OsmandListActivity {
 
@@ -50,7 +48,7 @@ public class ContributionVersionActivity extends OsmandListActivity {
 	private Date currentInstalledDate;
 
 	private List<OsmAndBuild> downloadedBuilds = new ArrayList<OsmAndBuild>();
-	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+	private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
 	private File pathToDownload;
 	private OsmAndBuild currentSelectedBuild = null;
 	
@@ -104,7 +102,7 @@ public class ContributionVersionActivity extends OsmandListActivity {
 		}
 		if(operationId == DOWNLOAD_BUILDS_LIST){
 			if(e != null){
-				AccessibleToast.makeText(this, getString(R.string.loading_builds_failed) + " : " + e.getMessage(), Toast.LENGTH_LONG).show();
+				Toast.makeText(this, getString(R.string.loading_builds_failed) + " : " + e.getMessage(), Toast.LENGTH_LONG).show();
 				finish();
 			} else {
 				setListAdapter(new OsmandBuildsAdapter(downloadedBuilds));
@@ -129,7 +127,7 @@ public class ContributionVersionActivity extends OsmandListActivity {
 
 	private void updateInstalledApp(boolean showMessage, Date d) {
 		if (showMessage) {
-			AccessibleToast.makeText(
+			Toast.makeText(
 					this,
 					MessageFormat.format(getString(R.string.build_installed), currentSelectedBuild.tag, 
 							AndroidUtils.formatDateTime(getMyApplication(), currentSelectedBuild.date.getTime())), Toast.LENGTH_LONG).show();
@@ -210,7 +208,7 @@ public class ContributionVersionActivity extends OsmandListActivity {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		final OsmAndBuild item = (OsmAndBuild) getListAdapter().getItem(position);
-		Builder builder = new AlertDialog.Builder(this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(MessageFormat.format(getString(R.string.install_selected_build), item.tag,
 				AndroidUtils.formatDateTime(getMyApplication(), item.date.getTime()), item.size));
 		builder.setPositiveButton(R.string.shared_string_yes, new DialogInterface.OnClickListener() {

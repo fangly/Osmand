@@ -1,10 +1,9 @@
 package net.osmand.plus.dashboard;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -23,6 +22,7 @@ import net.osmand.plus.TargetPointsHelper;
 import net.osmand.plus.TargetPointsHelper.TargetPoint;
 import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.dashboard.DashboardOnMap.DashboardType;
+import net.osmand.plus.dashboard.tools.DashFragmentData;
 import net.osmand.plus.dialogs.DirectionsDialogs;
 import net.osmand.plus.helpers.WaypointDialogHelper;
 import net.osmand.plus.helpers.WaypointHelper;
@@ -39,6 +39,13 @@ public class DashWaypointsFragment extends DashLocationFragment {
 	public static final int TITLE_ID = R.string.waypoints;
 	List<TargetPoint> points = new ArrayList<TargetPoint>();
 	private static boolean SHOW_ALL;
+	public static final DashFragmentData.ShouldShowFunction SHOULD_SHOW_FUNCTION =
+			new DashboardOnMap.DefaultShouldShow() {
+				@Override
+				public int getTitleId() {
+					return TITLE_ID;
+				}
+			};
 
 	@Override
 	public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -88,7 +95,8 @@ public class DashWaypointsFragment extends DashLocationFragment {
 			LocationPointWrapper ps = allPoints.get(i);
 			View dv = getActivity().getLayoutInflater().inflate(R.layout.divider, null);
 			favorites.addView(dv);
-			View v = WaypointDialogHelper.updateWaypointItemView(false, null, getMyApplication(), getActivity(), null, ps, null);
+			View v = WaypointDialogHelper.updateWaypointItemView(false, null, getMyApplication(),
+					getActivity(), null, null, ps, null, !getMyApplication().getSettings().isLightContent(), true);
 			favorites.addView(v);
 
 		}
@@ -134,7 +142,13 @@ public class DashWaypointsFragment extends DashLocationFragment {
 			view.findViewById(R.id.group_image).setVisibility(View.GONE);
 
 			boolean target = helper.getPointToNavigate() == point;
-			int id = target ? R.drawable.list_destination : R.drawable.list_intermediate;
+			int id;
+			if (!target) {
+				id = R.drawable.list_intermediate;
+			} else {
+				id = R.drawable.list_destination;
+			}
+
 			((ImageView) view.findViewById(R.id.favourite_icon)).setImageDrawable(getMyApplication().getIconsCache()
 					.getIcon(id, 0));
 			DashLocationView dv = new DashLocationView(direction, label, new LatLon(point.getLatitude(),
@@ -147,8 +161,8 @@ public class DashWaypointsFragment extends DashLocationFragment {
 			final boolean optionsVisible = (SHOW_ALL && getMyApplication().getTargetPointsHelper().getIntermediatePoints().size() > 0); 
 			
 			options.setImageDrawable(getMyApplication().getIconsCache().
-					getContentIcon(optionsVisible? R.drawable.ic_overflow_menu_white :
-						R.drawable.ic_action_remove_dark));
+					getThemedIcon(optionsVisible ? R.drawable.ic_overflow_menu_white :
+							R.drawable.ic_action_remove_dark));
 			options.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -162,7 +176,7 @@ public class DashWaypointsFragment extends DashLocationFragment {
 			
 			ImageButton navigate =  ((ImageButton)view.findViewById(R.id.navigate_to));
 			navigate.setImageDrawable(getMyApplication().getIconsCache().
-					getContentIcon(R.drawable.ic_action_gdirections_dark));
+					getThemedIcon(R.drawable.ic_action_gdirections_dark));
 			navigate.setVisibility(target? View.VISIBLE : View.GONE);
 			navigate.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -187,7 +201,7 @@ public class DashWaypointsFragment extends DashLocationFragment {
 	
 	protected void deletePointConfirm(final TargetPoint point, View view) {
 		final boolean target = point == getMyApplication().getTargetPointsHelper().getPointToNavigate();
-		Builder builder = new AlertDialog.Builder(view.getContext());
+		AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 		// Stop the navigation
 		builder.setTitle(getString(R.string.delete_target_point));
 		builder.setMessage(PointDescription.getSimpleName(point, getActivity()));
@@ -208,7 +222,7 @@ public class DashWaypointsFragment extends DashLocationFragment {
 		MenuItem item; 
 //		item = optionsMenu.getMenu().add(
 //				R.string.shared_string_add_to_favorites).setIcon(getMyApplication().getIconsCache().
-//						getContentIcon(R.drawable.ic_action_fav_dark));
+//						getIcon(R.drawable.ic_action_fav_dark));
 //		item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 //			@Override
 //			public boolean onMenuItemClick(MenuItem item) {
@@ -227,7 +241,7 @@ public class DashWaypointsFragment extends DashLocationFragment {
 				final int ind = target ? allTargets.size() - 1 : point.index;
 				item = optionsMenu.getMenu().add(R.string.waypoint_visit_before)
 						.setIcon(getMyApplication().getIconsCache().
-								getContentIcon(R.drawable.ic_action_up_dark));
+								getThemedIcon(R.drawable.ic_action_up_dark));
 				item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 					@Override
 					public boolean onMenuItemClick(MenuItem item) {
@@ -242,7 +256,7 @@ public class DashWaypointsFragment extends DashLocationFragment {
 			if (!target) {
 				item = optionsMenu.getMenu().add(R.string.waypoint_visit_after)
 						.setIcon(getMyApplication().getIconsCache().
-								getContentIcon(R.drawable.ic_action_down_dark));
+								getThemedIcon(R.drawable.ic_action_down_dark));
 				item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 					@Override
 					public boolean onMenuItemClick(MenuItem item) {
@@ -256,8 +270,8 @@ public class DashWaypointsFragment extends DashLocationFragment {
 			}
 		}
 		item = optionsMenu.getMenu().add(
-				R.string.shared_string_delete).setIcon(getMyApplication().getIconsCache().
-						getContentIcon(R.drawable.ic_action_remove_dark));
+				R.string.shared_string_remove).setIcon(getMyApplication().getIconsCache().
+				getThemedIcon(R.drawable.ic_action_remove_dark));
 		item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {

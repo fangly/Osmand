@@ -1,20 +1,30 @@
 package net.osmand.plus.views;
 
 
-import net.osmand.Location;
-import net.osmand.data.RotatedTileBox;
-import net.osmand.plus.ApplicationMode;
-import net.osmand.plus.OsmAndLocationProvider;
-import net.osmand.plus.R;
-import net.osmand.plus.base.MapViewTrackingUtilities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.PointF;
 import android.graphics.RectF;
+import net.osmand.Location;
+import net.osmand.PlatformUtil;
+import net.osmand.data.LatLon;
+import net.osmand.data.PointDescription;
+import net.osmand.data.RotatedTileBox;
+import net.osmand.plus.ApplicationMode;
+import net.osmand.plus.OsmAndLocationProvider;
+import net.osmand.plus.R;
+import net.osmand.plus.base.MapViewTrackingUtilities;
 
-public class PointLocationLayer extends OsmandMapLayer {
+import org.apache.commons.logging.Log;
+
+import java.util.List;
+
+public class PointLocationLayer extends OsmandMapLayer implements ContextMenuLayer.IContextMenuProvider {
+	private static final Log LOG = PlatformUtil.getLog(PointLocationLayer.class);
+
 	protected final static int RADIUS = 7;
 	protected final static float HEADING_ANGLE = 60;
 	
@@ -57,7 +67,7 @@ public class PointLocationLayer extends OsmandMapLayer {
 		headingPaint.setAntiAlias(true);
 		headingPaint.setStyle(Style.FILL);
 		
-		checkAppMode(view.getSettings().getApplicationMode());
+		updateIcons(view.getSettings().getApplicationMode(), false);
 		locationProvider = view.getApplication().getLocationProvider();
 	}
 	
@@ -81,11 +91,7 @@ public class PointLocationLayer extends OsmandMapLayer {
 		}
 		// draw
 		boolean nm = nightMode != null && nightMode.isNightMode();
-		if(nm != this.nm) {
-			this.nm = nm;
-			area.setColor(view.getResources().getColor(!nm?R.color.pos_area : R.color.pos_area_night));
-			headingPaint.setColor(view.getResources().getColor(!nm?R.color.pos_heading :R.color.pos_heading_night));
-		}
+		updateIcons(view.getSettings().getApplicationMode(), nm);
 		Location lastKnownLocation = locationProvider.getLastKnownLocation();
 		if(lastKnownLocation == null || view == null){
 			return;
@@ -103,7 +109,6 @@ public class PointLocationLayer extends OsmandMapLayer {
 		}
 		// draw bearing/direction/location
 		if (isLocationVisible(box, lastKnownLocation)) {
-			checkAppMode(view.getSettings().getApplicationMode());
 			boolean isBearing = lastKnownLocation.hasBearing();
 
 			Float heading = locationProvider.getHeading();
@@ -124,11 +129,8 @@ public class PointLocationLayer extends OsmandMapLayer {
 		}
 	}
 
-	public boolean isLocationVisible(RotatedTileBox tb, Location l){
-		if(l == null ){
-			return false;
-		}
-		return tb.containsLatLon(l.getLatitude(), l.getLongitude());
+	public boolean isLocationVisible(RotatedTileBox tb, Location l) {
+		return l != null && tb.containsLatLon(l.getLatitude(), l.getLongitude());
 	}
 	
 
@@ -136,11 +138,21 @@ public class PointLocationLayer extends OsmandMapLayer {
 	public void destroyLayer() {
 		
 	}
-	public void checkAppMode(ApplicationMode appMode) {
-		if (appMode != this.appMode) {
+	public void updateIcons(ApplicationMode appMode, boolean nighMode) {
+		if (appMode != this.appMode || this.nm != nighMode) {
 			this.appMode = appMode;
-			bearingIcon = BitmapFactory.decodeResource(view.getResources(), appMode.getResourceBearing());
-			locationIcon = BitmapFactory.decodeResource(view.getResources(), appMode.getResourceLocation());
+			this.nm = nighMode;
+			final int resourceBearingDay = appMode.getResourceBearingDay();
+			final int resourceBearingNight = appMode.getResourceBearingNight();
+			final int resourceBearing = nighMode ? resourceBearingNight : resourceBearingDay;
+			bearingIcon = BitmapFactory.decodeResource(view.getResources(), resourceBearing);
+
+			final int resourceLocationDay = appMode.getResourceLocationDay();
+			final int resourceLocationNight = appMode.getResourceLocationNight();
+			final int resourceLocation = nighMode ? resourceLocationNight : resourceLocationDay;
+			locationIcon = BitmapFactory.decodeResource(view.getResources(), resourceLocation);
+			area.setColor(view.getResources().getColor(!nm ? R.color.pos_area : R.color.pos_area_night));
+			headingPaint.setColor(view.getResources().getColor(!nm ? R.color.pos_heading : R.color.pos_heading_night));
 		}
 		
 	}
@@ -149,5 +161,62 @@ public class PointLocationLayer extends OsmandMapLayer {
 		return false;
 	}
 
+
+	@Override
+	public void collectObjectsFromPoint(PointF point, RotatedTileBox tileBox, List<Object> o) {
+		if (tileBox.getZoom() >= 3) {
+			getMyLocationFromPoint(tileBox, point, o);
+		}
+	}
+
+	@Override
+	public LatLon getObjectLocation(Object o) {
+		return getMyLocation();
+	}
+
+
+	@Override
+	public PointDescription getObjectName(Object o) {
+		return new PointDescription(PointDescription.POINT_TYPE_MY_LOCATION,
+				view.getContext().getString(R.string.shared_string_my_location), "");
+	}
+
+	@Override
+	public boolean disableSingleTap() {
+		return false;
+	}
+
+	@Override
+	public boolean disableLongPressOnMap() {
+		return false;
+	}
+
+	@Override
+	public boolean isObjectClickable(Object o) {
+		return false;
+	}
+
+	private LatLon getMyLocation() {
+		Location location = locationProvider.getLastKnownLocation();
+		if (location != null) {
+			return new LatLon(location.getLatitude(), location.getLongitude());
+		} else {
+			return null;
+		}
+	}
+
+	private void getMyLocationFromPoint(RotatedTileBox tb, PointF point, List<? super LatLon> myLocation) {
+		LatLon location = getMyLocation();
+		if (location != null && view != null) {
+			int ex = (int) point.x;
+			int ey = (int) point.y;
+			int x = (int) tb.getPixXFromLatLon(location.getLatitude(), location.getLongitude());
+			int y = (int) tb.getPixYFromLatLon(location.getLatitude(), location.getLongitude());
+			int rad = (int) (18 * tb.getDensity());
+			if (Math.abs(x - ex) <= rad && (ey - y) <= rad && (y - ey) <= 2.5 * rad) {
+				myLocation.add(location);
+			}
+		}
+	}
 
 }

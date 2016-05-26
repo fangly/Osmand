@@ -1,10 +1,10 @@
 package net.osmand.plus.dashboard;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,13 +16,21 @@ import android.widget.TextView;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.activities.ShowRouteInfoActivity;
+import net.osmand.plus.dashboard.tools.DashFragmentData;
 import net.osmand.plus.routing.RoutingHelper;
 
 /**
  */
 public class DashNavigationFragment extends DashBaseFragment {
 	public static final String TAG = "DASH_NAVIGATION_FRAGMENT";
-	public static final int TITLE_ID = R.string.current_route;
+	private static final int TITLE_ID = R.string.current_route;
+	public static final DashFragmentData.ShouldShowFunction SHOULD_SHOW_FUNCTION =
+			new DashboardOnMap.DefaultShouldShow() {
+				@Override
+				public int getTitleId() {
+					return TITLE_ID;
+				}
+			};
 
 	@Override
 	public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,7 +76,7 @@ public class DashNavigationFragment extends DashBaseFragment {
 		name.setText(routingHelper.getGeneralRouteInformation());
 		icon.setImageDrawable(getMyApplication().getIconsCache().getIcon(R.drawable.ic_action_start_navigation, 
 				R.color.color_myloc_distance));
-		cancel.setImageDrawable(getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_remove_dark) 
+		cancel.setImageDrawable(getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_remove_dark)
 				);
 		cancel.setOnClickListener(new OnClickListener() {
 			
@@ -101,8 +109,8 @@ public class DashNavigationFragment extends DashBaseFragment {
 
 	private void updatePlayButton(final RoutingHelper routingHelper, final MapActivity map, final ImageView play) {
 		boolean toContinueNavigation = routingHelper.isRoutePlanningMode();
-		play.setImageDrawable(getMyApplication().getIconsCache().getContentIcon(
-				toContinueNavigation? R.drawable.ic_play_dark : R.drawable.ic_pause ) 
+		play.setImageDrawable(getMyApplication().getIconsCache().getThemedIcon(
+						toContinueNavigation ? R.drawable.ic_play_dark : R.drawable.ic_pause)
 				);
 		play.setContentDescription(getString(toContinueNavigation ? R.string.continue_navigation :
 			R.string.pause_navigation));

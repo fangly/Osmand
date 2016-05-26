@@ -1,13 +1,12 @@
 package net.osmand.plus.activities;
 
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.os.AsyncTask;
@@ -21,13 +20,14 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
+import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import net.osmand.IProgress;
 import net.osmand.IndexConstants;
-import net.osmand.access.AccessibleToast;
 import net.osmand.osm.io.NetworkUtils;
 import net.osmand.plus.ApplicationMode;
 import net.osmand.plus.OsmandApplication;
@@ -54,16 +54,18 @@ import java.util.List;
 import java.util.Set;
 
 
-public class SettingsGeneralActivity extends SettingsBaseActivity {
+public class SettingsGeneralActivity extends SettingsBaseActivity implements OnRequestPermissionsResultCallback {
 
 	public static final String MORE_VALUE = "MORE_VALUE";
 	private Preference applicationDir;
 	private ListPreference applicationModePreference;
 	private ListPreference drivingRegionPreference;
-
+	private ChooseAppDirFragment chooseAppDirFragment;
+	private boolean permissionRequested;
+	private boolean permissionGranted;
 
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		((OsmandApplication) getApplication()).applyTheme(this);
 		super.onCreate(savedInstanceState);
 		getToolbar().setTitle(R.string.global_app_settings);
@@ -74,10 +76,9 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 		settings = getMyApplication().getSettings();
 
 
-
 		ApplicationMode[] appModes = ApplicationMode.values(settings).toArray(new ApplicationMode[0]);
 		entries = new String[appModes.length];
-		for(int i=0; i<entries.length; i++){
+		for (int i = 0; i < entries.length; i++) {
 			entries[i] = appModes[i].toHumanString(getMyApplication());
 		}
 		registerListPreference(settings.APPLICATION_MODE, screen, entries, appModes);
@@ -88,8 +89,8 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 				new Integer[]{OsmandSettings.ROTATE_MAP_NONE, OsmandSettings.ROTATE_MAP_BEARING, OsmandSettings.ROTATE_MAP_COMPASS});
 
 		registerListPreference(settings.MAP_SCREEN_ORIENTATION, screen,
-				new String[] {getString(R.string.map_orientation_portrait), getString(R.string.map_orientation_landscape), getString(R.string.map_orientation_default)},
-				new Integer[] {ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED});
+				new String[]{getString(R.string.map_orientation_portrait), getString(R.string.map_orientation_landscape), getString(R.string.map_orientation_default)},
+				new Integer[]{ActivityInfo.SCREEN_ORIENTATION_PORTRAIT, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED});
 
 		addLocalPrefs((PreferenceGroup) screen.findPreference("localization"));
 		addVoicePrefs((PreferenceGroup) screen.findPreference("voice"));
@@ -100,17 +101,16 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 		applicationModePreference = (ListPreference) screen.findPreference(settings.APPLICATION_MODE.getId());
 		applicationModePreference.setOnPreferenceChangeListener(this);
 		drivingRegionPreference = (ListPreference) screen.findPreference(settings.DRIVING_REGION.getId());
-    }
-
+	}
 
 
 	private void addVoicePrefs(PreferenceGroup cat) {
 		if (!Version.isBlackberry((OsmandApplication) getApplication())) {
 			ListPreference lp = createListPreference(
 					settings.AUDIO_STREAM_GUIDANCE,
-					new String[] { getString(R.string.voice_stream_music), getString(R.string.voice_stream_notification),
-							getString(R.string.voice_stream_voice_call) }, new Integer[] { AudioManager.STREAM_MUSIC,
-							AudioManager.STREAM_NOTIFICATION, AudioManager.STREAM_VOICE_CALL }, R.string.choose_audio_stream,
+					new String[]{getString(R.string.voice_stream_music), getString(R.string.voice_stream_notification),
+							getString(R.string.voice_stream_voice_call)}, new Integer[]{AudioManager.STREAM_MUSIC,
+							AudioManager.STREAM_NOTIFICATION, AudioManager.STREAM_VOICE_CALL}, R.string.choose_audio_stream,
 					R.string.choose_audio_stream_descr);
 			final OnPreferenceChangeListener prev = lp.getOnPreferenceChangeListener();
 			lp.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
@@ -132,21 +132,20 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 	}
 
 
-
 	private void addLocalPrefs(PreferenceGroup screen) {
 		String[] entries;
 		String[] entrieValues;
 
-		DrivingRegion[] drs  = DrivingRegion.values();
+		DrivingRegion[] drs = DrivingRegion.values();
 		entries = new String[drs.length];
 		for (int i = 0; i < entries.length; i++) {
 			entries[i] = getString(drs[i].name); // + " (" + drs[i].defMetrics.toHumanString(this) +")" ;
 		}
 		registerListPreference(settings.DRIVING_REGION, screen, entries, drs);
 
-		MetricsConstants[] mvls  = MetricsConstants.values();
+		MetricsConstants[] mvls = MetricsConstants.values();
 		entries = new String[mvls.length];
-		for(int i=0; i<entries.length; i++){
+		for (int i = 0; i < entries.length; i++) {
 			entries[i] = mvls[i].toHumanString(getMyApplication());
 		}
 		registerListPreference(settings.METRIC_SYSTEM, screen, entries, mvls);
@@ -157,7 +156,7 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 		String latinSystemDefaultSuffix = " (" + getString(R.string.system_locale_no_translate) + ")";
 
 		//getResources().getAssets().getLocales();
-		entrieValues = new String[] { "",
+		entrieValues = new String[]{"",
 				"en",
 				"af",
 				"al",
@@ -174,11 +173,10 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 				"nl",
 				"fi",
 				"fr",
+				"gl",
 				"ka",
 				"de",
 				"el",
-				"iw",
-				"gl",
 				"he",
 				"hi",
 				"hu",
@@ -205,7 +203,7 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 				"uk",
 				"vi",
 				"cy"};
-		entries = new String[] { getString(R.string.system_locale) + latinSystemDefaultSuffix,
+		entries = new String[]{getString(R.string.system_locale) + latinSystemDefaultSuffix,
 				getString(R.string.lang_en),
 				getString(R.string.lang_af) + incompleteSuffix,
 				getString(R.string.lang_al) + incompleteSuffix,
@@ -222,11 +220,10 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 				getString(R.string.lang_nl),
 				getString(R.string.lang_fi) + incompleteSuffix,
 				getString(R.string.lang_fr),
+				getString(R.string.lang_gl),
 				getString(R.string.lang_ka) + incompleteSuffix,
 				getString(R.string.lang_de),
 				getString(R.string.lang_el),
-				getString(R.string.lang_iw),
-				getString(R.string.lang_gl),
 				getString(R.string.lang_he) + incompleteSuffix,
 				getString(R.string.lang_hi) + incompleteSuffix,
 				getString(R.string.lang_hu),
@@ -258,8 +255,9 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 		if (!getResources().getString(R.string.preferred_locale).equals(getResources().getString(R.string.preferred_locale_no_translate))) {
 			((ListPreference) screen.findPreference(settings.PREFERRED_LOCALE.getId())).setTitle(getString(R.string.preferred_locale) + " (" + getString(R.string.preferred_locale_no_translate) + ")");
 		}
-		
-		registerListPreference(settings.MAP_PREFERRED_LOCALE, screen, ConfigureMapMenu.getMapNamesValues(this), ConfigureMapMenu.mapNamesIds);
+
+		String[] ids = ConfigureMapMenu.getSortedMapNamesIds(this);
+		registerListPreference(settings.MAP_PREFERRED_LOCALE, screen, ConfigureMapMenu.getMapNamesValues(this, ids), ids);
 	}
 
 
@@ -310,18 +308,18 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 	}
 
 
-	public void showAppDirDialog(){
-		if(Build.VERSION.SDK_INT >= 19) {
-			 showAppDirDialogV19();
-			 return;
+	public void showAppDirDialog() {
+		if (Build.VERSION.SDK_INT >= 19) {
+			showAppDirDialogV19();
+			return;
 		}
 		AlertDialog.Builder editalert = new AlertDialog.Builder(SettingsGeneralActivity.this);
 		editalert.setTitle(R.string.application_dir);
 		final EditText input = new EditText(SettingsGeneralActivity.this);
 		input.setText(settings.getExternalStorageDirectory().getAbsolutePath());
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-		        LinearLayout.LayoutParams.MATCH_PARENT,
-		        LinearLayout.LayoutParams.MATCH_PARENT);
+				LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.MATCH_PARENT);
 		lp.leftMargin = lp.rightMargin = 5;
 		lp.bottomMargin = lp.topMargin = 5;
 		input.setLayoutParams(lp);
@@ -329,22 +327,29 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 		editalert.setView(input);
 		editalert.setNegativeButton(R.string.shared_string_cancel, null);
 		editalert.setPositiveButton(R.string.shared_string_ok, new DialogInterface.OnClickListener() {
-		    public void onClick(DialogInterface dialog, int whichButton) {
-		    	warnAboutChangingStorage(input.getText().toString());
-		    }
+			public void onClick(DialogInterface dialog, int whichButton) {
+				warnAboutChangingStorage(input.getText().toString());
+			}
 		});
 		editalert.show();
 
 	}
 
 	private void showAppDirDialogV19() {
-		Builder bld = new AlertDialog.Builder(this);
-		ChooseAppDirFragment frg = new DashChooseAppDirFragment.ChooseAppDirFragment(this, (Dialog) null);
-		bld.setView(frg.initView(getLayoutInflater(), null, null));
+		AlertDialog.Builder bld = new AlertDialog.Builder(this);
+		chooseAppDirFragment = new DashChooseAppDirFragment.ChooseAppDirFragment(this, (Dialog) null) {
+			@Override
+			protected void successCallback() {
+				updateApplicationDirTextAndSummary();
+			}
+		};
+		if (permissionRequested && !permissionGranted) {
+			chooseAppDirFragment.setPermissionDenied();
+		}
+		bld.setView(chooseAppDirFragment.initView(getLayoutInflater(), null, null));
 		AlertDialog dlg = bld.show();
-		frg.setDialog(dlg);
+		chooseAppDirFragment.setDialog(dlg);
 	}
-
 
 
 	private void addMiscPreferences(PreferenceGroup misc) {
@@ -381,7 +386,7 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 
 		registerListPreference(
 				settings.OSMAND_THEME, misc,
-				new String[] { getString(R.string.dark_theme), getString(R.string.light_theme) }, new Integer[] { OsmandSettings.OSMAND_DARK_THEME,
+				new String[]{getString(R.string.dark_theme), getString(R.string.light_theme)}, new Integer[]{OsmandSettings.OSMAND_DARK_THEME,
 						OsmandSettings.OSMAND_LIGHT_THEME});
 
 		misc.addPreference(createCheckBoxPreference(settings.USE_KALMAN_FILTER_FOR_COMPASS, R.string.use_kalman_filter_compass, R.string.use_kalman_filter_compass_descr));
@@ -389,9 +394,8 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 	}
 
 
-
 	private void updateApplicationDirTextAndSummary() {
-		if(applicationDir != null) {
+		if (applicationDir != null) {
 			String storageDir = settings.getExternalStorageDirectory().getAbsolutePath();
 			applicationDir.setSummary(storageDir);
 		}
@@ -446,15 +450,14 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 	}
 
 
-
 	private void restartApp() {
-		Builder bld = new AlertDialog.Builder(this);
+		AlertDialog.Builder bld = new AlertDialog.Builder(this);
 		bld.setMessage(R.string.restart_is_required);
 		bld.setPositiveButton(R.string.shared_string_ok, new OnClickListener() {
-			
+
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-			    android.os.Process.killProcess(android.os.Process.myPid());
+				android.os.Process.killProcess(android.os.Process.myPid());
 //				Intent intent = getIntent();
 //				finish();
 //				startActivity(intent);				
@@ -464,27 +467,26 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 	}
 
 
-
 	private void warnAboutChangingStorage(final String newValue) {
 		String newDir = newValue != null ? newValue.trim() : newValue;
-		if(!newDir.replace('/', ' ').trim().
+		if (!newDir.replace('/', ' ').trim().
 				toLowerCase().endsWith(IndexConstants.APP_DIR.replace('/', ' ').trim())) {
-			newDir += "/" +IndexConstants.APP_DIR;
+			newDir += "/" + IndexConstants.APP_DIR;
 		}
 		final File path = new File(newDir);
 		path.mkdirs();
 		if (!path.canRead() || !path.exists()) {
-			AccessibleToast.makeText(this, R.string.specified_dir_doesnt_exist, Toast.LENGTH_LONG).show();
+			Toast.makeText(this, R.string.specified_dir_doesnt_exist, Toast.LENGTH_LONG).show();
 			return;
 		}
-		Builder builder = new AlertDialog.Builder(this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(getString(R.string.application_dir_change_warning3));
 		builder.setPositiveButton(R.string.shared_string_yes, new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				MoveFilesToDifferentDirectory task =
 						new MoveFilesToDifferentDirectory(SettingsGeneralActivity.this,
-						settings.getExternalStorageDirectory(), path);
+								settings.getExternalStorageDirectory(), path);
 				task.setRunOnSuccess(new Runnable() {
 					@Override
 					public void run() {
@@ -516,7 +518,7 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 	public void reloadIndexes() {
 		setProgressVisibility(true);
 		final CharSequence oldTitle = getToolbar().getTitle();
-		getToolbar(). setTitle(getString(R.string.loading_data));
+		getToolbar().setTitle(getString(R.string.loading_data));
 		getToolbar().setSubtitle(getString(R.string.reading_indexes));
 		new AsyncTask<Void, Void, List<String>>() {
 
@@ -556,7 +558,7 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 				protected void onPostExecute(Void result) {
 					setProgressVisibility(false);
 					if (!NativeOsmandLibrary.isNativeSupported(storage, getMyApplication())) {
-						AccessibleToast.makeText(SettingsGeneralActivity.this, R.string.native_library_not_supported, Toast.LENGTH_LONG).show();
+						Toast.makeText(SettingsGeneralActivity.this, R.string.native_library_not_supported, Toast.LENGTH_LONG).show();
 					}
 				}
 			}.execute();
@@ -579,7 +581,7 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					AccessibleToast.makeText(SettingsGeneralActivity.this, b.toString(), Toast.LENGTH_LONG).show();
+					Toast.makeText(SettingsGeneralActivity.this, b.toString(), Toast.LENGTH_LONG).show();
 
 				}
 			});
@@ -598,7 +600,7 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 		entrieValues[k] = OsmandSettings.VOICE_PROVIDER_NOT_USE;
 		entries[k++] = getString(R.string.shared_string_do_not_use);
 		for (String s : voiceFiles) {
-			entries[k] = (s.contains("tts") ? getString(R.string.ttsvoice) +" ":"") +
+			entries[k] = (s.contains("tts") ? getString(R.string.ttsvoice) + " " : "") +
 					FileNameTranslationHelper.getVoiceName(this, s);
 			entrieValues[k] = s;
 			k++;
@@ -621,5 +623,30 @@ public class SettingsGeneralActivity extends SettingsBaseActivity {
 			}
 		}
 		return setFiles;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (permissionRequested) {
+			showAppDirDialogV19();
+			permissionRequested = false;
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		permissionRequested = requestCode == DownloadActivity.PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE;
+		if (permissionRequested
+				&& grantResults.length > 0
+				&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			permissionGranted = true;
+		} else {
+			permissionGranted = false;
+			Toast.makeText(this,
+					R.string.missing_write_external_storage_permission,
+					Toast.LENGTH_LONG).show();
+		}
 	}
 }

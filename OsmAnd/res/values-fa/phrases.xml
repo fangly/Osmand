@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" ?>
+<?xml version='1.0' encoding='utf-8'?>
 <resources>
 
 <string name="poi_palaeontological_site">مرکز دیرینه شناسی</string>
@@ -49,7 +49,7 @@
 <string name="poi_furniture">فروشگاه مبلمان</string>
 <string name="poi_garden_centre">لوازم باغبانی</string>
 <string name="poi_gas">فروشگاه کپسول گاز</string>
-<string name="poi_general">فروشگاه عمومی</string>
+<string name="poi_shop_yes">فروشگاه عمومی</string>
 <string name="poi_gift">مغازه کادو فروشی</string>
 <string name="poi_glaziery">Glaziery</string>
 <string name="poi_hardware">فروشگاه سخت افزار</string>
@@ -108,7 +108,7 @@
 <string name="poi_emergency_access_point">نقطه دسترسی اضطراری</string>
 
 <string name="poi_ford">فورد</string>
-<string name="poi_mountain_pass_yes">ایستگاه کوهستانی</string>
+<string name="poi_mountain_pass">ایستگاه کوهستانی</string>
 <string name="poi_gate">دروازه</string>
 <string name="poi_city_wall">دیوار شهرستان</string>
 <string name="poi_lift_gate">دروازه آسانسور</string>
@@ -147,7 +147,7 @@
 <string name="poi_railway_station">ایستگاه راه آهن (منسوخ)</string>
 <string name="poi_railway_platform">پلت فرم راه آهن (منسوخ)</string>
 <string name="poi_halt">ایستگاه راه آهن (منسوخ)</string>
-<string name="poi_railway_subway_entrance">ورودی مترو</string>
+<string name="poi_subway_entrance">ورودی مترو</string>
 <string name="poi_subway_station">ایستگاه مترو</string>
 <string name="poi_taxi">ایستگاه تاکسی</string>
 
@@ -644,4 +644,6 @@
 <string name="poi_military_naval_base">پایگاه نیروی دریایی ارتش</string>
 <string name="poi_military_nuclear_explosion_site">محدوده هسته ای</string>
 
-</resources>
+<string name="poi_shop">مغازه</string>
+		<string name="poi_shop_food">اغذیه فروشی</string>
+	</resources>

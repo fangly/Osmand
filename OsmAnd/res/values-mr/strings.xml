@@ -1,13 +1,13 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='UTF-8'?>
 <resources><string name="left_side_navigation">डाव्या बाजूने ड्रायव्हिंग</string>
   <string name="unknown_location">अजून स्थान माहित नाही</string>
   <string name="modify_transparency">पारदर्शकता बदला (० - पारदर्शक, २५५ - अपारदर्शक)</string>
   <string name="confirm_interrupt_download">फाइल डाउनलोड थांबवायचे का?</string>
   <string name="local_indexes_cat_tile">ऑनलाइन नकाशे (टाइल्स)</string>
-  <string name="local_indexes_cat_map">ऑफलाइन नकाशे (वेक्टर)</string>
+  <string name="local_indexes_cat_map">साधारण नकाशे (वेक्टर)</string>
   <string name="map_online_data">ऑनलाइन नकाशे (टाइल्स)</string>
   <string name="map_online_data_descr">ऑनलाइन नकाशे वापरा (डाउनलोड करून एसडी कार्ड वार साठवा)</string>
-  <string name="online_map_settings">ऑनलाइन नकाशे</string>
+  <string name="shared_string_online_maps">ऑनलाइन नकाशे</string>
   <string name="online_map_settings_descr">Configure online or cached tile map sources</string>
   
   <string name="plugins_screen">प्लगिन्स</string>
@@ -23,7 +23,7 @@
   <string name="show_ruler_level">पट्टी दाखवा</string>
   <string name="info_button">माहिती</string>
   <string name="shared_string_help">मदत</string>
-  <string name="show_details">तपशील दाखवा</string>
+  
   <string name="shared_string_on">चालू</string>
   <string name="shared_string_off">बंद</string>
   <string name="backToMenu">पुन्हा मेनूकडे</string>
@@ -79,10 +79,10 @@
   <string name="index_name_europe">युरोप</string>
   <string name="index_name_france">युरोप - फ्रान्स</string>
   <string name="index_name_germany">युरोप - जर्मनी</string>
-  <string name="index_name_russia">युरोप/आशिया - रशिया</string>
+  <string name="index_name_russia">रशिया</string>
   <string name="index_name_africa">अफ्रिका</string>
   <string name="index_name_asia">आशिया</string>
-  <string name="index_name_oceania">ओशेनिया</string>
+  <string name="index_name_oceania">ऑस्ट्रेलिया आणि ओशेनिया</string>
   <string name="amenity_type_osmwiki">विकिपेडिया (ऑफलाइन)</string>
   
   <string name="routing_settings">दिशादर्शन</string>
@@ -91,9 +91,9 @@
   <string name="general_settings">सर्वसाधारण पर्याय</string>
   <string name="user_name">तुमचे ओएसएम युजरनेम</string>
   <string name="user_password">तुमचा ओएसएम पासवर्ड</string>
-  <string name="tip_day_night_mode">दिवस/रात्र पर्याय</string>
+  
   <string name="download_files_not_enough_space">%1$s एमबी डाउनलोड करण्यसाठी पुरेशी जागा शिल्लक नाही (शिल्लक जागा: %2$s).</string>
-  <string name="download_files_question_space">शिल्लक जागा आता {2} एमबी! {0} फाइल डाउनलोड करायच्या का ({1} एमबी)?</string>
+  <string name="download_files_question_space">{0} फाइल डाउनलोड करायच्या का? {1} एमबी जागा लागेल. सध्या शिल्लक जागा {2} एमबी.</string>
   
   <string name="auto_follow_route_never">कधीच नाही</string>
   <string name="pref_vector_map">वेक्टर नकाशाचे पर्याय</string>
@@ -110,10 +110,10 @@
   <string name="shared_string_rename">नाव बदला</string>
   
   <string name="search_position_current_location_search">स्थान शोधत आहे …</string>
-  <string name="search_position_current_location_found">स्थान (सापडले)</string>
+  <string name="search_position_current_location_found">माझे स्थान (सापडले)</string>
   <string name="search_position_address">पत्ता …</string>
   <string name="search_position_favorites">आवडती ठिकाणे…</string>
-  <string name="search_position_current_location">सध्याचे स्थान…</string>
+  
   <string name="select_search_position">ह्याच्या जवळ शोधा :</string>
   <string name="context_menu_item_search">इथे जवळ शोधा</string>
   <string name="filename_input">फाइलचे नाव : </string>
@@ -135,7 +135,7 @@
   <string name="search_offline_clear_search">नविन शोध</string>
   <string name="map_text_size_descr">नकाशावरील नावांसाठी अक्षरांचा आकार ठरवा</string>
   <string name="map_text_size">अक्षरांचा आकार</string>
-  <string name="voice_not_use">वापरू नका</string>
+  
   
   <string name="shared_string_next">पुढे</string>
   <string name="shared_string_previous">मागे</string>
@@ -274,7 +274,7 @@
   <string name="search_address">पत्ता शोधा</string>
   <string name="choose_building">इमारत निवडा</string>
   <string name="choose_street">रस्ता निवडा</string>
-  <string name="choose_city">शहर निवडा</string>
+  <string name="choose_city">शहर किंवा पोस्टकोड निवडा</string>
   <string name="ChooseCountry">देश निवडा</string>
   <string name="map_source">नकाशाचा स्त्रोत</string>
   <string name="use_internet">इंटरनेट वापरा</string>
@@ -305,7 +305,7 @@
   <string name="search_address_street">रस्ता</string>
   <string name="search_address_building">इमारत</string>
   <string name="search_address_building_option">इमारत</string>
-  <string name="search_tabs_location">स्थान</string>
+  
   
   <string name="context_menu_item_update_map">नकाशा अपडेट करा</string>
   <string name="context_menu_item_create_poi">पिओआय तयार करा</string>
@@ -354,7 +354,7 @@
 	<string name="please_select_address">प्रथम शहर किंवा रस्ता निवडा</string>
     <string name="plugin_distance_point_time">वेळ</string>
     <string name="plugin_distance_point_hdop">अचूकपणा</string>
-    <string name="street_name">रस्ता</string>
+    <string name="street_name">रस्त्याचे नाव</string>
 	<string name="hno">घर क्रमांक</string>
     <string name="select_address_activity">पत्ता निवडा</string>
     <string name="map_widget_gps_info">जिपिएस माहिती</string>
@@ -385,14 +385,14 @@
     
     <string name="download_select_map_types">इतर नकाशे</string>
     <string name="download_roads_only_item">फक्त रस्ते</string>
-    <string name="download_regular_maps">साधारण नकाशे</string>
-    <string name="download_roads_only_maps">फक्त रस्त्याचे नकाशे</string>
+    <string name="download_regular_maps">साधारण नकाशा</string>
+    <string name="download_roads_only_maps">फक्त रस्त्याचा नकाशा</string>
     
 	<string name="rendering_attr_noAdminboundaries_name">सीमा लपवा</string>
 	<string name="map_widget_max_speed">वेग मर्यादा</string>
     <string name="monitoring_control_start">जिपिएक्स</string>
     <string name="route_descr_lat_lon">अक्षांश %1$.3f, रेखांश %2$.3f</string>
-    <string name="route_descr_current_location">सध्याची स्थिती</string>
+    
     
     
     <string name="no_buildings_found">इमारत सापडली नाही.</string>
@@ -451,15 +451,15 @@
 	<string name="amenity_type_barrier">अडथळे</string>
 	<string name="unit_of_length_descr">लांबी आणि वेगाचे माप बदला</string>
 	<string name="unit_of_length">मोजमापाचे एकक</string>
-	<string name="tip_search">शोध</string>
-	<string name="tip_navigation">दिशादर्शन</string>
-	<string name="tip_map_switch">नकाशाचा स्त्रोत निवडा</string>
+	
+	
+	
 	<string name="incomplete_locale">अपूर्ण</string>
 	<string name="preferred_locale">भाषा</string>
 	<string name="preferred_locale_descr">भाषा निवडा (बदलल्यावर ओएसएमएएनडी पुन्हा चालू करा)</string>
 	<string name="system_locale">सिस्टिम</string>
-	<string name="tip_favorites">आवडती ठिकाणे</string>
-	<string name="rendering_attr_hideHouseNumbers_name">घरक्रमांक लपवा</string>
+	
+	<string name="rendering_attr_hideHouseNumbers_name">घरक्रमांक</string>
     <string name="shared_string_open">उघडा</string>
     <string name="shared_string_places">ठिकाणे</string>
 	<string name="shared_string_search">शोध</string>
@@ -509,4 +509,20 @@
     <string name="welmode_download_maps">नकाशे डाउनलोड करा</string>
 	<string name="current_route">सद्ध्याचा मार्ग</string>
     <string name="shared_string_do_not_use">वापरू नका</string>
-	</resources>
+	<string name="lat_lon_pattern">अक्शांश: %1$.6f रेखांश: %2$.6f</string>
+    <string name="access_default_color">मुळ रंग</string>
+    <string name="night">रात्र</string>
+    <string name="select_month_and_country">महिना आणि देश निवडा</string>
+    <string name="morning">सकाळ</string>
+    <string name="other_menu_group">इतर</string>
+    <string name="later">नंतर</string>
+    <string name="buy">विकत घ्या</string>
+    <string name="downloading_number_of_files">%1$d फाइल डाउनलोड करत आहे</string>
+    <string name="roads">रस्ते</string>
+    <string name="downloads_left_template">%1$s डाउनलोड शिल्लक</string>
+    <string name="working_days">कामाचे दिवस</string>
+    <string name="contact_info">संपर्क माहिती</string>
+    <string name="opening_at">उघडण्याची वेळ</string>
+    <string name="closing_at">बंद होण्याची वेळ</string>
+    <string name="error_calculating_route">मार्ग निवडण्यात अडथळा</string>
+    </resources>

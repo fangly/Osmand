@@ -37,9 +37,15 @@ public class DashFavoritesFragment extends DashLocationFragment {
 	List<FavouritePoint> points = new ArrayList<FavouritePoint>();
 
 	public static final String ROW_NUMBER_TAG = TAG + "_row_number";
+	private static final DashFragmentData.ShouldShowFunction SHOULD_SHOW_FUNCTION =
+			new DashboardOnMap.DefaultShouldShow() {
+				@Override
+				public int getTitleId() {
+					return TITLE_ID;
+				}
+			};
 	public static final DashFragmentData FRAGMENT_DATA =
-			new DashFragmentData(TAG, DashFavoritesFragment.class, TITLE_ID,
-					new DashboardOnMap.DefaultShouldShow(), 90, ROW_NUMBER_TAG);
+			new DashFragmentData(TAG, DashFavoritesFragment.class, SHOULD_SHOW_FUNCTION, 90, ROW_NUMBER_TAG);
 
 	@Override
 	public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -99,13 +105,13 @@ public class DashFavoritesFragment extends DashLocationFragment {
 			ImageView groupImage = (ImageView)view.findViewById(R.id.group_image);
 			if (point.getCategory().length() > 0) {
 				((TextView) view.findViewById(R.id.group_name)).setText(point.getCategory());
-				groupImage.setImageDrawable(getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_small_group));
+				groupImage.setImageDrawable(getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_small_group));
 			} else {
 				groupImage.setVisibility(View.GONE);
 			}
 
 			((ImageView) view.findViewById(R.id.favourite_icon)).setImageDrawable(FavoriteImageDrawable.getOrCreate(
-					getActivity(), point.getColor(), 0));
+					getActivity(), point.getColor(), false));
 			DashLocationView dv = new DashLocationView(direction, label, new LatLon(point.getLatitude(),
 					point.getLongitude()));
 			distances.add(dv);
@@ -114,7 +120,7 @@ public class DashFavoritesFragment extends DashLocationFragment {
 			name.setTypeface(Typeface.DEFAULT, point.isVisible() ? Typeface.NORMAL : Typeface.ITALIC);
 			view.findViewById(R.id.navigate_to).setVisibility(View.VISIBLE);
 
-			((ImageView) view.findViewById(R.id.navigate_to)).setImageDrawable(getMyApplication().getIconsCache().getContentIcon(R.drawable.ic_action_gdirections_dark));
+			((ImageView) view.findViewById(R.id.navigate_to)).setImageDrawable(getMyApplication().getIconsCache().getThemedIcon(R.drawable.ic_action_gdirections_dark));
 			view.findViewById(R.id.navigate_to).setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {

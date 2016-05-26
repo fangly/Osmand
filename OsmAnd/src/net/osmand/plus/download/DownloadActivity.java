@@ -1,41 +1,66 @@
 package net.osmand.plus.download;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StatFs;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.Space;
 import android.text.method.LinkMovementMethod;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.osmand.IProgress;
 import net.osmand.PlatformUtil;
-import net.osmand.access.AccessibleToast;
+import net.osmand.access.AccessibilityAssistant;
+import net.osmand.data.LatLon;
+import net.osmand.data.PointDescription;
+import net.osmand.map.WorldRegion;
+import net.osmand.map.WorldRegion.RegionParams;
 import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.OsmandPlugin;
 import net.osmand.plus.OsmandSettings;
+import net.osmand.plus.OsmandSettings.DrivingRegion;
+import net.osmand.plus.OsmandSettings.MetricsConstants;
 import net.osmand.plus.R;
 import net.osmand.plus.Version;
-import net.osmand.plus.activities.ActionBarProgressActivity;
 import net.osmand.plus.activities.LocalIndexInfo;
+import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.activities.TabActivity;
 import net.osmand.plus.base.BasicProgressAsyncTask;
+import net.osmand.plus.base.BottomSheetDialogFragment;
 import net.osmand.plus.download.DownloadIndexesThread.DownloadEvents;
 import net.osmand.plus.download.ui.ActiveDownloadsDialogFragment;
 import net.osmand.plus.download.ui.DataStoragePlaceDialogFragment;
 import net.osmand.plus.download.ui.DownloadResourceGroupFragment;
 import net.osmand.plus.download.ui.LocalIndexesFragment;
 import net.osmand.plus.download.ui.UpdatesIndexFragment;
+import net.osmand.plus.openseamapsplugin.NauticalMapsPlugin;
+import net.osmand.plus.srtmplugin.SRTMPlugin;
 import net.osmand.plus.views.controls.PagerSlidingTabStrip;
+import net.osmand.util.Algorithms;
 
 import org.apache.commons.logging.Log;
 
@@ -47,21 +72,25 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class DownloadActivity extends ActionBarProgressActivity implements DownloadEvents {
+public class DownloadActivity extends AbstractDownloadActivity implements DownloadEvents,
+		ActivityCompat.OnRequestPermissionsResultCallback {
 	private static final Log LOG = PlatformUtil.getLog(DownloadActivity.class);
 
 	public static final int UPDATES_TAB_NUMBER = 2;
 	public static final int LOCAL_TAB_NUMBER = 1;
 	public static final int DOWNLOAD_TAB_NUMBER = 0;
+	public static final int PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 0;
 
-	public static final String FIRST_MAP_DOWNLOADED = "first_map_downloaded";
 
 	private List<LocalIndexInfo> localIndexInfos = new ArrayList<>();
 
 	List<TabActivity.TabItem> mTabs = new ArrayList<TabActivity.TabItem>();
 	public static final String FILTER_KEY = "filter";
 	public static final String FILTER_CAT = "filter_cat";
+	public static final String FILTER_GROUP = "filter_group";
 
 	public static final String TAB_TO_OPEN = "Tab_to_open";
 	public static final String LOCAL_TAB = "local";
@@ -69,27 +98,38 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 	public static final String UPDATES_TAB = "updates";
 	public static final MessageFormat formatGb = new MessageFormat("{0, number,#.##} GB", Locale.US);
 	public static final MessageFormat formatMb = new MessageFormat("{0, number,##.#} MB", Locale.US);
+	private static boolean SUGGESTED_TO_DOWNLOAD_BASEMAP = false;
 
 	private BannerAndDownloadFreeVersion visibleBanner;
 	private ViewPager viewPager;
+	private AccessibilityAssistant accessibilityAssistant;
 	private String filter;
 	private String filterCat;
+	private String filterGroup;
 	protected Set<WeakReference<Fragment>> fragSet = new HashSet<>();
 	private DownloadIndexesThread downloadThread;
-	private DownloadValidationManager downloadValidationManager;
+	protected WorldRegion downloadItem;
+	protected String downloadTargetFileName;
+
+	private boolean srtmDisabled;
+	private boolean srtmNeedsInstallation;
+	private boolean nauticalPluginDisabled;
+	private boolean freeVersion;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		getMyApplication().applyTheme(this);
 		super.onCreate(savedInstanceState);
-		downloadValidationManager = new DownloadValidationManager(getMyApplication());
 		downloadThread = getMyApplication().getDownloadThread();
 		DownloadResources indexes = getDownloadThread().getIndexes();
 		if (!indexes.isDownloadedFromInternet) {
 			getDownloadThread().runReloadIndexFiles();
 		}
+		accessibilityAssistant = new AccessibilityAssistant(this);
 
 		setContentView(R.layout.download);
+		//noinspection ConstantConditions
+		getSupportActionBar().setTitle(R.string.shared_string_map);
 		final View downloadProgressLayout = findViewById(R.id.downloadProgressLayout);
 		downloadProgressLayout.setVisibility(View.VISIBLE);
 		updateDescriptionTextWithSize(this, downloadProgressLayout);
@@ -118,51 +158,28 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 
 		viewPager.setAdapter(new TabActivity.OsmandFragmentPagerAdapter(getSupportFragmentManager(), mTabs));
 		mSlidingTabLayout.setViewPager(viewPager);
+		mSlidingTabLayout.setOnPageChangeListener(accessibilityAssistant);
 
 		viewPager.setCurrentItem(currentTab);
-		viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-			@Override
-			public void onPageScrolled(int i, float v, int i1) {
-
-			}
-
-			@Override
-			public void onPageSelected(int i) {
-				visibleBanner.updateBannerInProgress();
-			}
-
-			@Override
-			public void onPageScrollStateChanged(int i) {
-
-			}
-		});
 		visibleBanner = new BannerAndDownloadFreeVersion(findViewById(R.id.mainLayout), this, true);
 
 		final Intent intent = getIntent();
 		if (intent != null && intent.getExtras() != null) {
 			filter = intent.getExtras().getString(FILTER_KEY);
 			filterCat = intent.getExtras().getString(FILTER_CAT);
+			filterGroup = intent.getExtras().getString(FILTER_GROUP);
 		}
-		final boolean firstTime = getMyApplication().getAppInitializer().isFirstTime(null);
-		final boolean externalExists =
-				DataStoragePlaceDialogFragment.getExternalStorageDirectory() != null;
-		if (firstTime && externalExists) {
-			new DataStoragePlaceDialogFragment().show(getFragmentManager(), null);
-		}
+		showFirstTimeExternalStorage();
 	}
-	
+
 	public DownloadIndexesThread getDownloadThread() {
 		return downloadThread;
 	}
-	
-	public void startDownload(IndexItem... indexItem) {
-		downloadValidationManager.startDownload(this, indexItem);
+
+	public AccessibilityAssistant getAccessibilityAssistant() {
+		return accessibilityAssistant;
 	}
-	
-	public void makeSureUserCancelDownload(IndexItem item) {
-		downloadValidationManager.makeSureUserCancelDownload(this, item);
-	}
-	
+
 	@Override
 	public void onAttachFragment(Fragment fragment) {
 		fragSet.add(new WeakReference<Fragment>(fragment));
@@ -171,6 +188,7 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 	@Override
 	protected void onResume() {
 		super.onResume();
+		initAppStatusVariables();
 		getMyApplication().getAppCustomization().resumeActivity(DownloadActivity.class, this);
 		downloadThread.setUiActivity(this);
 		downloadInProgress();
@@ -196,22 +214,34 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 	public List<LocalIndexInfo> getLocalIndexInfos() {
 		return localIndexInfos;
 	}
-	
-	public OsmandApplication getMyApplication() {
-		return (OsmandApplication) getApplication();
-	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
 		getMyApplication().getAppCustomization().pauseActivity(DownloadActivity.class);
-		downloadThread.setUiActivity(null);
+		downloadThread.resetUiActivity(this);
 	}
 
 	@Override
 	@UiThread
 	public void downloadHasFinished() {
 		visibleBanner.updateBannerInProgress();
+		if (downloadItem != null && downloadItem != getMyApplication().getRegions().getWorldRegion()
+				&& !WorldRegion.WORLD_BASEMAP.equals(downloadItem.getRegionDownloadNameLC())) {
+
+			if (!Algorithms.isEmpty(downloadTargetFileName)) {
+				File f = new File(downloadTargetFileName);
+				if (f.exists() && f.lastModified() > System.currentTimeMillis() - 10000) {
+					boolean firstMap = !getMyApplication().getSettings().FIRST_MAP_IS_DOWNLOADED.get();
+					if (firstMap) {
+						initSettingsFirstMap(downloadItem);
+					}
+					showGoToMap(downloadItem);
+				}
+			}
+			downloadItem = null;
+			downloadTargetFileName = null;
+		}
 		for (WeakReference<Fragment> ref : fragSet) {
 			Fragment f = ref.get();
 			if (f instanceof DownloadEvents && f.isAdded()) {
@@ -220,19 +250,24 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 		}
 	}
 
+
 	@Override
 	@UiThread
 	public void downloadInProgress() {
+		if (accessibilityAssistant.isUiUpdateDiscouraged())
+			return;
+		accessibilityAssistant.lockEvents();
 		visibleBanner.updateBannerInProgress();
+		showDownloadWorldMapIfNeeded();
 		for (WeakReference<Fragment> ref : fragSet) {
 			Fragment f = ref.get();
 			if (f instanceof DownloadEvents && f.isAdded()) {
 				((DownloadEvents) f).downloadInProgress();
 			}
 		}
+		accessibilityAssistant.unlockEvents();
 	}
 
-	
 
 	@Override
 	@UiThread
@@ -249,10 +284,6 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 
 	private int getCurrentTab() {
 		return viewPager.getCurrentItem();
-	}
-
-	public boolean isLightActionBar() {
-		return ((OsmandApplication) getApplication()).getSettings().isLightActionBar();
 	}
 
 	public void showDialog(FragmentActivity activity, DialogFragment fragment) {
@@ -330,13 +361,14 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 			laterButton = freeVersionBanner.findViewById(R.id.laterButton);
 			freeVersionBannerTitle = freeVersionBanner.findViewById(R.id.freeVersionBannerTitle);
 
-			shouldShowFreeVersionBanner = Version.isFreeVersion(application)
+			shouldShowFreeVersionBanner =
+					(Version.isFreeVersion(application) && !application.getSettings().LIVE_UPDATES_PURCHASED.get())
 					|| application.getSettings().SHOULD_SHOW_FREE_VERSION_BANNER.get();
 
 			initFreeVersionBanner();
 			updateBannerInProgress();
 		}
-		
+
 		public void updateBannerInProgress() {
 			BasicProgressAsyncTask<?, ?, ?, ?> basicProgressAsyncTask = ctx.getDownloadThread().getCurrentRunningTask();
 			final boolean isFinished = basicProgressAsyncTask == null
@@ -406,8 +438,33 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 					}
 				}
 			});
-			laterButton.setOnClickListener(new ToggleCollapseFreeVersionBanner(freeVersionDescriptionTextView,
-					buttonsLinearLayout, freeVersionBannerTitle, application.getSettings()));
+			ToggleCollapseFreeVersionBanner clickListener =
+					new ToggleCollapseFreeVersionBanner(freeVersionDescriptionTextView,
+							buttonsLinearLayout, freeVersionBannerTitle, application.getSettings());
+			laterButton.setOnClickListener(clickListener);
+
+			LinearLayout marksLinearLayout = (LinearLayout) freeVersionBanner.findViewById(R.id.marksLinearLayout);
+			Space spaceView = new Space(ctx);
+			LinearLayout.LayoutParams layoutParams =
+					new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
+			spaceView.setLayoutParams(layoutParams);
+			marksLinearLayout.addView(spaceView);
+			int markWidth = (int) (1 * ctx.getResources().getDisplayMetrics().density);
+			int colorBlack = ctx.getResources().getColor(R.color.color_black);
+			for (int i = 1; i < DownloadValidationManager.MAXIMUM_AVAILABLE_FREE_DOWNLOADS; i++) {
+				View markView = new View(ctx);
+				layoutParams = new LinearLayout.LayoutParams(markWidth, ViewGroup.LayoutParams.MATCH_PARENT);
+				markView.setLayoutParams(layoutParams);
+				markView.setBackgroundColor(colorBlack);
+				marksLinearLayout.addView(markView);
+				spaceView = new Space(ctx);
+				layoutParams = new LinearLayout.LayoutParams(0,
+						ViewGroup.LayoutParams.MATCH_PARENT, 1);
+				spaceView.setLayoutParams(layoutParams);
+				marksLinearLayout.addView(spaceView);
+			}
+
+
 			updateFreeVersionBanner();
 		}
 
@@ -478,14 +535,124 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 						}
 						b.append(w);
 					}
-					AccessibleToast.makeText(DownloadActivity.this, b.toString(), Toast.LENGTH_LONG).show();
+					Toast.makeText(DownloadActivity.this, b.toString(), Toast.LENGTH_LONG).show();
 				}
 				newDownloadIndexes();
 			}
 		};
 		task.execute();
-
 	}
+
+	private void initSettingsFirstMap(WorldRegion reg) {
+		getMyApplication().getSettings().FIRST_MAP_IS_DOWNLOADED.set(true);
+		DrivingRegion drg = null;
+		RegionParams params = reg.getParams();
+		boolean americanSigns = "american".equals(params.getRegionRoadSigns());
+		boolean leftHand = "yes".equals(params.getRegionLeftHandDriving());
+		MetricsConstants mc = "miles".equals(params.getRegionMetric()) ?
+				MetricsConstants.MILES_AND_FOOTS : MetricsConstants.KILOMETERS_AND_METERS;
+		for (DrivingRegion r : DrivingRegion.values()) {
+			if (r.americanSigns == americanSigns && r.leftHandDriving == leftHand &&
+					r.defMetrics == mc) {
+				drg = r;
+				break;
+			}
+		}
+		if (drg != null) {
+			getMyApplication().getSettings().DRIVING_REGION.set(drg);
+		}
+		String lang = params.getRegionLang();
+		if (lang != null) {
+			String lng = lang.split(",")[0];
+			String setTts = null;
+			for (String s : OsmandSettings.TTS_AVAILABLE_VOICES) {
+				if (lng.startsWith(s)) {
+					setTts = s + "-tts";
+					break;
+				} else if (lng.contains("," + s)) {
+					setTts = s + "-tts";
+				}
+			}
+			if (setTts != null) {
+				getMyApplication().getSettings().VOICE_PROVIDER.set(setTts);
+			}
+		}
+	}
+
+	public void setDownloadItem(WorldRegion region, String targetFileName) {
+		if (downloadItem == null) {
+			downloadItem = region;
+			downloadTargetFileName = targetFileName;
+		} else if (region == null) {
+			downloadItem = null;
+			downloadTargetFileName = null;
+		}
+	}
+
+	private void showGoToMap(WorldRegion region) {
+		GoToMapFragment fragment = new GoToMapFragment();
+		fragment.regionCenter = region.getRegionCenter();
+		fragment.regionName = region.getLocaleName();
+		fragment.show(getSupportFragmentManager(), GoToMapFragment.TAG);
+	}
+
+	private void showDownloadWorldMapIfNeeded() {
+		if (getDownloadThread().getCurrentDownloadingItem() == null) {
+			return;
+		}
+		IndexItem worldMap = getDownloadThread().getIndexes().getWorldBaseMapItem();
+		if (!SUGGESTED_TO_DOWNLOAD_BASEMAP && worldMap != null && (!worldMap.isDownloaded() || worldMap.isOutdated()) &&
+				!getDownloadThread().isDownloading(worldMap)) {
+			SUGGESTED_TO_DOWNLOAD_BASEMAP = true;
+			AskMapDownloadFragment fragment = new AskMapDownloadFragment();
+			fragment.indexItem = worldMap;
+			fragment.show(getSupportFragmentManager(), AskMapDownloadFragment.TAG);
+		}
+	}
+
+	private void showFirstTimeExternalStorage() {
+		final boolean firstTime = getMyApplication().getAppInitializer().isFirstTime();
+		if (firstTime && DataStoragePlaceDialogFragment.isInterestedInFirstTime) {
+			if (!hasPermissionToWriteExternalStorage(this)) {
+				ActivityCompat.requestPermissions(this,
+						new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+						PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+			} else {
+				chooseDataStorage();
+			}
+		}
+	}
+
+	private void chooseDataStorage() {
+		DataStoragePlaceDialogFragment.showInstance(getSupportFragmentManager(), false);
+	}
+
+	public static boolean hasPermissionToWriteExternalStorage(Context ctx) {
+		return ContextCompat.checkSelfPermission(ctx, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+				== PackageManager.PERMISSION_GRANTED;
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+										   String permissions[], int[] grantResults) {
+		if (requestCode == PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE
+				&& grantResults.length > 0
+				&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+			new Timer().schedule(new TimerTask() {
+				@Override
+				public void run() {
+					chooseDataStorage();
+				}
+			}, 1);
+		} else {
+			Toast.makeText(this,
+					R.string.missing_write_external_storage_permission,
+					Toast.LENGTH_LONG).show();
+		}
+		return;
+	}
+
 
 	public String getFilterAndClear() {
 		String res = filter;
@@ -496,6 +663,12 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 	public String getFilterCatAndClear() {
 		String res = filterCat;
 		filterCat = null;
+		return res;
+	}
+
+	public String getFilterGroupAndClear() {
+		String res = filterGroup;
+		filterGroup = null;
 		return res;
 	}
 
@@ -522,15 +695,178 @@ public class DownloadActivity extends ActionBarProgressActivity implements Downl
 		messageTextView.setText(R.string.device_memory);
 	}
 
-
-	private void initSettingsIfFirstMap(IndexItem item) {
-		OsmandSettings.CommonPreference<Boolean> isFirstMapDownloadedPreference =
-				getMyApplication().getSettings()
-				.registerBooleanPreference(FIRST_MAP_DOWNLOADED, false).makeGlobal();
-		boolean wasFirstMapDownloaded = isFirstMapDownloadedPreference.get();
-		if (!wasFirstMapDownloaded) {
-//			item.ge
-			isFirstMapDownloadedPreference.set(true);
-		}
+	public boolean isSrtmDisabled() {
+		return srtmDisabled;
 	}
+
+	public boolean isSrtmNeedsInstallation() {
+		return srtmNeedsInstallation;
+	}
+
+	public boolean isNauticalPluginDisabled() {
+		return nauticalPluginDisabled;
+	}
+
+	public boolean isFreeVersion() {
+		return freeVersion;
+	}
+
+	public void initAppStatusVariables() {
+		srtmDisabled = OsmandPlugin.getEnabledPlugin(SRTMPlugin.class) == null;
+		nauticalPluginDisabled = OsmandPlugin.getEnabledPlugin(NauticalMapsPlugin.class) == null;
+		freeVersion = Version.isFreeVersion(getMyApplication());
+		OsmandPlugin srtmPlugin = OsmandPlugin.getPlugin(SRTMPlugin.class);
+		srtmNeedsInstallation = srtmPlugin == null || srtmPlugin.needsInstallation();
+
+	}
+
+	public static class AskMapDownloadFragment extends BottomSheetDialogFragment {
+		public static final String TAG = "AskMapDownloadFragment";
+
+		private static final String KEY_ASK_MAP_DOWNLOAD_ITEM_FILENAME = "key_ask_map_download_item_filename";
+		private IndexItem indexItem;
+
+		@Nullable
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			if (savedInstanceState != null) {
+				String itemFileName = savedInstanceState.getString(KEY_ASK_MAP_DOWNLOAD_ITEM_FILENAME);
+				if (itemFileName != null) {
+					indexItem = getMyApplication().getDownloadThread().getIndexes().getIndexItem(itemFileName);
+				}
+			}
+			View view = inflater.inflate(R.layout.ask_map_download_fragment, container, false);
+			((ImageView) view.findViewById(R.id.titleIconImageView))
+					.setImageDrawable(getIcon(R.drawable.ic_map, R.color.osmand_orange));
+
+			Button actionButtonOk = (Button) view.findViewById(R.id.actionButtonOk);
+
+			String titleText = null;
+			String descriptionText = null;
+
+			if (indexItem != null) {
+				if (indexItem.getBasename().equalsIgnoreCase(WorldRegion.WORLD_BASEMAP)) {
+					titleText = getString(R.string.index_item_world_basemap);
+					descriptionText = getString(R.string.world_map_download_descr);
+				}
+
+				actionButtonOk.setText(getString(R.string.shared_string_download) + " (" + indexItem.getSizeDescription(getActivity()) + ")");
+			}
+
+			if (titleText != null) {
+				((TextView) view.findViewById(R.id.titleTextView))
+						.setText(titleText);
+			}
+			if (descriptionText != null) {
+				((TextView) view.findViewById(R.id.descriptionTextView))
+						.setText(descriptionText);
+			}
+
+			final ImageButton closeImageButton = (ImageButton) view.findViewById(R.id.closeImageButton);
+			closeImageButton.setImageDrawable(getContentIcon(R.drawable.ic_action_remove_dark));
+			closeImageButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					dismiss();
+				}
+			});
+
+			actionButtonOk.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (indexItem != null) {
+						((DownloadActivity) getActivity()).startDownload(indexItem);
+						dismiss();
+					}
+				}
+			});
+
+			view.findViewById(R.id.actionButtonCancel)
+					.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							dismiss();
+						}
+					});
+
+			return view;
+		}
+
+		@Override
+		public void onSaveInstanceState(@NonNull Bundle outState) {
+			if (indexItem != null) {
+				outState.putString(KEY_ASK_MAP_DOWNLOAD_ITEM_FILENAME, indexItem.getFileName());
+			}
+		}
+
+
+	}
+
+	public static class GoToMapFragment extends BottomSheetDialogFragment {
+		public static final String TAG = "GoToMapFragment";
+
+		private static final String KEY_GOTO_MAP_REGION_CENTER = "key_goto_map_region_center";
+		private static final String KEY_GOTO_MAP_REGION_NAME = "key_goto_map_region_name";
+		private LatLon regionCenter;
+		private String regionName;
+
+		@Override
+		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+			if (savedInstanceState != null) {
+				regionName = savedInstanceState.getString(KEY_GOTO_MAP_REGION_NAME);
+				regionName = regionName == null ? "" : regionName;
+				Object rCenterObj = savedInstanceState.getSerializable(KEY_GOTO_MAP_REGION_CENTER);
+				if (rCenterObj != null) {
+					regionCenter = (LatLon) rCenterObj;
+				} else {
+					regionCenter = new LatLon(0, 0);
+				}
+			}
+
+			View view = inflater.inflate(R.layout.go_to_map_fragment, container, false);
+			((ImageView) view.findViewById(R.id.titleIconImageView))
+					.setImageDrawable(getIcon(R.drawable.ic_map, R.color.osmand_orange));
+			((TextView) view.findViewById(R.id.descriptionTextView))
+					.setText(getActivity().getString(R.string.map_downloaded_descr, regionName));
+
+			final ImageButton closeImageButton = (ImageButton) view.findViewById(R.id.closeImageButton);
+			closeImageButton.setImageDrawable(getContentIcon(R.drawable.ic_action_remove_dark));
+			closeImageButton.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (getActivity() instanceof DownloadActivity) {
+						((DownloadActivity) getActivity()).setDownloadItem(null, null);
+					}
+					dismiss();
+				}
+			});
+
+			view.findViewById(R.id.actionButton)
+					.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							OsmandApplication app = (OsmandApplication) getActivity().getApplication();
+							app.getSettings().setMapLocationToShow(
+									regionCenter.getLatitude(),
+									regionCenter.getLongitude(),
+									5,
+									new PointDescription(PointDescription.POINT_TYPE_WORLD_REGION_SHOW_ON_MAP, ""));
+
+							dismiss();
+							MapActivity.launchMapActivityMoveToTop(getActivity());
+						}
+					});
+
+			return view;
+		}
+
+		@Override
+		public void onSaveInstanceState(@NonNull Bundle outState) {
+			outState.putString(KEY_GOTO_MAP_REGION_NAME, regionName);
+			outState.putSerializable(KEY_GOTO_MAP_REGION_CENTER, regionCenter);
+		}
+
+
+	}
+
 }

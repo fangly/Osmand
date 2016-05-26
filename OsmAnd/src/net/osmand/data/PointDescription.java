@@ -1,10 +1,7 @@
 package net.osmand.data;
 
-import java.io.Serializable;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-import java.util.StringTokenizer;
+import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.jwetherell.openmap.common.LatLonPoint;
 import com.jwetherell.openmap.common.UTMPoint;
@@ -13,18 +10,19 @@ import net.osmand.plus.OsmandApplication;
 import net.osmand.plus.OsmandSettings;
 import net.osmand.plus.R;
 import net.osmand.util.Algorithms;
-import android.content.Context;
-import android.support.annotation.NonNull;
 
-public class PointDescription implements Serializable {
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import java.util.StringTokenizer;
+
+public class PointDescription {
 	private String type = "";
 	private String name = "";
 	private String typeName;
 
 	private double lat = 0;
 	private double lon = 0;
-
-	private static final long serialVersionUID = 4078409090417168638L;
 
 	public static final String POINT_TYPE_FAVORITE = "favorite";
 	public static final String POINT_TYPE_WPT = "wpt";
@@ -37,10 +35,16 @@ public class PointDescription implements Serializable {
 	public static final String POINT_TYPE_VIDEO_NOTE = "videonote";
 	public static final String POINT_TYPE_PHOTO_NOTE = "photonote";
 	public static final String POINT_TYPE_LOCATION = "location";
+	public static final String POINT_TYPE_MY_LOCATION = "my_location";
 	public static final String POINT_TYPE_ALARM = "alarm";
 	public static final String POINT_TYPE_TARGET = "destination";
+	public static final String POINT_TYPE_MAP_MARKER = "map_marker";
 	public static final String POINT_TYPE_OSM_BUG = "bug";
-	
+	public static final String POINT_TYPE_WORLD_REGION = "world_region";
+	public static final String POINT_TYPE_GPX_ITEM = "gpx_item";
+	public static final String POINT_TYPE_WORLD_REGION_SHOW_ON_MAP = "world_region_show_on_map";
+	public static final String POINT_TYPE_BLOCKED_ROAD = "blocked_road";
+
 
 	public static final PointDescription LOCATION_POINT = new PointDescription(POINT_TYPE_LOCATION, "");
 
@@ -81,6 +85,9 @@ public class PointDescription implements Serializable {
 
 	public void setName(String name){
 		this.name = name;
+		if (this.name == null) {
+			this.name = "";
+		}
 	}
 
 	public String getTypeName() {
@@ -95,7 +102,11 @@ public class PointDescription implements Serializable {
 	@NonNull
 	public String getSimpleName(Context ctx, boolean addTypeName) {
 		if (isLocation()) {
-			return getLocationName(ctx, lat, lon, true).replace('\n', ' ');
+			if (!Algorithms.isEmpty(name) && !name.equals(ctx.getString(R.string.no_address_found))) {
+				return name;
+			} else {
+				return getLocationName(ctx, lat, lon, true).replace('\n', ' ');
+			}
 		}
 		if (!Algorithms.isEmpty(typeName)) {
 			if (Algorithms.isEmpty(name)) {
@@ -148,6 +159,10 @@ public class PointDescription implements Serializable {
 		}
 	}
 
+	public boolean contextMenuDisabled() {
+		return POINT_TYPE_WORLD_REGION_SHOW_ON_MAP.equals(type);
+	}
+
 	public boolean isLocation() {
 		return POINT_TYPE_LOCATION.equals(type);
 	}
@@ -184,8 +199,16 @@ public class PointDescription implements Serializable {
 		return POINT_TYPE_TARGET.equals(type);
 	}
 
+	public boolean isMapMarker() {
+		return POINT_TYPE_MAP_MARKER.equals(type);
+	}
+
 	public boolean isParking() {
 		return POINT_TYPE_PARKING_MARKER.equals(type);
+	}
+
+	public boolean isMyLocation() {
+		return POINT_TYPE_MY_LOCATION.equals(type);
 	}
 
 	@Override
@@ -224,6 +247,18 @@ public class PointDescription implements Serializable {
 //		return o.getPointDescription(ctx).getFullPlainName(ctx, o.getLatitude(), o.getLongitude());
 	}
 
+	public boolean isSearchingAddress(Context ctx) {
+		return !Algorithms.isEmpty(name) && isLocation() && name.equals(getSearchAddressStr(ctx));
+	}
+
+	public static String getSearchAddressStr(Context ctx) {
+		return ctx.getString(R.string.looking_up_address) + ctx.getString(R.string.shared_string_ellipsis);
+	}
+
+	public static String getAddressNotFoundStr(Context ctx) {
+		return ctx.getString(R.string.no_address_found);
+	}
+
 	public static String serializeToString(PointDescription p) {
 		if (p == null) {
 			return "";
@@ -236,7 +271,7 @@ public class PointDescription implements Serializable {
 	}
 
 	public static PointDescription deserializeFromString(String s, LatLon l) {
-		PointDescription pd = null;
+		PointDescription pd = null ;
 		if (s != null && s.length() > 0) {
 			int in = s.indexOf('#');
 			if (in >= 0) {
@@ -249,7 +284,10 @@ public class PointDescription implements Serializable {
 				}
 			}
 		}
-		if(pd != null && pd.isLocation() && l != null) {
+		if(pd == null) {
+			pd = new PointDescription(POINT_TYPE_LOCATION, "");
+		}
+		if(pd.isLocation() && l != null) {
 			pd.setLat(l.getLatitude());
 			pd.setLon(l.getLongitude());
 		}

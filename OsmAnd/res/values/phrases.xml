@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <resources>
 <!--  categories -->
 	<string name="poi_shop">Shop</string>
@@ -78,7 +78,7 @@
 	<string name="poi_baby_goods">Baby goods</string>
 	<string name="poi_bag">Bag shop</string>
 	<string name="poi_bathroom_furnishing">Bathroom furnishings</string>
-	<string name="poi_bed">Bed room furnishings</string>
+	<string name="poi_bed">Bedding store</string>
 	<string name="poi_boutique">Fashion boutique</string>
 	<string name="poi_camera">Cameras and lenses</string>
 	<string name="poi_carpet">Carpet shop</string>
@@ -92,7 +92,7 @@
 	<string name="poi_copyshop">Copy shop</string>
 	<string name="poi_curtain">Curtain shop</string>
 	<string name="poi_fabric">Drapery shop</string>
-	<string name="poi_bedding">Bedding store</string>
+<!--	<string name="poi_bedding">Bedding store</string>-->
 	<string name="poi_dive">Diving equipment</string>
 	<string name="poi_doityourself">Home improvement store</string>
 	<string name="poi_doors">Doors</string>
@@ -107,7 +107,7 @@
 	<string name="poi_garden_centre">Garden center</string>
 	<string name="poi_garden_furniture">Garden furniture store</string>
 	<string name="poi_gas">Liquid gas store</string>
-	<string name="poi_general">General store</string>
+	<string name="poi_shop_yes">General store</string>
 	<string name="poi_gift">Gift shop</string>
 	<string name="poi_glaziery">Glaziery</string>
 	<string name="poi_hardware">Hardware store</string>
@@ -183,7 +183,7 @@
 
 	<string name="poi_ford">Ford</string>
 	<string name="poi_ford_stepping_stones">Step-stone bridge</string>
-	<string name="poi_mountain_pass_yes">Mountain pass</string>
+	<string name="poi_mountain_pass">Mountain pass</string>
 	<string name="poi_gate">Gate</string>
 	<string name="poi_city_wall">City wall</string>
 	<string name="poi_lift_gate">Lift gate</string>
@@ -196,6 +196,7 @@
 	<string name="poi_traffic_calming_rumble_strip">Rumble strip</string>
 	<string name="poi_traffic_calming_table">Table</string>
 	<string name="poi_traffic_calming_choker">Choker</string>
+	<string name="poi_traffic_calming_island">Traffic island</string>
 	<string name="poi_traffic_signals">Stop light</string>
 
 	<string name="poi_car_repair">Car repair</string>
@@ -246,7 +247,7 @@
 	<string name="poi_railway_station">Railway station</string>
 	<string name="poi_railway_platform">Railway platform</string>
 	<string name="poi_halt">Railway stop</string>
-	<string name="poi_railway_subway_entrance">Subway entrance</string>
+	<string name="poi_subway_entrance">Subway entrance</string>
 	<string name="poi_subway_station">Subway station</string>
 	<string name="poi_railway_buffer_stop">Railway buffer stop</string>
 	<string name="poi_taxi">Taxi stand</string>
@@ -606,8 +607,8 @@
 	<string name="poi_theme_park">Theme park</string>
 
 	<string name="poi_attraction">Tourist attraction</string>
-	<string name="poi_tourism_attraction">Tourist attraction</string>
-	<string name="poi_general_tourist_attraction_yes">General tourist attraction</string>
+<!--	<string name="poi_tourism_attraction">Tourist attraction</string>-->
+	<string name="poi_tourism_yes">Touristic object</string>
 	<string name="poi_attraction_amusement_ride">Amusement ride</string>
 	<string name="poi_attraction_animal">Animal (attraction)</string>
 	<string name="poi_attraction_big_wheel">Ferris wheel</string>
@@ -723,7 +724,7 @@
 	<string name="poi_internet_access_no">Internet access: no</string>
 
 	<string name="poi_monastery">Monastery</string>
-	<string name="poi_historic_monastery">Historic monastery</string>
+<!--	<string name="poi_historic_monastery">Historic monastery</string>-->
 	<string name="poi_religious">Religious area</string>
 	<string name="poi_wayside_cross">Wayside cross</string>
 	<string name="poi_wayside_shrine">Wayside shrine</string>
@@ -952,7 +953,7 @@
 	<string name="poi_daymark">Daymark</string>
 	<string name="poi_distance_mark">Distance mark</string>
 	<string name="poi_dry_dock">Dry dock</string>
-	<string name="poi_dyke">Dyke</string>
+	<string name="poi_seamark_dyke">Seamark dyke</string>
 	<string name="poi_floating_dock">Floating dock</string>
 	<string name="poi_fog_signal">Fog signal</string>
 	<string name="poi_harbour_basin">Harbour basin</string>
@@ -1082,12 +1083,12 @@
 	<string name="poi_website">Website</string>
 	<string name="poi_email">Email</string>
 	<string name="poi_fax">Fax</string>
-	<string name="poi_facebook">Facebook</string>
-	<string name="poi_twitter">Twitter</string>
+	<string name="facebook">Facebook</string>
+	<string name="twitter">Twitter</string>
 	<string name="poi_skype">Skype</string>
 	<string name="poi_youtube">YouTube</string>
 	<string name="poi_instagram">Instagram</string>
-	<string name="poi_vk">VKontakte</string>
+	<string name="vk">VKontakte</string>
 	<string name="poi_google_plus">Google+</string>
 	<string name="poi_mobile">Mobile</string>
 	<string name="poi_service_times">Service times</string>
@@ -1120,7 +1121,7 @@
 	<string name="poi_crossing_unmarked">Unmarked</string>
 	<string name="poi_start_date">Start date</string>
 	<string name="poi_wheelchair">Wheelchair</string>
-	<string name="poi_wheelchair_no">Wheelchair: not allowed</string>
+	<string name="poi_wheelchair_no">Wheelchair: not accessible</string>
 	<string name="poi_wheelchair_limited">Wheelchair: limited</string>
 	<string name="poi_wholesale">Wholesale</string>
 
@@ -1162,8 +1163,8 @@
 	<string name="poi_trade_tile">Tile supplies</string>
 
 	<string name="poi_population">Population</string>
-	<string name="poi_parking_underground">Underground</string>
-	<string name="poi_parking_multi_storey">Multi-storey</string>
+	<string name="poi_parking_underground">Type: underground</string>
+	<string name="poi_parking_multi_storey">Type: multi-storey</string>
 
 	<string name="poi_bicycle_parking_anchors">Anchors</string>
 	<string name="poi_bicycle_parking_stands">Stands</string>
@@ -1252,7 +1253,7 @@
 	<string name="poi_pump_manual">Manual pump</string>
 	<string name="poi_pump_powered">Powered pump</string>
 	<string name="poi_pump_no">No pump</string>
-	<string name="poi_pump">Pump</string>
+	<string name="poi_pump_yes">Pump</string>
 
 	<string name="poi_water_characteristic_mineral">Water characteristic: mineral</string>
 	<string name="poi_water_characteristic_mud">Water characteristic: mud</string>
@@ -1580,15 +1581,15 @@
 	<string name="poi_drive_in_yes">Drive-in: yes</string>
 	<string name="poi_drive_in_no">Drive-in: no</string>
 	<string name="poi_drive_through_yes">Drive-through: yes</string>
-	<string name="poi_drive_through_no">Drive-through: yes</string>
+	<string name="poi_drive_through_no">Drive-through: no</string>
 
 	<string name="poi_brewery_additional">Brewery name</string>
 	<string name="poi_microbrewery_yes">Microbrewery</string>
 	<string name="poi_microbrewery_no">No microbrewery</string>
 
-	<string name="poi_takeaway_yes">Takeway</string>
-	<string name="poi_takeaway_no">No takeway</string>
-	<string name="poi_takeaway_only">Takeway only</string>
+	<string name="poi_takeaway_yes">Takeaway</string>
+	<string name="poi_takeaway_no">No takeaway</string>
+	<string name="poi_takeaway_only">Takeaway only</string>
 
 	<string name="poi_delivery_yes">Delivery</string>
 	<string name="poi_delivery_no">No delivery</string>
@@ -1693,7 +1694,7 @@
 	<string name="poi_memorial_koshinto">Koshinto</string>
 	<string name="poi_memorial_blue_plaque">Blue plaque</string>
 	<string name="poi_memorial_jizo">Jizo</string>
-	<string name="poi_memorial_cross">Cross</string>
+	<string name="poi_memorial_cross">Cross-shaped</string>
 	<string name="poi_memorial_vehicle">Vehicle</string>
 	<string name="poi_memorial_stolperstein">Stolperstein</string>
 	<string name="poi_memorial_obelisk">Obelisk</string>
@@ -1803,7 +1804,8 @@
 	<string name="poi_internet_access_type_wired">Internet access type: wired</string>
 	<string name="poi_internet_access_type_public">Internet access type: public</string>
 	<string name="poi_internet_access_type_service">Internet access type: service</string>
-	<string name="poi_internet_access_type_no">Internet access type: no</string>
+	<string name="poi_internet_access_type_no">No Internet access</string>
+	<string name="poi_internet_access_type_yes">With Internet access</string>
 
 	<string name="poi_maxwidth">Maximum width</string>
 	<string name="poi_iata">IATA code</string>
@@ -1921,7 +1923,7 @@
 
 	<string name="poi_historic_yes">Historical object</string>
 	<string name="poi_surveillance_yes">Surveillance: yes</string>
-	<string name="poi_shop_yes">With shop</string>
+	<string name="poi_shop_additional_yes">With shop</string>
 
 	<string name="poi_service_bicycle_retail_yes">Bicycle retail: yes</string>
 	<string name="poi_service_bicycle_retail_no">Bicycle retail: no</string>
@@ -2003,8 +2005,8 @@
 
 	<string name="poi_fuel_91ul">91UL fuel</string>
 	<string name="poi_fuel_100ll">100LL fuel</string>
-	<string name="poi_autogas">Autogas</string>
-	<string name="poi_jeta1">Jet A-1 fuel</string>
+	<string name="poi_fuel_autogas">Autogas</string>
+	<string name="poi_fuel_jeta1">Jet A-1 fuel</string>
 	<string name="poi_fuel_adblue">AdBlue fuel</string>
 
 	<string name="poi_fuel_wood">Fuel: wood</string>
@@ -2220,25 +2222,653 @@
 	<string name="poi_tomb_crypt">Type: crypt</string>
 	<string name="poi_tomb_pyramid">Type: pyramid</string>
 
-	<string name="poi_historic_civilization_ancient_roman">Civilization: ancient roman</string>
-	<string name="poi_historic_civilization_nuragic">Civilization: nuragic</string>
-	<string name="poi_historic_civilization_etruscan">Civilization: etruscan</string>
+	<string name="poi_historic_civilization_ancient_roman">Civilization: ancient roman (753 BC – 284 AD)</string>
+	<string name="poi_historic_civilization_nuragic">Civilization: nuragic (18th c. BC – 2nd c. AD)</string>
+	<string name="poi_historic_civilization_etruscan">Civilization: etruscan (12th – 6th c. BC)</string>
 	<string name="poi_historic_civilization_prehistoric">Civilization: prehistoric</string>
 	<string name="poi_historic_civilization_ancient_greek">Civilization: ancient greek</string>
 	<string name="poi_historic_civilization_roman">Civilization: roman</string>
-	<string name="poi_historic_civilization_byzantine">Civilization: byzantine</string>
-	<string name="poi_historic_civilization_imperial_chinese">Civilization: imperial chinese</string>
-	<string name="poi_historic_civilization_ancient_egyptian">Civilization: ancient egyptian</string>
+	<string name="poi_historic_civilization_byzantine">Civilization: byzantine (285 AD – 1453 AD)</string>
+	<string name="poi_historic_civilization_imperial_chinese">Civilization: imperial chinese (221 BC – 1911 AD)</string>
+	<string name="poi_historic_civilization_ancient_egyptian">Civilization: ancient egyptian (until 332 BC)</string>
 	<string name="poi_historic_civilization_celtic">Civilization: celtic</string>
-	<string name="poi_historic_civilization_western_roman">Civilization: western roman</string>
+	<string name="poi_historic_civilization_western_roman">Civilization: western roman (285 AD – 476 AD)</string>
 	<string name="poi_historic_civilization_mycenaean">Civilization: mycenaean</string>
 	<string name="poi_historic_civilization_dacian">Civilization: dacian</string>
 	<string name="poi_historic_civilization_hernici">Civilization: hernici</string>
-	<string name="poi_historic_civilization_greek_egyptian">Civilization: greek egyptian</string>
+	<string name="poi_historic_civilization_greek_egyptian">Civilization: greek egyptian (332 BC – 30 BC)</string>
 	<string name="poi_historic_civilization_roman_and_byzantine_egyptian">Civilization: roman and byzantine egyptian</string>
 	<string name="poi_historic_civilization_helladic">Civilization: helladic</string>
 	<string name="poi_historic_civilization_cycladic">Civilization: cycladic</string>
 	<string name="poi_historic_civilization_minoan">Civilization: minoan</string>
 	<string name="poi_historic_civilization_tiahuanacota">Civilization: tiahuanacota</string>
+
+	<string name="poi_animal_training">Animal training</string>
+	<string name="poi_animal_training_dog">Dog training</string>
+	<string name="poi_animal_training_horse">Horse training</string>
+
+	<string name="poi_horse_yes">Horses allowed</string>
+	<string name="poi_horse_no">Horses not allowed</string>
+	<string name="poi_animal_yes">Animals allowed</string>
+	<string name="poi_animal_no">Animals not allowed</string>
+
+	<string name="poi_historic_period_nuragic">Historic period: nuragic</string>
+	<string name="poi_historic_period_stone_bronze_undetermined">Historic period: stone-age / bronze-age (undetermined)</string>
+	<string name="poi_historic_period_bronze_age">Historic period: bronze age</string>
+	<string name="poi_historic_period_principate">Historic period: principate (27 BC – 284 AD)</string>
+	<string name="poi_historic_period_classical_greece">Historic period: classical greece (5th – 4th c. BC)</string>
+	<string name="poi_historic_period_archaic_greece">Historic period: archaic greece</string>
+	<string name="poi_historic_period_iron_age">Historic period: iron age</string>
+	<string name="poi_historic_period_roman_republic">Historic period: Roman republic (508 BC – 27 BC)</string>
+	<string name="poi_historic_period_hellenistic_greece">Historic period: hellenistic greece</string>
+	<string name="poi_historic_period_new_kingdom">Historic period: new kingdom (1550 – 1069 BC)</string>
+	<string name="poi_historic_period_middle_kingdom">Historic period: middle kingdom (2055 – 1650 BC)</string>
+	<string name="poi_historic_period_predynastic_egypt">Historic period: predynastic egypt</string>
+	<string name="poi_historic_period_early_dynastic_period">Historic period: early dynastic period (3100 – 2686 BC)</string>
+	<string name="poi_historic_period_old_kingdom">Historic period: old kingdom (2686 – 2181 BC)</string>
+	<string name="poi_historic_period_first_intermediate_period">Historic period: first intermediate period (2181 – 2055 BC)</string>
+	<string name="poi_historic_period_second_intermediate_period">Historic period: second intermediate period (1650 – 1550 BC)</string>
+	<string name="poi_historic_period_third_intermediate_period">Historic period: third intermediate period (1069 – 664 BC) </string>
+	<string name="poi_historic_period_first_persian_period">Historic period: first persian period</string>
+	<string name="poi_historic_period_late_period">Historic period: late period (664 – 332 BC)</string>
+	<string name="poi_historic_period_second_persian_period">Historic period: second persian period</string>
+	<string name="poi_historic_period_alexander_the_great">Historic period: Alexander the Great</string>
+	<string name="poi_historic_period_ptolemaic_egypt">Historic period: ptolemaic egypt (305 BC – 30 BC)</string>
+	<string name="poi_historic_period_christian_egypt">Historic period: christian egypt</string>
+	<string name="poi_historic_period_byzantine_egypt">Historic period: byzantine egypt (30 BC – 641 AD)</string>
+	<string name="poi_historic_period_persian_occupation">Historic period: persian occupation</string>
+	<string name="poi_historic_period_greek_dark_ages">Historic period: Greek Dark Ages (1100 – 800 BC)</string>
+	<string name="poi_historic_period_roman_greece">Historic period: Roman Greece (146 BC – 330 AD)</string>
+	<string name="poi_historic_period_roman_kingdom">Historic period: Roman kingdom (753 BC – 509 BC)</string>
+	<string name="poi_historic_period_dominate">Historic period: dominate (285 AD – 476 AD)</string>
+	<string name="poi_historic_period_villager">Historic period: villager (epoch I, II, 1580 BC – 133 AC)</string>
+	<string name="poi_historic_period_urban">Historic period: urban (epoch III, 133 AC – 374 AC)</string>
+	<string name="poi_historic_period_classical">Historic period: classical (epoch IV, 374 AC – 900 AC)</string>
+	<string name="poi_historic_period_imperial">Historic period: imperial (epoch V, 900 AC – 1200 AC)</string>
+
+	<string name="poi_historic_era_paleolithic">Historic era: paleolithic (2.6 million years – 10000 BP)</string>
+	<string name="poi_historic_era_mesolithic">Historic era: mesolithic</string>
+	<string name="poi_historic_era_neolithic">Historic era: neolithic</string>
+	<string name="poi_historic_era_chalcolithic">Historic era: chalcolithic (IV-III millennium BC.)</string>
+
+	<string name="poi_historic_stone">Historic stone</string>
+	<string name="poi_stone_type_conciliation_cross">Type: conciliation cross</string>
+	<string name="poi_stone_type_coat_of_arms">Type: coat of arms</string>
+
+	<string name="poi_material_wood">Material: wood</string>
+	<string name="poi_material_metal">Material: metal</string>
+	<string name="poi_material_reinforced_concrete">Material: reinforced concrete</string>
+	<string name="poi_material_concrete">Material: concrete</string>
+	<string name="poi_material_steel">Material: steel</string>
+	<string name="poi_material_stone">Material: stone</string>
+	<string name="poi_material_masonry">Material: masonry</string>
+	<string name="poi_material_brick">Material: brick</string>
+	<string name="poi_material_plastic">Material: plastic</string>
+	<string name="poi_material_sandstone">Material: sandstone</string>
+	<string name="poi_material_granite_stone">Material: granite stone</string>
+	<string name="poi_material_metal_wood">Material: metal;wood</string>
+	<string name="poi_material_glass">Material: glass</string>
+	<string name="poi_material_bronze">Material: bronze</string>
+	<string name="poi_material_earth">Material: earth</string>
+	<string name="poi_material_composite">Material: composite</string>
+	<string name="poi_material_limestone">Material: limestone</string>
+	<string name="poi_material_marble">Material: marble</string>
+	<string name="poi_material_aluminium">Material: aluminium</string>
+
+	<string name="poi_site_type_megalith">Type: megalith</string>
+	<string name="poi_site_type_tumulus">Type: tumulus</string>
+	<string name="poi_site_type_fortification">Type: fortification</string>
+	<string name="poi_site_type_settlement">Type: settlement</string>
+	<string name="poi_site_type_city">Type: city</string>
+	<string name="poi_site_type_hut_circle">Type: hut circle</string>
+	<string name="poi_site_type_necropolis">Type: necropolis</string>
+	<string name="poi_site_type_petroglyph">Type: petroglyph</string>
+	<string name="poi_site_type_earthwork">Type: earthwork</string>
+	<string name="poi_megalith_type_menhir">Megalith type: menhir</string>
+	<string name="poi_megalith_type_dolmen">Megalith type: dolmen</string>
+	<string name="poi_megalith_type_nuraghe">Megalith type: nuraghe</string>
+	<string name="poi_megalith_type_stone_circle">Megalith type: stone circle</string>
+	<string name="poi_megalith_type_passage_grave">Megalith type: passage grave</string>
+	<string name="poi_fortification_type_hill_fort">Fortification type: hill fort</string>
+	<string name="poi_fortification_type_limes">Fortification type: limes</string>
+	<string name="poi_fortification_type_sconce">Fortification type: sconce</string>
+	<string name="poi_fortification_type_ring_ditch">Fortification type: ring ditch</string>
+
+	<string name="poi_pa">Pa (maori fortified settlement)</string>
+
+	<string name="poi_historic_farm">Historic farm</string>
+	<string name="poi_historic_railway_station">Historic railway station</string>
+
+	<string name="poi_club_freemasonry">Masonic Lodge</string>
+	<string name="poi_club_sailing">Sailing club</string>
+	<string name="poi_club_scout">Scout club</string>
+
+	<string name="poi_historic_threshing_floor">Historic threshing floor</string>
+	<string name="poi_historic_gallows">Historic gallows</string>
+	<string name="poi_historic_railway">Historic railway</string>
+
+	<string name="poi_square">Square</string>
+	<string name="poi_artist_name">Artist</string>
+	<string name="poi_sculptor">Sculptor</string>
+
+	<string name="poi_building_type_church">Building type: church</string>
+	<string name="poi_building_type_chapel">Building type: chapel</string>
+	<string name="poi_building_type_mosque">Building type: mosque</string>
+	<string name="poi_building_type_temple">Building type: temple</string>
+	<string name="poi_building_type_cathedral">Building type: cathedral</string>
+	<string name="poi_building_type_monastery">Building type: monastery</string>
+	<string name="poi_building_type_basilica">Building type: basilica</string>
+	<string name="poi_building_type_synagogue">Building type: synagogue</string>
+	<string name="poi_building_type_shrine">Building type: shrine</string>
+
+	<string name="poi_cross">Cross</string>
+	<string name="poi_summit_cross">Summit cross: yes</string>
+
+	<string name="poi_prison_camp">Former prison camp</string>
+	<string name="poi_concentration_camp">Type: concentration camp</string>
+	<string name="poi_pow_camp">Type: pow camp</string>
+	<string name="poi_labor_camp">Type: labor camp</string>
+	<string name="poi_concentration_camp_nazism">Type: nazi</string>
+	<string name="poi_concentration_camp_gulag">Type: gulag</string>
+
+	<string name="poi_temperature">Temperature</string>
+	<string name="poi_bathing_yes">Bathing: yes</string>
+	<string name="poi_bathing_no">Bathing: no</string>
+
+	<string name="poi_boat_storage">Boat storage</string>
+
+	<string name="poi_conveying_yes">Conveying: yes</string>
+
+	<string name="poi_bridge_ref">Bridge ref</string>
+	<string name="poi_tunnel_ref">Tunnel ref</string>
+
+	<string name="poi_ref">Ref</string>
+
+	<string name="poi_cargo_passengers">Cargo: passengers</string>
+	<string name="poi_cargo_vehicle">Cargo: vehicle</string>
+	<string name="poi_cargo_bicycle">Cargo: bicycle</string>
+	<string name="poi_cargo_container">Cargo: container</string>
+	<string name="poi_cargo_hgv">Cargo: hgv</string>
+
+	<string name="poi_fitness_station">Fitness station</string>
+
+	<string name="poi_hackerspace">Hackerspace</string>
+
+	<string name="poi_wiki_lang_af">Africaans wiki</string>
+	<string name="poi_wiki_lang_als">Alsatian wiki</string>
+	<string name="poi_wiki_lang_az">Azeri wiki</string>
+	<string name="poi_wiki_lang_bn">Bengali wiki</string>
+	<string name="poi_wiki_lang_bpy">Bishnupriya wiki</string>
+	<string name="poi_wiki_lang_br">Breton wiki</string>
+	<string name="poi_wiki_lang_bs">Bosnian wiki</string>
+	<string name="poi_wiki_lang_cy">Welsh wiki</string>
+	<string name="poi_wiki_lang_eo">Esperanto wiki</string>
+	<string name="poi_wiki_lang_eu">Basque wiki</string>
+	<string name="poi_wiki_lang_fa">Farsi wiki</string>
+	<string name="poi_wiki_lang_fy">Frysk wiki</string>
+	<string name="poi_wiki_lang_ga">Irish wiki</string>
+	<string name="poi_wiki_lang_hy">Armenian wiki</string>
+	<string name="poi_wiki_lang_is">Icelandic wiki</string>
+	<string name="poi_wiki_lang_ka">Georgian wiki</string>
+	<string name="poi_wiki_lang_ku">Kurdish wiki</string>
+	<string name="poi_wiki_lang_la">Latin wiki</string>
+	<string name="poi_wiki_lang_lb">Luxembourgish wiki</string>
+	<string name="poi_wiki_lang_mk">Macedonian wiki</string>
+	<string name="poi_wiki_lang_ml">Malayalam wiki</string>
+	<string name="poi_wiki_lang_mr">Marathi wiki</string>
+	<string name="poi_wiki_lang_nds">Low Saxon wiki</string>
+	<string name="poi_wiki_lang_nv">Navajo wiki</string>
+	<string name="poi_wiki_lang_os">Ossetian wiki</string>
+	<string name="poi_wiki_lang_pms">Piedmontese wiki</string>
+	<string name="poi_wiki_lang_sc">Sardinian wiki</string>
+	<string name="poi_wiki_lang_sh">Serbo-Croatian wiki</string>
+	<string name="poi_wiki_lang_sq">Albanian wiki</string>
+	<string name="poi_wiki_lang_ta">Tamil wiki</string>
+	<string name="poi_wiki_lang_tl">Filipino wiki</string>
+
+	<string name="poi_wiki_lang_war">Waray wiki</string>
+	<string name="poi_wiki_lang_min">Minangkabau wiki</string>
+	<string name="poi_wiki_lang_kk">Kazakh wiki</string>
+	<string name="poi_wiki_lang_uz">Uzbek wiki</string>
+	<string name="poi_wiki_lang_ce">Chechen wiki</string>
+	<string name="poi_wiki_lang_ur">Urdu wiki</string>
+	<string name="poi_wiki_lang_oc">Occitan wiki</string>
+	<string name="poi_wiki_lang_zhminnan">Southern Min wiki</string>
+	<string name="poi_wiki_lang_mg">Malagasy wiki</string>
+	<string name="poi_wiki_lang_tt">Tatar wiki</string>
+	<string name="poi_wiki_lang_jv">Javanese wiki</string>
+	<string name="poi_wiki_lang_ky">Kyrgyz wiki</string>
+	<string name="poi_wiki_lang_zhyue">Cantonese wiki</string>
+	<string name="poi_wiki_lang_ast">Astur-Leonese wiki</string>
+	<string name="poi_wiki_lang_tg">Tajik wiki</string>
+	<string name="poi_wiki_lang_ba">Bashkir wiki</string>
+	<string name="poi_wiki_lang_sco">Scots wiki</string>
+	<string name="poi_wiki_lang_pnb">Punjabi wiki</string>
+	<string name="poi_wiki_lang_cv">Chuvash wiki</string>
+	<string name="poi_wiki_lang_lmo">Lombard wiki</string>
+	<string name="poi_wiki_lang_my">Burmese wiki</string>
+	<string name="poi_wiki_lang_yo">Yoruba wiki</string>
+	<string name="poi_wiki_lang_an">Aragonese wiki</string>
+	<string name="poi_wiki_lang_ne">Nepali wiki</string>
+	<string name="poi_wiki_lang_gu">Gujarati wiki</string>
+	<string name="poi_wiki_lang_scn">Sicilian wiki</string>
+	<string name="poi_wiki_lang_bar">Bavarian wiki</string>
+	<string name="poi_wiki_lang_mn">Mongolian wiki</string>
+	<string name="poi_wiki_lang_nap">Neapolitan wiki</string>
+
+	<string name="poi_craft_electronics">Electronics repair</string>
+	<string name="poi_fireworks">Fireworks store</string>
+
+	<string name="poi_aerialway_length">Length</string>
+
+	<string name="poi_health_specialty_general_yes">Health specialty: general practitioner</string>
+	<string name="poi_health_specialty_ophthalmology_yes">Health specialty: ophthalmology</string>
+	<string name="poi_health_specialty_gynaecology_yes">Health specialty: gynaecology</string>
+	<string name="poi_health_specialty_internal_medicine_yes">Health specialty: internal medicine</string>
+	<string name="poi_health_specialty_orthopaedics_yes">Health specialty: orthopaedics</string>
+	<string name="poi_health_specialty_otolaryngology_yes">Health specialty: otolaryngology</string>
+	<string name="poi_health_specialty_paediatrics_yes">Health specialty: paediatrics</string>
+	<string name="poi_health_specialty_paediatrics_no">Health specialty: paediatrics: no</string>
+	<string name="poi_health_specialty_dermatology_yes">Health specialty: dermatology</string>
+	<string name="poi_health_specialty_urology_yes">Health specialty: urology</string>
+	<string name="poi_health_specialty_surgery_yes">Health specialty: general surgery</string>
+	<string name="poi_health_specialty_radiology_yes">Health specialty: radiology</string>
+	<string name="poi_health_specialty_psychiatry_yes">Health specialty: psychiatry</string>
+	<string name="poi_health_specialty_neurology_yes">Health specialty: neurology</string>
+	<string name="poi_health_specialty_dermatovenereology_yes">Health specialty: dermato-venereology</string>
+	<string name="poi_health_specialty_cardiology_yes">Health specialty: cardiology</string>
+	<string name="poi_health_specialty_trauma_yes">Health specialty: traumatology</string>
+	<string name="poi_health_specialty_biology_yes">Health specialty: clinical biology</string>
+	<string name="poi_health_specialty_osteopathy_yes">Health specialty: osteopathy</string>
+	<string name="poi_health_specialty_anaesthetics_yes">Health specialty: anaesthetics</string>
+	<string name="poi_health_specialty_pulmonology_yes">Health specialty: respiratory medicine</string>
+	<string name="poi_health_specialty_dental_oral_maxillo_facial_surgery_yes">Health specialty: dental, oral and maxillo-facial surgery</string>
+	<string name="poi_health_specialty_maternity_yes">Health specialty: maternity</string>
+	<string name="poi_health_specialty_emergency_medicine_yes">Health specialty: accident and emergency medicine</string>
+	<string name="poi_health_specialty_emergency_medicine_no">Health specialty: accident and emergency medicine: no</string>
+	<string name="poi_health_specialty_plastic_surgery_yes">Health specialty: plastic surgery</string>
+	<string name="poi_health_specialty_orthodontics_yes">Health specialty: orthodontics</string>
+	<string name="poi_health_specialty_physiotherapy_yes">Health specialty: physiotherapy</string>
+	<string name="poi_health_specialty_biochemistry_yes">Health specialty: biological chemistry</string>
+	<string name="poi_health_specialty_occupational_yes">Health specialty: occupational therapy</string>
+	<string name="poi_health_specialty_child_psychiatry_yes">Health specialty: child psychiatry</string>
+	<string name="poi_health_specialty_physiatry_yes">Health specialty: physical medicine and rehabilitation</string>
+	<string name="poi_health_specialty_maxillofacial_surgery_yes">Health specialty: maxillo-facial surgery</string>
+	<string name="poi_health_specialty_diagnostic_radiology_yes">Health specialty: diagnostic radiology</string>
+	<string name="poi_health_specialty_gastroenterology_yes">Health specialty: gastroenterology</string>
+	<string name="poi_health_specialty_dentistry_yes">Health specialty: dentistry</string>
+	<string name="poi_health_specialty_nephrology_yes">Health specialty: nephrology (renal diseases)</string>
+	<string name="poi_health_specialty_neurosurgery_yes">Health specialty: neurological surgery</string>
+	<string name="poi_health_specialty_neuropsychiatry_yes">Health specialty: neuropsychiatry</string>
+	<string name="poi_health_specialty_endocrinology_yes">Health specialty: endocrinology</string>
+	<string name="poi_health_specialty_nuclear_medicine_yes">Health specialty: nuclear medicine</string>
+	<string name="poi_health_specialty_pathology_yes">Health specialty: pathological anatomy</string>
+	<string name="poi_health_specialty_oncology_yes">Health specialty: oncology</string>
+	<string name="poi_health_specialty_tropical_medicine_yes">Health specialty: tropical medicine</string>
+	<string name="poi_health_specialty_tropical_medicine_no">Health specialty: tropical medicine: no</string>
+	<string name="poi_health_specialty_obstetrics_postnatal_yes">Health specialty: obstetrics (postnatal)</string>
+	<string name="poi_health_specialty_obstetrics_postnatal_no">Health specialty: obstetrics (postnatal): no</string>
+	<string name="poi_health_specialty_obstetrics_antenatal_yes">Health specialty: obstetrics (antenatal)</string>
+	<string name="poi_health_specialty_obstetrics_antenatal_no">Health specialty: obstetrics (antenatal): no</string>
+	<string name="poi_health_specialty_social_paediatrics_yes">Health specialty: social paediatrics</string>
+	<string name="poi_health_specialty_social_paediatrics_no">Health specialty: social paediatrics: no</string>
+	<string name="poi_health_specialty_obstetrics_caesarean_section_yes">Health specialty: obstetrics (caesarean section)</string>
+	<string name="poi_health_specialty_obstetrics_caesarean_section_no">Health specialty: obstetrics (caesarean section): no</string>
+	<string name="poi_health_specialty_addiction_medicine_yes">Health specialty: addiction medicine</string>
+	<string name="poi_health_specialty_optometry_yes">Health specialty: optometry</string>
+	<string name="poi_health_specialty_clinical_pathology_yes">Health specialty: clinical pathology</string>
+	<string name="poi_health_specialty_speech_therapy_yes">Health specialty: speech therapy</string>
+	<string name="poi_health_specialty_manual_therapy_yes">Health specialty: manual therapy</string>
+	<string name="poi_health_specialty_sports_medicine_yes">Health specialty: sports medicine</string>
+	<string name="poi_health_specialty_podology_yes">Health specialty: podology</string>
+	<string name="poi_health_specialty_adult_psychiatry_yes">Health specialty: adult psychiatry</string>
+	<string name="poi_health_specialty_acupuncture_yes">Health specialty: acupuncture</string>
+	<string name="poi_health_specialty_homeopathy_yes">Health specialty: homeopathy</string>
+	<string name="poi_health_specialty_traditional_chinese_medicine_yes">Health specialty: traditional chinese medicine</string>
+	<string name="poi_health_specialty_reiki_yes">Health specialty: reiki</string>
+	<string name="poi_health_specialty_herbalism_yes">Health specialty: herbalism</string>
+	<string name="poi_health_specialty_chiropractic_yes">Health specialty: chiropractic</string>
+	<string name="poi_health_specialty_naturopathy_yes">Health specialty: naturopathy</string>
+	<string name="poi_health_specialty_depth_psychology_yes">Health specialty: depth psychology</string>
+	<string name="poi_health_specialty_behavior_yes">Health specialty: behavior</string>
+
+	<string name="poi_building_type_pyramid">Building type: pyramid</string>
+
+	<string name="poi_fitness_centre">Fitness centre</string>
+	<string name="poi_fitness">Fitness</string>
+
+	<string name="poi_billiards">Billiards</string>
+
+	<string name="poi_microwave_oven_yes">Microwave oven: yes</string>
+	<string name="poi_microwave_oven_no">Microwave oven: no</string>
+	<string name="poi_water_heater_yes">Water heater: yes</string>
+	<string name="poi_water_heater_no">Water heater: no</string>
+
+	<string name="poi_parking_surface">Type: surface</string>
+	<string name="poi_parking_garage_boxes">Type: garage boxes</string>
+	<string name="poi_parking_carports">Type: carports</string>
+
+	<string name="poi_dojo">Dojo</string>
+
+	<string name="poi_gaelic_games">Gaelic games</string>
+	<string name="poi_running">Running</string>
+	<string name="poi_netball">Netball</string>
+	<string name="poi_karting">Karting</string>
+	<string name="poi_badminton">Badminton</string>
+	<string name="poi_judo">Judo</string>
+	<string name="poi_disc_golf">Disc golf</string>
+	<string name="poi_futsal">Futsal</string>
+	<string name="poi_rc_car">Radio-controlled car racing</string>
+	<string name="poi_squash">Squash</string>
+	<string name="poi_shuffleboard">Shuffleboard</string>
+	<string name="poi_lacrosse">Lacrosse</string>
+	<string name="poi_boxing">Boxing</string>
+
+	<string name="poi_official_name">Official name</string>
+
+	<string name="poi_dyke">Dyke</string>
+	<string name="poi_dolphin">Dolphin</string>
+
+	<string name="poi_forestry_compartment">Signpost: forestry compartment</string>
+	<string name="poi_forestry_allotment">Signpost: forestry allotment</string>
+	<string name="poi_inscription_n">Inscription:N</string>
+	<string name="poi_inscription_nw">Inscription:NW</string>
+	<string name="poi_inscription_w">Inscription:W</string>
+	<string name="poi_inscription_sw">Inscription:SW</string>
+	<string name="poi_inscription_s">Inscription:S</string>
+	<string name="poi_inscription_se">Inscription:SE</string>
+	<string name="poi_inscription_e">Inscription:E</string>
+	<string name="poi_inscription_ne">Inscription:NE</string>
+
+	<string name="poi_construction_yes">Under construction</string>
+	<string name="poi_atm_yes">Atm: yes</string>
+	<string name="poi_atm_no">Atm: no</string>
+
+	<string name="poi_firepit">Firepit</string>
+	<string name="poi_street_cabinet">Street cabinet</string>
+
+	<string name="poi_fair_trade_yes">Fair trade: yes</string>
+	<string name="poi_fair_trade_no">Fair trade: no</string>
+	<string name="poi_fair_trade_only">Only fair trade products</string>
+
+	<string name="poi_ice_hockey">Ice hockey</string>
+	<string name="poi_bandy">Bandy</string>
+
+	<string name="poi_protected_area">Protected area</string>
+	<string name="poi_protection_title">Protection title</string>
+	<string name="poi_protection_object_historic">Protection object: historic</string>
+	<string name="poi_protection_object_nature">Protection object: nature</string>
+	<string name="poi_protection_object_habitat">Protection object: habitat</string>
+	<string name="poi_protection_object_water">Protection object: water</string>
+
+	<string name="poi_nuclear_explosion_country">Explosion: country</string>
+	<string name="poi_nuclear_explosion_site">Explosion: site</string>
+	<string name="poi_nuclear_explosion_type_underground_shaft">Explosion type: underground, shaft</string>
+	<string name="poi_nuclear_explosion_type_underground_tunnel">Explosion type: underground, tunnel</string>
+	<string name="poi_nuclear_explosion_type_atmospheric">Explosion type: atmospheric</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_airdrop">Explosion type: atmospheric, airdrop</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_surface_tower">Explosion type: atmospheric, surface, tower</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_balloon">Explosion type: atmospheric, balloon</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_atmospheric_surface">Explosion type: atmospheric, surface</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_water_surface_barge">Explosion type: atmospheric, water surface, barge</string>
+	<string name="poi_nuclear_explosion_type_underground">Explosion type: underground</string>
+	<string name="poi_nuclear_explosion_type_cratering_burst">Explosion type: cratering burst (shallow subsurface)</string>
+	<string name="poi_nuclear_explosion_type_atmospheric_rocket_or_missile">Explosion type: atmospheric, rocket or missile</string>
+	<string name="poi_nuclear_explosion_type_space">Explosion type: space (altitude over 80 km)</string>
+	<string name="poi_nuclear_explosion_type_underwater">Explosion type: underwater</string>
+	<string name="poi_nuclear_explosion_date_utc">Explosion date (UTC)</string>
+	<string name="poi_nuclear_explosion_shot_name_en">Shot name (en)</string>
+	<string name="poi_nuclear_explosion_series">Explosion series</string>
+	<string name="poi_nuclear_explosion_purpose_nuclear_weapons_related">Explosion purpose: nuclear weapons related</string>
+	<string name="poi_nuclear_explosion_purpose_weapons_effects">Explosion purpose: weapons effects</string>
+	<string name="poi_nuclear_explosion_purpose_safety_experiment">Explosion purpose: safety experiment</string>
+	<string name="poi_nuclear_explosion_purpose_research_for_peaceful_applications">Explosion purpose: research for peaceful applications</string>
+	<string name="poi_nuclear_explosion_purpose_fundamental_science">Explosion purpose: fundamental science</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_cavity_excavation">Explosion purpose: industrial application, cavity excavation</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_seismic_sounding">Explosion purpose: industrial application, seismic sounding</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_oil_stimulation">Explosion purpose: industrial application, oil stimulation</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application">Explosion purpose: industrial application</string>
+	<string name="poi_nuclear_explosion_purpose_industrial_application_earth_moving">Explosion purpose: industrial application, earth-moving</string>
+	<string name="poi_nuclear_explosion_time_utc">Explosion time (UTC)</string>
+	<string name="poi_nuclear_explosion_yield">Explosion yield</string>
+	<string name="poi_nuclear_explosion_hole">Explosion hole</string>
+	<string name="poi_nuclear_explosion_height_of_burst">Height of burst</string>
+	<string name="poi_nuclear_explosion_ground_zero_altitude">Ground zero altitude</string>
+	<string name="poi_nuclear_explosion_body_wave_magnitude">Body wave magnitude</string>
+	<string name="poi_nuclear_explosion_salvo_first_detonation">Explosion salvo: first detonation of a salvo test</string>
+	<string name="poi_nuclear_explosion_salvo_second_or_later_detonation">Explosion salvo: second or later detonation of a salvo test</string>
+	<string name="poi_nuclear_explosion_crater_diameter">Explosion: crater diameter</string>
+	<string name="poi_nuclear_explosion_warhead">Explosion: warhead</string>
+	<string name="poi_nuclear_explosion_device">Explosion: device</string>
+
+	<string name="poi_addr_housename">House name</string>
+	<string name="poi_religion">Religious goods</string>
+
+	<string name="poi_plant_nursery">Plant nursery</string>
+
+	<string name="poi_compressed_air_yes">Compressed air: yes</string>
+	<string name="poi_compressed_air_no">Compressed air: no</string>
+
+	<string name="poi_car_wash_yes">Car wash: yes</string>
+
+	<string name="poi_vacuum_cleaner_yes">Vacuum cleaner: yes</string>
+	<string name="poi_vacuum_cleaner_no">Vacuum cleaner: no</string>
+	<string name="poi_amenity_vacuum_cleaner">Vacuum cleaner</string>
+
+	<string name="poi_sport_free_flying">Free flying (sport)</string>
+	<string name="poi_bicycle_repair_station">Bicycle self-repair station</string>
+	<string name="poi_water_tap">Water tap</string>
+	<string name="poi_button_operated_yes">Button operated: yes</string>
+	<string name="poi_button_operated_no">Button operated: no</string>
+
+	<string name="poi_free_flying_site_takeoff">Free flying site: takeoff</string>
+	<string name="poi_free_flying_site_landing">Free flying site: landing</string>
+	<string name="poi_free_flying_site_toplanding">Free flying site: toplanding</string>
+	<string name="poi_free_flying_site_towing">Free flying site: towing</string>
+	<string name="poi_free_flying_site_training">Free flying site: training</string>
+	<string name="poi_free_flying_official_yes">Free flying official: yes</string>
+	<string name="poi_free_flying_official_no">Free flying official: no</string>
+	<string name="poi_free_flying_paragliding_yes">Paragliding: yes</string>
+	<string name="poi_free_flying_paragliding_no">Paragliding: no</string>
+	<string name="poi_free_flying_hanggliding_yes">Hanggliding: yes</string>
+	<string name="poi_free_flying_hanggliding_no">Hanggliding: no</string>
+	<string name="poi_free_flying_rigid_yes">Free flying rigid: yes</string>
+	<string name="poi_free_flying_rigid_no">Free flying rigid: no</string>
+	<string name="poi_free_flying_site_orientation_n">Free flying site orientation: N</string>
+	<string name="poi_free_flying_site_orientation_ne">Free flying site orientation: NE</string>
+	<string name="poi_free_flying_site_orientation_e">Free flying site orientation: E</string>
+	<string name="poi_free_flying_site_orientation_se">Free flying site orientation: SE</string>
+	<string name="poi_free_flying_site_orientation_s">Free flying site orientation: S</string>
+	<string name="poi_free_flying_site_orientation_sw">Free flying site orientation: SW</string>
+	<string name="poi_free_flying_site_orientation_w">Free flying site orientation: W</string>
+	<string name="poi_free_flying_site_orientation_nw">Free flying site orientation: NW</string>
+	<string name="poi_free_flying_no_flight_time">No flight time (free flying)</string>
+	<string name="poi_free_flying_guest_guidelines_yes">Guest guidelines for free flying: yes</string>
+	<string name="poi_free_flying_guest_guidelines_no">Guest guidelines for free flying: no</string>
+
+	<string name="poi_solarium">Solarium</string>
+
+	<string name="poi_sanitary_dump_station">Sanitary dump station</string>
+
+	<string name="poi_medical_system_western_yes">Medical system: western</string>
+	<string name="poi_medical_system_chinese_yes">Medical system: traditional chinese</string>
+	<string name="poi_medical_system_unknown_yes">Medical system: unknown traditional</string>
+	<string name="poi_medical_system_ayurveeda_yes">Medical system: ayurveeda</string>
+	<string name="poi_medical_system_kampo_yes">Medical system: kampo</string>
+	<string name="poi_medical_system_mongolian_yes">Medical system: traditional mongolian</string>
+	<string name="poi_medical_system_tibetan_yes">Medical system: traditional tibetan</string>
+	<string name="poi_medical_system_sidda_yes">Medical system: sidda</string>
+	<string name="poi_medical_system_unani_yes">Medical system: unani</string>
+
+	<string name="poi_health_service_nursing_yes">Health service: nursing: yes</string>
+	<string name="poi_health_service_nursing_no">Health service: nursing: no</string>
+	<string name="poi_health_service_counselling_yes">Health service: counselling: yes</string>
+	<string name="poi_health_service_counselling_no">Health service: counselling: no</string>
+	<string name="poi_health_service_examination_yes">Health service: examination: yes</string>
+	<string name="poi_health_service_examination_no">Health service: examination: no</string>
+	<string name="poi_health_service_child_care_yes">Health service: child care: yes</string>
+	<string name="poi_health_service_child_care_no">Health service: child care: no</string>
+	<string name="poi_health_service_prevention_yes">Health service: prevention: yes</string>
+	<string name="poi_health_service_prevention_no">Health service: prevention: no</string>
+	<string name="poi_health_service_prevention_vaccination_yes">Health service: vaccination: yes</string>
+	<string name="poi_health_service_prevention_vaccination_no">Health service: vaccination: no</string>
+	<string name="poi_health_service_support_yes">Health service: support: yes</string>
+	<string name="poi_health_service_support_no">Health service: support: no</string>
+	<string name="poi_health_service_test_yes">Health service: test: yes</string>
+	<string name="poi_health_service_test_no">Health service: test: no</string>
+
+	<string name="poi_health_facility_type_office">Medical office</string>
+	<string name="poi_health_facility_type_field_hospital">Health facility type: field hospital</string>
+	<string name="poi_health_facility_type_counselling_centre">Health facility type: counselling centre</string>
+	<string name="poi_health_facility_type_laboratory">Health facility type: laboratory</string>
+	<string name="poi_health_facility_type_therapy">Health facility type: therapy</string>
+	<string name="poi_health_facility_type_department">Health facility type: department</string>
+	<string name="poi_health_facility_type_dispensary">Health facility type: dispensary</string>
+	<string name="poi_health_facility_type_first_aid">Health facility type: first aid</string>
+	<string name="poi_health_facility_type_nursing_home">Health facility type: nursing home</string>
+	<string name="poi_health_facility_type_support_group_home">Health facility type: support group home</string>
+
+	<string name="poi_health_specialty_palliative_medicine_yes">Health specialty: palliative medicine</string>
+
+	<string name="poi_suction_point">Suction point</string>
+
+	<string name="poi_fire_hydrant_type_underground">Type: underground</string>
+	<string name="poi_fire_hydrant_type_pillar">Type: pillar</string>
+	<string name="poi_fire_hydrant_type_dry_barrel">Type: dry barrel</string>
+	<string name="poi_fire_hydrant_type_pond">Type: pond</string>
+	<string name="poi_fire_hydrant_type_wall">Type: wall</string>
+
+	<string name="poi_health_amenity_type_first_aid_kit">First aid kit</string>
+	<string name="poi_health_amenity_type_scales">Public scales</string>
+
+	<string name="poi_health_person_type_assistant">Role of health worker: assistant</string>
+	<string name="poi_health_person_type_healer">Role of health worker: healer</string>
+	<string name="poi_health_person_type_midwife">Role of health worker: midwife</string>
+	<string name="poi_health_person_type_nurse">Role of health worker: nurse</string>
+	<string name="poi_health_person_type_paramedic">Role of health worker: paramedic</string>
+	<string name="poi_health_person_type_physician">Role of health worker: physician</string>
+	<string name="poi_health_person_type_podologist">Role of health worker: podologist</string>
+	<string name="poi_health_person_type_psychologist">Role of health worker: psychologist</string>
+	<string name="poi_health_person_type_therapist">Role of health worker: therapist</string>
+	<string name="poi_health_person_type_physician_assitant">Role of health worker: physician assitant</string>
+	<string name="poi_health_person_type_technician">Role of health worker: technician</string>
+	<string name="poi_health_person_type_witchdoctor">Role of health worker: witchdoctor</string>
+
+	<string name="poi_counselling_type_addiction_yes">Counselling (addiction): yes</string>
+	<string name="poi_counselling_type_addiction_no">Counselling (addiction): no</string>
+	<string name="poi_counselling_type_antenatal_yes">Counselling (antenatal): yes</string>
+	<string name="poi_counselling_type_antenatal_no">Counselling (antenatal): no</string>
+	<string name="poi_counselling_type_child_guidance_yes">Counselling (child guidance): yes</string>
+	<string name="poi_counselling_type_child_guidance_no">Counselling (child guidance): no</string>
+	<string name="poi_counselling_type_couple_yes">Counselling (couple): yes</string>
+	<string name="poi_counselling_type_couple_no">Counselling (couple): no</string>
+	<string name="poi_counselling_type_crisis_yes">Counselling (crisis): yes</string>
+	<string name="poi_counselling_type_crisis_no">Counselling (crisis): no</string>
+	<string name="poi_counselling_type_drugs_yes">Counselling (drugs): yes</string>
+	<string name="poi_counselling_type_drugs_no">Counselling (drugs): no</string>
+	<string name="poi_counselling_type_education_yes">Counselling (education): yes</string>
+	<string name="poi_counselling_type_education_no">Counselling (education): no</string>
+	<string name="poi_counselling_type_family_yes">Counselling (family): yes</string>
+	<string name="poi_counselling_type_family_no">Counselling (family): no</string>
+	<string name="poi_counselling_type_homeless_yes">Counselling (homeless): yes</string>
+	<string name="poi_counselling_type_homeless_no">Counselling (homeless): no</string>
+	<string name="poi_counselling_type_immigrant_yes">Counselling (immigrant): yes</string>
+	<string name="poi_counselling_type_immigrant_no">Counselling (immigrant): no</string>
+	<string name="poi_counselling_type_marriage_yes">Counselling (marriage): yes</string>
+	<string name="poi_counselling_type_marriage_no">Counselling (marriage): no</string>
+	<string name="poi_counselling_type_nutrition_yes">Counselling (nutrition): yes</string>
+	<string name="poi_counselling_type_nutrition_nfire_hydo">Counselling (nutrition): no</string>
+	<string name="poi_counselling_type_rehabilitation_yes">Counselling (rehabilitation): yes</string>
+	<string name="poi_counselling_type_rehabilitation_no">Counselling (rehabilitation): no</string>
+	<string name="poi_counselling_type_sexual_yes">Counselling (sexual): yes</string>
+	<string name="poi_counselling_type_sexual_no">Counselling (sexual): no</string>
+	<string name="poi_counselling_type_sexual_abuse_yes">Counselling (sexual abuse): yes</string>
+	<string name="poi_counselling_type_sexual_abuse_no">Counselling (sexual abuse): no</string>
+	<string name="poi_counselling_type_victim_yes">Counselling (victim): yes</string>
+	<string name="poi_counselling_type_victim_no">Counselling (victim): no</string>
+	<string name="poi_counselling_type_violence_yes">Counselling (violence): yes</string>
+	<string name="poi_counselling_type_violence_no">Counselling (violence): no</string>
+
+	<string name="poi_provided_for_infant_yes">Provided for infants: yes</string>
+	<string name="poi_provided_for_infant_no">Provided for infants: no</string>
+	<string name="poi_provided_for_toddler_yes">Provided for toddlers: yes</string>
+	<string name="poi_provided_for_toddler_no">Provided for toddlers: no</string>
+	<string name="poi_provided_for_child_yes">Provided for children: yes</string>
+	<string name="poi_provided_for_child_no">Provided for children: no</string>
+	<string name="poi_provided_for_adult_yes">Provided for adults: yes</string>
+	<string name="poi_provided_for_adult_no">Provided for adults: no</string>
+	<string name="poi_provided_for_woman_yes">Provided for women: yes</string>
+	<string name="poi_provided_for_woman_no">Provided for women: no</string>
+	<string name="poi_provided_for_senior_yes">Provided for seniors: yes</string>
+	<string name="poi_provided_for_senior_no">Provided for seniors: no</string>
+	<string name="poi_provided_for_girl_yes">Provided for girls: yes</string>
+	<string name="poi_provided_for_girl_no">Provided for girls: no</string>
+	<string name="poi_provided_for_man_yes">Provided for men: yes</string>
+	<string name="poi_provided_for_man_no">Provided for men: no</string>
+	<string name="poi_provided_for_boy_yes">Provided for boys: yes</string>
+	<string name="poi_provided_for_boy_no">Provided for boys: no</string>
+
+	<string name="poi_capacity_beds">Capacity (beds)</string>
+
+	<string name="poi_treat_inpatient_yes">Inpatient services: yes</string>
+	<string name="poi_treat_inpatient_no">Inpatient services: no</string>
+	<string name="poi_treat_inpatient_only">Inpatient services: only</string>
+	<string name="poi_counselling_yes">Counselling: yes</string>
+	<string name="poi_counselling_no">Counselling: no</string>
+	<string name="poi_emergency_yes">Emergency: yes</string>
+	<string name="poi_emergency_no">Emergency: no</string>
+	<string name="poi_home_visit_yes">Home visit: yes</string>
+	<string name="poi_home_visit_no">Home visit: no</string>
+
+	<string name="poi_disease_malaria_yes">Malaria: yes</string>
+	<string name="poi_disease_malaria_no">Malaria: no</string>
+	<string name="poi_disease_ebola_yes">Ebola: yes</string>
+	<string name="poi_disease_ebola_no">Ebola: no</string>
+	<string name="poi_disease_autism_yes">Autism: yes</string>
+	<string name="poi_disease_autism_no">Autism: no</string>
+	<string name="poi_disease_aids_yes">AIDS: yes</string>
+	<string name="poi_disease_aids_no">AIDS: no</string>
+
+	<string name="poi_office_physician">Physician office</string>
+	<string name="poi_office_therapist">Therapist office</string>
+	<string name="poi_office_podologist">Podologist office</string>
+	<string name="poi_office_healer">Healer office</string>
+	<string name="poi_office_psychologist">Psychologist office</string>
+	<string name="poi_office_nursing_service">Nursing service</string>
+	<string name="poi_office_midwife">Midwife office</string>
+
+	<string name="poi_fire_hydrant_diameter">Hydrant diameter</string>
+	<string name="poi_fire_hydrant_pressure">Hydrant pressure</string>
+	<string name="poi_fire_hydrant_count">Hydrant count</string>
+	<string name="poi_fire_hydrant_flow_capacity">Hydrant flow capacity</string>
+	<string name="poi_fire_hydrant_position_sidewalk">Hydrant position: sidewalk</string>
+	<string name="poi_fire_hydrant_position_green">Hydrant position: green</string>
+	<string name="poi_fire_hydrant_position_lane">Hydrant position: lane</string>
+	<string name="poi_fire_hydrant_position_parking_lot">Hydrant position: parking lot</string>
+	<string name="poi_fire_hydrant_position_street">Hydrant position: street</string>
+	<string name="poi_fire_hydrant_position_underground">Hydrant position: underground</string>
+	<string name="poi_fire_hydrant_style_wsh">Hydrant style: wsh</string>
+	<string name="poi_fire_hydrant_style_water_source_main">Hydrant water source: main</string>
+	<string name="poi_fire_hydrant_style_water_source_pond">Hydrant water source: pond</string>
+	<string name="poi_fire_hydrant_style_water_source_stream">Hydrant water source: stream</string>
+	<string name="poi_fire_hydrant_style_water_source_cistern">Hydrant water source: cistern</string>
+	<string name="poi_in_service_yes">In service: yes</string>
+
+	<string name="poi_street_cabinet_power">Cabinet type: power</string>
+	<string name="poi_street_cabinet_telecom">Cabinet type: telecom</string>
+	<string name="poi_street_cabinet_cable_tv">Cabinet type: cable tv</string>
+	<string name="poi_street_cabinet_gas">Cabinet type: gas</string>
+	<string name="poi_street_cabinet_postal_service">Cabinet type: postal service</string>
+	<string name="poi_street_cabinet_waste">Cabinet type: waste</string>
+	<string name="poi_street_cabinet_water_management">Cabinet type: water management</string>
+	<string name="poi_street_cabinet_street_lighting">Cabinet type: street lighting</string>
+
+	<string name="poi_military_checkpoint">Military checkpoint</string>
+
+	<string name="poi_bicycle_parking_lockers">Lockers</string>
+	<string name="poi_bicycle_parking_tree">Bicycle tree</string>
+	<string name="poi_bicycle_parking_streetpod">Streetpod</string>
+
+	<string name="poi_depth">Depth</string>
 
 </resources>

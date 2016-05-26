@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><resources><string name="tip_recent_changes_1_6_t">1.6 bertsioan aldaketak:⏎\n⇥⏎\n⇥* Sareko tesela iturburuak definitu/editatu (iraungitze data zehaztu)⏎</string>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
   <string name="local_index_tile_data_zooms">Deskargatutako zoomak: %1$s</string>
   <string name="local_index_tile_data_expire">Iraungitze epea (minutuak): %1$s</string>
   <string name="local_index_tile_data_downloadable">Deskargagarria: %1$s</string>
@@ -24,23 +25,23 @@
   <string name="driving_region_uk">EB, India, Australia &amp; Bestelakoak</string>
   
   
-  <string name="announce_gpx_waypoints">GPX bide-puntuen berri eman</string>
+  <string name="announce_gpx_waypoints">GPX bide-puntuak</string>
   <string name="speak_title">Iragarri…</string>
   <string name="speak_descr">Konfiguratu kaleen izenen, trafiko abixuen (geldialdi behartuak, abiadura mugak) eta radarren berri emateko</string>
   <string name="speak_street_names">Kaleen izenen berri eman (TTS)</string>
   <string name="speak_speed_limit">Abiadura mugen berri eman</string>
   <string name="speak_cameras">Radarren berri eman</string>
   <string name="speak_traffic_warnings">Trafiko abixuen berri eman</string>
-  <string name="tip_recent_changes_1_5_t">"Aldaketak 1.5 bertsioan:\n\t* Abiadura mugen eta radarren ahotsezko abisuak\n\t* Ahotsezko iragarkiak hobetuak (kaleen izenak iragarriak)\n\t* Dentsitate altuko mapa ikonoak\n\t* Interfaze grafikoak aldaketa asko\n\t* Distantziaren erakusketan, GPX behatzailean, bide puntuen kudeaketa, planifikatzeko widgetak, OSMren igoeran eta HTTPSren kudeaketako akats asko konponduak "</string>
+  
   <string name="osb_author_or_password_not_specified">Mesedez zehaztu OSM erabiltzailea eta pasahitza Ezarpenetan</string>
   <string name="clear_intermediate_points">Erdibideko puntuak garbitu</string>
   <string name="keep_intermediate_points">Erdibideko puntuak mantendu</string>
   <string name="new_directions_point_dialog">Baduzu iada erdibideko puntuen multzoa.</string>
-  <string name="context_menu_item_directions_to">Norabideak Honera</string>
-  <string name="context_menu_item_directions_from">Norabideak Hemendik</string>
+  <string name="context_menu_item_directions_to">Jarraibideak hona</string>
+  <string name="context_menu_item_directions_from">Jarraibideak hemendik</string>
   <string name="route_descr_map_location">Mapa: </string>
   <string name="route_descr_lat_lon">Lat %1$.3f, lon %2$.3f</string>
-  <string name="route_descr_current_location">Oraingo kokapena</string>
+  
   <string name="route_to">Nora:</string>
   <string name="route_via">Pasatuz:</string>
   <string name="route_from">Nondik:</string>
@@ -52,10 +53,10 @@
   <string name="destination_point">Helmuga %1$s</string>
   <string name="context_menu_item_destination_point">Helmuga bezala ezarri</string>
   <string name="please_select_address">Aukeratu lehenengo herria edo kalea</string>
-  <string name="tip_recent_changes_1_4_t">"Aldaketak 1.4 bertsioan:\n\t* Bide puntuak ordenatu guztiak bisitatzeko modu hoberenean (Travelling salesman, door-to-door)\n\t* Kalea izenaren arabera bilatu (auzoan)\n\t* Planifikazio plugina (kargatu/editatu/gorde GPX bideak)\n\t* Deskarga pantaila berria (asinkronikoki deskargatu)\n\t* GPX azpikarpetak (zure GPX bideak antolatzeko)\n\t* SRTM fitxategiak ezabatu\n\t* OSM Notak "</string>
+  
   <string name="search_street_in_neighborhood_cities">Bilatu kalea inguruko herrietan</string>
   <string name="intermediate_items_sort_return">Erdibideko bide-puntuak bidea hobetzeko berantolatuak izan dira.</string>
-  <string name="intermediate_items_sort_by_distance">Ordenatu (door-to-door)</string>
+  <string name="intermediate_items_sort_by_distance">Ordenatu door-to-door</string>
   <string name="local_osm_changes_backup_successful">OSM aldaketa arrakastaz sortu da %1$s</string>
   <string name="local_osm_changes_backup_failed">OSMren aldaketen backupak huts egin du</string>
   <string name="local_osm_changes_backup">OSMren aldaketa bezala backupa egin</string>
@@ -68,26 +69,25 @@
   <string name="gpx_file_name">GPX fitxategi izena</string>
   <string name="gpx_saved_sucessfully">GPX fitxategia arrakastaz gorde da {0}</string>
   <string name="osmand_distance_planning_plugin_description">Bideak sortu (edo erabili / eraldatu iadanik sortutako GPX fitxategiak) puntuen harteko distantzia neurtzeko. GPX bezala gorde, GPX bideak planifikatzeko erabili daiteke.</string>
-  <string name="osmand_distance_planning_plugin_name">Distantzia kalkulagailua &amp; Planifikatzailea</string>
+  <string name="osmand_distance_planning_plugin_name">Distantzia kalkulagailua eta planifikatzailea</string>
   <string name="use_distance_measurement_help">* Pantailan sakatu puntu bat markatzeko.\n * Mapan sakatuta mantendu iadanik dagoen puntu bat ezabatzeko.\n * Puntu batean sakatuta mantendu deskribapena ikusi eta atxikitzeko.\n * Neurgailuan klik egin ekintza gehiago ikusteko.</string>
   <string name="shared_string_do_not_show_again">Ez erakutsi berriro</string>
   <string name="distance_measurement_start_editing">Editatzen hasi</string>
   <string name="distance_measurement_finish_editing">Editatzen bukatu</string>
-  <string name="distance_measurement_finish_subtrack">Azpibide berri bat hasi</string>
+  <string name="distance_measurement_finish_subtrack">Hasi azpilorratz berri bat</string>
   <string name="distance_measurement_clear_route">Puntu guztiak garbitu</string>
-  <string name="distance_measurement_save_gpx">GPX bezala gorde</string>
+  
   <string name="distance_measurement_load_gpx">Existitzen den GPX bat ireki</string>
   <string name="wait_current_task_finished">Mesedez itxaron uneko zeregina bukatu harte</string>
   <string name="use_kalman_filter_compass_descr">Kalman filtroa erabili konpasaren aberrazioak ekiditeko</string>
   <string name="use_kalman_filter_compass">Kalman filtroa erabili</string>
-  <string name="access_mark_final_location_first">Erabil-erraztasun modua: mesedez aukeratu helmuga lehendabizi</string>
   <string name="use_magnetic_sensor_descr">Konpasaren balioa erabakitzeko erabili sentsore magnetikoa orientazio sentsorearen ordez</string>
   <string name="use_magnetic_sensor">Sentsore magnetikoa erabili</string>
   <string name="other_location">Bestelakoa</string>
   <string name="files_limit">%1$d fitxategi faltan</string>
   <string name="available_downloads_left">%1$d fitxategi eskuragarri deskargatzeko</string>
   <string name="install_paid">Bertsio osoa</string>
-  <string name="cancel_route">Ibilbidea baztertu</string>
+  <string name="cancel_route">Baztertu ibilbidea</string>
   <string name="cancel_navigation">Nabigazioa gelditu</string>
   <string name="clear_destination">Helmuga garbitu</string>
   <string name="download_using_mobile_internet">Oraintxe bertan WiFia ez dago konektatuta. Jarraitu nahi al duzu deskargatzen uneko interneterako konexioarekin?</string>
@@ -95,50 +95,49 @@
   <string name="hno">Etxe zenbakia</string>
   <string name="website">Web orria</string>
   <string name="phone">Telefonoa</string>
-  <string name="tip_recent_changes_1_3_t">"1.3 bertsioko aldaketak:⏎\n⇥* Tableten eta Pantaila handien sostengua berrezarri da⏎\n⇥* Holo itxura-gaia (pertsonalizazioa)⏎\n⇥* Iparrorratza orekatzeko ezarpen berriak⏎\n⇥* Mapako goi ezkerreko botoiak Menuaren botoia ordezkatu du "</string>
-  <string name="monitoring_settings">Jarraipen zerbitzuak</string>
-  <string name="monitoring_settings_descr">Konfiguratu ibilbideak grabatzeko modua</string>
+  
+  <string name="monitoring_settings">Bidai grabaketa</string>
+  <string name="monitoring_settings_descr">Konfiguratu bidaiak grabatzeko modua</string>
   
   
-  <string name="osmand_background_plugin_description">Erakutsi esekidura moduan (pantailarekin itzalia) egotean jarraipena eta nabigazioa gaitzeko GPS gailua aldizka esnaarazteko ezarpenak.</string>
+  <string name="osmand_background_plugin_description">Erakutsi esekidura moduan (pantailarekin itzalia) egotean jarraipena eta nabigazioa gaitzeko GPS gailua aldizka esnarazteko ezarpenak.</string>
   <string name="contribution_activity">Bertsioa instalatu</string>
   <string name="choose_osmand_theme_descr">Aplikazioaren itsura aukeratu</string>
   <string name="choose_osmand_theme">Aplikazioaren itsura</string>
-  <string name="accessibility_options">Erabilerraztasun aukerak</string>
-  <string name="select_address_activity">Helbidea aukeratu</string>
+  <string name="accessibility_options">Irisgarritasun aukerak</string>
+  <string name="select_address_activity">Hautatu helbidea</string>
   <string name="favourites_list_activity">Aukeratu gogokoena</string>
   <string name="local_openstreetmap_act_title">OSM aldaketak</string>
   <string name="shared_string_more_actions">Bestelako ekintzak</string>
   
-  <string name="tip_recent_changes_1_2_t">"1.2.1 bertsioan konponketak:\n\t*Geo Intent konpondu (Foursquare, c:geo)\n\t*Konpondu nabigazioko pantailaren dardara\n\t*Bestelako aldaketa txikiak\n\t
-\n1.2 bertsioan aldaketak:\n\t* Konponketak (bideraketa hobea, bilaketa, AV grabaketa, ahots bidezko laguntza, erakusketan hobekuntzak)\n\t* Erliebe kaparen konfigurazio errazagoa (Sestra-kurben plugina beharrezkoa du)\n\t* Orain maps.google.com-eko kokaleku estekak onartzen ditu\n\t* Widget berria (GPS info)\n\t* Samsung gailu berrietan bizpahiru leiho onartu\n\t* Konpaserako Kalman filtroa\n\t* Pebble erlojuarentzako soportea "</string>
+  
   <string name="layer_hillshade">Erliebe geruza</string>
-  <string name="map_widget_gps_info">GPS info</string>
-  <string name="tip_recent_changes_1_1_4_t">"1.1.4 bertsioan aldaketak:\n\t* UI diseinu aldaketa\n\t* Akats konponketak "</string>
+  <string name="map_widget_gps_info">GPS informazioa</string>
+  
   <string name="access_arrival_time">Iritsiera denbora</string>
   <string name="item_checked">aukeratua</string>
   <string name="item_unchecked">ez aukeratua</string>
   <string name="shared_string_map">Mapa</string>
-  <string name="prefer_motorways">Autobideak nahiago</string>
-  <string name="prefer_in_routing_title">Nahiago…</string>
-  <string name="prefer_in_routing_descr">Autobideak nahiago</string>
+  <string name="prefer_motorways">Hobetsi autobideak</string>
+  <string name="prefer_in_routing_title">Hobetsi…</string>
+  <string name="prefer_in_routing_descr">Hobetsi autobideak</string>
   <string name="max_speed_none">bat ere ez</string>
   <string name="index_name_openmaps">OpenMaps EU</string>
-  <string name="download_hillshade_item">Erliebea</string>
+  
   <string name="download_hillshade_maps">Erliebe geruzak</string>
-  <string name="tip_recent_changes_1_1_2_t">"1.1.2 bertsioan aldaketak:\n\t* Audio/bideo pluginean hobekuntzak (EXIF informazioa daukaten argazkiak)\n\t* Erabilerraztasuna hobetua eta sestra-kurben pluginaren berrestrukturaketa\n\t* Erliebe paketeak sestra-kurben pluginarentzat\n\t* Akats konponketak (bideraketa txarra) "</string>
+  
   
   <string name="local_indexes_cat_srtm">Sestra-kurben datuak</string>
   <string name="local_indexes_cat_av">Audio/Bideo datuak</string>
   <string name="stop_routing_confirm">Ziur al zaude nabigazioa gelditu nahi duzula?</string>
   <string name="clear_dest_confirm">Ziur zaude helmuga (eta pasatze puntuak) garbitu nahi dituzula?</string>
-  <string name="precise_routing_mode_descr">Bideratze zehatza gaitu errorerik gabeko bidea kalkulatzeko. Distantzia motzetara dago mugatua eta ez du berezko liburutegia erabiltzen.</string>
+  <string name="precise_routing_mode_descr">Gaitu errorerik gabeko ibilbide zehatza kalkulatzeko. Distantzia motzetara dago mugatua eta motela da.</string>
   <string name="precise_routing_mode">Bideratze zehatza (alpha)</string>
   <string name="recording_context_menu_show">Erakutsi</string>
   <string name="recording_photo_description">%1$s argazkia %2$s-tik</string>
   <string name="av_def_action_picture">Argazkia atera</string>
   <string name="recording_context_menu_precord">Argazkia atera</string>
-  <string name="dropbox_plugin_description">Dropbox pluginak zure dropboxeko kontuarekin ibilbideak eta audio/bideo oharrak sinkronizatzea ahalbideratzen du.</string>
+  <string name="dropbox_plugin_description">Dropbox pluginak zure dropboxeko kontuarekin lorratzak eta audio/bideo oharrak sinkronizatzea ahalbideratzen du.</string>
   <string name="dropbox_plugin_name">Dropbox plugina</string>
   
   <string name="intermediate_points_change_order">Ordena aldatu</string>
@@ -163,7 +162,7 @@
   <string name="recording_playing">Aukeratutako grabaketaren audioa erreproduzitzen.⏎\n%1$s</string>
   <string name="recording_open_external_player">Ireki kanpoko erreproduzitzailea</string>
   <string name="recording_delete_confirm">Grabaketa hau ezabatu nahi al duzu?</string>
-  <string name="tip_recent_changes_1_1_0_t">"1.1.0-an aldaketak:⏎\n⇥* Distantzia kalkulatzeko plugina⏎\n⇥* Audio/bideo oharren plugina⏎\n⇥* Erliebe kurben plugina⏎\n⇥* Akatsen konponketak ⏎\n⇥* \'Ibilaldi ikuspegia\' mapa mota detaile gehiagorekin, errepide estilo berriak, kontraste handiagoa, mendi ibilaldi alpetarrerako aukera (SAC eskala)⏎\n⇥* GPSaren altueraren irakurketan EGM96 geoide desplazamenduaren zuzenketa "</string>
+  
   <string name="recording_unavailable">ez eskuragarri</string>
   <string name="recording_context_menu_arecord">Grabatu audio ohar bat</string>
   <string name="recording_context_menu_vrecord">Grabatu bideo ohar bat</string>
@@ -177,53 +176,53 @@
   <string name="shared_string_control_start">Hasi</string>
   <string name="map_widget_av_notes">Audio/bideo oharrak</string>
   <string name="osmand_srtm_short_description_80_chars">OsmAnden lineaz kanpoko sestra-kurben plugina</string>
-  <string name="osmand_srtm_long_description_1000_chars">Plugin honek OsmAnd-eko lineaz kanpoko mapetan agertu daitezkeen sestra-kurbak eskaintzen ditu. Datu globalak (iparraldean 70 gradutan eta hegoaldean 70 gradutan) STRM (Shuttle Radar Topography Mission) eta ASTER (Advanced Spaceborne Thermal Emission and Reflection Radiometer) neurrietan oinarrituak daude, espazioko Terra irudi tresna, NASAren Lurra Behatzeko Sistemaren satelite emblematikoa. ASTER NASAren, Japoniako Ekonomi, Merkataritza eta Industria Ministerioaren (EMIM), eta Japoneko Espazio Sistemaren (J-espaziosistema)  elkarlanaren ondorioz sortua izan da.</string>
+  <string name="osmand_srtm_long_description_1000_chars">Plugin honek OsmAnd-eko lineaz kanpoko mapetan agertu daitezkeen sestra-kurbak eskaintzen ditu. Datu globalak (iparraldean 70 gradutan eta hegoaldean 70 gradutan) STRM (Shuttle Radar Topography Mission) eta ASTER (Advanced Spaceborne Thermal Emission and Reflection Radiometer) neurrietan oinarrituak daude, espazioko Terra irudi tresna, NASAren Lurra Behatzeko Sistemaren satelite emblematikoa. ASTER NASAren, Japoniako Ekonomi, Merkataritza eta Industria Ministerioaren (EMIM), eta Japoneko Espazio Sistemaren (J-espaziosistema) elkarlanaren ondorioz sortua izan da.</string>
   <string name="map_widget_distancemeasurement">Distantzia neurketa</string>
-  <string name="audionotes_location_not_defined">Ez dago oharrarekin erlazionaturiko kokapenik definituta. \"Kokapena erabili...\" aukeratutako kokapenari ohar bat lotzeko</string>
+  <string name="audionotes_location_not_defined">Ez dago oharrarekin erlazionaturiko kokapenik definituta. \"Kokapena erabili…\" aukeratutako kokapenari ohar bat lotzeko</string>
   
   <string name="map_widget_audionotes">Audio oharrak</string>
-  <string name="audionotes_plugin_description">Ibilaldian zehar audio/bideo oharrak hartu</string>
+  <string name="audionotes_plugin_description">Audio/Bideo gehigarriak bidaian zehar audio/argazki/bideo oharrak hartzeko gaitasuna ematen du, zuzenean maparen pantailan botoi bat erabiliz edo mapako edozein posizioaren laster-menuan.</string>
   <string name="audionotes_plugin_name">Audio/bideo oharrak</string>
   <string name="index_srtm_parts">zatiak</string>
   <string name="index_srtm_ele">Sestra-kurbak</string>
   <string name="srtm_plugin_description">Lineaz kanpoko sestra-kurbak eta mendi itzalak deskargatzeko erraztasunak (\'Ezarpenak\' -&gt; \'Kudeatu mapen fitxategiak\' -&gt; \'Deskargatu\' -&gt; Aukeratu nahi duzun mapa mota).</string>
-  <string name="srtm_plugin_name">Sestra-kurben plugina</string>
+  <string name="srtm_plugin_name">Sestra-kurbak</string>
   <string name="download_select_map_types">Beste mapak</string>
   <string name="download_roads_only_item">Errepideak bakarrik</string>
   <string name="download_srtm_maps">Sestra-kurbak</string>
   <string name="download_regular_maps">Mapa normalak</string>
-  <string name="download_roads_only_maps">Errepideak-bakarrik mapak</string>
+  <string name="download_roads_only_maps">Errepideak-bakarrik mapa</string>
   <string name="rendering_attr_noAdminboundaries_name">Mugak ezkutatu</string>
   <string name="rendering_attr_noAdminboundaries_description">Eskualde mailak ez erakutsi (5-9 admin mailak)</string>
   
   
   
-  <string name="tip_altitude_offset">Altuera bistaratzea - Desplazamendu zuzentzailea</string>
-  <string name="tip_altitude_offset_t">"⇥GPS gailu gehienek elipsoidean oinarritutako WGS84 erreferentzia sistemaren bidez ematen dute altueraren neurria. Lokalean erabiltzen den neurri sisteman emateko, kokapenaren araberako zuzenketa behar du.⏎\n⇥⇥⏎\n⇥Lokalean erabiltzen den neurri sistemari gehien gerturatzen zaiona EGM96 erreferentzia da. OsmAndek orain altuera automatikoki bistaratzeko EGM96 sistema jasaten du.⏎\n⇥⇥⏎\n⇥Hau erabiltzeko, deskargatu \'Munduko Altitude Zuzenketa\'(WW15MGH.DAC) \'Ezarpenak\' →  \'Kudeatu mapen fitxategiak\' bidez. (http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm96/binary/WW15MGH.DAC) "</string>
+  
+  
   <string name="map_widget_max_speed">Abiadura muga</string>
   <string name="monitoring_control_start">GPX</string>
   <string name="no_buildings_found">Ez da eraikinik aurkitu.</string>
   <string name="incremental_search_city">Herria inkrementalki bilatu</string>
   <string name="search_villages_and_postcodes">Bilatu herriak/posta-kodeak</string>
-  <string name="rendering_attr_showRoadMaps_description">Aukeratu noiz erakutsi errepide mapak:</string>
+  <string name="rendering_attr_showRoadMaps_description">Aukeratu noiz erakutsi errepideak-bakarrik mapak:</string>
   <string name="rendering_attr_showRoadMaps_name">Errepideak-bakarrik mapak</string>
   <string name="safe_mode_description">Exekutatu aplikazioa modu seguruan (erabili Android geldoagoa kode natiboaren ordez).</string>
   <string name="safe_mode">Modu seguroa</string>
   <string name="native_library_not_running">Aplikazioa modu seguruan ari da (ezgaitu Ezarpenetatik).</string>
   <string name="background_service_is_enabled_question">OsmAnden esekidura moduko zerbitzua oraindik martxan dago. Itzali nahi al duzu?</string>
-  <string name="tip_recent_changes_1_0_0_t">"1.0.0 bertsioko aldaketak:⏎\n⇥* Jarraipen hobetuak: azkarragoa, zehatzagoa, 250 km baino gehiago⏎\n⇥* Errepideak bakarrik agertzen diren mapak gehituak⏎\n⇥* Etenen ondoren, ez da maparen kokapena galtzen⏎\n⇥* Gaitu esekidura modua nabigazio bitartean "</string>
-  <string name="tip_recent_changes_0_8_4_t">"0.8.4 bertsioko aldaketak:⏎\n⇥* Akats batzuk konponduak⏎\n⇥* Etenen ondoren, ez da maparen kokapena galtzen⏎\n⇥* Gaitu esekidura modua nabigazio bitartean "</string>
+  
+  
   <string name="close_changeset">Itxi aldaketa multzoa</string>
   <string name="zxing_barcode_scanner_not_found">ZXing Barcode Scanner aplikazioa ez dago instalatua. Marketean bilatu nahi duzu?</string>
   <string name="rendering_attr_roadColors_description">Aukeratu errepideentzako kolore paleta:</string>
   <string name="rendering_attr_roadColors_name">Errepideentzako kolore paleta</string>
-  <string name="map_widget_show_destination_arrow">Erakutsi helmugaren helbidea</string>
-  <string name="enable_plugin_monitoring_services">Jarraipen plugina gaitu kokapen erregistru zerbitzuak erabiltzeko (GPX grabaketak, sare bidezko jarraipena)</string>
+  <string name="map_widget_show_destination_arrow">Erakutsi helmugara noranzkoa</string>
+  <string name="enable_plugin_monitoring_services">Gaitu bidai grabaketa gehigarria kokapen erregistro zerbitzuak erabiltzeko (GPX grabaketak, sare bidezko jarraipena)</string>
   <string name="non_optimal_route_calculation">Kalkulatu distantzia luzeetan hoberena izan ez daitekeen ibilbidea</string>
   <string name="gps_not_available">Mesedez gaitu GPSa ezarpenetan</string>
-  <string name="tip_recent_changes_0_8_3_t">"0.8.3 bertsioko aldaketak:⏎\n⇥* Bide puntuak⏎\n⇥* Ibilbidearen gidaritza hobetua⏎\n⇥* Ibilbide bat eraikitzen den bitartean autobideak saihestea ahalbideratzen duen ezaugarri bat gehitua izan da⏎\n⇥* Txirrindentzako errepide mota berri bat gehitua mapetan (Cycleway=track)⏎\n⇥* Akatsak konponduak "</string>
+  
   <string name="map_widget_monitoring_services">Jarraipen zerbitzuak</string>
-  <string name="no_route">Rutarik gabe</string>
+  <string name="no_route">Ibilbiderik ez</string>
   <string name="delete_target_point">Ezabatu bide puntua</string>
   <string name="target_point">%1$s bide puntua</string>
   <string name="intermediate_point">%1$s bide puntua</string>
@@ -234,7 +233,7 @@
   <string name="replace_destination_point">Ordeztu helmuga puntua</string>
   <string name="new_destination_point_dialog">Baduzu dagoeneko helmuga puntua ezarria.</string>
   <string name="target_points">Bide puntuak</string>
-  <string name="intermediate_point_too_far">%1$s bide-puntua urrutiegi dago gertuen dagoen bidetik.</string>
+  <string name="intermediate_point_too_far">%1$s tarteko helburua urrutiegi dago gertuen dagoen bidetik.</string>
   <string name="arrived_at_intermediate_point">Zure bide puntura iritsi zara</string>
   <string name="context_menu_item_intermediate_point">Bide puntu bezala gehitu</string>
   <string name="map_widget_intermediate_distance">Bide puntua</string>
@@ -256,22 +255,22 @@
   <string name="show_warnings_descr">Trafiko abisuak konfiguratu (abiadura mugak, geldialdi behartuak, abiadura aldaketak), radar abisuak eta erraien informazioa</string>
   <string name="use_compass_navigation_descr">Erabili iparrorratza bestelako norabiderik antzematen ez denean</string>
   <string name="use_compass_navigation">Iparrorratza erabili</string>
-  <string name="avoid_motorway">Autobiak saihestu</string>
+  <string name="avoid_motorway">Saihestu autobideak</string>
   <string name="auto_zoom_map_descr">Auto zooma egin zure abiaduraren arabera (mapa uneko kokapenarekin sinkronizatua dagoen bitartean)</string>
   <string name="auto_zoom_map">Auto zoom-a egin mapan</string>
   <string name="snap_to_road_descr">Atxikitu kokapena errepidera nabigatu bitartean</string>
   <string name="snap_to_road">Atxikitu errepidera</string>
-  <string name="tip_recent_changes_0_8_2_t">"Aldaketak 0.8.2 :↵\n\t* Ibilbidearen hobekuntza↵\n\t* Mapan widget dinamikoak↵\n\t* Maparen ezarpenak maparen pantailan↵\n\t* Pantaila blokeatzeko botoia jarraipen zerbitzuekin ↵\n\t* Arabia, Kannada skriptak eta RTL hizkuntzak konpondutak↵ "</string>
+  
   <string name="osmand_play_title_30_chars">OsmAnd Maps &amp; Nabigazioa</string>
   <string name="osmand_short_description_80_chars">Lineaz Kanpoko eta Sare Bidezko Mapa Ikusle eta Nabigatzaile Mugikor Globala OSM Mapetarako</string>
   <string name="osmand_long_description_1000_chars">⏎\n⇥⇥OsmAnd (OSM Automated Navigation Directions)⏎\n⏎\n⇥⇥OsmAnd kode irekiko nabigaziorako aplikazioa da, OpenStreetMapeko (OSM) mota askotako munduko mapetara sarbidearekin. Mapa guztiak (bektore edo tesela mapak) telefonoaren memoria txartelean gorde daitezke, lineaz kanpoko erabilpena bermatzeko. OsmAndek ere lineaz kanpoko eta sareko ibilbideak eskaintzen ditu, txandakako ahots gidaritzarekin.⏎\n⏎\n⇥⇥Ezaugarri nagusi batzuk:⏎\n⇥⇥- Lineaz kanpoko erabateko erabilpena (bektore edo tesela mapak gorde ondoren aukeratu daitezken karpetetan)⏎\n⇥⇥- Lineaz kanpoko mundu guztiko mapa konpaktuak eskuragarri⏎\n⇥⇥- Muga gabeko herrialde edo eskualdeetako mapen deskarga, aplikaziotik zuzenean⏎\n⇥⇥- Lineaz kanpoko WIkipediako erabilpena (deskargatu Wikipediako POIak), turismorako erabilgarriak⏎\n⇥⇥- Gain-geruza desberdin asko ikusi daitezke, GPX edo ibilbide bidea, interes puntuak (POI), gogokoenak, sestra-kurbak, garraio publikoaren geltokiak, geruza gardeneko mapa gehigarriak.⏎\n⇥⇥- Lineaz kanpoko helbide eta lekuen bilatzailea (POIak)⏎\n⇥⇥- Lineaz kanpoko ibilbide motzetarako jarraipena (esperimentala)⏎\n⇥⇥- Kotxea, txirrinda eta oinezkoentzat modua:⏎\n⇥⇥- aukerazko egun/gau ikuspegi automatizatua⏎\n⇥⇥- aukerazko abiaduraren araberako maparen zooma⏎\n⇥⇥- aukerazko maparen alineazioa, iparrorratzaren edo norabidearen araberakoa⏎\n⇥⇥- aukerazko errei gidaritza, abiadura muga bistaratzea, grabaketa edo TTS (ahots bihurgailua) motorra⏎\n⏎\n⇥⇥OsmAndeko dohaineko bertsioaren mugak:⏎\n⇥⇥- Mapa kopuruak deskargatzeko muga⏎\n⇥⇥- Wikipediako POIetara lineaz kanpoko sarbiderik ez⏎\n⏎\n⇥⇥OsmAnd aktiboki garatua izaten ari da eta proiektuaren prozesuak dituen garatze, programatze eta funtzionalitate berrien probak egiteko behar den finantziazio laguntzetan ere oinarritzen da. OsmAnd+ erosiz gero, aplikazioa are zirraragarria izatea laguntzen duzu! Ezaugarri berriak finantzatzea edo dohaintza orokor bat egitea posible da osman.net-en</string>
-  <string name="osmand_extended_description_4000_chars">⏎\nOsmAnd (OSM Automated Navigation Directions) mapa eta nabigaziorako aplikazioa da, OpenStreetMapeko (OSM) aske, mundu osoko eta kalitate handiko datuetara sarbidearekin. Mapen datu guztiak zure gailuaren memoria txartelean gorde daiteke lineaz kanpoko erabilpena eduki dezazun. Zure gailuaren GPSaren bitartez, OsmAnd-ek nabigazioa eskaintzen dizu, ikusmenezko edo entzutezko gidaritzarekin, kotxe, txirrinda edo oinezkoentzat. Funtzionalitate guztiak bai sarean bai lineaz kanpo funtzionatzen dute (ez dago interneten beharrik).⏎\n⏎\nEzaugarri nagusi batzuk:⏎\n⏎\nNabigazioa⏎\n- Sarean (azkar) edo lineaz kanpo (atzerrian zaudenean roaming kargarik gabe) funtzionatzen du⏎\n- Txandakako ahozko gidaritza  (grabatutako eta sintetizatutako ahotsak)⏎\n- Aukerako bide gidaritza, kaleen izenak, eta estimatutako iritsiera ordua⏎\n- Ibilbidearen erdian geldiuneak jarri daitezke⏎\n- Ibilbidetik desbideratzen bazara, automatikoki birkalkulatuko du ibilbidea⏎\n- Leku bilatzailea helbidearen, motaren (adibidez: jatetxea, hotel, gasolindegia, museoa) edo koordenaden arabera⏎\n⏎\nMapen ikuspena⏎\n- Zure kokapena eta orientazioa agertzen da⏎\n- Aukeraz, mapa iparrorratzarekin edo zure norabidearekin mugituko da⏎\n- Gorde zure leku garrantzitsuenak Gogokoetan⏎\n- Zure inguruko POIak (Interes puntuak) ikustea⏎\n- Tesela bereziak ikusi daitezke sarean⏎\n- Satelite irudiak (Bingetik) ikusi daitezke⏎\n- Gain-geruza desberdinak ikusi daitezke, ibilbidea/nabigazioaren GPX bidea eta mapa garden gehigarriak⏎\n- Leku izenak ingelesez, tokiko hizkuntzan edo fonetikoki idatzia ikusteko aukera dago⏎\n⏎\nOpenStreetMap eta Wikipediako datuen erabilpena:⏎\n- Munduko proiektu kolaboratibo hoberenen kalitate handiko informazioa⏎\n- OpenStreetMapeko munduko mapak, herrialde edo eskualde bakoitza eskuragarri dago⏎\n- Wikipediako POIak, turismorako onak (dohaineko bertsioan ez daude erabilgarri)⏎\n- Muga gabeko dohaineko deskarga, aplikaziotik zuzenean (dohaineko bertsioan 16 mapa fitxategiko muga)⏎\n- Mapa eguneratuak beti (gutxienez eguneraketa bat hilabetean)⏎\n- Lineaz kanpoko bektore mapa konpaktuak⏎\n- Mapa osoa edo errepide sarea bakarrik aukeratu daiteke (Adibidez: Japonia guztia 700 MB dira, edo errepide sarea 200 MB bakarrik)⏎\n- Sareko edo katxeatutako tesela mapak jasaten ditu ere⏎\n⏎\nSegurtasun ezaugarriak⏎\n- Aukerazko eguna/gaua ikuspegi kommutazio automatikoa⏎\n- Aukerazko abiadura mugak agertzea, gainditzerakoan abisatzen dizuna⏎\n- Aukerazko abiaduraren araberako mapa zooma⏎\n- Partekatu zure kokapena, zure lagunek uneoro jakin dezaten non zauden⏎\n⏎\nTxirrinda eta oinezkoen ezaugarriak⏎\n- Mapek oinezko, mendiko eta txirrinda bideak dakartzate, kanpo jardueretako aproposa.⏎\n- Ibilbide eta ikuspegi bereziak txirrinda eta oinezkoentzako⏎\n- Aukerazko garraio publikoaren geltokiak (autobus, tranbia, trena) autobus-linien izenak barne⏎\n- Aukerazko bidaiaren grabaketa GPX fitxategi batera edo sareko zerbitzu batera⏎\n- Abiadura eta altuera azaltzeko aukera⏎\n- Sestra-kurbak eta mendi itzalak (plugin gehigarri batez) erakusteko aukera⏎\n⏎\nOpenStreetMapera zuzeneko laguntza⏎\n- Mapetako akatsak salatu⏎\n- GPX bideak igo aplikaziotik OSMra zuzenean⏎\n- POIak gehitu eta zuzenean OSMra igo (edo geroago lineaz kanpo egon ezkero)⏎\n- Aukerazko bidai grabaketa atzeko planoan bada ere (gailua esekituta dagoen bitartean)⏎\n⏎\nOsmAnd kode irekiko proiektua da, eta aktiboki garatua izaten ari da. Edozeinek lagundu dezake aplikazioarekin, erroreak salatzen, itzulitakoa hobetzen, edo ezaugarri berriak programatzen. Proiektua hobetzeko etengabeko egoeran dago garatzaileen eta erabiltzaileen interakzio modu hauei esker. Era berean, proiektuaren prozesuak dituen garatze, programatze eta funtzionalitate berrien probak egiteko behar den finantziazio laguntzetan ere oinarritzen da. OsmAnd+ erosiz gero, aplikazioa are zirraragarria izatea laguntzen duzu! Ezaugarri berriak finantzatzea edo dohaintza orokor bat egitea posible da osman.net-en.⏎\n⏎\n⏎\nGutxi gorabeherako mapa estaldura eta kalitatea:⏎\n- Mendebaldeko Europa: ****⏎\n- Ekialdeko Europa: ***⏎\n- Errusia: ***⏎\n- Ipar Amerika: ***⏎\n- Hego Amerika: **⏎\n- Asia: **⏎\n- Japonia &amp; Korea: ***⏎\n- Ekialde hurbila: **⏎\n- Afrika: **⏎\n- Antartika: *⏎\n⏎\nJasandako herrialdeen lista (funtsean mundu osoa!):⏎\nAfganistan, Albania, Aljeria, Andorra, Angola, Aingira, Antigua eta Barbuda, Argentina, Armenia, Aruba, Australia, Austria, Azerbaijan, Bahamak, Bahrein, Bangladesh, Barbados, Bielorrusia, Belgika, Belize, Benin, Bermuda, Bhutan, Bolivia, Bonaire, Bosnia eta Herzegovina, Botswana, Brasil, Birjina britainiar uharteak, Brunei, Bulgaria, Burkina Faso, Burundi, Kanbodia, Kamerun, Kanada, Kabo Berde, Afrika Erdiko Errepublika, Txad, Txile, Txina, Kolonbia, Komoreak, Kongo, Kosta Rika, Boli Kosta, Kroazia, Kuba, Curaçao, Txipre, Txekia, Danimarka, Djibuti, Dominika, Errepublika Dominikarra, Ekuador, Egipto, El Salvador, Ekuatorial Ginea, Eritrea, Estonia, Etiopia, Euskal Herria, Fiji, Finlandia, Frantzia, Guyana Frantsesa, Polinesia Frantsesa, Gabon, Gambia, Georgia, Alemania, Ghana, Gibraltar, Grezia, Groenlandia, Grenada, Guadalupe, Guam, Guatemala, Guernesey, Ginea, Ginea-Bissau, Guyana, Haiti, Vatikano, Honduras, Hong Kong, Hungaria, Islandia, India, Indonesia, Iran, Irak, Irlanda, Man, Israel, Italia, Jamaika, Japonia, Jersey, Jordania, Kazakhstan, Kenya, Kiribati, Ipar Korea eta Hego Korea, Kuwait, Kirgizistan, Laos, Letpmoa, Libano, Lesotho, Liberia, Libia, Liechtenstein, Lituania, Luxenburgo, Makao, Mazedonia, Madagaskar, Malawi, Malaysia, Maldivak, Mali, Malta, Martinika, Mauritania, Maurizio, Mayotte, Mexiko, Mikronesia, Moldavia, Monako, Mongolia, Montenegro, Montserrat, Maroko, Mozambike, Myanmar, Namibia, Nauru, Nepal, Herbehereak, Antilla herbeheretarrak, Kaledonia Berria, Zeelanda Berria, Nikaragua, Niger, Nigeria, Norvegia, Oman, Pakistan, Palau, Palestina, Panama, Papua Ginea Berria, Paraguai, Peru, Filipinak, Polonia, Portugal, Puerto Rico, Qatar, Errumania, Errusia, Ruanda, San Bartolome, Santa Elena, Saint Kitts eta Nevis, Santa Lucia, San Martin, Saint Pierre eta Mikelune, Saint Vincent eta Grenadinak, Samoa, San Marino, Saudi Arabia, Senegal, Serbia, Seychelleak, Sierra Leona, Singapur, Eslovakia, Eslovenia, Somalia, Hego Africa, Hego Georgia, Hego Sudan, Espainia, Sri Lanka, Sudan, Surinam, Swazilandia, Suedia, Suitza, Siria, Taiwan, Tadjikistan, Tanzania, Tailandia, Timor-Leste, Togo, Tokelau, Tonga, Trinidad eta Tobago, Tunisia, Turkia, Turkmenistan, Tuvalu, Uganda, Ukraina, Arabiar Emirerri Batuak, Erresuma Batua, Ameriketako Estatu Batuak, Uruguai, Uzbekistan, Vanuatu, Venezuela, Vietnam, Wallis eta Futuna, Sahara, Yemen, Zambia, Zimbabwe.⏎\n⇥</string>
+  <string name="osmand_extended_description_4000_chars">⏎\nOsmAnd (OSM Automated Navigation Directions) mapa eta nabigaziorako aplikazioa da, OpenStreetMapeko (OSM) aske, mundu osoko eta kalitate handiko datuetara sarbidearekin. Mapen datu guztiak zure gailuaren memoria txartelean gorde daiteke lineaz kanpoko erabilpena eduki dezazun. Zure gailuaren GPSaren bitartez, OsmAnd-ek nabigazioa eskaintzen dizu, ikusmenezko edo entzutezko gidaritzarekin, kotxe, txirrinda edo oinezkoentzat. Funtzionalitate guztiak bai sarean bai lineaz kanpo funtzionatzen dute (ez dago interneten beharrik).⏎\n⏎\nEzaugarri nagusi batzuk:⏎\n⏎\nNabigazioa⏎\n- Sarean (azkar) edo lineaz kanpo (atzerrian zaudenean roaming kargarik gabe) funtzionatzen du⏎\n- Txandakako ahozko gidaritza (grabatutako eta sintetizatutako ahotsak)⏎\n- Aukerako bide gidaritza, kaleen izenak, eta estimatutako iritsiera ordua⏎\n- Ibilbidearen erdian geldiuneak jarri daitezke⏎\n- Ibilbidetik desbideratzen bazara, automatikoki birkalkulatuko du ibilbidea⏎\n- Leku bilatzailea helbidearen, motaren (adibidez: jatetxea, hotel, gasolindegia, museoa) edo koordenaden arabera⏎\n⏎\nMapen ikuspena⏎\n- Zure kokapena eta orientazioa agertzen da⏎\n- Aukeraz, mapa iparrorratzarekin edo zure norabidearekin mugituko da⏎\n- Gorde zure leku garrantzitsuenak Gogokoetan⏎\n- Zure inguruko POIak (Interes puntuak) ikustea⏎\n- Tesela bereziak ikusi daitezke sarean⏎\n- Satelite irudiak (Bingetik) ikusi daitezke⏎\n- Gain-geruza desberdinak ikusi daitezke, ibilbidea/nabigazioaren GPX bidea eta mapa garden gehigarriak⏎\n- Leku izenak ingelesez, tokiko hizkuntzan edo fonetikoki idatzia ikusteko aukera dago⏎\n⏎\nOpenStreetMap eta Wikipediako datuen erabilpena:⏎\n- Munduko proiektu kolaboratibo hoberenen kalitate handiko informazioa⏎\n- OpenStreetMapeko munduko mapak, herrialde edo eskualde bakoitza eskuragarri dago⏎\n- Wikipediako POIak, turismorako onak (dohaineko bertsioan ez daude erabilgarri)⏎\n- Muga gabeko dohaineko deskarga, aplikaziotik zuzenean (dohaineko bertsioan 16 mapa fitxategiko muga)⏎\n- Mapa eguneratuak beti (gutxienez eguneraketa bat hilabetean)⏎\n- Lineaz kanpoko bektore mapa konpaktuak⏎\n- Mapa osoa edo errepide sarea bakarrik aukeratu daiteke (Adibidez: Japonia guztia 700 MB dira, edo errepide sarea 200 MB bakarrik)⏎\n- Sareko edo katxeatutako tesela mapak jasaten ditu ere⏎\n⏎\nSegurtasun ezaugarriak⏎\n- Aukerazko eguna/gaua ikuspegi kommutazio automatikoa⏎\n- Aukerazko abiadura mugak agertzea, gainditzerakoan abisatzen dizuna⏎\n- Aukerazko abiaduraren araberako mapa zooma⏎\n- Partekatu zure kokapena, zure lagunek uneoro jakin dezaten non zauden⏎\n⏎\nTxirrinda eta oinezkoen ezaugarriak⏎\n- Mapek oinezko, mendiko eta txirrinda bideak dakartzate, kanpo jardueretako aproposa.⏎\n- Ibilbide eta ikuspegi bereziak txirrinda eta oinezkoentzako⏎\n- Aukerazko garraio publikoaren geltokiak (autobus, tranbia, trena) autobus-linien izenak barne⏎\n- Aukerazko bidaiaren grabaketa GPX fitxategi batera edo sareko zerbitzu batera⏎\n- Abiadura eta altuera azaltzeko aukera⏎\n- Sestra-kurbak eta mendi itzalak (plugin gehigarri batez) erakusteko aukera⏎\n⏎\nOpenStreetMapera zuzeneko laguntza⏎\n- Mapetako akatsak salatu⏎\n- GPX bideak igo aplikaziotik OSMra zuzenean⏎\n- POIak gehitu eta zuzenean OSMra igo (edo geroago lineaz kanpo egon ezkero)⏎\n- Aukerazko bidai grabaketa atzeko planoan bada ere (gailua esekituta dagoen bitartean)⏎\n⏎\nOsmAnd kode irekiko proiektua da, eta aktiboki garatua izaten ari da. Edozeinek lagundu dezake aplikazioarekin, erroreak salatzen, itzulitakoa hobetzen, edo ezaugarri berriak programatzen. Proiektua hobetzeko etengabeko egoeran dago garatzaileen eta erabiltzaileen interakzio modu hauei esker. Era berean, proiektuaren prozesuak dituen garatze, programatze eta funtzionalitate berrien probak egiteko behar den finantziazio laguntzetan ere oinarritzen da. OsmAnd+ erosiz gero, aplikazioa are zirraragarria izatea laguntzen duzu! Ezaugarri berriak finantzatzea edo dohaintza orokor bat egitea posible da osman.net-en.⏎\n⏎\n⏎\nGutxi gorabeherako mapa estaldura eta kalitatea:⏎\n- Mendebaldeko Europa: ****⏎\n- Ekialdeko Europa: ***⏎\n- Errusia: ***⏎\n- Ipar Amerika: ***⏎\n- Hego Amerika: **⏎\n- Asia: **⏎\n- Japonia &amp; Korea: ***⏎\n- Ekialde hurbila: **⏎\n- Afrika: **⏎\n- Antartika: *⏎\n⏎\nJasandako herrialdeen lista (funtsean mundu osoa!):⏎\nAfganistan, Albania, Aljeria, Andorra, Angola, Aingira, Antigua eta Barbuda, Argentina, Armenia, Aruba, Australia, Austria, Azerbaijan, Bahamak, Bahrein, Bangladesh, Barbados, Bielorrusia, Belgika, Belize, Benin, Bermuda, Bhutan, Bolivia, Bonaire, Bosnia eta Herzegovina, Botswana, Brasil, Birjina britainiar uharteak, Brunei, Bulgaria, Burkina Faso, Burundi, Kanbodia, Kamerun, Kanada, Kabo Berde, Afrika Erdiko Errepublika, Txad, Txile, Txina, Kolonbia, Komoreak, Kongo, Kosta Rika, Boli Kosta, Kroazia, Kuba, Curaçao, Txipre, Txekia, Danimarka, Djibuti, Dominika, Errepublika Dominikarra, Ekuador, Egipto, El Salvador, Ekuatorial Ginea, Eritrea, Estonia, Etiopia, Euskal Herria, Fiji, Finlandia, Frantzia, Guyana Frantsesa, Polinesia Frantsesa, Gabon, Gambia, Georgia, Alemania, Ghana, Gibraltar, Grezia, Groenlandia, Grenada, Guadalupe, Guam, Guatemala, Guernesey, Ginea, Ginea-Bissau, Guyana, Haiti, Vatikano, Honduras, Hong Kong, Hungaria, Islandia, India, Indonesia, Iran, Irak, Irlanda, Man, Israel, Italia, Jamaika, Japonia, Jersey, Jordania, Kazakhstan, Kenya, Kiribati, Ipar Korea eta Hego Korea, Kuwait, Kirgizistan, Laos, Letpmoa, Libano, Lesotho, Liberia, Libia, Liechtenstein, Lituania, Luxenburgo, Makao, Mazedonia, Madagaskar, Malawi, Malaysia, Maldivak, Mali, Malta, Martinika, Mauritania, Maurizio, Mayotte, Mexiko, Mikronesia, Moldavia, Monako, Mongolia, Montenegro, Montserrat, Maroko, Mozambike, Myanmar, Namibia, Nauru, Nepal, Herbehereak, Antilla herbeheretarrak, Kaledonia Berria, Zeelanda Berria, Nikaragua, Niger, Nigeria, Norvegia, Oman, Pakistan, Palau, Palestina, Panama, Papua Ginea Berria, Paraguai, Peru, Filipinak, Polonia, Portugal, Puerto Rico, Qatar, Errumania, Errusia, Ruanda, San Bartolome, Santa Elena, Saint Kitts eta Nevis, Santa Lucia, San Martin, Saint Pierre eta Mikelune, Saint Vincent eta Grenadinak, Samoa, San Marino, Saudi Arabia, Senegal, Serbia, Seychelleak, Sierra Leona, Singapur, Eslovakia, Eslovenia, Somalia, Hego Africa, Hego Georgia, Hego Sudan, Espainia, Sri Lanka, Sudan, Surinam, Swazilandia, Suedia, Suitza, Siria, Taiwan, Tadjikistan, Tanzania, Tailandia, Timor-Leste, Togo, Tokelau, Tonga, Trinidad eta Tobago, Tunisia, Turkia, Turkmenistan, Tuvalu, Uganda, Ukraina, Arabiar Emirerri Batuak, Erresuma Batua, Ameriketako Estatu Batuak, Uruguai, Uzbekistan, Vanuatu, Venezuela, Vietnam, Wallis eta Futuna, Sahara, Yemen, Zambia, Zimbabwe.⏎\n⇥</string>
   <string name="osmand_plus_play_title_30_chars">OsmAnd+ Mapak &amp; Nabigazioa</string>
   <string name="osmand_plus_short_description_80_chars">Lineaz Kanpoko eta Sare Bidezko OSM Mapetarako Mapa Ikusle eta Nabigatzaile Mugikor Globala</string>
   <string name="osmand_plus_long_description_1000_chars">⏎\n⇥⇥OsmAnd+ (OSM Automated Navigation Directions)⏎\n⏎\n⇥⇥OsmAnd+ kode irekiko nabigaziorako aplikazioa da, OpenStreetMapeko (OSM) mota askotako munduko mapetara sarbidearekin. Mapa guztiak (bektore edo tesela mapak) telefonoaren memoria txartelean gorde daitezke, lineaz kanpoko erabilpena bermatzeko. OsmAndek ere lineaz kanpoko eta sareko ibilbideak eskaintzen ditu, txandakako ahots gidaritzarekin.⏎\n⏎\n⇥⇥OsmAnd+ aplikazioaren ordaindutako bertsioa da, hau erosiz gero proiektua aurrera eramaten laguntzen ari zara, ezaugarri berrien garapena finantzatzen, eta gainera, azken eguneraketak jasoko dituzu.⏎\n⏎\n⇥⇥Ezaugarri nagusi batzuk:⏎\n⇥⇥- Lineaz kanpoko erabateko erabilpena (bektore edo tesela mapak gorde ondoren aukeratu daitezken karpetetan)⏎\n⇥⇥- Lineaz kanpoko mundu guztiko mapa konpaktuak eskuragarri⏎\n⇥⇥- Muga gabeko herrialde edo eskualdeetako mapen deskarga, aplikaziotik zuzenean⏎\n⇥⇥- Lineaz kanpoko WIkipediako erabilpena (deskargatu Wikipediako POIak), turismorako erabilgarriak⏎\n⇥⇥- Gain-geruza desberdin asko ikusi daitezke, GPX edo ibilbide bidea, interes puntuak (POI), gogokoenak, sestra-kurbak, garraio publikoaren geltokiak, geruza gardeneko mapa gehigarriak.⏎\n⇥⇥- Lineaz kanpoko helbide eta lekuen bilatzailea (POIak)⏎\n⇥⇥- Lineaz kanpoko ibilbide motzetarako jarraipena (esperimentala)⏎\n⇥⇥- Kotxea, txirrinda eta oinezkoentzat modua:⏎\n⇥⇥- aukerazko egun/gau ikuspegi automatizatua⏎\n⇥⇥- aukerazko abiaduraren araberako maparen zooma⏎\n⇥⇥- aukerazko maparen alineazioa, iparrorratzaren edo norabidearen araberakoa⏎\n⇥⇥- aukerazko errei gidaritza, abiadura muga bistaratzea, grabaketa edo TTS (ahots bihurgailua) motorra⏎\n⇥</string>
-  <string name="osmand_plus_extended_description_4000_chars">⏎\nOsmAnd (OSM Automated Navigation Directions) mapa eta nabigaziorako aplikazioa da, OpenStreetMapeko (OSM) aske, mundu osoko eta kalitate handiko datuetara sarbidearekin. Mapen datu guztiak zure gailuaren memoria txartelean gorde daiteke lineaz kanpoko erabilpena eduki dezazun. Zure gailuaren GPSaren bitartez, OsmAnd-ek nabigazioa eskaintzen dizu, ikusmenezko edo entzutezko gidaritzarekin, kotxe, txirrinda edo oinezkoentzat. Funtzionalitate guztiak bai sarean bai lineaz kanpo funtzionatzen dute (ez dago interneten beharrik).⏎\n⏎\nEzaugarri nagusi batzuk:⏎\n⏎\nNabigazioa⏎\n- Sarean (azkar) edo lineaz kanpo (atzerrian zaudenean roaming kargarik gabe) funtzionatzen du⏎\n- Txandakako ahozko gidaritza  (grabatutako eta sintetizatutako ahotsak)⏎\n- Aukerako bide gidaritza, kaleen izenak, eta estimatutako iritsiera ordua⏎\n- Ibilbidearen erdian geldiuneak jarri daitezke⏎\n- Ibilbidetik desbideratzen bazara, automatikoki birkalkulatuko du ibilbidea⏎\n- Leku bilatzailea helbidearen, motaren (adibidez: jatetxea, hotel, gasolindegia, museoa) edo koordenaden arabera⏎\n⏎\nMapen ikuspena⏎\n- Zure kokapena eta orientazioa agertzen da⏎\n- Aukeraz, mapa iparrorratzarekin edo zure norabidearekin mugituko da⏎\n- Gorde zure leku garrantzitsuenak Gogokoetan⏎\n- Zure inguruko POIak (Interes puntuak) ikustea⏎\n- Tesela bereziak ikusi daitezke sarean⏎\n- Satelite irudiak (Bingetik) ikusi daitezke⏎\n- Gain-geruza desberdinak ikusi daitezke, ibilbidea/nabigazioaren GPX bidea eta mapa garden gehigarriak⏎\n- Leku izenak ingelesez, tokiko hizkuntzan edo fonetikoki idatzia ikusteko aukera dago⏎\n⏎\nOpenStreetMap eta Wikipediako datuen erabilpena:⏎\n- Munduko proiektu kolaboratibo hoberenen kalitate handiko informazioa⏎\n- OpenStreetMapeko munduko mapak, herrialde edo eskualde bakoitza eskuragarri dago⏎\n- Wikipediako POIak, turismorako onak (dohaineko bertsioan ez daude erabilgarri)⏎\n- Muga gabeko dohaineko deskarga, aplikaziotik zuzenean (dohaineko bertsioan 16 mapa fitxategiko muga)⏎\n- Mapa eguneratuak beti (gutxienez eguneraketa bat hilabetean)⏎\n- Lineaz kanpoko bektore mapa konpaktuak⏎\n- Mapa osoa edo errepide sarea bakarrik aukeratu daiteke (Adibidez: Japonia guztia 700 MB dira, edo errepide sarea 200 MB bakarrik)⏎\n- Sareko edo katxeatutako tesela mapak jasaten ditu ere⏎\n⏎\nSegurtasun ezaugarriak⏎\n- Aukerazko eguna/gaua ikuspegi kommutazio automatikoa⏎\n- Aukerazko abiadura mugak agertzea, gainditzerakoan abisatzen dizuna⏎\n- Aukerazko abiaduraren araberako mapa zooma⏎\n- Partekatu zure kokapena, zure lagunek uneoro jakin dezaten non zauden⏎\n⏎\nTxirrinda eta oinezkoen ezaugarriak⏎\n- Mapek oinezko, mendiko eta txirrinda bideak dakartzate, kanpo jardueretako aproposa.⏎\n- Ibilbide eta ikuspegi bereziak txirrinda eta oinezkoentzako⏎\n- Aukerazko garraio publikoaren geltokiak (autobus, tranbia, trena) autobus-linien izenak barne⏎\n- Aukerazko bidaiaren grabaketa GPX fitxategi batera edo sareko zerbitzu batera⏎\n- Abiadura eta altuera azaltzeko aukera⏎\n- Sestra-kurbak eta mendi itzalak (plugin gehigarri batez) erakusteko aukera⏎\n⏎\nOpenStreetMapera zuzeneko laguntza⏎\n- Mapetako akatsak salatu⏎\n- GPX bideak igo aplikaziotik OSMra zuzenean⏎\n- POIak gehitu eta zuzenean OSMra igo (edo geroago lineaz kanpo egon ezkero)⏎\n- Aukerazko bidai grabaketa atzeko planoan bada ere (gailua lo moduan dagoen bitartean)⏎\n⏎\nOsmAnd kode irekiko proiektua da, eta aktiboki garatua izaten ari da. Edozeinek lagundu dezake aplikazioarekin, erroreak salatzen, itzulitakoa hobetzen, edo ezaugarri berriak programatzen. Proiektua hobetzeko etengabeko egoeran dago garatzaileen eta erabiltzaileen interakzio modu hauei esker. Era berean, proiektuaren prozesuak dituen garatze, programatze eta funtzionalitate berrien probak egiteko behar den finantziazio laguntzetan ere oinarritzen da. OsmAnd+ erosiz gero, aplikazioa are zirraragarria izatea laguntzen duzu! Ezaugarri berriak finantzatzea edo dohaintza orokor bat egitea posible da osman.net-en.⏎\n⏎\n⏎\nGutxi gorabeherako mapa estaldura eta kalitatea:⏎\n- Mendebaldeko Europa: ****⏎\n- Ekialdeko Europa: ***⏎\n- Errusia: ***⏎\n- Ipar Amerika: ***⏎\n- Hego Amerika: **⏎\n- Asia: **⏎\n- Japonia &amp; Korea: ***⏎\n- Ekialde hurbila: **⏎\n- Afrika: **⏎\n- Antartika: *⏎\n⏎\nJasandako herrialdeen lista (funtsean mundu osoa!):⏎\nAfghanistan, Albania, Aljeria, Andorra, Angola, Aingira, Antigua eta Barbuda, Argentina, Armenia, Aruba, Australia, Austria, Azerbaijan, Bahamak, Bahrein, Bangladesh, Barbados, Bielorrusia, Belgika, Belize, Benin, Bermuda, Bhutan, Bolivia, Bonaire, Bosnia eta Herzegovina, Botswana, Brasil, Birjina britainiar uharteak, Brunei, Bulgaria, Burkina Faso, Burundi, Kanbodia, Kamerun, Kanada, Kabo Berde, Afrika Erdiko Errepublika, Txad, Txile, Txina, Kolonbia, Komoreak, Kongo, Kosta Rika, Boli Kosta, Kroazia, Kuba, Curaçao, Txipre, Txekia, Danimarka, Djibuti, Dominika, Errepublika Dominikarra, Ekuador, Egipto, El Salvador, Ecuatorial Ginea, Eritrea, Estonia, Etiopia, Euskal Herria, Fiji, Finlandia, Frantzia, Guyana Frantsesa, Polinesia Frantsesa, Gabon, Ganbia, Georgia, Alemania, Ghana, Gibraltar, Grezia, Groenlandia, Grenada, Guadalupe, Guam, Guatemala, Guernsey, Ginea, Ginea-Bissau, Guyana, Haiti, Vatikano, Honduras, Hong Kong, Hungaria, Island, India, Indonesia, Iran, Irak, Irlanda, Man, Israel, Italia, Jamaica, Japonia, Jersey, Jordania, Kazakhstan, Kenia, Kiribati, Ipar Korea eta Hego Korea, Kuwait, Kirgizstan, Laos, Letpmoa, Libano, Lesotho, Liberia, Libia, Liechtenstein, Lituania, Luxenburgo, Makao, Mazedonia, Madagaskar, Malawi, Malaysia, Maldivak, Mali, Malta, Martinika, Mauritania, Maurizio, Mayotte, Mexico, Micronesia, Moldavia, Monako, Mongolia, Montenegro, Montserrat, Maroko, Mozambike, Myanmar, Namibia, Nauru, Nepal, Herbeherak, Antilla herbeheretarrak, Caledonia Berria, Zelanda Berria, Nikaragua, Niger, Nigeria, Norbegia, Oman, Pakistan, Palau, Palestina, Panama, Papua Ginea Berria, Paraguai, Peru, Filipinak, Polonia, Portugal, Puerto Rico, Qatar, Errumania, Errusia, Ruanda, San Bartolome, Santa Elena, Saint Kitts eta Nevis, Santa Lucia, San Martin, Saint Pierre eta Mikelune, Saint Vincent eta Grenadinak, Samoa, San Marino, Saudi Arabia, Senegal, Serbia, Seychelleak, Sierra Leona, Singapur, Eslovakia, Eslovenia, Somalia, Hego Africa, Hego Georgia, Hego Sudan, Espainia, Sri Lanka, Sudan, Surinam, Swazilandia, Suegia, Suiza, Siria, Taiwan, Tajikistan, Tanzania, Tailandia, Timor-Leste, Togo, Tokelau, Tonga, Trinidad eta Tobago, Tunisia, Turkia, Turkmenistan, Tuvalu, Uganda, Ukraina, Arabiar Emirerri Batuak, Erresuma Batua, Ameriketako Estatu Batuak, Uruguai, Uzbekistan, Vanuatu, Venezuela, Vietnam, Wallis eta Futuna, Sahara, Yemen, Zambia, Zimbabwe.⏎\n⇥</string>
-  <string name="tip_update_index">Lineaz kanpoko Datuak Eguneratu</string>
-  <string name="tip_update_index_t">⇥Mapak eguneratuak izatea oinarrizkoa da. OsmAndek datuen kudeatzaile bat eskaintzen du, lineaz kanpoko datuak erabilgarri dauden egiaztatzen duena.\n⇥⇥⏎\n⇥Eguneraketak dauden egiaztatzeko joan \'Ezarpenak\' -&gt; \'Data Kudeatzailea\' -&gt; \'Deskargatu lineaz kanpoko datuak\'.  Ondoren eskualde zerrenda internetetik berreskuratzen da,   \'Menu\' -&gt; \'Deskargak iragazi\' aukeratu dezakezu zure gailuan dauden datuak bakarrik eguneratzeko.⏎\n⇥⇥⏎\n⇥\'Berdez\' dauden sarrerak, gailuan eta zerbitzarian berdinak diren fitxategiak dira⏎\n⇥⇥⏎\n⇥\'Urdinez\' dauden sarrerak, zerbitzarian eskuragarri dauden eguneraketak dira⏎\n⇥⇥⏎\n⇥Letra etzanez dauden sarrerak, gailuan desaktibatuta dauden datuak dira</string>
+  <string name="osmand_plus_extended_description_4000_chars">⏎\nOsmAnd (OSM Automated Navigation Directions) mapa eta nabigaziorako aplikazioa da, OpenStreetMapeko (OSM) aske, mundu osoko eta kalitate handiko datuetara sarbidearekin. Mapen datu guztiak zure gailuaren memoria txartelean gorde daiteke lineaz kanpoko erabilpena eduki dezazun. Zure gailuaren GPSaren bitartez, OsmAnd-ek nabigazioa eskaintzen dizu, ikusmenezko edo entzutezko gidaritzarekin, kotxe, txirrinda edo oinezkoentzat. Funtzionalitate guztiak bai sarean bai lineaz kanpo funtzionatzen dute (ez dago interneten beharrik).⏎\n⏎\nEzaugarri nagusi batzuk:⏎\n⏎\nNabigazioa⏎\n- Sarean (azkar) edo lineaz kanpo (atzerrian zaudenean roaming kargarik gabe) funtzionatzen du⏎\n- Txandakako ahozko gidaritza (grabatutako eta sintetizatutako ahotsak)⏎\n- Aukerako bide gidaritza, kaleen izenak, eta estimatutako iritsiera ordua⏎\n- Ibilbidearen erdian geldiuneak jarri daitezke⏎\n- Ibilbidetik desbideratzen bazara, automatikoki birkalkulatuko du ibilbidea⏎\n- Leku bilatzailea helbidearen, motaren (adibidez: jatetxea, hotel, gasolindegia, museoa) edo koordenaden arabera⏎\n⏎\nMapen ikuspena⏎\n- Zure kokapena eta orientazioa agertzen da⏎\n- Aukeraz, mapa iparrorratzarekin edo zure norabidearekin mugituko da⏎\n- Gorde zure leku garrantzitsuenak Gogokoetan⏎\n- Zure inguruko POIak (Interes puntuak) ikustea⏎\n- Tesela bereziak ikusi daitezke sarean⏎\n- Satelite irudiak (Bingetik) ikusi daitezke⏎\n- Gain-geruza desberdinak ikusi daitezke, ibilbidea/nabigazioaren GPX bidea eta mapa garden gehigarriak⏎\n- Leku izenak ingelesez, tokiko hizkuntzan edo fonetikoki idatzia ikusteko aukera dago⏎\n⏎\nOpenStreetMap eta Wikipediako datuen erabilpena:⏎\n- Munduko proiektu kolaboratibo hoberenen kalitate handiko informazioa⏎\n- OpenStreetMapeko munduko mapak, herrialde edo eskualde bakoitza eskuragarri dago⏎\n- Wikipediako POIak, turismorako onak (dohaineko bertsioan ez daude erabilgarri)⏎\n- Muga gabeko dohaineko deskarga, aplikaziotik zuzenean (dohaineko bertsioan 16 mapa fitxategiko muga)⏎\n- Mapa eguneratuak beti (gutxienez eguneraketa bat hilabetean)⏎\n- Lineaz kanpoko bektore mapa konpaktuak⏎\n- Mapa osoa edo errepide sarea bakarrik aukeratu daiteke (Adibidez: Japonia guztia 700 MB dira, edo errepide sarea 200 MB bakarrik)⏎\n- Sareko edo katxeatutako tesela mapak jasaten ditu ere⏎\n⏎\nSegurtasun ezaugarriak⏎\n- Aukerazko eguna/gaua ikuspegi kommutazio automatikoa⏎\n- Aukerazko abiadura mugak agertzea, gainditzerakoan abisatzen dizuna⏎\n- Aukerazko abiaduraren araberako mapa zooma⏎\n- Partekatu zure kokapena, zure lagunek uneoro jakin dezaten non zauden⏎\n⏎\nTxirrinda eta oinezkoen ezaugarriak⏎\n- Mapek oinezko, mendiko eta txirrinda bideak dakartzate, kanpo jardueretako aproposa.⏎\n- Ibilbide eta ikuspegi bereziak txirrinda eta oinezkoentzako⏎\n- Aukerazko garraio publikoaren geltokiak (autobus, tranbia, trena) autobus-linien izenak barne⏎\n- Aukerazko bidaiaren grabaketa GPX fitxategi batera edo sareko zerbitzu batera⏎\n- Abiadura eta altuera azaltzeko aukera⏎\n- Sestra-kurbak eta mendi itzalak (plugin gehigarri batez) erakusteko aukera⏎\n⏎\nOpenStreetMapera zuzeneko laguntza⏎\n- Mapetako akatsak salatu⏎\n- GPX bideak igo aplikaziotik OSMra zuzenean⏎\n- POIak gehitu eta zuzenean OSMra igo (edo geroago lineaz kanpo egon ezkero)⏎\n- Aukerazko bidai grabaketa atzeko planoan bada ere (gailua lo moduan dagoen bitartean)⏎\n⏎\nOsmAnd kode irekiko proiektua da, eta aktiboki garatua izaten ari da. Edozeinek lagundu dezake aplikazioarekin, erroreak salatzen, itzulitakoa hobetzen, edo ezaugarri berriak programatzen. Proiektua hobetzeko etengabeko egoeran dago garatzaileen eta erabiltzaileen interakzio modu hauei esker. Era berean, proiektuaren prozesuak dituen garatze, programatze eta funtzionalitate berrien probak egiteko behar den finantziazio laguntzetan ere oinarritzen da. OsmAnd+ erosiz gero, aplikazioa are zirraragarria izatea laguntzen duzu! Ezaugarri berriak finantzatzea edo dohaintza orokor bat egitea posible da osman.net-en.⏎\n⏎\n⏎\nGutxi gorabeherako mapa estaldura eta kalitatea:⏎\n- Mendebaldeko Europa: ****⏎\n- Ekialdeko Europa: ***⏎\n- Errusia: ***⏎\n- Ipar Amerika: ***⏎\n- Hego Amerika: **⏎\n- Asia: **⏎\n- Japonia &amp; Korea: ***⏎\n- Ekialde hurbila: **⏎\n- Afrika: **⏎\n- Antartika: *⏎\n⏎\nJasandako herrialdeen lista (funtsean mundu osoa!):⏎\nAfghanistan, Albania, Aljeria, Andorra, Angola, Aingira, Antigua eta Barbuda, Argentina, Armenia, Aruba, Australia, Austria, Azerbaijan, Bahamak, Bahrein, Bangladesh, Barbados, Bielorrusia, Belgika, Belize, Benin, Bermuda, Bhutan, Bolivia, Bonaire, Bosnia eta Herzegovina, Botswana, Brasil, Birjina britainiar uharteak, Brunei, Bulgaria, Burkina Faso, Burundi, Kanbodia, Kamerun, Kanada, Kabo Berde, Afrika Erdiko Errepublika, Txad, Txile, Txina, Kolonbia, Komoreak, Kongo, Kosta Rika, Boli Kosta, Kroazia, Kuba, Curaçao, Txipre, Txekia, Danimarka, Djibuti, Dominika, Errepublika Dominikarra, Ekuador, Egipto, El Salvador, Ecuatorial Ginea, Eritrea, Estonia, Etiopia, Euskal Herria, Fiji, Finlandia, Frantzia, Guyana Frantsesa, Polinesia Frantsesa, Gabon, Ganbia, Georgia, Alemania, Ghana, Gibraltar, Grezia, Groenlandia, Grenada, Guadalupe, Guam, Guatemala, Guernsey, Ginea, Ginea-Bissau, Guyana, Haiti, Vatikano, Honduras, Hong Kong, Hungaria, Island, India, Indonesia, Iran, Irak, Irlanda, Man, Israel, Italia, Jamaica, Japonia, Jersey, Jordania, Kazakhstan, Kenia, Kiribati, Ipar Korea eta Hego Korea, Kuwait, Kirgizstan, Laos, Letpmoa, Libano, Lesotho, Liberia, Libia, Liechtenstein, Lituania, Luxenburgo, Makao, Mazedonia, Madagaskar, Malawi, Malaysia, Maldivak, Mali, Malta, Martinika, Mauritania, Maurizio, Mayotte, Mexico, Micronesia, Moldavia, Monako, Mongolia, Montenegro, Montserrat, Maroko, Mozambike, Myanmar, Namibia, Nauru, Nepal, Herbeherak, Antilla herbeheretarrak, Caledonia Berria, Zelanda Berria, Nikaragua, Niger, Nigeria, Norbegia, Oman, Pakistan, Palau, Palestina, Panama, Papua Ginea Berria, Paraguai, Peru, Filipinak, Polonia, Portugal, Puerto Rico, Qatar, Errumania, Errusia, Ruanda, San Bartolome, Santa Elena, Saint Kitts eta Nevis, Santa Lucia, San Martin, Saint Pierre eta Mikelune, Saint Vincent eta Grenadinak, Samoa, San Marino, Saudi Arabia, Senegal, Serbia, Seychelleak, Sierra Leona, Singapur, Eslovakia, Eslovenia, Somalia, Hego Africa, Hego Georgia, Hego Sudan, Espainia, Sri Lanka, Sudan, Surinam, Swazilandia, Suegia, Suiza, Siria, Taiwan, Tajikistan, Tanzania, Tailandia, Timor-Leste, Togo, Tokelau, Tonga, Trinidad eta Tobago, Tunisia, Turkia, Turkmenistan, Tuvalu, Uganda, Ukraina, Arabiar Emirerri Batuak, Erresuma Batua, Ameriketako Estatu Batuak, Uruguai, Uzbekistan, Vanuatu, Venezuela, Vietnam, Wallis eta Futuna, Sahara, Yemen, Zambia, Zimbabwe.⏎\n⇥</string>
+  
+  
   <string name="filterpoi_activity">POI filtroa sortu</string>
   <string name="recalculate_route_to_your_location">Garraio modua:</string>
   <string name="select_navigation_mode">Aukeratu garraio modua</string>
@@ -284,12 +283,12 @@
   
   
   
-  <string name="layer_map_appearance">Pantaila konfiguratu</string>
+  <string name="layer_map_appearance">Konfiguratu pantaila</string>
   <string name="show_lanes">Erreilak erakutsi</string>
-  <string name="avoid_unpaved">Asfaltatu gabeko bideak sahistu</string>
-  <string name="avoid_ferries">Ferriak sahiestu</string>
-  <string name="avoid_in_routing_title">Sahiestu…</string>
-  <string name="avoid_in_routing_descr">Sahiestu bidesariak, asfaltatu gabekoak, ferriak</string>
+  <string name="avoid_unpaved">Saihestu asfaltatu gabeko bideak</string>
+  <string name="avoid_ferries">Saihestu ferryak</string>
+  <string name="avoid_in_routing_title">Saihestu…</string>
+  <string name="avoid_in_routing_descr">Saihestu bidesariak, asfaltatu gabekoak, ferryak</string>
   <string name="map_widget_fluorescent">Ibilbide fluoreszenteak</string>
   <string name="map_widget_show_ruler">Erregela</string>
   
@@ -303,7 +302,7 @@
   <string name="int_continuosly">Etengabeko</string>
   <string name="screen_is_locked">Pantaila desblokeatzeko sakatu giltrarrapoearen ikonoa</string>
   <string name="map_widget_top_text">Kale izena</string>
-  <string name="map_widget_config">Pantaila konfiguratu</string>
+  <string name="map_widget_config">Konfiguratu pantaila</string>
   <string name="map_widget_back_to_loc">Non nago</string>
   <string name="map_widget_lock_screen">Pantaila blokeatu</string>
   <string name="map_widget_compass">Iparrorratza</string>
@@ -333,7 +332,7 @@
   <string name="osmand_parking_hours">Orduak</string>
   <string name="osmand_parking_minutes">Minutuak</string>
   <string name="osmand_parking_position_description_add_time">Kotxea hemen aparkatua zegoen:</string>
-  <string name="tip_recent_changes_0_8_1_t">"Aldaketak 0.8.1 :↵\n\t* Ibilbide zehatzagoak (motelagoa)↵\n\t* Adimentsuagoa eta azkarragoa ibilbideak kalkulatzen↵\n\t* Erreiak errepidean↵\n\t* Abiadura mugen, radarren, eta puntu arriskutsuen informazioa↵\n\t* Ahots gidaren hobekuntza autobidean↵\n\t* Parking plugin (\'Where is my car parked at?\')↵\n\t* Jarraipena gaitzeko/ezgaitzeko widgeta "</string>
+  
   <string name="select_animate_speedup">Aukeratu ibilbide simulazioaren abiadura</string>
   <string name="global_app_allocated_memory_descr">%1$s MB memoria erreserbatuta (Android muga %2$s MB da, Dalvikena %3$s MB).</string>
   <string name="global_app_allocated_memory">Memoria erreserbatua</string>
@@ -360,7 +359,7 @@
   <string name="osmand_parking_am">AM</string>
   <string name="osmand_parking_position_name">Aparkaleku puntua</string>
   <string name="osmand_parking_plugin_description">Plugin honek zure aparkatutako kotxearen kokalekua gordetzea ahalbideratzen zaitu.</string>
-  <string name="osmand_parking_plugin_name">Aparkalekuaren Kokapen Plugina</string>
+  <string name="osmand_parking_plugin_name">Aparkalekuaren kokapena</string>
   <string name="context_menu_item_add_parking_point">Aparkaleku kokapen bezala markatu</string>
   <string name="context_menu_item_delete_parking_point">Aparkaleku markatzaile bat ezabatu</string>
   <string name="gpxup_public">Publikoa</string>
@@ -405,7 +404,7 @@
   <string name="map_online_plugin_is_not_installed">Gaitu sareko mapen plugina mapen iturburu ezberdinak aukeratzeko</string>
   <string name="map_online_data">Sare eta tesela mapak</string>
   <string name="map_online_data_descr">Erabili sareko mapak (deskargatu eta katxeatu teselak SD txartelan)</string>
-  <string name="online_map_settings">Sareko mapak</string>
+  <string name="shared_string_online_maps">Sareko mapak</string>
   <string name="online_map_settings_descr">Konfiguratu sareko edo katxeaturiko mapen iturburuak</string>
   
   
@@ -419,7 +418,7 @@
   
   <string name="prefs_plugins_descr">Pluginek ezarpen aurreratuak eta funtzionalitate berriak aktibatzen dituzte</string>
   <string name="prefs_plugins">Pluginak</string>
-  <string name="tip_recent_changes_0_8_0_t">"0.8.0 bertsiorako aldaketak:⏎\n⇥- *Pluginaren erabilera*⏎\n⇥ - Funtzionalitate gehienak ezaugarrietan taldekatuak daude eta Ezarpenak/Pluginak-en gaitu/ezgaitu daitezke.⏎\n⇥⇥Teselako mapen iturriak, ibilbide ezarpenak eta ezaugarri berri edo zaharrak gaitu ditzakezu (sare bidez edo katxeatutakoak).⏎\n⇥- *Lineaz kanpoko mapen datu berriak*⏎\n⇥ - Mapen errenderizazio azkarragoa eta zehatzagoa da (kosta eta urpeko zonaldeen arazoak doitu dira).⏎\n⇥ - Lineaz kanpoko datu guztiak deskargatu behar dituzu (datu zaharrak ez dira gehiago sostengatuko)⏎\n⇥- *Lineaz kanpoko ibilbideen jarraipena* ⏎\n⇥⇥- Lineaz kanpoko jarraopena sendoago bihurtzen da⏎\n⇥ *Erabilpena eta UI esperientzia*⏎\n⇥⇥- Area asko hobetuak "</string>
+  
   <string name="osm_editing_plugin_description">Erakutsi OSMri laguntzeko beharrezkoak diren ezarpenak, POI objektuak sortzea / eraldatzea, OSM akats jakinarazpenak irekitzea / komentatzea eta sortutako GPX fitxategiak bidaltzea esaterako (OSM kredentzialak beharrezkoak ditu).</string>
   <string name="vector_maps_may_display_faster_on_some_devices">Ziurrenik bektore mapak azkarrago kargatu. Baliteke gailu batzuetan ongi ez funtzionatzea.</string>
   <string name="play_commands_of_currently_selected_voice">Unean aukeratutako ahotsaren komandoak erreproduzitu</string>
@@ -427,7 +426,7 @@
   <string name="native_rendering">Errenderizazio natiboa</string>
   <string name="test_voice_prompts">Probatu ahotsezko abisuak</string>
   <string name="switch_to_raster_map_to_see">Ez dago lineaz kanpoko bektore maparik kokapen honetarako. Ezarpenetan (Kudeatu mapen fitxategiak) deskargatu dezakezu bat edo sareko mapetara pasa zaitezke (gaitu online mapen plugina horretarako).</string>
-  <string name="tip_recent_changes_0_7_2_t">"0.7.2 bertsioko aldaketak:⏎\n⇥- Gailu guztientzako errenderizazio natiboa⏎\n⇥- Lineaz kanpoko POI edizioa⏎\n⇥- Erabilerraztasuna⏎\n⇥- Akats asko konponduak⏎ "</string>
+  
   <string name="send_files_to_osm">Bidali GPX fitxategiak OSMra?</string>
   <string name="gpx_visibility_txt">Ikuserraztasuna</string>
   <string name="gpx_tags_txt">Etiketak</string>
@@ -440,13 +439,11 @@
   <string name="info_button">Info</string>
   <string name="back_to_location">Kokapenera itzuli</string>
   <string name="shared_string_help">Laguntza</string>
-  <string name="show_details">Xehetasunak erakutsi</string>
-  <string name="accessibility_extensions_descr">Androiden bertsio zaharreko erabilerraztasunerako luzapenak</string>
-  <string name="accessibility_extensions">Erabilerraztasunerako luzapenak</string>
-  <string name="accessibility_mode">Erabilerraztasun modua</string>
-  <string name="accessibility_mode_descr">Erabilerraztasun ezaugarriak gaitu</string>
+  
+  <string name="accessibility_mode">Irisgarritasun modua</string>
+  <string name="accessibility_mode_descr">Irisgarritasun ezaugarriak gaitzen ditu</string>
   <string name="shared_string_on">On</string>
-  <string name="shared_string_off">Off</string>
+  <string name="shared_string_off">Ezgaituta</string>
   <string name="accessibility_default">Sistemako ezarpen orokorraren arabera</string>
   <string name="backToMenu">Menura Itzuli</string>
   <string name="zoomOut">Urrundu</string>
@@ -483,25 +480,21 @@
   <string name="no_info">Informaziorik ez</string>
   <string name="direction_style_sidewise">Ezkerreruntz (8 sektore)</string>
   <string name="direction_style_clockwise">Eskubiruntz (12 sektore)</string>
-  <string name="settings_direction_style">Argibideen estiloa</string>
-  <string name="settings_direction_style_descr">Aukeratu mugimenduan egotean ematen diren argibide erlatiboen estiloa</string>
+  <string name="settings_direction_style">Jarraibideen estiloa</string>
+  <string name="settings_direction_style_descr">Aukeratu mugimenduan egotean ematen diren jarraibide erlatiboen estiloa</string>
   <string name="auto_announce_on">Iragarpen automatikoa hasi</string>
   <string name="auto_announce_off">Iragarpen automatikoa gelditu</string>
-  <string name="scroll_map_by_gestures_descr">Korritu mapa ukipen-pantailaren keinuen bidez</string>
-  <string name="scroll_map_by_gestures">Maparen korritze naturala</string>
   <string name="i_am_here">Hemen nago</string>
-  <string name="zoom_by_trackball_descr">Maparen zooma aldatu trackball-aren mugimendu orizontalaren bidez</string>
+  <string name="zoom_by_trackball_descr">Maparen zooma aldatu trackball-aren mugimendu horizontalaren bidez</string>
   <string name="zoom_by_trackball">Trackball-a erabili zooma kontrolatzeko</string>
-  <string name="use_short_object_names_descr">Objektuen izen motzak erabili ukipen-esplorazio moduan</string>
-  <string name="use_short_object_names">Objetuen izenak erabili</string>
-  <string name="accessibility_preferences_descr">Erabilerraztasunari erlazionaturiko hobespenak</string>
-  <string name="accessibility_preferences">Erabilerraztasuna</string>
+  <string name="accessibility_preferences_descr">Irisgarritasun hobespenak</string>
+  <string name="shared_string_accessibility">Irisgarritasuna</string>
   <string name="rendering_out_of_memory">Aukeratutako area erakusteko ez dago memoria nahikorik</string>
   <string name="use_fluorescent_overlays">Gainazal fluoreszenteak</string>
-  <string name="use_fluorescent_overlays_descr">Erabili kolore fluoreszenteak bideak eta ibilbideak azaltzeko</string>
+  <string name="use_fluorescent_overlays_descr">Erabili kolore fluoreszenteak lorratzak eta ibilbideak bistaratzeko</string>
   <string name="offline_edition">Lineaz kanpoko edizioa</string>
   <string name="offline_edition_descr">Beti erabili lineaz kanpoko edizioa</string>
-  <string name="tip_recent_changes_0_7_1_t">"0.7.1 bertsioko aldaketak:⏎\n⇥- Lineaz kanpoko POIen edizioa⏎\n⇥- Sareko Jarraipen aukera - bidali aldizka koordenadak web zerbitzura (irakurri nola konfiguratu web zerbitzu propioa HowTo artikuluetan)⏎\n⇥- Erakutsi momentuan grabatutako bidea mapan⏎\n⇥- Norabidea detektatu: \'U-buelta eman\' agertu eta iragartzen da norabide txarra hartuz gero edo bira bat galduz gero.⏎\n⇥- Ahots abisu berriak \'Ibilbidea birkalkulatua izan da\'⏎\n⇥- 100m-tara berehalako biraketaren seinale optikoa, kolorez aldatzen den norabide geziarekin⏎\n⇥- Desaktibatutako indize fitxategiak orain ere Deskargen pantailan agertzen dira, berde ilun eta urdin ilunetan.⏎\n⇥- Beste aldaketa batzuk "</string>
+  
   <string name="update_poi_does_not_change_indexes">Aplikazioaren barneko POI aldaketek ez diete deskargatutako mapen fitxategiei eragiten, aldaketak modu lokalean gordetzen dira.</string>
   <string name="local_openstreetmap_uploading">Igotzen …</string>
   <string name="local_openstreetmap_were_uploaded">{0} POI/Akats izan dira igoak</string>
@@ -518,9 +511,9 @@
   <string name="live_monitoring_interval">Sare bidezko jarraipen tartea</string>
   <string name="live_monitoring_url_descr">Zehaztu web helbidea ondorengo parametroen sintaxiarekin: lat={0}, lon={1}, timestamp={2}, hdop={3}, altitude={4}, speed={5}, bearing={6}</string>
   <string name="live_monitoring_url">Sare bidezko jarraipeneko web helbidea</string>
-  <string name="gpx_monitoring_disabled_warn">Mesedez ahalbideratu \'Gorde bidea GPX fitxategian\' ezarpenetan.</string>
-  <string name="show_current_gpx_title">Uneko bidea erakutsi</string>
-  <string name="tip_recent_changes_0_7_0_t">"0.7.0 bertsioko aldaketak:⏎\n⇥- Artikuluak dituzten wikipediako lineaz kanpoko datuak⏎\n⇥- Mapa eguneratuak⏎\n⇥- Beste ezaugarri txiki batzuk⏎ "</string>
+  <string name="gpx_monitoring_disabled_warn">Gorde lorratza GPX trepeta erabiliz edo \'Bidaiaren grabaketa\' ezarpenen bidez.</string>
+  <string name="show_current_gpx_title">Erakutsi uneko lorratza</string>
+  
   <string name="free_version_message">OsmAnden dohaineko bertsio hau %1$s deskargetara dago mugatua eta ez ditu Wikipediako artikuluak lineaz kanpo erabiltzen.</string>
   <string name="free_version_title">Doainezko bertsioa</string>
   <string name="poi_context_menu_showdescription">POIaren deskribapena erakutsi</string>
@@ -538,7 +531,7 @@
   <string name="index_name_other">Mundu osoko eta gaietako mapak</string>
   <string name="index_name_wiki">Mundu osoko Wikipediako POIak</string>
   <string name="index_name_voice">Ahots paketeak (grabatuak, mugatutako ezaugarriak)</string>
-  <string name="index_name_tts_voice">Ahots paketeak (TTS bidez sintetizatuak)</string>
+  <string name="index_name_tts_voice">Ahots paketeak (TTS bidez sintetizatuak, hobetsia)</string>
   <string name="amenity_type_osmwiki">Wikipedia (lineaz kanpo)</string>
   <string name="amenity_type_user_defined">Erabiltzaileak definituak</string>
   <string name="fav_export_confirmation">Aurretik esportaturiko Gogokoenak dagoeneko existitzen dira. Ordeztu nahi dituzu?</string>
@@ -551,23 +544,23 @@
   <string name="general_settings_descr">Konfiguratu bistaratzea eta aplikazioaren ezarpen komunak</string>
   <string name="global_app_settings">Aplikazioaren ezarpen globalak</string>
   <string name="user_name">Zure OSMeko erabiltzailea</string>
-  <string name="user_name_descr">Beharrezkoa openstreetmap.org-eko bidalketentzat</string>
+  <string name="open_street_map_login_descr">Beharrezkoa openstreetmap.org-eko bidalketentzat</string>
   <string name="user_password">Zure OSMeko pasahitza</string>
   <string name="user_password_descr">Beharrezkoa openstreetmap.org-eko bidalketentzat</string>
   <string name="osmand_service">Esekite moduko funtzionalitatea</string>
   <string name="osmand_service_descr">Erabili pantaila itzalia dagoen bitartean OsmAnd exekutatzeko</string>
-  <string name="tip_rotation_switching">Maparen Orientazioa</string>
-  <string name="tip_rotation_switching_t_v2">⇥Maparen bistaratzearen biraketa ezkutatu edo modua aldatu dezakezu pantailako iparrorratzaren ikonoa sakatuz.⏎\n⇥⇥⏎\n⇥Aukerak hauek dira:⏎\n⇥⇥⏎\n⇥\'Ez biratu (iparra goian dago\' - Mapa ez da biratuko. Iparra beti goian egongo da⏎\n⇥⇥⏎\n⇥\'Mugimenduaren norabidean\' - Mapa etengabe zure norabidearekin alineatuko da⏎\n⇥⇥⏎\n⇥\'Iparrorratza\' - Mapa etengabe gailuaren iparrorratzaren irakurketarekin alineatuko da⏎\n⇥</string>
   
-  <string name="tip_day_night_mode">Eguneko/Gaueko Modua</string>
-  <string name="tip_day_night_mode_t_v2">⇥Maparen itxura bektore mapa batzuetan egunez (argiagoa) eta gauez (ilunagoa) aldatu daiteke.⏎\n⇥⇥⏎\n⇥Gaueko koloreak gauean gidatzeko seguruagoak dira.⏎\n⇥⇥⏎\n⇥Egun/gau ezaugarriak hemen aldatu ditzakezu: \'Menu\' -&gt; \'Pantailaren ezarpenak\' -&gt;\'Egun/gau mapa\'.⏎\n⇥⇥⏎\n⇥Aukerak hauek dira:⏎\n⇥⇥⏎\n⇥\'Egunsentia/ilunabarra\' - modu automatikoa, eguzkiaren kokapenaren arabera kontrolatua (lehenetsia)⏎\n⇥⇥⏎\n⇥\'Eguna\' - beti erabili eguneko modua⏎\n⇥⇥⏎\n⇥\'Gaua\' - beti erabili gaueko modua⏎\n⇥⇥⏎\n⇥\'Argi sentsorea\' - maparen itxura argi sentsore baten bitartez (sentsorez hornitua badago)⏎\n⇥</string>
-  <string name="tip_osm_improve">OSM Datuak Hobetzen</string>
-  <string name="tip_osm_improve_t">⇥OsmAnd Openstreetmap.org-eko (OSM) mapetan oinarritzen da eta OSM-ko datuen kalitatea hobetzeko erabili daiteke. POI berriak sortu eta igo ditzakezu erraz edo OSMren akatsak jakinarazi ditzakezu bakarrik klik batez!⏎\n⇥⇥⏎\n⇥Honetarako, \'Ezarpenak\' -&gt; \'Ezarpen orokorrak\' -&gt; \'OSM edizioa\'-n OSM-ren saioa hasteko informazioa eman behar duzu.⏎\n⇥⇥⏎\n⇥POI berri bat gehitzeko, maparen menuan \'POIa sortu\' aukeratu. POI berriaren informazioa bete eta azkenik bidali.⏎\n⇥⇥⏎\n⇥Mapetako akatsak berehala jakinarazi daitezke \'OSM akats jakinarazpenak\'-en bitartez, eta OSM komunitateak azkar konpondu dezake arazoa.⏎\n⇥⇥⏎\n⇥OSM akats bat gehitzeko aukeratu \'Ireki OSM akats jakinarazpena\' maparen menuan. Ondoren, sartu arazoaren deskribapen zehatza eta azkenik bidali \'Gehitu\' botoia sakatuz.⏎\n⇥⇥⏎\n⇥Mesedez kontuan hartu Interneterako sarbidea beharrezkoa dela OSM POI eta OSM akats jakinarazpenak egiteko.</string>
+  
+  
+  
+  
+  
+  
   <string name="download_files_not_enough_space">Ez dago leku nahikorik %1$s MB deskargatzeko (%2$s libre).</string>
-  <string name="download_files_question_space">{2} MB libre! Deskargatu {0} fitxategi ({1} MB)?</string>
+  <string name="download_files_question_space">Benetan {0} fitxategi deskargatu? Honek {1} MB behar ditu behin betiko. {2} MB daude libre orain.</string>
   
   
-  <string name="tip_recent_changes_0_6_9_t">0.6.9 bertsioan aldaketak:⏎\n⇥⇥⏎\n⇥- Lineaz kanpoko mapen errenderizazioa hobetua⏎\n⇥⇥⏎\n⇥- Lineaz kanpoko errenderizazio Natibo Azkarra - ezaugarri esperimentaletan begiratu (gailu batzuetan ez du funtzionatzen)⏎\n⇥⇥⏎\n⇥- Itxura aldaketa handiak⏎\n⇥⇥⏎\n⇥- Altuera informazioa⏎\n⇥⇥⏎\n⇥- Itzulpen berriak (Vietnamera, Poloniera)⏎\n⇥⇥⏎\n⇥- Beste ezaugarri txiki batzuk⏎</string>
+  
   <string name="use_transparent_map_theme">Itsura-gai gardena</string>
   <string name="native_library_not_supported">Gailu honek ez du liburutegi natiboa jasaten.</string>
   <string name="init_native_library">Liburutegi natiboa hasieratzen…</string>
@@ -590,10 +583,10 @@
   
   <string name="animate_route_off">Simulazioa geldiarazi</string>
   <string name="animate_route">Simulazioa hasiarazi</string>
-  <string name="tip_recent_changes_0_6_8_t">0.6.8 bertsioan aldaketak :⏎\n⇥⇥⏎\n⇥- Bilatzailea guztiz aldatua! (POI, Helbidea) Helbideen bilaketa azkarragoa eta hobeagoa. Bilaketa interfaze bat sortu aukera desberdin askorekin.⏎\n⇥⇥⏎\n⇥- POIak izenaren arabera bilatu zonalde handietan (herrialdeak)⏎\n⇥⇥⏎\n⇥- Tableten ikuspenerako mapak konpondu (641. arazoa)⏎\n⇥⇥⏎\n⇥- Automatikoki zentratzen den mapa ikuspegia (356. arazoa)⏎\n⇥⇥⏎\n⇥- GPX nabigazioa \'Norabideak\'-era aldatua eta \'Norabideak gorde\' \'Ibilbideari buruz\'-era aldatua⏎\n⇥⇥⏎\n⇥- POI datuak .obf fitxategira gehituak (01/10/11-tik dauden deskarga guztiak indexatuak)⏎\n⇥⇥⏎\n⇥- Ahots abisuetako konponketak (GPS posizionamendua finkatua, lehenengo komandoa kenduz)⏎\n⇥⇥⏎\n⇥- Hobekuntza txikiak⏎\n⇥</string>
+  
   <string name="file_can_not_be_renamed">Ezin da fitxategia izenez aldatu.</string>
   <string name="file_with_name_already_exists">Izen berdineko fitxategi bat dago dagoeneko.</string>
-  <string name="gpx_navigation">GPX bidea</string>
+  <string name="gpx_navigation">GPX ibilbidea</string>
   <string name="poi_query_by_name_matches_categories">Bilaketarekin bat datozen bizpahiru POI kategoria aurkitu dira:</string>
   <string name="data_to_search_poi_not_available">Ez dira aurkitu POI bilaketetarako datu lokalak.</string>
   <string name="poi_filter_by_name">Izenez bilatu</string>
@@ -610,13 +603,13 @@
   <string name="search_position_favorites">Gogokoenak…</string>
   <string name="search_position_undefined">Indefinitua</string>
   
-  <string name="search_position_current_location">Uneko kokapena…</string>
+  
   <string name="search_position_map_view">Azkeneko mapa ikuspegia</string>
-  <string name="select_search_position">Ondoan bilatu:</string>
+  <string name="select_search_position">Jatorria:</string>
   <string name="context_menu_item_search">Honen ondoan bilatu</string>
-  <string name="tip_recent_changes_0_6_7_t">0.6.7 bertsiorako aldaketak:⏎\n⇥⇥⏎\n⇥- Lineaz kanpoko datuen kudeatzailea (deskargatu, ezabatu, OsmAndetik zuzenean aktibatu/desaktibatu lineaz kanpoko datuak)⏎\n⇥⇥⏎\n⇥- Puntu eta talde gogokoenak (kategoriak, ezabatu, gogokoenak kudeatu)⏎\n⇥⇥⏎\n⇥- Esploratu GPX-a aplikazioan (bidearen xehetasunak ikusi, distantzia, bataz besteko distantzia, altuera, etab.)⏎\n⇥⇥⏎\n⇥- GPX nabigazioa (aukera gehiago, nabigatzen jarraitu huts egin ondoren, biribilguneak jasan)⏎\n⇥⇥⏎\n⇥- Ibilbidea GPX bide bezala gorde lineaz kanpo erabili ahal izateko⏎\n⇥⇥⏎\n⇥- GPXen monitorizazioa hobetu (Kokapen zehaztugabe batzuk filtratu eta zehaztasuna/altuera/abiadura gorde)⏎\n⇥⇥⏎\n⇥- Igo GPXak OSM komunitatera (http://download.osmand.net/gpx/)⏎\n⇥⇥⏎\n⇥- Bektore errenderizazioa hobetu⏎\n⇥⇥⏎\n⇥- TTS motorra (Testua hizketa bihurtze) hobetu (distantzia zehatza iragarri, milak gaitu)⏎\n⇥⇥⏎\n⇥- Akatsak konpondu⏎\n⇥</string>
-  <string name="shared_string_save_as_gpx">GPX bide bezala gorde ibilbidea</string>
-  <string name="route_successfully_saved_at">Ibilbidea \'%1$s\' bezala arrakastatsu gorde da.</string>
+  
+  <string name="shared_string_save_as_gpx">Gorde GPX lorratz gisa</string>
+  <string name="route_successfully_saved_at">Ibilbidea \'%1$s\' bezala ongi gorde da.</string>
   <string name="filename_input">"Fitxategi izena: "</string>
   <string name="file_with_name_already_exist">Izen berdineko beste fitxategi bat dago dagoeneko.</string>
   <string name="shared_string_save">Gorde</string>
@@ -625,13 +618,13 @@
   <string name="local_index_items_uploaded">%2$d-tik %1$d elementu ongi igotak.</string>
   <string name="local_index_mi_upload_gpx">OSMra bidali</string>
   <string name="show_more_map_detail">Xehetasun gehiago erakutsi mapan</string>
-  <string name="show_more_map_detail_descr">Bektore mapen xehetasun gehiago erakutsi (bideak etab.) zoom maila baxuetan</string>
+  <string name="show_more_map_detail_descr">Erakutsi bektore mapen xehetasun gehiago (bideak etab.) zoom maila baxuetan</string>
   <string name="favourites_delete_multiple_succesful">Gogoko puntua(k) arrakastaz ezabatua(k).</string>
   <string name="favorite_delete_multiple">%1$d gogoko eta %2$d gogokoen talde ezabatuko dituzu. Ziur al zaude?</string>
   <string name="favorite_home_category">Hasiera</string>
   <string name="favorite_friends_category">Lagunak</string>
   <string name="favorite_places_category">Lekuak</string>
-  <string name="favorite_default_category">Bestelakoak</string>
+  
   <string name="favourites_edit_dialog_name">Izena</string>
   <string name="favourites_edit_dialog_category">Kategoria</string>
   <string name="shared_string_no_thanks">Ez, milesker</string>
@@ -668,20 +661,20 @@
   <string name="map_text_size">Maparen letra tamaina</string>
   <string name="trace_rendering">Debugeatzeko informazioa errenderizatzen</string>
   <string name="trace_rendering_descr">Erakutsi errenderizazio errendimendua</string>
-  <string name="tip_recent_changes">Azkeneko aldaketak</string>
-  <string name="tip_recent_changes_0_6_6_t">0.6.6 bertsioko aldaketak: ⏎\n⇥⇥⏎\n⇥- TTS motorra (Testua hizketa bihurtze) ahots nabigaziorako⏎\n⇥⇥⏎\n⇥- Maparen errenderizatzailera xehetasun gehiago gehitu⏎\n⇥⇥⏎\n⇥- Mundu guztirako mapa oinarria aplikazioarekin enpaketatua⏎\n⇥⇥⏎\n⇥- Lineaz kanpoko nabigazioa doitu (oraindik esperimentala)⏎\n⇥⇥⏎\n⇥- GPX nabigaziorako aukerak⏎\n⇥⇥⏎\n⇥- UI-a eguneratu eta akats handien konponketa⏎\n⇥</string>
-  <string name="voice_not_use">Ez erabili</string>
   
-  <string name="installing_new_resources">Datu berriak desenpaketatzen...</string>
+  
+  
+  
+  <string name="installing_new_resources">Datu berriak desenpaketatzen…</string>
   <string name="internet_connection_required_for_online_route">Sareako nabigazio zerbitzu bat izan da aukeratua baina ez dago interneterako konexiorik.</string>
   <string name="tts_language_not_supported_title">Hizkuntza ez da onartzen</string>
   <string name="tts_language_not_supported">Aukeratutako hizkuntza instalatutako Android TTS (text-to-speech) motorrak ez du jasaten. Beste TTS motor bat bilatu nahi duzu Marketen? Bestela, oraingo TTS hizkuntza erabiliko da.</string>
   <string name="tts_missing_language_data_title">Falta diren datuak</string>
   <string name="tts_missing_language_data">Ez dago aukeratutako hizkuntzaren daturik instalatua. Marketera joan nahi duzu instalatzera?</string>
-  <string name="gpx_option_reverse_route">Alderantzizkatu GPXaren norabidea</string>
+  <string name="gpx_option_reverse_route">Alderantzikatu GPXaren noranzkoa</string>
   <string name="gpx_option_destination_point">Erabili uneko helmuga</string>
-  <string name="gpx_option_from_start_point">Bide guztitik pasa</string>
-  <string name="switch_to_vector_map_to_see">Lineaz kanpoko bektore mapa bat dago kokapen honentzat. ⏎\n⇥⏎\n⇥Erabiltzeko, aktibatu \'Menua\' -&gt; \'Mapa geruzak\' -&gt; \'Mapa Iturburua…\' -&gt; \'Lineaz kanpoko bektore mapak\'.</string>
+  <string name="gpx_option_from_start_point">Pasatu lorratz osotik</string>
+  <string name="switch_to_vector_map_to_see">Lineaz kanpoko bektore mapa bat dago kokapen honentzat. ⏎\n⇥⏎\n⇥Erabiltzeko, aktibatu \'Menua\' -&gt; \'Konfiguratu mapa\' -&gt; \'Mapa Iturburua…\' -&gt; \'Lineaz kanpoko bektore mapak\'.</string>
   <string name="choose_audio_stream">Ahots gidaritzaren irteera</string>
   <string name="choose_audio_stream_descr">Aukeratu ahots gidaritza erreproduzituko den kanala (sistemaren araberakoa)</string>
   <string name="voice_stream_voice_call">Ahots deiaren audioa</string>
@@ -692,7 +685,7 @@
   <string name="overlay_transparency">Gainazalaren gardentasuna</string>
   <string name="map_transparency_descr">Eraldatu onarri den maparen gardentasuna</string>
   <string name="map_transparency">Oinarri den maparen gardentasuna</string>
-  <string name="layer_underlay">Azpiazal mapa...</string>
+  <string name="layer_underlay">Azpiazal mapa…</string>
   <string name="map_underlay">Azpiazal mapa</string>
   <string name="map_underlay_descr">Aukeratu azpiazal mapa</string>
   <string name="layer_overlay">Gainazal mapa…</string>
@@ -705,10 +698,10 @@
   <string name="install_more">Gehiago instalatu…</string>
   <string name="level_to_switch_vector_raster_descr">Bektore mapak erabiltzeko zoom maila minimoa</string>
   <string name="level_to_switch_vector_raster">Bektoreen zoom maila min.</string>
-  <string name="tip_location_sharing">Kokapena Partekatzea</string>
-  <string name="tip_location_sharing_t">⇥Zure ibilaldian leku interesgarrien kokapena partekatu dezakezu zure lagun eta familiarekin.⏎\n⇥⇥⏎\n⇥Nahi duzun kokapena partekatzeko:⏎\n⇥⇥⏎\n⇥Erabili \'Maparen menua\' -&gt; \'Partekatu kokapena\' menua.⏎\n⇥⇥⏎\n⇥Ondoren, aukeratu zure kokapena partekatzeko modua. Aukerak hauek dira: E-Mail, SMS(testua), edo kopiatu zure kokapenaren koordenadak arbelean..⏎\n⇥</string>
-  <string name="tip_favorites">Puntu Gogokoenak</string>
-  <string name="tip_favorites_t">⇥Maiz erabiltzen diren puntuak Gogokoenetan gorde daitezke.⏎\n⇥⇥⏎\n⇥Puntu bat Gogokoen bezala gordetzeko, joan maparen menura, aukeratu \'Gogokoenetara gehitu\' aukera eta ezarri izen bat. Gogokoen bat gorde ondoren, \'Pantaila Nagusia\' -&gt; \'Gogokoenak\' bidez aurkitu dezakezu.⏎\n⇥⇥⏎\n⇥\'Gogokoenak\' menuan agertzen den gogokoen batean sakatuta mantenduz, menuak helmuga bezala ezarri, editatu edo ezabatzeko aukera ematen du.⏎\n⇥⇥⏎\n⇥Gogokoen puntu guztiak mapan azaltzeko, \'Gogokoenak\' geruza aktibatu \'Menua\' -&gt; \'Mapa geruzak\' aukeran.⏎\n⇥</string>
+  
+  
+  
+  
   <string name="error_doing_search">Lineaz kanpoko bilaketan errore bat gertatu da</string>
   <string name="search_offline_geo_error">Ezin izan da \'%s\' geo asmoa pasa</string>
   <string name="search_osm_offline">Bilatu geo kokapena</string>
@@ -716,19 +709,19 @@
   <string name="preferred_locale_descr">Aukeratu bistaratze hizkuntza</string>
   <string name="preferred_locale">Bistaratze hizkuntza</string>
   <string name="incomplete_locale">osatu gabea</string>
-  <string name="tip_map_switch">Mapa Iturburua</string>
-  <string name="tip_map_switch_t_v2">⇥Agertzen diren maparen iturburua eta geruzak \'Menua\' -&gt; \'Mapa geruzak\' bidez aldatzen dira.⏎\n⇥⇥⏎\n⇥\'Mapa iturburua…\' ezarpenan deskargaturiko lineaz kanpoko bektore mapak, aurredefinituriko tesela (sare bidezko) mapak (honetarako aktibatu \'Sareko tesela mapak\' plugina), edo eskuz sortutako mapen hartean (OsmAndMapCreator erabiliz) aukeratu dezakezu.⏎\n⇥⇥⏎\n⇥OsmAndek ere iturburu pertsonalizatuak onartzen ditu.⏎\n⇥</string>
-  <string name="tip_app_mode">Erabiltzaile Profila</string>
-  <string name="tip_app_mode_t_v2">⇥OsmAndek kasu desberdinetarako aplikazio profil ezberdinak (pertsonalizatu daitezkeenak) jasaten ditu.⏎\n⇥⇥⏎\n⇥Profila pertsonalizatu dezakezu maparen behean ezkerrean dagoen profilaren botoia sakatuz (kotxe, txirrinda edo oinezko ikonoak), edo ibilbide bat sortzerako garaian.⏎\n⇥</string>
-  <string name="tip_navigation">Nabigazioa</string>
-  <string name="tip_navigation_t">"⇥Nabigazioa hasierarazi baina lehen, helmuga bat aukeratu behar duzu. Ondoren, sakatu \'Menua\' -&gt; \'Norabideak\' mapan eta aukeratu nabigazio mota. "</string>
-  <string name="tip_search">Bilatzen</string>
-  <string name="tip_search_t">⇥Lekuak zuzenean mapan, helbidearen arabera, kokapenaren arabera, POI bezala, edo gogokoenak bezala bilatu ditzakezu.⏎\n⇥⇥⏎\n⇥\'Bilatu\' sakatzen pantaila orokorrean, bilaketa irekitzen du. Emaitza guztietan, maparen menuan \'Norabideak\' edo \'Mapan erakutsi\' aukerak agertzen dira.⏎\n⇥</string>
-  <string name="tip_map_context_menu">Maparen Menua</string>
-  <string name="tip_map_context_menu_t">⇥Maparen menua mapan edo trackball-ean sakatuta mantenduz ireki dezakezu.⏎\n⇥⇥⏎\n⇥Honek koordinatuak dituen kaxa bat sortzen du. Maparen menuaren dialogoa irekitzeko, sakatu bertan. (Edo sakatuta mantendu kaxa berriro ezkutatzeko.)⏎\n⇥⇥⏎\n⇥Maparen menua puntu (kokapen) batekin erlazionaturiko ekintza guztiak dakartza.⏎\n⇥</string>
   
-  <string name="tip_initial_t">⇥OsmAnd ezaugarri asko dituen nabigazio aplikazio bat da. ⏎\n⇥⇥⏎\n⇥Oinarrizko sarrera moduan, aholku eta trikimailu batzuen estekak dituzu pantaila nagusian (begiratu \'?\' ikonoa).⏎\n⇥</string>
-  <string name="shared_string_next">Ondorengoa</string>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <string name="shared_string_next">Hurrengoa</string>
   <string name="shared_string_previous">Aurrekoa</string>
   <string name="unit_of_length_descr">Luzeera eta abiaduraren unitateak aldatu</string>
   <string name="unit_of_length">Neurtze unitatea</string>
@@ -744,9 +737,9 @@
   <string name="send_location_email_pattern">Kokapena ikusteko jarraitu web arakatzailearen %1$s esteka edo androiderako %2$s esteka</string>
   <string name="send_location">Kokapena bidali</string>
   <string name="context_menu_item_share_location">Kokapena partekatu</string>
-  <string name="add_waypoint_dialog_added">GPX \"{0}\" bide puntua arrakastaz gehitu da</string>
-  <string name="add_waypoint_dialog_title">Grabatutako GPX bideari bide puntua gehitu</string>
-  <string name="context_menu_item_add_waypoint">GPX bide puntua gehitu</string>
+  <string name="add_waypoint_dialog_added">GPX \"{0}\" bide-puntua ongi gehitu da</string>
+  <string name="add_waypoint_dialog_title">Gehitu bide-puntua grabatutako GPX lorratzari</string>
+  <string name="context_menu_item_add_waypoint">GPX bide-puntua gehitu</string>
   <string name="amenity_type_administrative">Administrazioa</string>
   <string name="amenity_type_barrier">Hesiak</string>
   <string name="amenity_type_education">Hezkuntza</string>
@@ -784,10 +777,10 @@
   <string name="version_index_is_big_for_memory">\"{0}\" indizea ez da memorian sartzen</string>
   <string name="version_index_is_not_supported">\"{0}\" indizearen bertsioa ez da onartzen</string>
   <string name="use_osmand_routing_service">OsmAnd nabigatzailea &gt;20km</string>
-  <string name="use_osmand_routing_service_descr">Erabili OsmAnden lineaz kanpoko nabigatzailea, &gt; 20 km ibilbideetan erabili daiteke (experimentala)</string>
+  <string name="use_osmand_routing_service_descr">Erabili OsmAnd lineaz kanpoko nabigatzailea, &gt; 20 km ibilbideetan erabili daiteke (esperimentala)</string>
   <string name="osmand_routing_experimental">OsmAnden lineaz kanpoko nabigazioa ezaugarri esperimentala da eta ez du 20 km baina gehiagoko distantziekin lan egiten.⏎\n⏎\nNabigazio zerbitzuak oraingoz sarean dagoen CloudMade zerbitzua erabiltzen du.</string>
   <string name="specified_dir_doesnt_exist">Ezin izan da eskatutako direktorioa aurkitu.</string>
-  <string name="application_dir">Gordetze direktorioa</string>
+  <string name="application_dir">Datuak gordetzeko direktorioa</string>
   
   <string name="osmand_net_previously_installed">OsmAnden bertsio zaharrago bat dago instalatuta. Aplikazio berriak lineaz kanpoko datu guztiak erabili ditzake. Hala ere, Puntu Gogokoenak aplikazio zaharrean esportatu eta berrian inportatuak izan beharko lirateke.</string>
   <string name="build_installed">{0} eraikitzea ongi instalatuta ({1}).</string>
@@ -811,8 +804,8 @@
   
   <string name="shared_string_select_all">Guztia hautatu</string>
   <string name="shared_string_refresh">Birkargatu</string>
-  <string name="fast_route_mode">Biderik azkarrena</string>
-  <string name="fast_route_mode_descr">Gaitu biderik azkarrenarentzat edo ezgaitu biderik motzenarentzat</string>
+  <string name="fast_route_mode">Ibilbiderik azkarrena</string>
+  <string name="fast_route_mode_descr">"Gaitu ibilbiderik azkarrena kalkulatzeko edo ezgaitu ibilbiderik laburrena kalkulatzeko "</string>
   <string name="tiles_to_download_estimated_size">{0} zoomean deskargatu {1} tesela ({2} MB)</string>
   <string name="shared_string_download_map">Mapa deskargatu</string>
   <string name="select_max_zoom_preload_area">Aukeratu aurrekargatzeko gehienezko zooma</string>
@@ -840,17 +833,17 @@
   <string name="voice">Ahotsa</string>
   <string name="no_vector_map_loaded">Bektore mapak ez dira kargatuak izan</string>
   <string name="map_route_by_gpx">GPX erabiltzen nabigatu</string>
-  <string name="gpx_files_not_found">GPX fitxategiak ez dira aurkitu /tracks direktorioan</string>
-  <string name="layer_gpx_layer">GPX bidea…</string>
+  <string name="gpx_files_not_found">Ez da GPX fitxategirik aurkitu lorratzen direktorioan</string>
+  <string name="layer_gpx_layer">GPX lorratza…</string>
   <string name="error_reading_gpx">Errorea GPX datuak irakurtzean</string>
   <string name="vector_data">Lineaz kanpoko bektore mapak</string>
   <string name="transport_context_menu">Bilatu garraioa geldiunean</string>
   
-  <string name="osb_bug_name">Akatsa</string>
+  
   <string name="poi_context_menu_modify">POIa eraldatu</string>
   <string name="poi_context_menu_delete">POIa ezabatu</string>
   <string name="rotate_map_compass_opt">Konpaseruntz</string>
-  <string name="rotate_map_bearing_opt">Mugimenduaren norabideruntz</string>
+  <string name="rotate_map_bearing_opt">Mugimenduaren noranzkoan</string>
   <string name="rotate_map_none_opt">Ez biratu (iparra goian)</string>
   <string name="rotate_map_to_bearing_descr">Aukeratu maparen alineazioa</string>
   <string name="rotate_map_to_bearing">Mapa orientazioa</string>
@@ -881,14 +874,14 @@
   <string name="use_trackball">Trackball-a erabili</string>
   <string name="background_service_wait_int_descr">Ezarri itxarote denbora maximoa kokapenaren bigarren planoko finkaketarentzat</string>
   <string name="background_service_wait_int">Finkapenarentzat denbora maximoa</string>
-  <string name="service_stop_background_service">Itzali OsmAnden esekidura moduko nabigazio zerbitzua</string>
+  
   <string name="where_am_i">Non nago?</string>
   <string name="process_navigation_service">OsmAndren nabigazio zerbitzua</string>
   <string name="network_provider">Sarea</string>
   <string name="gps_provider">GPS</string>
   <string name="int_seconds">segundoak</string>
   <string name="int_min">min.</string>
-  <string name="background_service_int_descr">Ezarri esekite moduko zerbitzua erabiltzen duen esnaratze tartea </string>
+  <string name="background_service_int_descr">"Ezarri esekite moduko zerbitzua erabiltzen duen esnaratze tartea "</string>
   <string name="background_service_int">Esnaratze tartea</string>
   <string name="background_service_provider_descr">Aukeatu esekidura moduko zerbitzuaren kokapen hornitzailea</string>
   <string name="background_service_provider">Kokapen hornitzailea</string>
@@ -906,7 +899,7 @@
   <string name="voice_data_not_supported">Ahots datuen bertsioa ez da onartzen</string>
   <string name="voice_data_corrupted">Aukeratutako ahots datuak hondatuak daude</string>
   <string name="voice_data_unavailable">Aukeratutako ahots datuak ez daude eskugarri</string>
-  <string name="sd_unmounted">Ezinezkoa izan da SD txartela erabiltzea.⏎\nEzingo dituzu mapak ikusi edo gauzak bilatu.</string>
+  <string name="sd_unmounted">SD txartela ez dago erabilgarri.⏎\nEzingo dituzu mapak ikusi edo gauzak bilatu.</string>
   <string name="sd_mounted_ro">SD txarteletik bakarrik irakurtzea da posible.⏎\nBakarrik iadanik kargatutako mapak ikusi ditzazkezu eta ezin duzu Internetetik deskargatu.</string>
   <string name="unzipping_file">Fitxategia deskonprimitzen…</string>
   <string name="route_tr">Eskuinera biratu</string>
@@ -921,7 +914,7 @@
   <string name="first_time_download">Eskualdeak deskargatu</string>
   <string name="search_poi_location">Seinalea bilatzen…</string>
   <string name="search_near_map">Hurbilen dagoen mapa kokapena bilatu</string>
-  <string name="search_nearby">Ondoan bilatu</string>
+  <string name="search_nearby">Bilatu inguruan</string>
   <string name="map_orientation_default">Gailuaren berdina</string>
   <string name="map_orientation_portrait">Bertikalean</string>
   <string name="map_orientation_landscape">Horizontalean</string>
@@ -941,7 +934,7 @@
   <string name="transport_stops_to_pass">pasatu beharreko geldialdiak</string>
   <string name="transport_route_distance">Ibilbidearen distantzia</string>
   <string name="transport">Garraioa</string>
-  <string name="shared_string_ok">OK</string>
+  <string name="shared_string_ok">Ados</string>
   <string name="show_transport_over_map_description">Erakutsi garraio publikoko geldialdiak mapan</string>
   <string name="show_transport_over_map">Erakutsi garraioko geldialdiak</string>
   <string name="hello">OsmAnd nabigatzaile aplikazioa</string>
@@ -965,21 +958,21 @@
   <string name="searching">Bilatzen…</string>
   <string name="searching_address">Helbidea bilatzen…</string>
   <string name="search_osm_nominatim">OSM Nominatim erabiltzen sarean bilatzeko</string>
-  <string name="hint_search_online">Etxearen zenbakia, kalea, herria</string>
+  <string name="hint_search_online">Bilatu linean: Etxearen zenbakia, kalea, herria</string>
   <string name="search_offline_address">Lineaz kanpoko bilaketa</string>
   <string name="search_online_address">Sareko bilaketa</string>
   <string name="max_level_download_tile">Sareko zoom maximoa</string>
   <string name="max_level_download_tile_descr">Aukeratu sareko tesela mapentzat deskargatzeko zoom maila maximoa</string>
-  <string name="route_general_information">Guztira distantzia %1$s,\n bidean denbora  %2$d h %3$d m.</string>
+  <string name="route_general_information">Guztira distantzia %1$s,\n bidean denbora %2$d h %3$d m.</string>
   <string name="router_service_descr">Aukeratu sareko edo lineaz kanpoko nabigazio zerbitzu bat</string>
   <string name="router_service">Nabigazio zerbitzua</string>
-  <string name="sd_dir_not_accessible">Ezin da direktorioa SD txartelan gorde</string>
+  <string name="sd_dir_not_accessible">SD txarteleko datuen karpeta ez dago erabilgarri!</string>
   <string name="download_question">Deskargatu {0} - {1} ?</string>
   <string name="download_question_exist">{0}rentzat lineaz kanpoko datuak daude iada ({1}). Eguneratu nahi al dituzu ({2}) ?</string>
   <string name="address">Helbidea</string>
   <string name="shared_string_download_successful">Deskarga arrakastatsua</string>
   
-  <string name="shared_string_downloading">Deskargatzen…</string>
+  <string name="shared_string_downloading">Deskargatzen</string>
   
   <string name="downloading_list_indexes">Eskugarri dauden eskualdeen zerrenda deskargatzen…</string>
   <string name="list_index_files_was_not_loaded">Eskualdeen zerrenda ez da osmand.net-en aurkitu.</string>
@@ -987,10 +980,10 @@
   <string name="fav_points_edited">Gogokoen puntua editatua izan da</string>
   <string name="fav_points_not_exist">Ez da gogokoen punturik existitzen</string>
   <string name="update_existing">Ordezkatu</string>
-  <string name="only_show">Bidea erakutsi</string>
+  <string name="only_show">Bistaratu ibilbidea</string>
   <string name="follow">Hasi nabigazioa</string>
   <string name="mark_final_location_first">Mesedez aukeratu lehenbizi helmuga</string>
-  <string name="get_directions">Helbideak</string>
+  <string name="get_directions">Jarraibideak</string>
   
   <string name="opening_hours">Irekitze orduak</string>
   <string name="opening_changeset">Aldaketa multzoa irekitzen…</string>
@@ -1007,10 +1000,10 @@
   
   <string name="poi">POI</string>
   <string name="error_occurred_saving_gpx">GPXa gordetzean errorea</string>
-  <string name="error_calculating_route">Ibilbidea kalkulatzean errorea</string>
+  <string name="error_calculating_route">Errorea ibilbidea kalkulatzean</string>
   <string name="error_calculating_route_occured">Errorea gertatu da ibilbidea kalkulatzean</string>
-  <string name="empty_route_calculated">Errorea: Kalkulatutako ibilbidea hutsa dago</string>
-  <string name="new_route_calculated_dist">Ibilbidea berria kalkulatua, distantzia</string>
+  <string name="empty_route_calculated">Errorea: Kalkulatutako ibilbidea hutsik dago</string>
+  <string name="new_route_calculated_dist">Ibilbide berria kalkulatua, distantzia</string>
   <string name="arrived_at_destination">Zure helmugara iritsi zara</string>
   <string name="invalid_locations">Kordenadak ez dira bidezkoak!</string>
   <string name="go_back_to_osmand">OsmAndeko mapara itzuli</string>
@@ -1018,7 +1011,7 @@
   <string name="loading_data">Datuak kargatzen…</string>
   <string name="reading_indexes">Datu lokalak irakurtzen…</string>
   <string name="previous_run_crashed">Azkeneko OsmAnden exekuzioak huts egin du. Log fitxategia {0} da. Mesedez gertatutakoa jakinarazi eta log fitxategia erantsi.</string>
-  <string name="saving_gpx_tracks">GPX bideak SDra gorde…</string>
+  <string name="saving_gpx_tracks">GPX lorratzak SDra gordetzen…</string>
   <string name="finished_task">Bukatua</string>
   
   
@@ -1033,17 +1026,17 @@
   <string name="osm_settings">OSM edizioa</string>
   <string name="additional_settings">Gainerako ezarpenak</string>
   <string name="shared_string_settings">Ezarpenak</string>
-  <string name="save_current_track_descr">Uneko bidea SDan gorde orain</string>
-  <string name="save_current_track">Uneko GPX bidea gorde</string>
+  <string name="save_current_track_descr">Gorde uneko lorratza SDan orain</string>
+  <string name="save_current_track">Gorde uneko GPX lorratza</string>
   <string name="save_track_interval">Jarraipen tartea</string>
-  <string name="save_track_interval_descr">Aukeratu posizio tarteak bideentzat</string>
-  <string name="save_track_to_gpx_descrp">Bideak bideen direktorioan gordeko dira egunetan taldekatuta</string>
-  <string name="save_track_to_gpx">Bidea GPX fitxategian gorde</string>
+  <string name="save_track_interval_descr">Aukeratu erregistratze maiztasuna nabigazio bitarteko lorratz grabaketarako</string>
+  <string name="save_track_to_gpx_descrp">Lorratzak lorratzen direktorioan gordeko dira nabigazioan zehar</string>
+  <string name="save_track_to_gpx">Erregistratu lorratza GPX fitxategian nabigazioan zehar</string>
   <string name="update_tile">Mapa eguneratu</string>
   <string name="reload_tile">Tesela birkargatu</string>
   <string name="mark_point">Helmuga</string>
-  <string name="show_osm_bugs_descr">Erakutsi OpenStreetBugs mapan</string>
-  <string name="show_osm_bugs">Erakutsi OpenStreetBugs</string>
+  
+  
   
   <string name="shared_string_add_to_favorites">Gogokoenetara gehitu</string>
   <string name="use_english_names_descr">Aukeratu izen ingeles eta autoktonoen hartean</string>
@@ -1095,20 +1088,20 @@
   <string name="navigate_point_format_DMS">DDD MM SS.SS</string>
   <string name="shared_string_show_on_map">Mapan erakutsi</string>
   
-  <string name="search_address_top_text">Helbidea aukeratu</string>
+  <string name="search_address_top_text">Aukeratu helbidea</string>
   <string name="search_address_region">Eskualdea</string>
   <string name="search_address_city">Herria</string>
   <string name="search_address_street">Kalea</string>
   <string name="search_address_building">Eraikina</string>
   <string name="search_address_building_option">Eraikina</string>
   <string name="search_address_street_option">Bidegurutzatzen den kalea</string>
-  <string name="search_tabs_location">Kokapena</string>
+  
   
   <string name="context_menu_item_update_map">Mapa eguneratu</string>
-  <string name="context_menu_item_open_bug">Ireki OSM akats jakinarazpena</string>
+  
   <string name="context_menu_item_create_poi">POIa sortu</string>
   <string name="shared_string_yes">Bai</string>
-  <string name="shared_string_cancel">Ezeztatu</string>
+  <string name="shared_string_cancel">Utzi</string>
   <string name="shared_string_apply">Aplikatu</string>
   <string name="shared_string_add">Gehitu</string>
   <string name="shared_string_no">Ez</string>
@@ -1117,24 +1110,24 @@
   <string name="add_favorite_dialog_favourite_added_template">Gogokoen \"{0}\" puntua arrakastaz gehitu da.</string>
   <string name="favourites_context_menu_edit">Gogokoena editatu</string>
   <string name="favourites_context_menu_delete">Gogokoena ezabatu</string>
-  <string name="favourites_remove_dialog_msg">Ezabatu \'%s\' gogokoen puntua?</string>
+  <string name="favourites_remove_dialog_msg">Ezabatu \'%s\' gogoko puntua?</string>
   <string name="favourites_remove_dialog_success">{0} punto gogokoena arrakastaz ezabatu da.</string>
-  <string name="osb_add_dialog_title">Sartu akatsaren testua</string>
-  <string name="osb_add_dialog_success">Akats jakinarazpena arrakastaz sortu da</string>
-  <string name="osb_add_dialog_error">Salbuespena: akats jakinarazpena ez da sortu</string>
+  
+  
+  
   <string name="osb_author_dialog_password">OSMeko pasahitza (aukerazkoa)</string>
-  <string name="osb_comment_menu_item">Iruzkina gehitu</string>
+  
   <string name="osb_comment_dialog_message">Mezua</string>
   <string name="osb_comment_dialog_author">Autorearen izena</string>
-  <string name="osb_comment_dialog_title">Akatsera iruzkin bat gehitzen</string>
-  <string name="osb_comment_dialog_add_button">Iruzkina gehitu</string>
+  
+  
   <string name="osb_comment_dialog_success">Iruzkina arrakastaz gehitu da</string>
   <string name="osb_comment_dialog_error">Salbuespena: ez da iruzkina gehitu</string>
-  <string name="osb_close_menu_item">Akatsa itxi</string>
-  <string name="osb_close_dialog_title">Akatsa ixten</string>
-  <string name="osb_close_dialog_close_button">Akatxa itxi</string>
-  <string name="osb_close_dialog_success">Akatxa arrakastaz itxi da</string>
-  <string name="osb_close_dialog_error">Salbuespena: akats jakinarazpena ez da itxi</string>
+  
+  
+  
+  
+  
   <string name="poi_edit_title">POIa editatu</string>
   <string name="poi_create_title">POIa sortu</string>
   <string name="poi_error_poi_not_found">Ezin da nodoa aurkitu edo erosotasuna ez da puntu bakar bat</string>
@@ -1173,58 +1166,48 @@
   <string name="av_camera_focus_continuous">Kamara etengabe ari da enfokatzen saiatzen</string>
   <string name="av_photo_play_sound">Argazkia ateratzean erreproduzitu soinua </string>
   <string name="av_photo_play_sound_descr">Aukeratu ea argazkiak ateratzean soinua erreproduzitu edo ez</string>
-<string name="use_displayed_track_for_navigation">Bistaratutako pista erabili nahi duzu nabigatzeko?</string>
+<string name="use_displayed_track_for_navigation">Bistaratutako lorratza erabili nahi duzu nabigatzeko?</string>
     <string name="keep_and_add_destination_point">Helmuga puntua bezala gehitu</string>
     <string name="select_gpx">Aukeratu GPX …</string>
     <string name="route_descr_select_destination">Aukeratu Helmuga</string>
-    <string name="shared_string_select_on_map">Aukeratu mapan …</string>
-    <string name="shared_string_favorite">Gogokoena …</string>
-    <string name="route_preferences">Ibilbide lehentasunak</string>
+    <string name="shared_string_select_on_map">Aukeratu mapan</string>
+    <string name="shared_string_favorite">Gogokoa</string>
+    <string name="route_preferences">Ibilbide hobespenak</string>
     <string name="route_info">Ibilbide informazioa</string>
-    <string name="routing_attr_prefer_motorway_name">Autopistak nahiago</string>
-	<string name="routing_attr_prefer_motorway_description">Autopistak nahiago</string>
-	<string name="routing_attr_avoid_toll_name">Bidesariak saihestu</string>
-	<string name="routing_attr_avoid_toll_description">Bidesariak saihestu</string>
-	<string name="routing_attr_avoid_unpaved_name">Asfaltatu gabeko bideak saihestu</string>
-	<string name="routing_attr_avoid_unpaved_description">Asfaltatu gabeko bideak saihestu</string>
-	<string name="routing_attr_avoid_ferries_name">Ferryak sahiestu</string>
-	<string name="routing_attr_avoid_ferries_description">Ferryak sahiestu</string>
-	<string name="routing_attr_avoid_motorway_name">Autopistak sahiestu</string>
-	<string name="routing_attr_avoid_motorway_description">Autopistak sahiestu</string>
+    <string name="routing_attr_prefer_motorway_name">Hobetsi autobideak</string>
+	<string name="routing_attr_prefer_motorway_description">Hobetsi autobideak</string>
+	<string name="routing_attr_avoid_toll_name">Saihestu bidesariak</string>
+	<string name="routing_attr_avoid_toll_description">Saihestu bidesariak</string>
+	<string name="routing_attr_avoid_unpaved_name">Saihestu asfaltatu gabeko bideak</string>
+	<string name="routing_attr_avoid_unpaved_description">Saihestu asfaltatu gabeko bideak</string>
+	<string name="routing_attr_avoid_ferries_name">Saihestu ferryak</string>
+	<string name="routing_attr_avoid_ferries_description">Saihestu ferryak</string>
+	<string name="routing_attr_avoid_motorway_name">Saihestu autobideak</string>
+	<string name="routing_attr_avoid_motorway_description">Saihestu autobideak</string>
 	<string name="routing_attr_weight_name">Pisua</string>
-	<string name="routing_attr_weight_description">Zehaztu pisu muga</string>
-    <string name="android_19_location_disabled">KitKat bertsioa geroztik ezin da deskargatu eta eguneratu mapak aurreko biltegiratze kokapenan (%s). Fitxategi guztiak kopiatu nahi dituzu baimendutako kokapenera?
-        \n Oharra : fitxategi zaharrak ukitu gabe jarraituko dute.  
-        \n Oharra : OsmAnd eta OsmAnd+ artean ezingo dira fitxategiak partekatu. </string>
-    <string name="application_dir_change_warning2">OsmAnd datuak kokapen berrira mugitzen saia daiteke. Nahi al duzu?</string>
-    <string name="copying_osmand_one_file_descr">Fitxategia kopiatzen (%s) kokapen berrira...</string>
+	<string name="routing_attr_weight_description">Zehaztu ibilbideetan baimendu beharreko ibilgailuaren pisua</string>
+    <string name="android_19_location_disabled">"KitKat bertsioa geroztik ezin da deskargatu eta eguneratu mapak aurreko biltegiratze kokapenan (%s). Fitxategi guztiak kopiatu nahi dituzu baimendutako kokapenera?
+\n Oharra : fitxategi zaharrak ukitu gabe jarraituko dute.
+\n Oharra : OsmAnd eta OsmAnd+ artean ezingo dira fitxategiak partekatu. "</string>
+    
+    <string name="copying_osmand_one_file_descr">Fitxategia kopiatzen (%s) kokapen berrira…</string>
     <string name="copying_osmand_files_descr">OsmAnd fitxategiak kopiatzen kokapen berrira (%s)</string>
     <string name="copying_osmand_files">OsmAnd fitxategiak kopiatzen</string>
     <string name="app_mode_truck">Kamioia</string>
-    <string name="guidance_preferences_descr">Nabigazio lehentasunak</string>
-    <string name="routing_preferences_descr">Ibilbide lehentasunak</string>
+    <string name="guidance_preferences_descr">Nabigazio hobespenak</string>
+    <string name="routing_preferences_descr">Ibilbide hobespenak</string>
     <string name="speech_rate_descr">TTS ahotsaren abiadura zehaztu</string>
     <string name="speech_rate">Ahots abiadura</string>
-    <string name="tip_recent_changes_1_7_1_t">Aldaketak 1.7:
-    \n\t* GARRANTZITSUA Mapak 2014ko otsailak baino berriagoak izan behar dira.
-	\n\t* bideraketa guztiz eguneratua (azkarra eta zehatza) - 
-    \n\t* Ibilbide Plangintza pantaila berria (intuitiboagoa eta ahaltsuagoa)
-    \n\t** OHARRA GPX ibilbidea eskuragarri dago Ibilbide Aukerak botoian
-    \n\t* Nabigazio botoiak auto ezkutatzeko modua
-    \n\t* Offline GPX Ibilbidearen lehen punturaino bidea kalkulatu (Aukera \'ibilbide osoa pasa\')
-	\n\t* Simulazio aktiboa tuneletan
-	\n\t* UX-ean (erabiltzaile esperientzia) hobekuntza txiki asko eta erabilgarritasunean konponketak
-	\n\t* Aukera ahots abiadura aukerak
-    </string>
+    
     <string name="routing_attr_short_way_name">Ibilbide laburra</string>
 	<string name="routing_attr_short_way_description">Ibilbide laburra erabili</string>
 	<string name="rendering_attr_coloredBuildings_name">Koloreetako eraikinak</string>
-    <string name="osmo_invite">Gonbidatu...</string>
+    <string name="osmo_invite">Gonbidatu…</string>
     <string name="osmo_leave_confirmation_msg">%1$s taldea utzi nahi duzu?</string>
-    <string name="osmo_specify_tracker_id">Id-a espezifikatu</string>
+    <string name="osmo_specify_tracker_id">Zehaztu IDa</string>
     <string name="continue_navigation">Jarraitu Nabigazioa</string>
     <string name="pause_navigation">Pausatu Nabigazioa</string>
-    <string name="rendering_attr_subwayMode_name">Metro modua</string>
+    <string name="rendering_attr_subwayMode_name">Metro ibilbideak</string>
  	<string name="keep_navigation_service">Mantendu</string>
 	<string name="stop_navigation_service">Gelditu</string>
 	<string name="sleep_mode_stop_dialog">GPSa piztuta mantendu?</string>
@@ -1232,7 +1215,7 @@
     <string name="lang_sw">Swahili</string>
     <string name="lang_he">Hebreera</string>
     <string name="forward">Aurrera</string>
-    <string name="home">Etxea</string>
+    <string name="home">Kontrol panela</string>
     <string name="gpx_monitoring_start">Hasi grabatzen GPXa</string>
 	<string name="gpx_monitoring_stop">Gelditu grabatzen GPXa</string>
     <string name="gpx_start_new_segment">Hasi segmentu berria</string>
@@ -1251,7 +1234,7 @@
     <string name="shared_string_share">Banatu</string>
 	<string name="share_fav_subject">Banatutako gogokoenak OsmAnd bidez</string>
 	
-	<string name="import_file_favourites">Gorde GPX fitxategi bezala edo inportatu gogokoenetan?</string>
+	<string name="import_file_favourites">Gorde datuak GPX fitxategi bezala edo inportatu bide-puntuak gogokoetara?</string>
 	
 	<string name="keep_informing_never">Inoiz</string>
     <string name="keep_informing_descr">Ber-iragarri nabigazio jarraibideak tarte erregularretan</string>
@@ -1262,14 +1245,14 @@
     <string name="arrival_distance_factor_at_last">Azkeneko metrotan</string>
     <string name="arrival_distance">Iristearen iragarpena</string>
     <string name="arrival_distance_descr">Nolako goiz nahi duzu iristearen iragarkia?</string>
-    <string name="share_route_subject">Partekatu ibilbidea OsmAnd bidez</string>
+    <string name="share_route_subject">Ibilbidea OsmAnd bidez partekatu da</string>
 	<string name="share_route_as_gpx">Partekatu ibilbidea GPX fitxategi bezala</string>
 	<string name="interrupt_music_descr">Iragarkiak egiterakoan musika eten</string>
 	<string name="interrupt_music">Musika eten</string>
 	<string name="index_item_world_altitude_correction">Munduko Altitude Zuzenketa</string>
-	<string name="rendering_attr_alpineHiking_name">Alpetar ibilbide ikuspegia</string>
+	<string name="rendering_attr_alpineHiking_name">SAC Alpetar ibilbide ikuspegia (Suitzako klub alpinoa)</string>
     <string name="rendering_attr_alpineHiking_description">Renderizatu bideak SAC eskalaren arabera</string>
-    <string name="rendering_attr_hikingRoutesOSMC_name">Ibilbide simboloen gain-azala</string>
+    <string name="rendering_attr_hikingRoutesOSMC_name">Mendi-ibilaldi sinboloen gain-azala</string>
     <string name="rendering_attr_hikingRoutesOSMC_description">Renderizatu bideak OSMC aztarnen arabera</string>
     
 	
@@ -1277,27 +1260,27 @@
     
     
     <string name="about_version">Bertsioa:</string>
-    <string name="about_settings">Buruz</string>
+    <string name="shared_string_about">Buruz</string>
     <string name="about_settings_descr">Bertsioaren informazioa ,lizantziak ,proiektu kideak</string>
-    <string name="tip_map_styles">Maparen estiloa</string>
+    
 	<string name="shared_string_or">edo</string>
 	
     <string name="shared_string_and">eta</string>
     <string name="shared_string_delete_all">Dena ezabatu</string>
     <string name="shared_string_remember_my_choice">Nire aukera gogoratu</string>
-    <string name="animate_routing_route_not_calculated">Kalkulatu ibilbidea lehenengo, mesedez</string>
+    <string name="animate_routing_route_not_calculated">Kalkulatu ibilbidea aurretik</string>
     <string name="animate_routing_route">"Simulatu kalkulatutako ibilbidea erabiliz "</string>
-    <string name="animate_routing_gpx">Simulatu GPX ibilbidea erabiliz</string>
+    <string name="animate_routing_gpx">Simulatu GPX lorratza erabiliz</string>
     <string name="enable_sleep_mode">Gaitu esekidura modua</string>
-	<string name="gps_wake_up_timer">GPS enatze tartea</string>
-	<string name="map_preferred_locale">Maparen hizkuntz gogokoena</string>
-    <string name="map_preferred_locale_descr">Hizkuntz gogokoena maparen etiketentzat (erabilgarri ez badago izen Ingelesera edo lokalera aldatuko da)</string>
-    <string name="live_monitoring_m_descr">Bidali jarraipena web zerbitzu espezifiko batera GPX grabazioa gaituta badago.</string>
+	<string name="gps_wake_up_timer">GPS esnatze tartea</string>
+	<string name="map_preferred_locale">Mapan hobetsitako hizkuntza</string>
+    <string name="map_preferred_locale_descr">Hobetsitako hizkuntza mapako etiketentzat (erabilgarri ez badago izen Ingelesera edo lokalera aldatuko da)</string>
+    <string name="live_monitoring_m_descr">Bidali jarraipen datuak web zerbitzu zehatz batera GPX grabazioa gaituta badago.</string>
 	<string name="live_monitoring_m">Sare jarraipena (GPX beharrezkoa)</string>
     <string name="live_monitoring_start">Hasi sare jarraipena</string>
 	<string name="live_monitoring_stop">Gelditu sare jarraipena</string>
 	<string name="osmo_start_service">OsMo zerbitzua</string>
-    <string name="osmo_gpx_track_downloaded">OsMo %1$s bidea deskargatuta.</string>
+    <string name="osmo_gpx_track_downloaded">OsMo %1$s lorratza deskargatuta.</string>
     <string name="no_index_file_to_download">Ezer ez deskargatzeko, konprobatu internet konexioa mesedez.</string>
     
     <string name="loading_smth">Kargatzen %1$s …</string>
@@ -1319,24 +1302,24 @@
     <string name="gpx_selection_point">Puntu %1$s</string>
     
     <string name="gpx_selection_route_points">%1$s
-\nBideko puntuak %2$s</string>
+\nIbilbideko puntuak %2$s</string>
     <string name="gpx_selection_points">%1$s
 \nPuntu</string>
     <string name="gpx_selection_track">%1$s
-\nBidea %2$s</string>
+\nLorratza %2$s</string>
     <string name="shared_string_my_favorites">Nire Gogokoenak</string>
     <string name="shared_string_my_places">Nire Lekuak</string>
     
     <string name="osmo_follow">Jarraitu</string>
     <string name="osmo_user_name">Erabiltzailea</string>
-	<string name="color_red">gorria</string>
-	<string name="color_pink">arrosa</string>
-	<string name="color_orange">laranja</string>
-	<string name="color_brown">marroia</string>
-	<string name="color_yellow">horia</string>
-	<string name="color_lightblue">urdin argia</string>
-	<string name="color_blue">urdina</string>
-	<string name="color_green">berdea</string>
+	
+	<string name="rendering_value_pink_name">arrosa</string>
+	
+	<string name="rendering_value_brown_name">marroia</string>
+	
+	
+	
+	
 	
     <string name="osmo_edit_device">Aldatu erabiltzailearen propietateak</string>
     <string name="osmo_edit_color">Erakutsi kolorea</string>
@@ -1349,9 +1332,9 @@
     <string name="osmo_expire_group">Amaitzen da</string>
     <string name="osmo_group_description">Deskribapena</string>
     <string name="osmo_group_policy">Politika</string>
-    <string name="osmo_connect_to_device_tracker_id">Jarraipen id-a</string>
+    <string name="osmo_connect_to_device_tracker_id">Jarraipen IDa</string>
     <string name="osmo_connect_to_device_name">Erabiltzaile izena</string>
-    <string name="osmo_connect_to_group_id">Talde id-a</string>
+    <string name="osmo_connect_to_group_id">Talde IDa</string>
     <string name="osmo_group_name">Talde izena</string>
     <string name="osmo_create_group">Taldea sortu</string>
     <string name="osmo_enable_tracker">Kokapena bidali</string>
@@ -1413,4 +1396,406 @@
 	<string name="index_name_canada">Ipar Amerika - Kanada</string>
     <string name="index_name_italy">Europa - Italia</string>
     <string name="index_name_gb">Europa - Britainia Handia</string>
+    <string name="rendering_value_thin_name">Fina</string>
+    <string name="rendering_value_medium_name">Ertaina</string>
+    <string name="rendering_value_bold_name">Lodia</string>
+    <string name="no_map_markers_found">Gehitu markatzaileak maparen bidez</string>
+    <string name="shared_string_dismiss">Baztertu</string>
+    <string name="general_settings_2">Ezarpen orokorrak</string>
+    <string name="shared_string_ellipsis">…</string>
+    <string name="shared_string_do_not_use">Ez erabili</string>
+    <string name="shared_string_enable">Gaitu</string>
+    <string name="shared_string_disable">Ezgaitu</string>
+    <string name="shared_string_enabled">Gaituta</string>
+    <string name="shared_string_disabled">Ezgaituta</string>
+    <string name="shared_string_selected">Hautatuta</string>
+    <string name="shared_string_never">Inoiz ez</string>
+    <string name="no_waypoints_found">Ez da bide-punturik aurkitu</string>
+    <string name="report">Jakinarazi</string>
+    <string name="osmo_connect">Batu</string>
+    <string name="osmo_groups">OsMo Taldeak</string>
+    <string name="osmo_connect_to_my_nickname">Ezizena</string>
+    <string name="osmo_share_my_location">Igorri kokapena</string>
+    <string name="shared_string_move_up">Mugitu gora</string>
+    <string name="shared_string_move_down">Mugitu behera</string>
+    <string name="finish_navigation">Bukatu nabigazioa</string>
+    <string name="avoid_road">Saihestu errepidea</string>
+    <string name="storage_directory_shared">Partekatutako memoria</string>
+    <string name="shared_string_topbar">Goiko barra</string>
+    <string name="full_report">Txosten osoa</string>
+    <string name="recalculate_route">Birkalkulatu ibilbidea</string>
+    <string name="open_street_map_login_and_pass">OpenStreetMap erabiltzaile-izena eta pasahitza</string>
+    <string name="donations">Dohaintzak</string>
+    <string name="number_of_recipients">Hartzaile kopurua</string>
+    <string name="osm_live_subscribe_btn">Harpidetu</string>
+    <string name="osm_live_month_cost_desc">Hileroko ordainketa</string>
+    <string name="osm_live_active">Aktiboa</string>
+    <string name="osm_live_not_active">Ez aktiboa</string>
+    <string name="osm_live_enter_email">Sartu baliozko e-posta helbide bat</string>
+    <string name="osm_live_enter_user_name">Sartu izen publikoa</string>
+    <string name="osm_live_subscription_settings">Harpidetzaren ezarpenak</string>
+    <string name="upload_anonymously">Igo anonimo gisa</string>
+    <string name="shared_string_widgets">Trepetak</string>
+    <string name="plugin_ski_name">Ski-mapa ikuspegia</string>
+	<string name="shared_string_photo">Argazkia</string>
+    <string name="route_points">Ibilbideko puntuak</string>
+    <string name="shared_string_audio">Audioa</string>
+    <string name="shared_string_video">Bideoa</string>
+    <string name="access_no_destination">Ez da helburua zehaztu</string>
+    <string name="access_disable_offroute_recalc">Ez aldatu ibilbidea honetatik kanpo bazaude ere</string>
+    <string name="access_disable_offroute_recalc_descr">Eragotzi ibilbidearen birkalkulatze automatikoa bide zuzenetik oso urrun zaudenean</string>
+    <string name="access_disable_wrong_direction_recalc">Ez aldatu ibilbidea okerreko noranzkoan</string>
+    <string name="access_disable_wrong_direction_recalc_descr">Eragotzi ibilbidearen birkalkulatze automatikoa okerreko noranzkoak mugitzen zaudenean</string>
+    <string name="access_default_color">Lehenetsitako kolorea</string>
+    <string name="access_category_choice">Hautatu kategoria</string>
+    <string name="access_hint_enter_name">Sartu izena</string>
+    <string name="access_hint_enter_category">Sartu kategoria</string>
+    <string name="access_hint_enter_description">Sartu deskripzioa</string>
+    <string name="access_map_linked_to_location">Mapa kokapenera estekatuta dago</string>
+    <string name="access_empty_list">Zerrenda hutsa</string>
+    <string name="access_tree_list">Zuhaitz motako zerrenda</string>
+    <string name="access_shared_string_not_installed">Instalatu gabe</string>
+    <string name="access_widget_expand">Zabaldu</string>
+    <string name="access_sort">Ordenatu</string>
+    <string name="map_mode">Mapa modua</string>
+    <string name="number_of_gpx_files_selected_pattern">%s GPX fitxategi hautatuta</string>
+    <string name="storage_permission_restart_is_required">Aplikazioak orain kanpo biltegian idazteko baimena du. Aplikazioa eskuz berrabiaraztea beharrezkoa da.</string>
+    <string name="osm_live_user_public_name">Izen publikoa</string>
+    <string name="osm_live_hide_user_name">Ez bistaratu nire izena txostenetan</string>
+    <string name="select_map_marker">Hautatu mapa-markatzailea</string>
+    <string name="map_markers_other">Bestelako markatzaileak</string>
+    <string name="upload_osm_note">Igo OSM oharra</string>
+    <string name="map_marker_1st">Lehen mapa-markatzailea</string>
+    <string name="map_marker_2nd">Bigarren mapa-markatzailea</string>
+    <string name="shared_string_toolbar">Tresna-barra</string>
+    <string name="add_points_to_map_markers_q">Puntu guztiak mapa-markatzaileetara gehitu nahi dituzu?</string>
+    <string name="shared_string_add_to_map_markers">Gehitu mapa-markatzaileetara</string>
+    <string name="select_map_markers">Hautatu mapa-markatzaileak</string>
+    <string name="shared_string_reverse_order">Alderantzikatu ordena</string>
+    <string name="show_map_markers_description">Aktibatu mapa-markatzaileen ezaugarria</string>
+    <string name="clear_active_markers_q">Mapa-markatzaile guztiak ezabatu nahi dituzu?</string>
+    <string name="clear_markers_history_q">Mapa-markatzaileen historiala ezabatu nahi duzu?</string>
+    <string name="active_markers">Markatzaile aktiboak</string>
+    <string name="map_markers">Mapa-markatzaileak</string>
+    <string name="map_marker">Mapa-markatzailea</string>
+    <string name="consider_turning_polygons_off">Poligonoen errendatzea desgaitzea komeni da.</string>
+    <string name="show_polygons">Bistaratu poligonoak</string>
+    <string name="find_parking">Aurkitu aparkalekua</string>
+    <string name="shared_string_status">Egoera</string>
+    <string name="shared_string_save_changes">Gorde aldaketak</string>
+    <string name="shared_string_email_address">E-posta helbidea</string>
+    <string name="rendering_attr_hideUnderground_name">Lurrazpiko objektuak</string>
+    <string name="data_is_not_available">Ez dago daturik eskuragarri</string>
+    <string name="shared_string_remove">Kendu</string>
+    <string name="shared_string_read_more">Irakurri gehiago</string>
+    <string name="clear_updates_proposition_message">Deskargatutako eguneraketak kendu ditzakezu eta maparen edizio originalera itzuli</string>
+    <string name="add_time_span">Gehitu denbora tartea</string>
+    <string name="road_blocked">Moztutako errepidea</string>
+    <string name="shared_string_select">Hautatu</string>
+    <string name="switch_start_finish">Alderantzikatu hasiera eta helburu puntuak</string>
+    <string name="item_removed">Elementua kendu da</string>
+    <string name="n_items_removed">elementu kendu dira</string>
+    <string name="shared_string_undo_all">DESEGIN GUZTIA</string>
+    <string name="shared_string_type">Mota</string>
+    <string name="starting_point">Hasiera puntua</string>
+    <string name="shared_string_not_selected">Hautatu gabe</string>
+    <string name="rec_split_storage_size">Biltegiratzearen neurria</string>
+    <string name="live_updates">Zuzeneko eguneraketak</string>
+    <string name="available_maps">Mapa eskuragarriak</string>
+    <string name="shared_string_sound">Soinua</string>
+    <string name="no_location_permission">Aplikazioak ez du kokapenaren datua atzitzeko baimenik.</string>
+    <string name="no_camera_permission">Aplikazioak ez du kamera atzitzeko baimenik.</string>
+    <string name="no_microphone_permission">Aplikazioak ez du mikrofonoa atzitzeko baimenik.</string>
+    <string name="route_distance">Distantzia:</string>
+    <string name="route_duration">Denbora:</string>
+    <string name="no_address_found">Ez da helbiderik zehaztu</string>
+    <string name="shared_string_near">Hurbil</string>
+    <string name="shared_string_hide">Ezkutatu</string>
+    <string name="av_video_quality_low">Gutxieneko kalitatea</string>
+    <string name="av_video_quality_high">Gehieneko kalitatea</string>
+    <string name="av_video_quality">Bideo irteeraren kalitatea</string>
+    <string name="av_video_quality_descr">Hautatu bideo irteeraren kalitatea</string>
+    <string name="av_audio_format">Audio irteeraren formatua</string>
+    <string name="av_audio_format_descr">Hautatu audio irteeraren formatua</string>
+    <string name="av_audio_bitrate">Audio bit-tasa</string>
+    <string name="av_audio_bitrate_descr">Hautatu audio bit-tasa</string>
+    <string name="access_from_map">Sarbidea mapatik</string>
+    <string name="show_on_start">Bistaratu abiatzean</string>
+    <string name="copied_to_clipboard">Arbelera kopiatuta</string>
+    <string name="osm_save_offline">Gorde lineaz kanpo</string>
+    <string name="context_menu_item_open_note">Ireki OSM oharra</string>
+    <string name="osm_edit_reopened_note">OSM oharra berrireki da</string>
+    <string name="osm_edit_commented_note">OSM oharrean iruzkina egin da</string>
+    <string name="osm_edit_removed_note">OSM oharra ezabatu da</string>
+    <string name="osm_edit_created_note">OSM oharra sortu da</string>
+    <string name="osn_bug_name">OSM oharra</string>
+    <string name="osn_add_dialog_title">Sortu oharra</string>
+    <string name="osn_comment_dialog_title">Gehitu iruzkina</string>
+    <string name="osn_reopen_dialog_title">Berrireki oharra</string>
+    <string name="osn_close_dialog_title">Itxi oharra</string>
+    <string name="osn_add_dialog_success">Oharra ongi sortu da</string>
+    <string name="osn_add_dialog_error">Errorea: ez da oharra sortu</string>
+    <string name="osn_close_dialog_success">Oharra ongi itxi da</string>
+    <string name="osn_close_dialog_error">Errorea: oharra ez da itxi</string>
+    <string name="shared_string_commit">Berretsi</string>
+
+    <string name="context_menu_item_delete_waypoint">Ezabatu GPX bide-puntua?</string>
+    <string name="context_menu_item_edit_waypoint">Editatu GPX bide-puntua</string>
+    <string name="shared_string_location">Kokapena</string>
+    <string name="read_more">Irakurri gehiago</string>
+    <string name="whats_new">Zer berri</string>
+    <string name="rendering_attr_hideProposed_name">Proposatuko objektuak</string>
+    <string name="shared_string_update">Eguneratu</string>
+    <string name="shared_string_upload">Igo</string>
+    <string name="world_map_download_descr">Munduko oinarrizko mapa (mundu osoko xehetasun gutxiko mapa) falta da edo eguneratu gabe dago. Ingurunea osatzeko munduko oinarrizko mapa deskargatzea komeni da.</string>
+    <string name="shared_string_qr_code">QR kodea</string>
+    <string name="map_downloaded">Mapa deskargatu da</string>
+    <string name="go_to_map">Joan mapara</string>
+    <string name="simulate_initial_startup">Simulatu aplikazioaren lehen abioa</string>
+    <string name="share_geo">geo:</string>
+    <string name="share_menu_location">Partekatu kokapena</string>
+    <string name="shared_string_send">Bidali</string>
+    <string name="favorite_category_dublicate_message">Zehaztutako kategoria badago aurretik. Idatzi beste izen bat.</string>
+    <string name="favorite_category_name">Kategoria-izena</string>
+    <string name="favorite_category_add_new_title">Gehitu kategoria berria</string>
+    <string name="regions">Eskualdeak</string>
+    <string name="region_maps">Eskualdeko mapak</string>
+    <string name="world_maps">Munduko mapak</string>
+    <string name="srtm_plugin_disabled">Sestra-kurbak desgaituta</string>
+    <string name="favorite_category_add_new">Gehitu berria</string>
+    <string name="favorite_category_select">Hautatu kategoria</string>
+    <string name="default_speed_system_descr">Zehaztu abiadura neurtzeko sistema</string>
+    <string name="default_speed_system">Abiadura neurketa</string>
+    <string name="si_kmh">Kilometroak orduko</string>
+    <string name="si_m_s">Metroak segundoko</string>
+    <string name="si_min_km">Minutuak kilometroko</string>
+    <string name="min_mile">min/m</string>
+    <string name="min_km">min/km</string>
+    <string name="m_s">m/s</string>
+    <string name="shared_string_navigation">Nabigazioa</string>
+    <string name="osmand_running_in_background">Bigarren planoan exekutatzen</string>
+    <string name="favourites_edit_dialog_title">Gogokoaren informazioa</string>
+    <string name="simulate_your_location_stop_descr">Utzi kokapena simulatzeari</string>
+    <string name="looking_up_address">Helbidea bilatzen</string>
+    <string name="av_locations">Kokapenak</string>
+    <string name="plugin_settings">Gehigarriak</string>
+    <string name="routing_attr_avoid_shuttle_train_name">Saihestu tren transbordadorea</string>
+    <string name="no_updates_available">Ez dago eguneraketarik eskuragarri</string>
+    <string name="rendering_value_default13_name">Lehenetsita (13)</string>
+    <string name="rendering_value_red_name">Gorria</string>
+    <string name="rendering_value_translucent_red_name">Gorri gardena</string>
+    <string name="rendering_value_orange_name">Laranja</string>
+    <string name="rendering_value_translucent_orange_name">Laranja gardena</string>
+    <string name="rendering_value_yellow_name">Horia</string>
+    <string name="rendering_value_translucent_yellow_name">Hori gardena</string>
+    <string name="rendering_value_lightgreen_name">Berde argia</string>
+    <string name="rendering_value_translucent_lightgreen_name">Berde argi gardena</string>
+    <string name="rendering_value_green_name">Berdea</string>
+    <string name="rendering_value_translucent_green_name">Berde gardena</string>
+    <string name="rendering_value_lightblue_name">Urdin argia</string>
+    <string name="rendering_value_translucent_lightblue_name">Urdin argi gardena</string>
+    <string name="rendering_value_blue_name">Urdina</string>
+    <string name="rendering_value_translucent_blue_name">Urdin gardena</string>
+    <string name="restart_is_required">Aldaketak guztiz aplikatzeko, aplikazioa eskuz berrabiarazi behar da.</string>
+    <string name="light_theme">Argia</string>
+    <string name="dark_theme">Iluna</string>
+    <string name="archive_wikipedia_data">Deskargatutako Wikipediako datu zahar bateraezinak dituzu. Artxibatu nahi dituzu?</string>
+    <string name="download_wikipedia_files">Wikipediako datu gehigarriak deskargatu nahi dituzu (%1$s MB)?</string>
+    <string name="gps_network_not_enabled">Kokapen zerbitzua itzalita dago. Piztu nahi duzu?</string>
+    <string name="shared_string_import2osmand">Inportatu OsmAnd-era</string>
+    <string name="read_full_article">Irakurri artikulu osoa (linean)</string>
+    <string name="shared_string_wikipedia">Wikipedia</string>
+    <string name="local_indexes_cat_wiki"/>
+    <string name="shared_string_show_details">Erakutsi xehetasunak</string>
+    <string name="osm_edit_context_menu_delete">Ezabatu OSM edizioa</string>
+    <string name="rendering_value_disabled_name">Ezgaituta</string>
+    <string name="shared_string_logoff">Itxi saioa</string>
+    <string name="rendering_attr_hideHouseNumbers_name">Etxeen zenbakiak</string>
+    <string name="specified_directiory_not_writeable">Ezin izan dira mapak zehaztutako direktorioan sortu</string>
+    <string name="copying_osmand_file_failed">Fitxategiak kopiatzeak huts egin du</string>
+    <string name="storage_directory_external">Kanpo biltegiratzea</string>
+    <string name="storage_directory_internal_app">Barne aplikazio memoria</string>
+    <string name="storage_directory_manual">Eskuz zehaztuta</string>
+    <string name="storage_directory_default">Barne memoria</string>
+    <string name="storage_directory">Mapen biltegiratzea</string>
+    <string name="shared_string_copy">Kopiatu</string>
+    <string name="filter_poi_hint">Iragazi izenez</string>
+    <string name="search_poi_category_hint">Idatzi denak bilatzeko</string>
+    <string name="shared_string_open">Ireki</string>
+    <string name="agps_info">A-GPS informazioa</string>
+    <string name="shared_string_manage">Kudeatu</string>
+    <string name="shared_string_edit">Editatu</string>
+    <string name="shared_string_places">Lekuak</string>
+    <string name="shared_string_search">Bilatu</string>
+    <string name="shared_string_show_description">Erakutsi deskripzioa</string>
+    <string name="shared_string_message">Mezua</string>
+    <string name="agps_data_last_downloaded">Deskargatutako azken A-GPS datuak: %1$s</string>
+    <string name="welmode_download_maps">Deskargatu mapak</string>
+    <string name="welcome_header">Ongi etorri</string>
+    <string name="current_route">Uneko ibilbidea</string>
+    <string name="mark_to_delete">Markatu ezabatzeko</string>
+    <string name="osmo_grop_name_length_alert">Taldearen izenak 3 karaktere behar ditu gutxienez!</string>
+    <string name="local_recordings_delete_all_confirm">%1$d ohar ezabatuko dituzu. Ziur zaude?</string>
+    <string name="local_osm_changes_upload_all_confirm">%1$d aldaketa igoko dituzu OSMra. Ziur zaude?</string>
+    <string name="confirmation_to_clear_history">Historiala ezabatu nahi duzu?</string>
+    <string name="shared_string_go">Joan</string>
+    <string name="osmand_parking_overdue">iraungita</string>
+    <string name="action_create">Sortze ekintza</string>
+    <string name="action_modify">Aldatze ekintza</string>
+    <string name="action_delete">Ezabatze ekintza</string>
+    <string name="osm_edits">OSM edizioak</string>
+    <string name="osmand_parking_minute">min</string>
+    <string name="parking_place_limited">Aparkatzeko denbora muga</string>
+    <string name="osmand_parking_time_left">bukatzeko</string>
+    <string name="your_edits">Zure edizioak</string>
+    <string name="waypoint_visit_after">Bisitatu ostean</string>
+    <string name="waypoint_visit_before">Bisitatu aurretik</string>
+    <string name="simulate_your_location">Simulatu zure kokapena</string>
+    <string name="drawer">Zerrenda soila</string>
+    <string name="short_location_on_map">Lat %1$s\nLon %2$s</string>
+    <string name="tips_and_tricks_descr">Maiz egindako galderak, azken aldaketak, eta bestelakoak</string>
+    <string name="routing_settings_2">Nabigazio ezarpenak</string>
+    <string name="shared_string_deselect">Desautatu</string>
+    <string name="shared_string_deselect_all">Desautatu guztiak</string>
+    <string name="shared_string_export">Esportatu</string>
+    <string name="shared_string_more">Gehiago…</string>
+    <string name="shared_string_unexpected_error">Ustekabeko errorea gertatu da</string>
+    <string name="shared_string_action_template">Ekintza {0}</string>
+    <string name="shared_string_show">Erakutsi</string>
+    <string name="shared_string_show_all">Erakutsi guztiak</string>
+    <string name="shared_string_address">Helbidea</string>
+    <string name="shared_string_my_location">Nire kokapena</string>
+    <string name="map_widget_magnetic_bearing">Norabide magnetikoa</string>
+    <string name="map_widget_bearing">Norabide erlatiboa</string>
+    <string name="access_smart_autoannounce">Iragartze adimentsua</string>
+    <string name="access_autoannounce_period">Iragartze maiztasuna</string>
+    <string name="access_smart_autoannounce_descr">Jakinarazi helburu puntura noranzkoa aldatzean, besterik ez</string>
+    <string name="access_autoannounce_period_descr">Iragarpenen arteko gutxieneko denbora tartea</string>
+    <string name="access_collapsed_list">Tolestutako zerrenda</string>
+    <string name="access_expanded_list">Zabaldutako zerrenda</string>
+    <string name="waypoints">Bide-puntuak</string>
+    <string name="gpx_wpt">Bide-puntua</string>
+    <string name="gpx_info_waypoints">"Bide-puntuak: %1$s "</string>
+    <string name="configure_map">Konfiguratu mapa</string>
+    <string name="osmo_tracker_id">Jarraipen IDa</string>
+    <string name="osmo_tracker_id_descr">Sakatu jarraipen IDa ikusteko</string>
+    <string name="osmo_plugin_name">OpenStreetMap Monitorizatzea</string>
+    <string name="shared_string_my_tracks">Nire lorratzak</string>
+    <string name="shared_string_currently_recording_track">Lorratza grabatzen ari da</string>
+    <string name="track_segments">Lorratzaren segmentuak</string>
+    <string name="track_points">Lorratzaren puntuak</string>
+    <string name="navigation_over_track">Hasi nabigazioa lorratzari jarraituz?</string>
+    <string name="save_global_track_interval_descr">Hautatu lorratzen grabatze orokorrerako erregistratze maiztasun bat (Mapan GPX erregistratze trepetaren bidez gaitzen da)</string>
+    <string name="save_track_to_gpx_globally">Erregistratu lorratza GPX fitxategian</string>
+    <string name="save_track_to_gpx_globally_headline">Eskaerapeko lorratz erregistroa</string>
+    <string name="none_selected_gpx">Ez da GPX fitxategirik aukeratu. Aukeratzeko sakatu eta mantendu eskuragarri dagoen lorratzean.</string>
+    <string name="gpx_info_subtracks">"Azpilorratzak: %1$s "</string>
+    <string name="gpx_file_is_empty">GPX lorratza hutsik dago</string>
+    <string name="osmo_auto_send_locations_descr">Hasi bidaia eta bidali kokapenak automatikoki aplikazioa abiatzean</string>
+    <string name="osmo_auto_send_locations">Hasi bidaia automatikoki</string>
+    <string name="shared_string_trip_recording">Bidaiaren grabaketa</string>
+    <string name="record_plugin_name">Bidaiaren grabaketa</string>
+	<string name="planning_trip_item">Bidaia planifikatu</string>
+    <string name="app_mode_hiking">Mendi-ibilaldia</string>
+    <string name="index_item_nation_addresses">nazio mailako helbideak</string>
+    <string name="rendering_attr_horseRoutes_name">Zaldi ibilbideak</string>
+    <string name="simulate_your_location_descr">Simulatu kalkulatutako ibilbidea edo grabatutako GPX lorratza erabiliz</string>
+    <string name="rendering_value_walkingRoutesScopeOSMC_name">Koloreztatu ibilbidearen irismenaren arabera</string>
+    <string name="delay_to_start_navigation_descr">Zehaztu itxarote denbora ibilbidea planifikatzeko pantailan mantentzeko</string>
+    <string name="avoid_roads_msg">Beste ibilbide bat lor dezakezu saihestu beharreko errepideak hautatuz</string>
+    <string name="rendering_attr_publicTransportMode_name">Bus, trolebus, transbordadore ibilbideak</string>
+    <string name="rendering_attr_tramTrainRoutes_name">Tranbia eta trenbide ibilbideak</string>
+    <string name="rendering_attr_trainLightrailRoutes_name">Trenbide ibilbideak</string>
+    <string name="rendering_attr_tramRoutes_name">Tranbia ibilbideak</string>
+    <string name="rendering_attr_shareTaxiRoutes_name">Partekatu taxi ibilbideak</string>
+    <string name="rendering_attr_trolleybusRoutes_name">Trolebus ibilbideak</string>
+    <string name="rendering_attr_busRoutes_name">Bus ibilbideak</string>
+    <string name="rendering_category_routes">Ibilbideak</string>
+    <string name="print_route">Inprimatu ibilbidea</string>
+    <string name="rendering_attr_showCycleRoutes_name">Erakutsi bizikleta ibilbideak</string>
+    <string name="use_points_as_intermediates">Kalkulatu puntuen arteko ibilbidea</string>
+    <string name="calculate_osmand_route_without_internet">Kalkulatu OsmAnd ibilbide segmentua Internet gabe</string>
+    <string name="gpx_option_calculate_first_last_segment">Kalkulatu OsmAnd ibilbidea ibilbideko lehen eta azken segmentuetarako</string>
+    <string name="routing_attr_height_description">Zehaztu ibilbideetan baimendu beharreko ibilgailuaren altuera</string>
+    <string name="calculate_osmand_route_gpx">Kalkulatu lineaz kanpoko OsmAnd ibilbidea</string>
+    <string name="complex_route_calculation_failed">Ibilbidearen kalkulu azkarrak huts egin du (%s), kalkulu motelera aldatzen.</string>
+    <string name="use_fast_recalculation">Ibilbide birkalkulatze adimentsua</string>
+    <string name="use_fast_recalculation_desc">Birkalkulatu hasierako partea besterik ez bidai luzeetan</string>
+    <string name="impassable_road_desc">Hautatu nabigazioan saihestu nahi dituzun errepideak</string>
+    <string name="roads_only">Errepideak besterik ez</string>
+    <string name="rendering_attr_roadStyle_name">Errepide estiloa</string>
+    <string name="rendering_attr_roadStyle_description">Errepide estiloa</string>
+    <string name="rendering_value_germanRoadAtlas_name">Alemaniako errepide atlasa</string>
+    <string name="rendering_value_highContrastRoads_name">Kontraste handiko errepideak</string>
+    <string name="traffic_warning_railways">Trenbide gurutzea</string>
+    <string name="show_railway_warnings">Bistaratu trenbide gurutzeak</string>
+    <string name="rendering_value_americanRoadAtlas_name">Amerikako errepide atlasa</string>
+    <string name="impassable_road">Saihestu errepideak…</string>
+    <string name="rendering_attr_showSurfaceGrade_name">Bistaratu errepidearen kalitatea</string>
+    <string name="rendering_attr_showSurfaces_name">Bistaratu errepidearen azalera</string>
+    <string name="roads">Errepideak</string>
+    <string name="confirm_download_roadmaps">Ziur errepideak-bakarrik mapa deskargatu nahi duzula, dagoeneko mapa estandarra (osoa) baduzu ere?</string>
+    <string name="routing_attr_avoid_shuttle_train_description">Saihestu tren transbordadorea</string>
+    <string name="fav_point_dublicate_message">Zehaztutako gogoko izena erabiltzen ari zara jada, bikoizketa saihesteko %1$s izena eman zaio.</string>
+    <string name="routing_attr_avoid_stairs_name">Saihestu eskailerak</string>
+    <string name="routing_attr_avoid_stairs_description">Saihestu eskailerak</string>
+    <string name="routing_attr_avoid_borders_name">Saihestu mugak gurutzatzea</string>
+    <string name="routing_attr_avoid_borders_description">Saihestu beste herrialdera muga gurutzatzea</string>
+    <string name="access_shared_string_navigate_up">Nabigatu gorantz</string>
+    <string name="osmo_group_information_desc">" - Taldea sortzean eman izen bat eta bete deskripzioa\n - Aplikaziotik mota sinplekoak sortzen dira, irakurri gehiago webgunean https://osmo.mobi/g/new
+\n - Webgune baten bidez taldea kudeatu dezakezu, lorratzak eta bide-puntuak guztientzat erabilgarri eginez\n - Ez ditugu erabiltzaile bakarreko taldeak ontzat ematen, ez bada PIO taldea\n - Talde pribatuak 8 pertsonetara daude mugatuta\n - Termino eta baldintzen xehetasunak OsMo.mobi webgunean daude\n - Baldintza bereziak behar badituzu - jarri kontaktuan: osmo.mobi@gmail.com "</string>
+    <string name="osmo_no_connection_msg">Ezin da OsMo zerbitzariarekin konektatu:\n- egiaztatu internet konexioa;\n- egiaztatu ezarpenak;\n- begiratu gure Twitter kontua: https://twitter.com/OsMomobi</string>
+    <string name="anonymous_user_hint">Erabiltzaile anonimo batek ezin du:\n- talde bat sortu;\n- gailu guztiak zerbitzariarekin sinkronizatu;\n- talde eta gailuak kudeatu webguneko kontrol panel pertsonal batean.</string>
+    <string name="osmo_plugin_description">"Gehigarri honek OpenStreetMap Monitoring webgunearen funtzio batzuk ematen dizkizu, ikusi https://osmo.mobi
+\n\nTalde batean parte hartzen duten gailuak denbora errealean jarraitu ditzakezu. Taldera gehitutako puntu eta lorratzak ere ikusi ditzakezu partaide bazara.
+\n\nTaldea ez da hilabeteetan ezabatu, bete OsMo.mobi webgunean taldea sortzean onartutako baldintzak "</string>
+    <string name="release_2_3">" • OSM Live. Babestu mapa egileak eta garatzaileak eta jaso orduz orduko eguneraketak.
+\n\n • Mapa-markatzaileak. Mapako lekuak atoan hautatzeko modu berri bat.\n\n • Xehetasun gehiagoko OSM mapak, herrialdeko bide seinaleekin eta mapa ezaugarri berri mordoarekin.\n\n • Ibilbide prestaketaren itxura berritua.\n\n • Maparen laster menuan hobekuntza ugari, hala nola helbide bilaketa zuzena.\n\n eta gehiago… "</string>
+    <string name="storage_directory_readonly_desc">Hautatutako biltegiratze karpeta irakurtzeko soilik da. Biltegiratze karpeta barne memoriara aldatu da bitartean. Hautatu baliozko biltegiratze direktorio bat.</string>
+    <string name="osm_user_stat">Edizioak %1$s, maila %2$s, edizioak guztira %3$s</string>
+    <string name="osm_editors_ranking">OSM editoreen mailaketa</string>
+    <string name="osm_live_subscription">OSM Live harpidetza</string>
+    <string name="osm_live_email_desc">Parte hartzaileen informazioa emateko behar dugu</string>
+    <string name="osm_live_support_region">Babestu eskualdea</string>
+    <string name="osm_live_month_cost">Hileko kostua</string>
+    <string name="osm_live_thanks">Eskerrik asko zuzeneko eguneraketetara harpidetzeagatik!</string>
+    <string name="osm_live_region_desc">Zure dohaintzaren parte bat eskualde horretara aldaketak bidaltzen dituzten OSM erabiltzaileei bidaliko zaie</string>
+    <string name="osm_live_ask_for_purchase">Erosi OSM Live harpidetza aurretik</string>
+
+    <string name="osm_live_header">Harpidetza honek mundu osoko mapen eguneraketak orduero jasotzea baimentzen dizu. Diru sarreraren parte handiena OSM komunitateari ematen zaio eta kontribuzioen arabera ordaintzen da. OsmAnd eta OSM maite badituzu eta babestu nahi badituzu, hau modu egokia da.</string>
+    
+    <string name="show_transparency_seekbar">Bistaratu bilaketa barra gardena</string>
+    <string name="download_files_error_not_enough_space">Ez dago espazio nahikoa! Honek {3} MB behar ditu une batez eta {1} MB behin betiko. Orain {2} MB daude eskuragarri.</string>
+    <string name="download_files_question_space_with_temp">{0} fitxategi deskargatu? Honek {3} MB behar ditu une batez eta {1} MB behin betiko. Orain, {2} MB daude eskuragarri.</string>
+    <string name="upload_osm_note_description">Zure OSM oharra anonimoki igo dezakezu zure OpenStreetMap.org profila erabiltzen baduzu.</string>
+    <string name="rendering_attr_showMtbRoutes_name">Bistaratu MTB ibilbideak</string>
+    <string name="rendering_attr_hideIcons_name">POI ikonoak</string>
+    <string name="rec_split">Grabaketaren banatzea</string>
+    <string name="rec_split_title">Erabili grabaketaren banatzea</string>
+    <string name="rec_split_desc">Gainidatzi atalak erabilitako espazioa biltegiratze espazioa baino handiagoa bada</string>
+    <string name="rec_split_clip_length">Atalaren luzera</string>
+    <string name="rec_split_clip_length_desc">Grabatutako atal bakoitzaren luzera ez da izango zehaztutako denbora tartea baino luzeagoa izango</string>
+    <string name="rec_split_storage_size_desc">Grabatutako atalekin okupatu daitekeen espazioa</string>
+    <string name="select_voice_provider">Hautatu ahots bidezko jarraibideak</string>
+    <string name="select_voice_provider_descr">Hautatu zure hizkuntzaren ahots bidezko jarraibideak</string>
+    <string name="please_specify_poi_type_only_from_list">Zehaztu POI mota egokia edo saltatu</string>
+    <string name="access_from_map_description">Menu botoiak kontrol panela abiatzen du, ez menua</string>
+    <string name="show_on_start_description">Desgaitzean maparen pantaila abiatzen da zuzenean</string>
+    <string name="always_center_position_on_map">Bistaratu posizioa beti erdian</string>
+    <string name="index_item_world_seamarks">Munduko itsaso markak</string>
+    <string name="index_item_world_bitcoin_payments">Munduko ordainketak bitcoin</string>
+    <string name="index_item_world_basemap">Munduko ikuspegi mapa</string>
+    <string name="index_item_world_ski">Munduko ski mapa</string>
+    <string name="disable_complex_routing">Ezgaitu ibilbide kalkulu konplexua</string>
+    <string name="amenity_type_seamark">Itsaso marka</string>
+    <string name="app_modes_choose">Aplikazio profilak</string>
+    <string name="app_mode_motorcycle">Motorra</string>
+    <string name="app_mode_boat">Itsasontzia</string>
+    <string name="app_mode_aircraft">Hegazkina</string>
+    <string name="auto_zoom_none">Auto zoom-ik ez</string>
+    <string name="auto_zoom_close">Gerturatu</string>
+    <string name="auto_zoom_farthest">Aldendu</string>
+    <string name="map_magnifier">Mapa handitzailea</string>
+    <string name="base_world_map">Mundu oinarri mapa</string>
+    <string name="create_poi_link_to_osm_doc"><u>Sareko OSM</u>ren mapa klasifikazioa irudiekin</string>
     </resources>

@@ -119,20 +119,20 @@ public class AlarmInfo implements LocationPoint {
 	
 	public int updateDistanceAndGetPriority(float time, float distance) {
 		if (distance > 1500) {
-			return 0;
+			return Integer.MAX_VALUE;
 		}
 		// 1 level of priorities
-		if (time < 8 || distance < 100 || type == AlarmInfoType.SPEED_LIMIT) {
+		if (time < 6 || distance < 75 || type == AlarmInfoType.SPEED_LIMIT) {
 			return type.getPriority();
 		}
 		if (type == AlarmInfoType.SPEED_CAMERA && (time < 15 || distance < 150)) {
 			return type.getPriority();
 		}
 		// 2nd level
-		if (time < 10 || distance < 150) {
+		if (time < 7 || distance < 100) {
 			return type.getPriority() + AlarmInfoType.MAXIMUM.getPriority();
 		}
-		return 0;
+		return Integer.MAX_VALUE;
 	}
 	
 	@Override

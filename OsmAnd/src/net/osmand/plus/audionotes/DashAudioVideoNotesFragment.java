@@ -31,9 +31,16 @@ public class DashAudioVideoNotesFragment extends DashBaseFragment {
 	public static final String TAG = "DASH_NOTES_FRAGMENT";
 	public static final int TITLE_ID = R.string.map_widget_av_notes;
 	private static final String ROW_NUMBER_TAG = TAG + "_row_number";
-	static final DashFragmentData FRAGMENT_DATA =
-			new DashFragmentData(TAG, DashAudioVideoNotesFragment.class, TITLE_ID,
-					new DashboardOnMap.DefaultShouldShow(), 100, ROW_NUMBER_TAG);
+	private static final DashFragmentData.ShouldShowFunction SHOULD_SHOW_FUNCTION =
+			new DashboardOnMap.DefaultShouldShow() {
+				@Override
+				public int getTitleId() {
+					return TITLE_ID;
+				}
+			};
+	static final DashFragmentData FRAGMENT_DATA = new DashFragmentData(
+			TAG, DashAudioVideoNotesFragment.class, SHOULD_SHOW_FUNCTION, 100, ROW_NUMBER_TAG);
+
 
 	AudioVideoNotesPlugin plugin;
 
@@ -85,7 +92,7 @@ public class DashAudioVideoNotesFragment extends DashBaseFragment {
 
 			getNoteView(recording, view, getMyApplication());
 			((ImageView) view.findViewById(R.id.play)).setImageDrawable(getMyApplication().getIconsCache()
-					.getContentIcon(R.drawable.ic_play_dark));
+					.getThemedIcon(R.drawable.ic_play_dark));
 			view.findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -99,7 +106,7 @@ public class DashAudioVideoNotesFragment extends DashBaseFragment {
 				public void onClick(View v) {
 					getMyApplication().getSettings().setMapLocationToShow(recording.getLatitude(),
 							recording.getLongitude(), 15,
-							new PointDescription(recording.getSearchHistoryType(), recording.getName(getActivity())),
+							new PointDescription(recording.getSearchHistoryType(), recording.getName(getActivity(), true)),
 							true, recording); //$NON-NLS-1$
 					MapActivity.launchMapActivityMoveToTop(getActivity());
 				}
@@ -110,7 +117,7 @@ public class DashAudioVideoNotesFragment extends DashBaseFragment {
 
 	public static Drawable getNoteView(final AudioVideoNotesPlugin.Recording recording, View view,
 									   final OsmandApplication ctx) {
-		String name = recording.getName(ctx);
+		String name = recording.getName(ctx, true);
 		TextView nameText = ((TextView) view.findViewById(R.id.name));
 		nameText.setText(name);
 		((TextView) view.findViewById(R.id.description)).setText(recording.getSmallDescription(ctx));

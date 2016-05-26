@@ -1,21 +1,22 @@
 package net.osmand.plus.download.ui;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import net.osmand.plus.R;
 import net.osmand.plus.download.DownloadActivity;
 import net.osmand.plus.download.DownloadIndexesThread.DownloadEvents;
 import net.osmand.plus.download.IndexItem;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActiveDownloadsDialogFragment extends DialogFragment implements DownloadEvents {
 
@@ -66,7 +67,9 @@ public class ActiveDownloadsDialogFragment extends DialogFragment implements Dow
 			if(items.isEmpty()) {
 				dlgFragment.dismissAllowingStateLoss();
 			}
-			addAll(context.getDownloadThread().getCurrentDownloadingItems());
+			for (IndexItem item : context.getDownloadThread().getCurrentDownloadingItems()) {
+				add(item);
+			}
 		}
 
 		@Override
@@ -83,7 +86,7 @@ public class ActiveDownloadsDialogFragment extends DialogFragment implements Dow
 			}
 			ItemViewHolder viewHolder = (ItemViewHolder) convertView.getTag();
 			IndexItem item = getItem(position);
-			viewHolder.bindIndexItem(item, null);
+			viewHolder.bindIndexItem(item);
 			return convertView;
 		}
 		

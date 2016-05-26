@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import net.osmand.data.LatLon;
 import net.osmand.plus.IconsCache;
 import net.osmand.plus.OsmAndAppCustomization;
 import net.osmand.plus.R;
+import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.activities.search.SearchActivity;
+import net.osmand.plus.dashboard.tools.DashFragmentData;
 import net.osmand.plus.helpers.FontCache;
 
 /**
@@ -22,8 +25,14 @@ import net.osmand.plus.helpers.FontCache;
  * 24.11.2014.
  */
 public class DashSearchFragment extends DashBaseFragment {
-	public static final int TITLE_ID = R.string.search_for;
 	public static final String TAG = "DASH_SEARCH_FRAGMENT";
+	public static final DashFragmentData.ShouldShowFunction SHOULD_SHOW_FUNCTION =
+			new DashboardOnMap.DefaultShouldShow() {
+				@Override
+				public int getTitleId() {
+					return R.string.search_for;
+				}
+			};
 
 	@Override
 	public View initView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,11 +47,17 @@ public class DashSearchFragment extends DashBaseFragment {
 
 
 	protected void searchActivity(final Activity activity, final OsmAndAppCustomization appCustomization, int tab) {
-		final Intent search = new Intent(activity, appCustomization.getSearchActivity());
-		//search.putExtra(SearchActivity.SHOW_ONLY_ONE_TAB, true);
-		search.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+		Intent newIntent = new Intent(activity, appCustomization.getSearchActivity());
+		// causes wrong position caching: newIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+		LatLon loc = ((MapActivity)activity).getMapLocation();
+		newIntent.putExtra(SearchActivity.SEARCH_LAT, loc.getLatitude());
+		newIntent.putExtra(SearchActivity.SEARCH_LON, loc.getLongitude());
+		if(((MapActivity)activity).getMapViewTrackingUtilities().isMapLinkedToLocation()) {
+			newIntent.putExtra(SearchActivity.SEARCH_NEARBY, true);
+		}
+		newIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		getMyApplication().getSettings().SEARCH_TAB.set(tab);
-		activity.startActivity(search);
+		activity.startActivity(newIntent);
 	}
 
 	private void setupButtons(View view) {

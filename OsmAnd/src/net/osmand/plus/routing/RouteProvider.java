@@ -1,6 +1,7 @@
 package net.osmand.plus.routing;
 
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +57,9 @@ import net.osmand.router.RoutingContext;
 import net.osmand.router.TurnType;
 import net.osmand.util.Algorithms;
 import net.osmand.util.MapUtils;
+import net.osmand.util.GeoPolylineParserUtil;
 
+import org.json.JSONObject;
 import org.json.JSONException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -742,7 +745,7 @@ public class RouteProvider {
 				Boolean bool = pref.getModeValue(params.mode);
 				vl = bool ? "true" : null;
 			} else {
-				vl = settings.getCustomRoutingProperty(key).getModeValue(params.mode);
+				vl = settings.getCustomRoutingProperty(key, "").getModeValue(params.mode);
 			}
 			if(vl != null && vl.length() > 0) {
 				paramsR.put(key, vl);
@@ -1142,30 +1145,31 @@ public class RouteProvider {
 			}
 		}
 		appendOSRMLoc(uri, params.end);
-		uri.append("&output=gpx"); //$NON-NLS-1$
-		
+
 		log.info("URL route " + uri);
 		
 		URLConnection connection = NetworkUtils.getHttpURLConnection(uri.toString());
 		connection.setRequestProperty("User-Agent", Version.getFullVersion(params.ctx));
-//		StringBuilder content = new StringBuilder();
-//		BufferedReader rs = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//		String s;
-//		while((s = rs.readLine()) != null) {
-//			content.append(s);
-//		}
-//		JSONObject obj = new JSONObject(content.toString());
-		final InputStream inputStream = connection.getInputStream();
-		GPXFile gpxFile = GPXUtilities.loadGPXFile(params.ctx, inputStream);
+		StringBuilder content = new StringBuilder();
+		BufferedReader rs = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		String s;
+		while((s = rs.readLine()) != null) {
+			content.append(s);
+		}
+		JSONObject obj = new JSONObject(content.toString());
 		try {
-			inputStream.close();
+			rs.close();
 		} catch(IOException e){
 		}
-		if(gpxFile.routes.isEmpty()) {
+		List<LatLon> route = GeoPolylineParserUtil.parse(obj.get("route_geometry").toString());
+		if (route.isEmpty()) {
 			return new RouteCalculationResult("Route is empty");
 		}
-		for (WptPt pt : gpxFile.routes.get(0).points) {
-			res.add(createLocation(pt));
+		for (LatLon pt : route) {
+			WptPt wpt = new WptPt();
+			wpt.lat = pt.getLatitude();
+			wpt.lon = pt.getLongitude();
+			res.add(createLocation(wpt));
 		}
 		params.intermediates = null;
 		return new RouteCalculationResult(res, null, params, null);
@@ -1174,9 +1178,23 @@ public class RouteProvider {
 
 	protected RouteCalculationResult findBROUTERRoute(RouteCalculationParams params) throws MalformedURLException,
 			IOException, ParserConfigurationException, FactoryConfigurationError, SAXException {
-		double[] lats = new double[] { params.start.getLatitude(), params.end.getLatitude() };
-		double[] lons = new double[] { params.start.getLongitude(), params.end.getLongitude() };
+		int numpoints = 2 + (params.intermediates != null ? params.intermediates.size() : 0);
+		double[] lats = new double[numpoints];
+		double[] lons = new double[numpoints];
+		int index = 0;
 		String mode;
+		lats[index] = params.start.getLatitude();
+		lons[index] = params.start.getLongitude();
+		index++;
+		if(params.intermediates != null && params.intermediates.size() > 0) {
+			for(LatLon il : params.intermediates) {
+				lats[index] = il.getLatitude();
+				lons[index] = il.getLongitude();
+				index++;
+			}
+		}
+		lats[index] = params.end.getLatitude();
+		lons[index] = params.end.getLongitude();
 		if (ApplicationMode.PEDESTRIAN == params.mode) {
 			mode = "foot"; //$NON-NLS-1$
 		} else if (ApplicationMode.BICYCLE == params.mode) {

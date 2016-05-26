@@ -22,7 +22,7 @@ import net.osmand.plus.R;
 import net.osmand.plus.routing.RouteDirectionInfo;
 import net.osmand.plus.routing.RoutingHelper;
 import net.osmand.plus.views.TurnPathHelper;
-import net.osmand.plus.views.controls.MapRouteInfoControl;
+import net.osmand.plus.mapcontextmenu.other.MapRouteInfoMenu;
 import net.osmand.util.Algorithms;
 import android.content.Intent;
 import android.net.Uri;
@@ -144,7 +144,7 @@ public class ShowRouteInfoActivity extends OsmandListActivity {
 		RouteDirectionInfo item = ((RouteInfoAdapter)getListAdapter()).getItem(position - 1);
 		Location loc = helper.getLocationFromRouteDirection(item);
 		if(loc != null){
-			MapRouteInfoControl.directionInfo = position - 1;
+			MapRouteInfoMenu.directionInfo = position - 1;
 			OsmandSettings settings = ((OsmandApplication) getApplication()).getSettings();
 			settings.setMapLocationToShow(loc.getLatitude(),loc.getLongitude(),
 					Math.max(13, settings.getLastKnownMapZoom()), 
@@ -165,8 +165,11 @@ public class ShowRouteInfoActivity extends OsmandListActivity {
 			}
 		}
 
+		private final int lastItemIndex;
+
 		RouteInfoAdapter(List<RouteDirectionInfo> list) {
 			super(ShowRouteInfoActivity.this, R.layout.route_info_list_item, list);
+			lastItemIndex = list.size() - 1;
 			this.setNotifyOnChange(false);
 		}
 
@@ -190,14 +193,24 @@ public class ShowRouteInfoActivity extends OsmandListActivity {
 			drawable.setRouteType(model.getTurnType());
 			icon.setImageDrawable(drawable);
 
-			distanceLabel.setText(OsmAndFormatter.getFormattedDistance(
-					model.distance, getMyApplication()));
-			timeLabel.setText(getTimeDescription(model));
 			label.setText(model.getDescriptionRoutePart());
+			if (model.distance > 0) {
+				distanceLabel.setText(OsmAndFormatter.getFormattedDistance(
+						model.distance, getMyApplication()));
+				timeLabel.setText(getTimeDescription(model));
+				row.setContentDescription(label.getText() + " " + timeLabel.getText()); //$NON-NLS-1$
+			} else {
+				if (label.getText().length() == 0) {
+					label.setText(getString((position != lastItemIndex) ? R.string.arrived_at_intermediate_point : R.string.arrived_at_destination));
+				}
+				distanceLabel.setText(""); //$NON-NLS-1$
+				timeLabel.setText(""); //$NON-NLS-1$
+				row.setContentDescription(""); //$NON-NLS-1$
+			}
 			CumulativeInfo cumulativeInfo = getRouteDirectionCumulativeInfo(position);
 			cumulativeDistanceLabel.setText(OsmAndFormatter.getFormattedDistance(
 					cumulativeInfo.distance, getMyApplication()));
-			cumulativeTimeLabel.setText(Algorithms.formatDuration(cumulativeInfo.time));
+			cumulativeTimeLabel.setText(Algorithms.formatDuration(cumulativeInfo.time, getMyApplication().accessibilityEnabled()));
 			return row;
 		}
 
@@ -214,7 +227,7 @@ public class ShowRouteInfoActivity extends OsmandListActivity {
 
 	private String getTimeDescription(RouteDirectionInfo model) {
 		final int timeInSeconds = model.getExpectedTime();
-		return Algorithms.formatDuration(timeInSeconds);
+		return Algorithms.formatDuration(timeInSeconds, getMyApplication().accessibilityEnabled());
 	}
 
 	void print() {
@@ -296,10 +309,10 @@ public class ShowRouteInfoActivity extends OsmandListActivity {
 						cumulativeInfo.distance + routeDirectionInfo.distance,
 						getMyApplication()));
 				sb.append(BR);
-				sb.append(Algorithms.formatDuration(cumulativeInfo.time));
+				sb.append(Algorithms.formatDuration(cumulativeInfo.time, getMyApplication().accessibilityEnabled()));
 				sb.append(" - ");
 				sb.append(Algorithms.formatDuration(cumulativeInfo.time
-						+ routeDirectionInfo.getExpectedTime()));
+						+ routeDirectionInfo.getExpectedTime(), getMyApplication().accessibilityEnabled()));
 				String cumulativeTimeAndDistance = sb.toString().replaceAll("\\s", NBSP);
 				html.append(cumulativeTimeAndDistance);
 				html.append("</td>");
@@ -331,4 +344,3 @@ public class ShowRouteInfoActivity extends OsmandListActivity {
 	}
 
 }
-

@@ -1,193 +1,237 @@
 package net.osmand.plus.activities;
 
-import android.annotation.SuppressLint;
-import android.content.pm.ActivityInfo;
-import android.os.Build;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import net.osmand.AndroidUtils;
+import net.osmand.plus.ContextMenuAdapter;
+import net.osmand.plus.ContextMenuItem;
 import net.osmand.plus.OsmandApplication;
+import net.osmand.plus.OsmandPlugin;
 import net.osmand.plus.R;
-import net.osmand.plus.helpers.AndroidUiHelper;
+import net.osmand.plus.Version;
+import net.osmand.plus.dialogs.HelpArticleDialogFragment;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+public class HelpActivity extends OsmandActionBarActivity implements AdapterView.OnItemClickListener {
 
+	//	public static final String DIALOG = "dialog";
+	@IdRes
+	public static final String OSMAND_POLL_HTML = "http://osmand.net/android-poll.html";
+	public static final int NULL_ID = -1;
+	private ArrayAdapter<ContextMenuItem> mAdapter;
 
-public class HelpActivity extends OsmandActionBarActivity {
-	
-	private static final String FILE_ANDROID_ASSET_HELP = "file:///android_asset/help/";
-	public static final String URL = "url";
-	public static final String TITLE = "title";
-	private static final int HOME = 1;
-	private static final int BACK = 2;
-	private static final int FORWARD = 3;
-	private static final int CLOSE = 4;
-	private WebView mWebView;
-	
-	@SuppressLint("NewApi")
+	//public static final String OSMAND_MAP_LEGEND = "http://osmand.net/help/map-legend_default.png";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		getMyApplication().applyTheme(this);
-		supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-			getWindow().setUiOptions(ActivityInfo.UIOPTION_SPLIT_ACTION_BAR_WHEN_NARROW);
-		}
+		((OsmandApplication) getApplication()).applyTheme(this);
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.fragment_help_screen);
 
-		String title = getString(R.string.shared_string_help);
-		String url = "index.html";
-		if(getIntent() != null) {
-			String tl = getIntent().getStringExtra(TITLE);
-			if(tl != null) {
-				title = tl;
-			}
-			String ul = getIntent().getStringExtra(URL);
-			if(ul != null) {
-				url = ul;
-			}
-		}
-		getSupportActionBar().setTitle(title);
-		setContentView(R.layout.help_activity);
-		mWebView = (WebView) findViewById(R.id.webView);
-		mWebView.setFocusable(true);
-        mWebView.setFocusableInTouchMode(true);
-		mWebView.requestFocus(View.FOCUS_DOWN);
-		mWebView.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View view, MotionEvent event) {
-				switch (event.getAction()) {
-					case MotionEvent.ACTION_DOWN:
-					case MotionEvent.ACTION_UP:
-						if (!view.hasFocus()) {
-							view.requestFocus();
-						}
-						break;
-				}
-				return false;
-			}
-		});
+		ContextMenuAdapter contextMenuAdapter = new ContextMenuAdapter();
+		contextMenuAdapter.setDefaultLayoutId(R.layout.two_line_with_images_list_item);
 
-		mWebView.setWebViewClient(new WebViewClient() {
+		createBeginWithOsmandItems(contextMenuAdapter);
+		createFeaturesItems(contextMenuAdapter);
+		createPluginsItems(contextMenuAdapter);
+		createHelpUsToImproveItems(contextMenuAdapter);
+		createOtherItems(contextMenuAdapter);
+		createSocialNetworksItems(contextMenuAdapter);
 
-			@Override
-			public void onPageFinished(WebView view, String url) {
-				mWebView.requestFocus(View.FOCUS_DOWN);
-			}
+		boolean lightContent = getMyApplication().getSettings().isLightContent();
 
-			@Override
-			public void onLoadResource(WebView view, String url) {
-				super.onLoadResource(view, url);
-			}
-		});
-		if (savedInstanceState != null) {
-			mWebView.restoreState(savedInstanceState);
-		} else {
-			mWebView.loadUrl(FILE_ANDROID_ASSET_HELP + url);
-		}
+		mAdapter = contextMenuAdapter.createListAdapter(this, lightContent);
+
+		ListView listView = (ListView) findViewById(android.R.id.list);
+		listView.setAdapter(mAdapter);
+		listView.setOnItemClickListener(this);
+		int dividerColor = lightContent ? R.color.icon_color_light : R.color.dialog_inactive_text_color_dark;
+		Drawable dividerDrawable = new ColorDrawable(ContextCompat.getColor(this, dividerColor));
+		listView.setDivider(dividerDrawable);
+		listView.setDividerHeight(AndroidUtils.dpToPx(this, 1f));
+
+		setTitle(R.string.shared_string_help);
+		setupHomeButton();
 	}
+
+
 
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		mWebView.saveState(outState);
-		super.onSaveInstanceState(outState);
-	}
-
-	public String readContent(String url) throws IOException {
-		InputStream index = HelpActivity.class.getClassLoader().getResourceAsStream("help/" +url);
-		BufferedReader read = new BufferedReader(new InputStreamReader(index));
-		StringBuilder bld = new StringBuilder();
-		String s;
-		while((s = read.readLine()) != null) {
-			bld.append(s);
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		ContextMenuAdapter.ItemClickListener listener =
+				mAdapter.getItem(position).getItemClickListener();
+		if (listener != null) {
+			listener.onContextMenuClick(mAdapter, position, position, false);
 		}
-		read.close();
-		return bld.toString();
-	}
-	
-	private OsmandApplication getMyApplication() {
-		return (OsmandApplication) getApplication();
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		if (AndroidUiHelper.isOrientationPortrait(this)){
-			menu = getClearToolbar(true).getMenu();
-		} else {
-			getClearToolbar(false);
-		}
-		createMenuItem(menu, HOME, R.string.home, 
-				R.drawable.ic_action_home_dark,
-				MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
-		createMenuItem(menu, BACK, R.string.shared_string_previous,
-				R.drawable.ic_action_undo_dark,
-				MenuItemCompat.SHOW_AS_ACTION_ALWAYS );
-		createMenuItem(menu, FORWARD, R.string.shared_string_next,
-				R.drawable.ic_action_redo_dark,
-				MenuItemCompat.SHOW_AS_ACTION_ALWAYS );
-		createMenuItem(menu, CLOSE, R.string.shared_string_close, 
-				R.drawable.ic_action_remove_dark,
-				MenuItemCompat.SHOW_AS_ACTION_ALWAYS );
-		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		int itemId = item.getItemId();
-		switch (itemId) {
-		case android.R.id.home:
-			finish();
-			return true;
-		case HOME:
-			mWebView.loadUrl(FILE_ANDROID_ASSET_HELP + "index.html");
-			return true;
-		case BACK:
-			if(mWebView.canGoBack()) {
-				mWebView.goBack();
-			}
-			return true;
-		case FORWARD:
-			if(mWebView.canGoForward()) {
-				mWebView.goForward();
-			}
-			return true;
-		case CLOSE:
-			finish();
-			return true;
+		switch (item.getItemId()) {
+			case android.R.id.home:
+				this.finish();
+				return true;
 		}
-		return false;
+		return super.onOptionsItemSelected(item);
 	}
-	
-	public MenuItem createMenuItem(Menu m, int id, int titleRes, int iconDark, int menuItemType) {
-		MenuItem menuItem = m.add(0, id, 0, titleRes);
-		if (iconDark != 0) {
-			menuItem.setIcon(getMyApplication().getIconsCache().getIcon(iconDark));
-		}
-		MenuItemCompat.setShowAsAction(menuItem, menuItemType);
-		menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-			@Override
-			public boolean onMenuItemClick(MenuItem item) {
-				return onOptionsItemSelected(item);
+
+	private void createBeginWithOsmandItems(ContextMenuAdapter contextMenuAdapter) {
+		contextMenuAdapter.addItem(createCategory(R.string.begin_with_osmand_menu_group));
+		contextMenuAdapter.addItem(createItem(R.string.first_usage_item,
+				R.string.first_usage_item_description, "feature_articles/start.html"));
+		contextMenuAdapter.addItem(createItem(R.string.shared_string_navigation,
+				R.string.navigation_item_description, "feature_articles/navigation.html"));
+		contextMenuAdapter.addItem(createItem(R.string.faq_item,
+				R.string.faq_item_description, "feature_articles/faq.html"));
+	}
+
+	private void createSocialNetworksItems(ContextMenuAdapter contextMenuAdapter) {
+		contextMenuAdapter.addItem(createCategory(R.string.follow_us));
+		contextMenuAdapter.addItem(createSocialItem(R.string.twitter, R.string.twitter_address,
+				R.drawable.ic_action_social_twitter));
+		contextMenuAdapter.addItem(createSocialItem(R.string.facebook, R.string.facebook_address,
+				R.drawable.ic_action_social_facebook));
+		contextMenuAdapter.addItem(createSocialItem(R.string.vk, R.string.vk_address,
+				R.drawable.ic_action_social_vk));
+	}
+
+	private void createHelpUsToImproveItems(ContextMenuAdapter contextMenuAdapter) {
+		contextMenuAdapter.addItem(createCategory(R.string.help_us_to_improve_menu_group));
+		contextMenuAdapter.addItem(new ContextMenuItem.ItemBuilder()
+				.setLayout(R.layout.help_to_improve_item).createItem());
+	}
+
+	private void createFeaturesItems(ContextMenuAdapter contextMenuAdapter) {
+		contextMenuAdapter.addItem(createCategory(R.string.features_menu_group));
+		contextMenuAdapter.addItem(createItem(R.string.map_viewing_item, NULL_ID,
+				"feature_articles/map-viewing.html"));
+		contextMenuAdapter.addItem(createItem(R.string.search_on_the_map_item, NULL_ID,
+				"feature_articles/find-something-on-map.html"));
+		contextMenuAdapter.addItem(createItem(R.string.planning_trip_item, NULL_ID,
+				"feature_articles/trip-planning.html"));
+		contextMenuAdapter.addItem(createItem(R.string.map_legend, NULL_ID,
+				"feature_articles/map-legend.html"));
+	}
+
+	private void createPluginsItems(ContextMenuAdapter contextMenuAdapter) {
+		contextMenuAdapter.addItem(createCategory(R.string.plugins_menu_group));
+		for (final OsmandPlugin osmandPlugin : OsmandPlugin.getAvailablePlugins()) {
+			final String helpFileName = osmandPlugin.getHelpFileName();
+			if (helpFileName != null) {
+				contextMenuAdapter.addItem(createPluginItem(osmandPlugin.getName(), osmandPlugin.getLogoResourceId(),
+						helpFileName));
 			}
-		});
-		return menuItem;
+		}
 	}
-	
-	public Toolbar getClearToolbar(boolean visible) {
-		final Toolbar tb = (Toolbar) findViewById(R.id.bottomControls);
-		tb.setTitle(null);
-		tb.getMenu().clear();
-		tb.setVisibility(visible? View.VISIBLE : View.GONE);
-		return tb;
+
+	private void createOtherItems(ContextMenuAdapter contextMenuAdapter) {
+		contextMenuAdapter.addItem(createCategory(R.string.other_menu_group));
+		contextMenuAdapter.addItem(createItem(R.string.instalation_troubleshooting_item, NULL_ID,
+				"feature_articles/installation-and-troubleshooting.html"));
+		contextMenuAdapter.addItem(createItem(R.string.techical_articles_item, NULL_ID,
+				"feature_articles/technical-articles.html"));
+		contextMenuAdapter.addItem(createItem(R.string.versions_item, NULL_ID,
+				"feature_articles/changes.html"));
+
+		String releasedate = "";
+		if (!this.getString(R.string.app_edition).equals("")) {
+			releasedate = ", " + this.getString(R.string.shared_string_release).toLowerCase() + ": " + this.getString(R.string.app_edition);
+		}
+		String version = Version.getFullVersion(getMyApplication()) + releasedate;
+		ShowArticleOnTouchListener listener = new ShowArticleOnTouchListener(
+				"feature_articles/about.html", this, version);
+		contextMenuAdapter.addItem(new ContextMenuItem.ItemBuilder()
+				.setTitle(getString(R.string.shared_string_about))
+				.setDescription(version).setListener(listener).createItem());
+	}
+
+	// Helper metods
+	private ContextMenuItem createCategory(@StringRes int titleRes) {
+		return new ContextMenuItem.ItemBuilder().setTitle(
+				getString(titleRes)).setCategory(true)
+				.setLayout(R.layout.download_item_list_section).createItem();
+	}
+
+	private ContextMenuItem createItem(@StringRes int titleRes,
+									   @StringRes int descriptionRes,
+									   String path) {
+		ContextMenuItem.ItemBuilder builder = new ContextMenuItem.ItemBuilder()
+				.setTitle(getString(titleRes))
+				.setListener(new ShowArticleOnTouchListener(path, this));
+		if (descriptionRes != -1) {
+			builder.setDescription(getString(descriptionRes));
+		}
+		return builder.createItem();
+	}
+
+	private ContextMenuItem createPluginItem(String title,
+											 @DrawableRes int icon,
+											 String path) {
+		return new ContextMenuItem.ItemBuilder()
+				.setTitle(title)
+				.setIcon(icon)
+				.setListener(new ShowArticleOnTouchListener(path, this))
+				.createItem();
+	}
+
+	private ContextMenuItem createSocialItem(@StringRes int title,
+											 @StringRes int urlRes,
+											 @DrawableRes int icon) {
+		final String url = getString(urlRes);
+		return new ContextMenuItem.ItemBuilder()
+				.setTitle(getString(title))
+				.setDescription(url)
+				.setIcon(icon)
+				.setListener(new ContextMenuAdapter.ItemClickListener() {
+					@Override
+					public boolean onContextMenuClick(ArrayAdapter<ContextMenuItem> adapter,
+													  int itemId,
+													  int position,
+													  boolean isChecked) {
+						Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+						startActivity(intent);
+						return false;
+					}
+				})
+				.createItem();
+	}
+
+	private static class ShowArticleOnTouchListener implements ContextMenuAdapter.ItemClickListener {
+		private final String filename;
+		private final FragmentActivity ctx;
+		private final String mTitle;
+
+		private ShowArticleOnTouchListener(String filename, FragmentActivity ctx) {
+			this.filename = filename;
+			this.ctx = ctx;
+			mTitle = null;
+		}
+
+		private ShowArticleOnTouchListener(String filename, FragmentActivity ctx, String title) {
+			this.filename = filename;
+			this.ctx = ctx;
+			mTitle = title;
+		}
+
+		@Override
+		public boolean onContextMenuClick(ArrayAdapter<ContextMenuItem> adapter, int itemId, int position, boolean isChecked) {
+			String title = mTitle == null ? adapter.getItem(position).getTitle() : mTitle;
+			HelpArticleDialogFragment.instantiateWithAsset(filename, title)
+					.show(ctx.getSupportFragmentManager(), "DIALOG_HELP_ARTICLE");
+			return false;
+		}
 	}
 }

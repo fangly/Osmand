@@ -8,11 +8,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-
+import android.support.v4.content.res.ResourcesCompat;
 import net.osmand.plus.R;
 
 import java.util.TreeMap;
@@ -25,16 +26,44 @@ public class FavoriteImageDrawable extends Drawable {
 	private Bitmap favIcon;
 	private Bitmap favBackground;
 	private Resources resources;
+	private boolean withShadow;
+	private Paint paintOuter;
+	private Paint paintInnerCircle;
+	private Drawable listDrawable;
 
-	public FavoriteImageDrawable(Context ctx, int color) {
+	public FavoriteImageDrawable(Context ctx, int color, boolean withShadow) {
+		this.withShadow = withShadow;
 		this.resources = ctx.getResources();
 		this.color = color;
-		paintIcon = new Paint();
-		int col = color == 0 || color == Color.BLACK ? getResources().getColor(R.color.color_favorite) : color;
-		paintIcon.setColorFilter(new PorterDuffColorFilter(col, PorterDuff.Mode.SRC_IN));
 		paintBackground = new Paint();
+		int col = color == 0 || color == Color.BLACK ? getResources().getColor(R.color.color_favorite) : color;
+		paintBackground.setColorFilter(new PorterDuffColorFilter(col, PorterDuff.Mode.MULTIPLY));
+		paintIcon = new Paint();
 		favIcon = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.map_favorite);
 		favBackground = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.map_white_favorite_shield);
+		listDrawable = ResourcesCompat.getDrawable(getResources(), R.drawable.ic_action_fav_dark, null).mutate();
+
+		paintOuter = new Paint();
+		paintOuter.setAntiAlias(true);
+		paintOuter.setStyle(Style.FILL_AND_STROKE);
+		paintInnerCircle = new Paint();
+		paintInnerCircle.setStyle(Style.FILL_AND_STROKE);
+		paintOuter.setColor(color == 0 || color == Color.BLACK ? 0x88555555 : color);
+		paintInnerCircle.setColor(color == 0 || color == Color.BLACK ? getResources().getColor(R.color.color_favorite)
+				: color);
+		paintInnerCircle.setAntiAlias(true);
+	}
+	
+	@Override
+	protected void onBoundsChange(Rect bounds) {
+		super.onBoundsChange(bounds);
+		
+		if (!withShadow) {
+			Rect bs = new Rect(bounds);
+			 //bs.inset((int) (4 * density), (int) (4 * density));
+			bs.inset(bs.width() / 4, bs.height() / 4);
+			listDrawable.setBounds(bs);
+		}
 	}
 
 	@Override
@@ -58,13 +87,30 @@ public class FavoriteImageDrawable extends Drawable {
 	@Override
 	public void draw(Canvas canvas) {
 		Rect bs = getBounds();
-		canvas.drawBitmap(favBackground, bs.exactCenterX() - favBackground.getWidth() / 2f, bs.exactCenterY() - favBackground.getHeight() / 2f, paintBackground);
-		canvas.drawBitmap(favIcon, bs.exactCenterX() - favIcon.getWidth() / 2f, bs.exactCenterY() - favIcon.getHeight() / 2f, paintIcon);
+		if(withShadow) {
+			canvas.drawBitmap(favBackground, bs.exactCenterX() - favBackground.getWidth() / 2f, bs.exactCenterY() - favBackground.getHeight() / 2f, paintBackground);
+			canvas.drawBitmap(favIcon, bs.exactCenterX() - favIcon.getWidth() / 2f, bs.exactCenterY() - favIcon.getHeight() / 2f, paintIcon);
+		} else {
+			int min = Math.min(bs.width(), bs.height());
+			int r = (min * 4 / 10);
+			int rs = (r - 1);
+			canvas.drawCircle(min / 2, min / 2, r, paintOuter);
+			canvas.drawCircle(min / 2, min / 2, rs, paintInnerCircle);
+			listDrawable.draw(canvas);
+		}
 	}
 
 	public void drawBitmapInCenter(Canvas canvas, int x, int y) {
 		int dx = x - getIntrinsicWidth() / 2;
 		int dy = y - getIntrinsicHeight() / 2;
+		canvas.translate(dx, dy);
+		draw(canvas);
+		canvas.translate(-dx, -dy);
+	}
+
+	public void drawBitmapInCenter(Canvas canvas, float x, float y) {
+		float dx = x - getIntrinsicWidth() / 2f;
+		float dy = y - getIntrinsicHeight() / 2f;
 		canvas.translate(dx, dy);
 		draw(canvas);
 		canvas.translate(-dx, -dy);
@@ -87,12 +133,12 @@ public class FavoriteImageDrawable extends Drawable {
 
 	private static TreeMap<Integer, FavoriteImageDrawable> cache = new TreeMap<>();
 
-	public static FavoriteImageDrawable getOrCreate(Context a, int color, float density) {
+	public static FavoriteImageDrawable getOrCreate(Context a, int color, boolean withShadow) {
 		color = color | 0xff000000;
-		int hash = (color << 2) + (int) (density * 6);
+		int hash = (color << 2) + (withShadow ? 1 : 0);
 		FavoriteImageDrawable drawable = cache.get(hash);
 		if (drawable == null) {
-			drawable = new FavoriteImageDrawable(a, color);
+			drawable = new FavoriteImageDrawable(a, color, withShadow);
 			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 			cache.put(hash, drawable);
 		}

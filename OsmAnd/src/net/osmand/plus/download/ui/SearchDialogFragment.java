@@ -3,7 +3,11 @@ package net.osmand.plus.download.ui;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.view.ContextThemeWrapper;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
-import android.widget.SearchView;
 
 import net.osmand.Collator;
 import net.osmand.OsmAndCollator;
@@ -49,7 +52,7 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 	private SearchListAdapter listAdapter;
 	private BannerAndDownloadFreeVersion banner;
 	private String searchText;
-	private SearchView search;
+	private SearchView searchView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +77,8 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 			searchText = "";
 
 		Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-		toolbar.setNavigationIcon(getMyApplication().getIconsCache().getIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+		toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+		toolbar.setNavigationContentDescription(R.string.access_shared_string_navigate_up);
 		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -100,17 +104,19 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 		listView.setOnItemClickListener(this);
 		listView.setAdapter(listAdapter);
 
-		search = new SearchView(getActivity());
+		TypedValue typedValue = new TypedValue();
+		getActivity().getTheme().resolveAttribute(R.attr.toolbar_theme, typedValue, true);
+		searchView = new SearchView(new ContextThemeWrapper(getActivity(), typedValue.data));
 		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		params.setMargins(0, 0, 0, 0);
-		search.setLayoutParams(params);
-		toolbar.addView(search);
+		searchView.setLayoutParams(params);
+		toolbar.addView(searchView);
 
-		search.setOnCloseListener(new SearchView.OnCloseListener() {
+		searchView.setOnCloseListener(new SearchView.OnCloseListener() {
 			@Override
 			public boolean onClose() {
-				if (search.getQuery().length() == 0) {
+				if (searchView.getQuery().length() == 0) {
 					dismiss();
 					return true;
 				}
@@ -118,13 +124,13 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 			}
 		});
 		
-		search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+		searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 			}
 		});
 
-		search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 			@Override
 			public boolean onQueryTextSubmit(String query) {
 				return false;
@@ -144,8 +150,9 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		setShowsDialog(true);
-		listView.setBackgroundColor(getResources().getColor(
-				getMyApplication().getSettings().isLightContent() ? R.color.bg_color_light : R.color.bg_color_dark));
+		final boolean isLightContent = getMyApplication().getSettings().isLightContent();
+		final int colorId = isLightContent ? R.color.bg_color_light : R.color.bg_color_dark;
+		listView.setBackgroundColor(ContextCompat.getColor(getActivity(), colorId));
 	}
 
 	@Override
@@ -181,9 +188,9 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 	@Override
 	public void onResume() {
 		super.onResume();
-		search.setIconified(false);
+		searchView.setIconified(false);
 		if (!Algorithms.isEmpty(searchText)) {
-			search.setQuery(searchText, true);
+			searchView.setQuery(searchText, true);
 		}
 	}
 
@@ -219,7 +226,7 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 		} else if (obj instanceof IndexItem) {
 			IndexItem indexItem = (IndexItem) obj;
 			ItemViewHolder vh = (ItemViewHolder) v.getTag();
-			View.OnClickListener ls = vh.getRightButtonAction(indexItem, vh.getClickAction(indexItem), null);
+			View.OnClickListener ls = vh.getRightButtonAction(indexItem, vh.getClickAction(indexItem));
 			ls.onClick(v);
 		}
 	}
@@ -289,7 +296,7 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 					convertView.setTag(viewHolder);
 				}
 				viewHolder.setShowTypeInDesc(true);
-				viewHolder.bindIndexItem(item, null);
+				viewHolder.bindIndexItem(item);
 			} else {
 				DownloadResourceGroup group = (DownloadResourceGroup) obj;
 				DownloadGroupViewHolder viewHolder;
@@ -330,8 +337,8 @@ public class SearchDialogFragment extends DialogFragment implements DownloadEven
 
 			private void processGroup(DownloadResourceGroup group, List<Object> filter, List<List<String>> conds) {
 				String name = null;
-				if (group.getRegion() != null && group.getRegion().getSearchText() != null) {
-					name = group.getRegion().getSearchText().toLowerCase();
+				if (group.getRegion() != null && group.getRegion().getRegionSearchText() != null) {
+					name = group.getRegion().getRegionSearchText().toLowerCase();
 				}
 				if (name == null) {
 					name = group.getName(ctx).toLowerCase();
