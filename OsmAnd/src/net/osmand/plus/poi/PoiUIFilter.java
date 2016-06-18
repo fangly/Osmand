@@ -55,9 +55,9 @@ public class PoiUIFilter implements SearchPoiTypeFilter, Comparable<PoiUIFilter>
 	
 	protected final OsmandApplication app;
 	
-	protected int distanceInd = 1;
+	protected int distanceInd = 0;
 	// in kilometers
-	protected double[] distanceToSearchValues = new double[] {1, 2, 5, 10, 20, 50, 100, 200, 500 };
+	protected double[] distanceToSearchValues = new double[] {1, 2, 5, 10, 20, 50, 100, 200, 500};
 	
 	private final MapPoiTypes poiTypes;
 	
@@ -152,10 +152,6 @@ public class PoiUIFilter implements SearchPoiTypeFilter, Comparable<PoiUIFilter>
 		return savedFilterByName;
 	}
 	
-	public List<Amenity> getCurrentSearchResult() {
-		return currentSearchResult;
-	}
-	
 	
 	public List<Amenity> searchAgain(double lat, double lon) {
 		List<Amenity> amenityList ;
@@ -177,24 +173,25 @@ public class PoiUIFilter implements SearchPoiTypeFilter, Comparable<PoiUIFilter>
 		MapUtils.sortListOfMapObject(amenityList, latitude, longitude);
 		return amenityList;
 	}
-	
+
 	private void initSearchAll(){
 		for(PoiCategory t : poiTypes.getCategories(false)){
 			acceptedTypes.put(t, null);
 		}
 		distanceToSearchValues = new double[] {0.5, 1, 2, 5, 10, 20, 50, 100};
 	}
-	
-	
+
 	public boolean isSearchFurtherAvailable(){
 		return distanceInd < distanceToSearchValues.length - 1;
 	}
-	
-	
-	
-	
-	public String getSearchArea(){
-		double val = distanceToSearchValues[distanceInd];
+
+	public String getSearchArea(boolean next) {
+		int distInd = distanceInd;
+		if (next && (distanceInd < distanceToSearchValues.length - 1)) {
+		//This is workaround for the SearchAmenityTask.onPreExecute() case
+			distInd = distanceInd + 1;
+		}
+		double val = distanceToSearchValues[distInd];
 		if(val >= 1){
 			return " < " + OsmAndFormatter.getFormattedDistance(((int)val * 1000), app);  //$NON-NLS-1$//$NON-NLS-2$
 		} else {
@@ -218,6 +215,9 @@ public class PoiUIFilter implements SearchPoiTypeFilter, Comparable<PoiUIFilter>
 		if (amenityList.size() == 0 && isAutomaticallyIncreaseSearch()) {
 			int step = 5;
 			while (amenityList.size() == 0 && step-- > 0 && isSearchFurtherAvailable()) {
+				if (matcher != null && matcher.isCancelled()) {
+					break;
+				}
 				amenityList = searchFurther(lat, lon, matcher);
 			}
 		}

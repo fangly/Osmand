@@ -283,7 +283,7 @@
     <string name="tts_language_not_supported_title">Nepodporovaný jazyk</string>
     <string name="tts_language_not_supported">Zvolený jazyk nie je podporovaný nainštalovaným TTS (text-to-speech) v Androide. Chcete ísť na Market pozrieť iný TTS? Inak bude použitý prednastavený TTS jazyk.</string>
     <string name="tts_missing_language_data_title">Chýbajúce údaje</string>
-    <string name="tts_missing_language_data">Nie sú nainštalované údaje pre zvolený jazyk. Chcete ich inštalovať z Marketu?</string>
+    <string name="tts_missing_language_data">Nie sú nainštalované údaje pre zvolený jazyk. Chcete ich inštalovať z Obchodu?</string>
     <string name="gpx_option_reverse_route">Obrátiť GPX smerovanie</string>
     <string name="gpx_option_destination_point">Použiť aktuálny cieľový bod</string>
     <string name="gpx_option_from_start_point">Prejsť pozdĺž celej trasy</string>
@@ -318,8 +318,8 @@
     <string name="system_locale">Systémový</string>
     <string name="preferred_locale_descr">Zmeniť zobrazovaný jazyk (po zmene je potrebné reštartovať OsmAnd)</string>
     <string name="preferred_locale">Jazyk zobrazenia</string>
-    <string name="unit_of_length_descr">Zmena jednotiek dĺžky a rýchlosti</string>
-    <string name="unit_of_length">Jednotky dĺžky</string>
+    <string name="unit_of_length_descr">Zmeniť jednotky dĺžky</string>
+    <string name="unit_of_length">Jednotka dĺžky</string>
     <string name="si_mi_foots">Míle/stopy</string>
     <string name="si_mi_yard">Míle/yardy</string>
     <string name="si_km_m">Kilometre/metre</string>
@@ -493,7 +493,7 @@
     <string name="voice_data_not_supported">Nepodporovaná verzia hlasových údajov</string>
     <string name="voice_data_corrupted">Vybrané hlasové údaje sú poškodené</string>
     <string name="voice_data_unavailable">Aktuálne hlasové údaje nie sú dostupné</string>
-    <string name="sd_unmounted">SD karta nie je prístupná.\nNebudete schopný vidieť mapu alebo niečo nájsť.</string>
+    <string name="sd_unmounted">SD karta nie je prístupná.\nNebudete môcť vidieť mapu alebo niečo nájsť.</string>
     <string name="sd_mounted_ro">SD karta je iba na čítanie.\nMôžete iba vidieť prednačítanú mapu a nemôžete sťahovať z internetu.</string>
     <string name="unzipping_file">Rozbaľuje sa súbor…</string>
     <string name="route_tr">Odbočte doprava a pokračujte</string>
@@ -787,8 +787,8 @@
     <string name="use_compass_navigation">Použiť kompas</string>
     <string name="route_updated_loc_found">Cesta bude prepočítaná, keď sa nájde umiestnenie</string>
     <string name="continue_follow_previous_route_auto">Predošlá navigácia nebola dokončená. Pokračovať v jej nasledovaní? (%1$s sekúnd)</string>
-    <string name="show_cameras">Radary</string>
-    <string name="show_traffic_warnings">Rýchlostné obmedzenia</string>
+    <string name="show_cameras">Rýchlostné radary</string>
+    <string name="show_traffic_warnings">Rýchlostné varovania</string>
     <string name="avoid_toll_roads">Vyhnúť sa spoplatneným cestám</string>
     <string name="screen_is_locked">Na odomknutie obrazovky, kliknite na ikonu zámky</string>
     <string name="bg_service_screen_unlock">Odomknúť obrazovku</string>
@@ -849,7 +849,7 @@
     <string name="recording_error">Vyskytla sa chyba pri nahrávaní </string>
     <string name="recording_camera_not_available">Fotoaparát nie je k dispozícii</string>
     <string name="recording_is_recorded">Zvuk/video sa zaznamenáva. Záznam môžete zastaviť stlačením stop tlačidla na widgete.</string>
-    <string name="recording_playing">Je prehrávaný zvuk zo zadaného záznamu.\n%1$s</string>
+    <string name="recording_playing">Prehráva sa zvuk zo zadaného záznamu.\n%1$s</string>
     <string name="recording_open_external_player">Otvoriť externý prehrávač</string>
     <string name="recording_delete_confirm">Chcete odstrániť tento záznam?</string>
     <string name="recording_unavailable">nedostupné</string>
@@ -1294,8 +1294,8 @@
     <string name="lang_ar">Arabsky</string>
     <string name="lang_sc">Sardínsky</string>
     <string name="lang_sr">Srbsky</string>
-    <string name="lang_zh_CN">Zjednodušená čínština</string>
-    <string name="lang_zh_TW">Tradičná čínština</string>
+    <string name="lang_zh_CN">Čínština (Zjednodušená)</string>
+    <string name="lang_zh_TW">Čínština (Tradičná)</string>
     <string name="continue_navigation">Pokračovať v navigácii</string>
     <string name="pause_navigation">Pozastaviť navigáciu</string>
     <string name="rendering_attr_alpineHiking_name">Alpinistická stupnica (SAC)</string>
@@ -1408,8 +1408,8 @@
     <string name="rendering_value_germanRoadAtlas_name">Nemecký atlas ciest</string>
     <string name="traffic_warning_railways">Železničné priecestie</string>
     <string name="traffic_warning_pedestrian">Priechod pre chodcov</string>
-    <string name="show_railway_warnings">Zobrazovať varovania železnice</string>
-    <string name="show_pedestrian_warnings">Zobrazovať varovania chodcov</string>
+    <string name="show_railway_warnings">Železničné priecestia</string>
+    <string name="show_pedestrian_warnings">Priechody pre chodcov</string>
     <string name="rendering_value_americanRoadAtlas_name">Americký atlas ciest</string>
     <string name="routing_attr_no_new_routing_name">Bez smerovacích pravidiel verzie 1.9</string>
     <string name="routing_attr_no_new_routing_description">Nepoužívať pravidlá výpočtu trasy zavedené vo verzii 1.9</string>
@@ -1621,8 +1621,8 @@
     <string name="disable_recording_once_app_killed_descrp">Zastaví záznam GPX keď je aplikácia ukončená (cez nedávne aplikácie). (Ikona režimu na pozadí zmizne z notifikačnej oblasti Androidu.)</string>
     <string name="archive_wikipedia_data">Máte stiahnuté staré nekompatibilné dáta z Wikipedie. Chcete ich archivovať?</string>
     <string name="download_wikipedia_files">Chcete stiahnuť ďalšie dáta z Wikipedie (%1$s MB) ?</string>
-    <string name="lang_es_ar">Argentínska Španielčina</string>
-    <string name="lang_nb">Nórsky Bokmål</string>
+    <string name="lang_es_ar">Španielsky (Argentínska)</string>
+    <string name="lang_nb">Nórsky (Bokmål)</string>
     <string name="lang_vo">Volapuk</string>
     <string name="lang_th">Thajsky</string>
     <string name="lang_te">Telugsky</string>
@@ -1731,8 +1731,8 @@
     <string name="roads">Cesty</string>
     <string name="favorite_category_add_new">Pridať nový</string>
     <string name="favorite_category_select">Zvoľte kategóriu</string>
-    <string name="default_speed_system_descr">Zvoľte spôsob merania rýchlosti</string>
-    <string name="default_speed_system">Meranie rýchlosti</string>
+    <string name="default_speed_system_descr">Zvoľte jednotku rýchlosti</string>
+    <string name="default_speed_system">Jednotka rýchlosti</string>
     <string name="nm">nmi</string>
     <string name="si_nm">Námorné míle</string>
     <string name="si_kmh">Kilometre za hodinu</string>
@@ -2042,4 +2042,13 @@
     <string name="move_marker_bottom_sheet_title">Posuňte mapu pre zmenu pozície značky</string>
     <string name="lat_lon_pattern">Šírka: %1$.6f Dĺžka: %2$.6f</string>
     <string name="lang_hu_formal">Maďarsky (formálne)</string>
+    <string name="current_track">Súčasná stopa</string>
+    <string name="change_markers_position">Zmeniť polohu značky</string>
+    <string name="lang_es_us">Španielsky (Americká)</string>
+    <string name="lang_be_BY">Bielorusky (Latinka)</string>
+    <string name="lang_kn">Kannada</string>
+    <string name="lang_en_gb">Anglicky (Veľká Británia)</string>
+    <string name="lang_ast">Astúrsky</string>
+    <string name="app_mode_bus">Autobus</string>
+ 	<string name="app_mode_train">Vlak</string>
     </resources>

@@ -491,7 +491,7 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
 
 	<string name="shared_string_next">Weiter</string>
 	<string name="shared_string_previous">Zurück</string>
-	<string name="unit_of_length_descr">Längen- und Geschwindigkeitseinheiten auswählen</string>
+	<string name="unit_of_length_descr">Längeneinheiten auswählen</string>
 	<string name="unit_of_length">Längeneinheiten</string>
 	<string name="si_mi_foots">Meilen/Fuß</string>
 	<string name="si_mi_yard">Meilen/Yards</string>
@@ -965,8 +965,8 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
 	<string name="route_updated_loc_found">Route wird neu berechnet sobald Standort ermittelt</string>
 	<string name="continue_follow_previous_route_auto">Vorherige Navigation wurde nicht beendet. Der Route weiter folgen? (%1$s Sekunden)</string>
 
-	<string name="show_cameras">Radarfallen anzeigen</string>
-	<string name="show_traffic_warnings">Verkehrswarnungen anzeigen</string>
+	<string name="show_cameras">Radarfallen</string>
+	<string name="show_traffic_warnings">Verkehrswarnungen</string>
 	<string name="avoid_toll_roads">Mautstraßen vermeiden</string>
 	<string name="map_widget_top_text">Straßenname</string>
 	<string name="map_widget_config">Konfiguration</string>
@@ -996,7 +996,7 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
 	<string name="map_widget_renderer">Kartendarstellung</string>
 
 	<string name="layer_map_appearance">Anzeige konfigurieren</string>
-	<string name="show_lanes">Fahrspuren anzeigen</string>
+	<string name="show_lanes">Fahrspuren</string>
 	<string name="avoid_unpaved">Vermeide unbefestigte Straßen</string>
 	<string name="avoid_ferries">Vermeide Fähren</string>
 	<string name="avoid_in_routing_title">Vermeide …</string>
@@ -1608,8 +1608,8 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
     <string name="rendering_value_highContrastRoads_name">Kontrastreiche Straßen</string>
     <string name="traffic_warning_railways">Bahnübergang</string>
     <string name="traffic_warning_pedestrian">Fußgängerübergang</string>
-    <string name="show_railway_warnings">Eisenbahnübergänge anzeigen</string>
-    <string name="show_pedestrian_warnings">Fußgängerübergänge anzeigen</string>
+    <string name="show_railway_warnings">Eisenbahnübergänge</string>
+    <string name="show_pedestrian_warnings">Fußgängerübergänge</string>
     <string name="rendering_value_americanRoadAtlas_name">Amerikanischer Straßenatlas</string>
     <string name="routing_attr_no_new_routing_name">Routing-Regeln v1.9 nicht verwenden</string>
     <string name="routing_attr_no_new_routing_description">Neuen Routenalgorithmus aus v1.9 nicht verwenden</string>
@@ -1781,7 +1781,7 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
     <string name="lang_lb">Luxemburgisch</string>
     <string name="lang_os">Ossetisch</string>
     <string name="lang_eo">Esperanto</string>
-    <string name="lang_nb">Norwegische Buchsprache</string>
+    <string name="lang_nb">Norwegisch (Buchsprache)</string>
     <string name="lang_nn">Norwegisch (Neunorwegisch)</string>
     <string name="rendering_value_default13_name">Standard (13)</string>
 	<string name="rendering_value_defaultTranslucentCyan_name">Standard (transparentes Cyan)</string>
@@ -1891,8 +1891,8 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
     <string name="favorite_category_add_new_title">Neue Kategorie hinzufügen</string>
     <string name="srtm_plugin_disabled">Höhenlinien deaktiviert</string>
     <string name="favorite_category_select">Kategorie auswählen</string>
-    <string name="default_speed_system_descr">System zur Geschwindigkeitsmessung eingeben</string>
-    <string name="default_speed_system">Geschwindigkeitsmessung</string>
+    <string name="default_speed_system_descr">Geschwindigkeitseinheit auswählen</string>
+    <string name="default_speed_system">Geschwindigkeitseinheit</string>
     <string name="nm">sm</string>
     <string name="nm_h">sm/h</string>
     <string name="min_mile">min/m</string>
@@ -1977,7 +1977,7 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
     <string name="use_dashboard_btn">Dashboard verwenden</string>
     <string name="use_drawer_btn">Menü verwenden</string>
     <string name="dashboard_or_drawer_title">Auswahl der App-Bedienung</string>
-    <string name="dashboard_or_drawer_description">Es ist nun auswählbar, ob die App primär über das flexible Dashboard oder über ein statisches Menü bedient werden soll(Jederzeit in den Dashboard-Einstellungen änderbar)</string>
+    <string name="dashboard_or_drawer_description">Es ist nun auswählbar, ob die App primär über das flexible Dashboard oder über ein statisches Menü bedient werden soll. Diese Entscheidung kann jederzeit in den Dashboard-Einstellungen geändert werden.</string>
     <string name="access_from_map">Aufruf von der Karte aus</string>
     <string name="favorite_category_add_new">neu erstellen</string>
     <string name="next_proceed">Weiter</string>
@@ -2161,7 +2161,14 @@ Für Hilfe mit der OsmAnd-App kontaktieren Sie bitte unser Support-Team unter su
     <string name="follow_us">Folge uns</string>
     <string name="use_osm_live_routing_description">Navigation für OSM-Live Änderungen aktivieren (Beta)</string>
 	<string name="access_direction_audio_feedback">Richtung Audio Feedback</string>
-    <string name="access_direction_audio_feedback_descr">Zeige Richtung des Zielpunkt durch Ton</string>
-    <string name="access_direction_haptic_feedback">Richtung haptisches Feedback</string>
+    <string name="access_direction_audio_feedback_descr">Zeige Richtung des Zielpunktes durch Ton</string>
+    <string name="access_direction_haptic_feedback">Richtung angeben über haptisches Feedback</string>
     <string name="access_direction_haptic_feedback_descr">Zeige Richtung des Zielpunkt durch Vibration</string>
-</resources>
+<string name="change_markers_position">Position des Markers ändern</string>
+    <string name="current_track">Aktueller Track</string>
+    <string name="lang_es_us">Spanisch (Amerikanisch)</string>
+    <string name="lang_be_BY">Weißrussisch (Lateinische Schrift)</string>
+    <string name="lang_kn">Kannada</string>
+    <string name="lang_en_gb">Englisch (Vereinigtes Königreich)</string>
+    <string name="lang_ast">asturisch</string>
+    </resources>

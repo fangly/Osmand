@@ -115,7 +115,7 @@
     <string name="poi_filter_food_shop">Fødevarebutik</string>
     <string name="poi_filter_for_tourists">For turister</string>
     <string name="poi_filter_fuel">Brændstof</string>
-    <string name="show_warnings_title">Vis alarmer…</string>
+    <string name="show_warnings_title">Vis advarsler…</string>
     <string name="show_warnings_descr">Konfigurer trafikadvarsler (hastighedsgrænser, tvungne stop, vejbump), fartkameraadvarsler og vognbane oplysninger</string>
     <string name="use_compass_navigation_descr">Brug kompasset, når ingen retning er registret</string>
     <string name="use_compass_navigation">Kompas</string>
@@ -699,8 +699,8 @@
     <string name="incomplete_locale">ufuldstændig</string>
 
 
-    <string name="unit_of_length_descr">Ændre enheder for afstand og hastighed</string>
-    <string name="unit_of_length">Måleenhed</string>
+    <string name="unit_of_length_descr">Vælg enhed for afstand</string>
+    <string name="unit_of_length">Afstand</string>
     <string name="si_mi_foots">Mil/fod</string>
     <string name="si_mi_yard">Mil/yards</string>
     <string name="si_km_m">Kilometer/meter</string>
@@ -1552,8 +1552,8 @@
     <string name="lang_al">Albansk</string>
     <string name="lang_ar">Arabisk</string>
     <string name="lang_sr">Serbisk</string>
-    <string name="lang_zh_CN">Kinesisk, forenklet</string>
-    <string name="lang_zh_TW">Kinesisk, traditionelt</string>
+    <string name="lang_zh_CN">Kinesisk (forenklet)</string>
+    <string name="lang_zh_TW">Kinesisk (traditionelt)</string>
     <string name="lang_sc">Sardisk</string>
     <string name="rendering_attr_subwayMode_name">Metroruter</string>
     <string name="continue_navigation">Fortsæt navigation</string>
@@ -1916,8 +1916,8 @@
     <string name="lang_gl">Galicisk</string>
     <string name="lang_et">Estisk</string>
     <string name="lang_ceb">Cebuano</string>
-    <string name="lang_nb">Norsk</string>
-    <string name="lang_es_ar">Argentinsk spansk</string>
+    <string name="lang_nb">Norsk (Bokmål)</string>
+    <string name="lang_es_ar">Spansk (Argentinsk)</string>
     <string name="light_theme">Lyst</string>
     <string name="dark_theme">Mørkt</string>
     <string name="lang_pms">Piemontisk</string>
@@ -2021,7 +2021,7 @@
     <string name="shared_string_trip_recording">Optag ture</string>
     <string name="shared_string_navigation">Navigation</string>
     <string name="osmand_running_in_background">Kører i baggrunden</string>
-    <string name="default_speed_system">Hastighedsmåling</string>
+    <string name="default_speed_system">Hastighed</string>
     <string name="nm">nmi</string>
     <string name="si_nm">Sømil</string>
     <string name="si_kmh">Kilometer i timen</string>
@@ -2372,4 +2372,11 @@
     <string name="lang_hu_formal">Ungarsk (formel)</string>
     <string name="current_track">Aktuelt spor</string>
     <string name="change_markers_position">Ændre markørens position</string>
+    <string name="lang_es_us">Spansk (Amerikansk)</string>
+    <string name="lang_be_BY">Hviderussisk (Latin)</string>
+    <string name="lang_kn">Kannada</string>
+    <string name="lang_en_gb">Engelsk (Storbritannien)</string>
+    <string name="lang_ast">Asturisk</string>
+    <string name="app_mode_bus">Bus</string>
+ 	<string name="app_mode_train">Tog</string>
     </resources>

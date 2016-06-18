@@ -117,6 +117,8 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 	private MenuItem searchPOILevel;
 	private static int RESULT_REQUEST_CODE = 54;
 
+	private CharSequence tChange;
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu omenu) {
 		Menu menu = getClearToolbar(true).getMenu();
@@ -179,8 +181,17 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 						MenuItemCompat.SHOW_AS_ACTION_IF_ROOM);
 			}
 		}
-		updateButtonState();
+		updateButtonState(false);
 		return true;
+	}
+
+	@Override
+	protected void onDestroy() {
+	// Issue 2657
+		super.onDestroy();
+		if (!(currentSearchTask == null || currentSearchTask.getStatus() == Status.FINISHED)) {
+			currentSearchTask.cancel(true);
+		}
 	}
 
 	public Toolbar getClearToolbar(boolean visible) {
@@ -198,7 +209,7 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 					.show();
 			return true;
 		}
-		if (isNameSearch() && !Algorithms.objectEquals(filter.getFilterByName(), query)) {
+		if ((isNameSearch() && !Algorithms.objectEquals(filter.getFilterByName(), query)) ) {
 			filter.clearPreviousZoom();
 			filter.setFilterByName(query);
 			runNewSearchQuery(location, NEW_SEARCH_INIT);
@@ -228,7 +239,11 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 		searchFilter.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void afterTextChanged(Editable s) {
-				changeFilter(s);
+				tChange = s;
+				// Issue #2667 (3)
+				if (currentSearchTask == null) {
+					changeFilter(tChange);
+				}
 			}
 
 			@Override
@@ -296,7 +311,7 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 	@Override
 	protected void onResume() {
 		super.onResume();
-		updateButtonState();
+		updateButtonState(false);
 		if (filter != null) {
 			String text = filter.getFilterByName() != null ? filter.getFilterByName() : "";
 			searchFilter.setText(text);
@@ -325,7 +340,7 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 			filter.setFilterByName(queue.toString());
 			runNewSearchQuery(location, SEARCH_AGAIN);
 		}
-		updateButtonState();
+		updateButtonState(false);
 	}
 	
 
@@ -417,20 +432,26 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 		}
 	}
 
-	private void updateButtonState() {
+	private void updateButtonState(boolean next) {
 		if (showFilterItem != null) {
 			showFilterItem.setVisible(filter != null && !isNameSearch());
 		}
 		if (filter != null) {
 			int maxLength = 24;
 			String name = filter.getGeneratedName(maxLength);
+
+			// Next displays the actual query term instead of the generic "Seach by name", can be enabled for debugging or in general
+			if (isNameSearch()) {
+				name = "'" + filter.getFilterByName() + "'";
+			}
+
 			if(name.length() >= maxLength) {
 				name = name.substring(0, maxLength) + getString(R.string.shared_string_ellipsis);
 			}
 			if(filter instanceof NominatimPoiFilter && !((NominatimPoiFilter) filter).isPlacesQuery()) {
 				// nothing to add
 			} else {
-				name += " " + filter.getSearchArea();
+				name += " " + filter.getSearchArea(next);
 			}
 			getSupportActionBar().setTitle(name);
 		}
@@ -440,8 +461,11 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 			boolean enabled = taskAlreadyFinished && location != null && 
 					filter != null && filter.isSearchFurtherAvailable();
 			if(isNameSearch() && !Algorithms.objectEquals(searchFilter.getText().toString(), filter.getFilterByName())) {
-				enabled = true;
 				title = R.string.search_button;
+				// Issue #2667 (2)
+				if (currentSearchTask == null) {
+					enabled = true;
+				}
 			}
 			searchPOILevel.setEnabled(enabled);
 			searchPOILevel.setTitle(title);
@@ -449,7 +473,7 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 	}
 
 	private synchronized void runNewSearchQuery(net.osmand.Location location, int requestType) {
-		if (currentSearchTask == null || currentSearchTask.getStatus() == Status.FINISHED ) {
+		if (currentSearchTask == null || currentSearchTask.getStatus() == Status.FINISHED) {
 			currentSearchTask = new SearchAmenityTask(location, requestType);
 			currentSearchTask.execute();
 		}
@@ -497,10 +521,9 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 			final int top = (v == null) ? 0 : v.getTop();
 			amenityAdapter.notifyDataSetChanged();
 			lv.setSelectionFromTop(index, top);
-			updateButtonState();
+			updateButtonState(false);
 			navigationInfo.updateLocation(location);
 		}
-
 	}
 
 	@Override
@@ -592,7 +615,6 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 		public SearchAmenityTask(net.osmand.Location location, int requestType) {
 			this.searchLocation = location;
 			this.requestType = requestType;
-
 		}
 
 		net.osmand.Location getSearchedLocation() {
@@ -615,6 +637,7 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 					updateExisting.add(getAmenityId(a));
 				}
 			}
+			updateButtonState(requestType == SEARCH_FURTHER);
 		}
 
 		private long getAmenityId(Amenity a) {
@@ -625,7 +648,7 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 		protected void onPostExecute(List<Amenity> result) {
 			setSupportProgressBarIndeterminateVisibility(false);
 			currentSearchTask = null;
-			updateButtonState();
+			updateButtonState(false);
 			if (isNameSearch()) {
 				if (isNominatimFilter() && !Algorithms.isEmpty(((NominatimPoiFilter) filter).getLastError())) {
 					Toast.makeText(SearchPOIActivity.this, ((NominatimPoiFilter) filter).getLastError(),
@@ -638,8 +661,13 @@ public class SearchPOIActivity extends OsmandListActivity implements OsmAndCompa
 			} else {
 				amenityAdapter.setNewModel(result);
 			}
+			// Issue #2667 (1)
+			if (tChange != null) {
+				changeFilter(tChange);
+				tChange = null;
+			}
+			amenityAdapter.notifyDataSetChanged();
 			lastSearchedLocation = searchLocation;
-			
 		}
 
 		@Override

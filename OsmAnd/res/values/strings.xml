@@ -9,7 +9,8 @@
          3. All your modified/created strings are in the top of the file (to make easier find what\'s translated).
     PLEASE: Have a look at http://code.google.com/p/osmand/wiki/UIConsistency, it may really improve your and our work  :-)  Thx - Hardy
     -->
-
+  	<string name="app_mode_bus">Bus</string>
+ 	<string name="app_mode_train">Train</string>
     <string name="current_track">Current track</string>
     <string name="map_widget_battery">Battery level</string>
     <string name="change_markers_position">Change marker\'s position</string>
@@ -285,8 +286,8 @@
     <string name="srtm_plugin_disabled">Contour lines disabled</string>
     <string name="favorite_category_add_new">Add new</string>
     <string name="favorite_category_select">Select category</string>
-    <string name="default_speed_system_descr">Define speed measurement system</string>
-    <string name="default_speed_system">Speed measurement</string>
+    <string name="default_speed_system_descr">Define unit of speed</string>
+    <string name="default_speed_system">Unit of speed</string>
     <string name="nm">nmi</string>
     <string name="si_nm">Nautical miles</string>
     <string name="si_kmh">Kilometers per hour</string>
@@ -361,8 +362,9 @@
     <string name="lang_lb">Luxembourgish</string>
     <string name="lang_os">Ossetian</string>
     <string name="lang_eo">Esperanto</string>
-    <string name="lang_es_ar">Argentinean Spanish</string>
-    <string name="lang_nb">Norwegian Bokmål</string>
+    <string name="lang_es_us">Spanish (American)</string>
+    <string name="lang_es_ar">Spanish (Argentinian)</string>
+    <string name="lang_nb">Norwegian (Bokmål)</string>
     <string name="lang_vo">Volapuk</string>
     <string name="lang_th">Thai</string>
     <string name="lang_te">Telugu</string>
@@ -373,6 +375,7 @@
     <string name="lang_gl">Galician</string>
     <string name="lang_et">Estonian</string>
     <string name="lang_ceb">Cebuano</string>
+    <string name="lang_ast">Asturian</string>
     <string name="archive_wikipedia_data">You have old incompatible Wikipedia data downloaded. Do you want to archive it?</string>
     <string name="download_wikipedia_files">Do you want to download additional Wikipedia data (%1$s MB) ?</string>
     <string name="gps_network_not_enabled">Location service is not enabled. Do you want to turn it on?</string>
@@ -608,8 +611,8 @@
     <string name="rendering_value_highContrastRoads_name">High contrast roads</string>
     <string name="traffic_warning_railways">Railroad crossing</string>
     <string name="traffic_warning_pedestrian">Pedestrian crosswalk</string>
-    <string name="show_railway_warnings">Show railroad crossings</string>
-    <string name="show_pedestrian_warnings">Show pedestrian crosswalks</string>
+    <string name="show_railway_warnings">Railroad crossings</string>
+    <string name="show_pedestrian_warnings">Pedestrian crosswalks</string>
     <string name="rendering_value_americanRoadAtlas_name">American road atlas</string>
     <string name="routing_attr_no_new_routing_name">No v1.9 routing rules</string>
     <string name="routing_attr_no_new_routing_description">Do not use routing rules introduced in v1.9</string>
@@ -876,12 +879,14 @@
     <string name="lang_zh">Chinese</string>
     <string name="lang_pt_br">Portuguese (Brazil)</string>
     <string name="lang_en">English</string>
+    <string name="lang_en_gb">English (United Kingdom)</string>
     <string name="lang_af">Afrikaans</string>
     <string name="lang_al">Albanian</string>
     <string name="lang_ar">Arabic</string>
     <string name="lang_hy">Armenian</string>
     <string name="lang_eu">Basque</string>
     <string name="lang_be">Belarusian</string>
+    <string name="lang_be_BY">Belarusian (Latin)</string>
     <string name="lang_bs">Bosnian</string>
     <string name="lang_bg">Bulgarian</string>
     <string name="lang_ca">Catalan</string>
@@ -901,6 +906,7 @@
     <string name="lang_id">Indonesian</string>
     <string name="lang_it">Italian</string>
     <string name="lang_ja">Japanese</string>
+    <string name="lang_kn">Kannada</string>
     <string name="lang_ko">Korean</string>
     <string name="lang_lv">Latvian</string>
     <string name="lang_lt">Lithuanian</string>
@@ -913,12 +919,12 @@
     <string name="lang_ru">Russian</string>
     <string name="lang_sc">Sardinian</string>
     <string name="lang_sr">Serbian</string>
-    <string name="lang_zh_CN">Simplified Chinese</string>
+    <string name="lang_zh_CN">Chinese (Simplified)</string>
     <string name="lang_sk">Slovak</string>
     <string name="lang_sl">Slovenian</string>
     <string name="lang_es">Spanish</string>
     <string name="lang_sv">Swedish</string>
-    <string name="lang_zh_TW">Traditional Chinese</string>
+    <string name="lang_zh_TW">Chinese (Traditional)</string>
     <string name="lang_tr">Turkish</string>
     <string name="lang_uk">Ukrainian</string>
     <string name="lang_vi">Vietnamese</string>
@@ -1209,7 +1215,7 @@
     <string name="poi_filter_food_shop">Food shop</string>
     <string name="poi_filter_for_tourists">For tourists</string>
     <string name="poi_filter_fuel">Fuel</string>
-    <string name="show_warnings_title">Show alarms…</string>
+    <string name="show_warnings_title">Show alerts…</string>
     <string name="show_warnings_descr">Configure traffic warnings (speed limits, forced stops, speed bumps), speed camera warnings, and lane information</string>
     <string name="use_compass_navigation_descr">Use the compass when no heading is detected otherwise</string>
     <string name="use_compass_navigation">Use compass</string>
@@ -1467,7 +1473,7 @@ If you need help with OsmAnd application, please contact our support team: suppo
     <string name="day_night_info">Day/night info</string>
     <string name="map_widget_renderer">Map style</string>
     <string name="layer_map_appearance">Configure screen</string>
-    <string name="show_lanes">Show lanes</string>
+    <string name="show_lanes">Lanes</string>
     <string name="avoid_unpaved">Avoid unpaved roads</string>
     <string name="avoid_ferries">Avoid ferries</string>
     <string name="avoid_in_routing_title">Avoid…</string>
@@ -1501,8 +1507,8 @@ If you need help with OsmAnd application, please contact our support team: suppo
     <string name="bg_service_screen_unlock">Unlock screen</string>
     <string name="bg_service_screen_lock_toast">The screen is locked</string>
     <string name="bg_service_interval">Set wake-up interval:</string>
-    <string name="show_cameras">Show speed cameras</string>
-    <string name="show_traffic_warnings">Show traffic warnings</string>
+    <string name="show_cameras">Speed cameras</string>
+    <string name="show_traffic_warnings">Traffic warnings</string>
     <string name="avoid_toll_roads">Avoid toll roads</string>
     <string name="continue_follow_previous_route_auto">Previous navigation was unfinished. Continue following it? (%1$s seconds)</string>
     <string name="route_updated_loc_found">Route will be calculated once position is found</string>
@@ -1837,8 +1843,8 @@ If you need help with OsmAnd application, please contact our support team: suppo
     <string name="preferred_locale_descr">Select display language (please restart OsmAnd after changing)</string>
     <string name="preferred_locale">Display language</string>
     <string name="incomplete_locale">incomplete</string>
-    <string name="unit_of_length_descr">Change units of length and speed</string>
-    <string name="unit_of_length">Unit of measure</string>
+    <string name="unit_of_length_descr">Change units of length</string>
+    <string name="unit_of_length">Unit of length</string>
     <string name="si_mi_foots">Miles/feet</string>
     <string name="si_mi_yard">Miles/yards</string>
     <string name="si_km_m">Kilometers/meters</string>

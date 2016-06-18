@@ -165,6 +165,8 @@ public class MapActivity extends OsmandActionBarActivity implements DownloadEven
 	private boolean permissionAsked;
 	private boolean permissionGranted;
 
+	private boolean mIsDestroyed = false;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		long tm = System.currentTimeMillis();
@@ -276,6 +278,8 @@ public class MapActivity extends OsmandActionBarActivity implements DownloadEven
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 		screenOffReceiver = new ScreenOffReceiver();
 		registerReceiver(screenOffReceiver, filter);
+
+		mIsDestroyed = false;
 	}
 
 
@@ -535,7 +539,7 @@ public class MapActivity extends OsmandActionBarActivity implements DownloadEven
 						gpxImportHelper.handleFileImport(data, new File(data.getPath()).getName());
 						setIntent(null);
 					} else if ("content".equals(scheme)) {
-						gpxImportHelper.handleContenImport(data);
+						gpxImportHelper.handleContentImport(data);
 						setIntent(null);
 					} else if ("google.navigation".equals(scheme) || "osmand.navigation".equals(scheme)) {
 						parseNavigationIntent(data);
@@ -727,7 +731,7 @@ public class MapActivity extends OsmandActionBarActivity implements DownloadEven
 				tb.setPixelDimensions(tbw, tbh);
 
 				tb.setLatLonCenter(latLonToShow.getLatitude(), latLonToShow.getLongitude());
-				while (!tb.containsLatLon(prevCenter.getLatitude(), prevCenter.getLongitude())) {
+				while (!tb.containsLatLon(prevCenter.getLatitude(), prevCenter.getLongitude()) && tb.getZoom() > 10) {
 					tb.setZoom(tb.getZoom() - 1);
 				}
 				//mapContextMenu.setMapZoom(settings.getMapZoomToShow());
@@ -791,11 +795,11 @@ public class MapActivity extends OsmandActionBarActivity implements DownloadEven
 
 		final int newZoom = mapView.getZoom() + stp;
 		final double zoomFrac = mapView.getZoomFractionalPart();
-		if (newZoom > 22) {
+		if (newZoom > mapView.getMaxZoom()) {
 			Toast.makeText(this, R.string.edit_tilesource_maxzoom, Toast.LENGTH_SHORT).show(); //$NON-NLS-1$
 			return;
 		}
-		if (newZoom < 1) {
+		if (newZoom < mapView.getMinZoom()) {
 			Toast.makeText(this, R.string.edit_tilesource_minzoom, Toast.LENGTH_SHORT).show(); //$NON-NLS-1$
 			return;
 		}
@@ -868,6 +872,7 @@ public class MapActivity extends OsmandActionBarActivity implements DownloadEven
 		if (atlasMapRendererView != null) {
 			atlasMapRendererView.handleOnDestroy();
 		}
+		mIsDestroyed = true;
 	}
 
 	private void cancelNotification() {
@@ -1341,6 +1346,8 @@ public class MapActivity extends OsmandActionBarActivity implements DownloadEven
 
 	@Override
 	public void routeWasFinished() {
-		DestinationReachedMenu.show(this);
+		if (!mIsDestroyed) {
+			DestinationReachedMenu.show(this);
+		}
 	}
 }

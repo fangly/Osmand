@@ -2,12 +2,12 @@
 <resources>
   
   <string name="layer_map_appearance">Configureer scherm</string>
-  <string name="show_lanes">Toon rijstroken</string>
+  <string name="show_lanes">Rijstroken</string>
   <string name="avoid_unpaved">Vermijd onverharde wegen</string>
   <string name="avoid_ferries">Vermijd veerboten</string>
   <string name="avoid_in_routing_title">Vermijd…</string>
   <string name="avoid_in_routing_descr">Wel of geen tolwegen, onverharde wegen, veerboten</string>
-  <string name="show_warnings_title">Toon waarschuwing…</string>
+  <string name="show_warnings_title">Toon waarschuwingen…</string>
   <string name="show_warnings_descr">Wel of geen rijstroken, snelheidslimieten, snelheidscamera\'s en verkeersdrempels</string>
   <string name="map_widget_fluorescent">Fluorescerende routes</string>
   <string name="map_widget_show_ruler">Schaalaanduiding</string>
@@ -132,7 +132,7 @@
   <string name="amenity_type_osmwiki">Wikipedia (offline)</string>
   <string name="amenity_type_user_defined">Zelfgedefinieerd</string>
   <string name="fav_export_confirmation">Er is al een bestand met geëxporteerde favorieten. Wil je dat bestand overschrijven?</string>
-  <string name="profile_settings">Instellingen voor profiel ..</string>
+  <string name="profile_settings">Instellingen voor profiel…</string>
   <string name="settings_preset">Standaardprofiel</string>
   <string name="settings_preset_descr">Kaart- en navigatieinstellingen worden per profiel onthouden. Kies hier het standaardprofiel.</string>
   
@@ -140,7 +140,7 @@
   <string name="routing_settings">Navigatie</string>
   <string name="routing_settings_descr">Opties voor navigatie</string>
   <string name="global_settings">Algemene instellingen</string>
-  <string name="index_settings">Kaartbeheer</string>
+  <string name="index_settings">Kaarten installeren</string>
   <string name="index_settings_descr">Download en beheer kaarten en stemmen</string>
   <string name="general_settings">Algemene instellingen</string>
   <string name="general_settings_descr">Kaartweergave en algemene instellingen</string>
@@ -232,7 +232,7 @@
   <string name="local_index_items_restored">%1$d van %2$d bestanden succesvol geactiveerd.</string>
   <string name="local_index_no_items_to_do">Voor %1$s: geen bestanden</string>
   <string name="local_index_action_do">U gaat %2$s bestanden %1$s. Doorgaan?</string>
-  <string name="local_index_descr_title">Kaartbeheer</string>
+  <string name="local_index_descr_title">Kaarten installeren en beheren</string>
   <string name="local_index_mi_restore">Activeer</string>
   <string name="local_index_mi_backup">Deactiveer</string>
   
@@ -318,7 +318,7 @@
   
   
   
-  <string name="unit_of_length_descr">Wijzig eenheden van afstand en snelheid</string>
+  <string name="unit_of_length_descr">Kies eenheid van afstand</string>
   <string name="unit_of_length">Eenheid van afstand</string>
   <string name="si_mi_foots">Mijlen/voeten</string>
   <string name="si_mi_yard">Mijlen/yards</string>
@@ -848,8 +848,8 @@
   
   
   
-  <string name="show_cameras">Toon snelheidscontroles</string>
-  <string name="show_traffic_warnings">Toon maximumsnelheden</string>
+  <string name="show_cameras">Snelheidscontroles</string>
+  <string name="show_traffic_warnings">Waarschuwingen</string>
   <string name="avoid_toll_roads">Vermijd tolwegen</string>
   
   <string name="map_widget_top_text">Straatnaam</string>
@@ -1156,7 +1156,7 @@
 	
     <string name="speak_speed_limit">Snelheidsbeperking</string>
     <string name="speak_cameras">Snelheidscamera\'s</string>
-	<string name="speak_traffic_warnings">Verkeerswaarschuwingen</string>
+	<string name="speak_traffic_warnings">Waarschuwingen</string>
 	<string name="route_from">Van:</string>
     
     <string name="osb_author_or_password_not_specified">Specificeer OSM-gebruikersnaam en -wachtwoord in Instellingen</string>
@@ -1171,7 +1171,7 @@
     <string name="osb_author_dialog_password">OSM-wachtwoord (optioneel)</string>
 	<string name="announce_gpx_waypoints">GPX-routepunten</string>
     <string name="speak_title">Aankondigen…</string>
-	<string name="speak_descr">Aankondigen van straatnamen, verkeerswaarschuwingen (verplicht stoppen, drempels), snelheidscamera\'s of snelheidsbeperkingen</string>
+	<string name="speak_descr">Aankondigen van straatnamen, waarschuwingen (verplicht stoppen, drempels), snelheidscamera\'s of snelheidsbeperkingen</string>
 	<string name="speak_street_names">Straatnamen (TTS)</string>
         
     
@@ -1512,8 +1512,8 @@
 	<string name="lang_ar">Arabisch</string>
 	<string name="lang_sc">Sardijns</string>
 	<string name="lang_sr">Servisch</string>
-	<string name="lang_zh_CN">Vereenvoudigd Chinees</string>
-	<string name="lang_zh_TW">Traditioneel Chinees</string>
+	<string name="lang_zh_CN">Chinees (vereenvoudigd)</string>
+	<string name="lang_zh_TW">Chinees (traditioneel)</string>
 	<string name="rendering_attr_subwayMode_name">Metrolijnen</string>
  	<string name="continue_navigation">Navigatie voortzetten</string>
     <string name="pause_navigation">navigatie pauzeren</string>
@@ -1542,7 +1542,7 @@
     
     <string name="waypoints">Routepunt(en)</string>
     <string name="targets">Bestemming(en)</string>
-    <string name="way_alarms">Meldingen onderweg</string>
+    <string name="way_alarms">Waarschuwingen</string>
     <string name="speak_favorites">Favorieten in de buurt</string>
     <string name="speak_poi">Interessepunt in de buurt</string>
     <string name="shared_string_all">Alle</string>
@@ -1565,7 +1565,7 @@
     <string name="traffic_warning_stop">Stopbord</string>
     <string name="traffic_warning_calming">Verkeersdrempel</string>
     <string name="traffic_warning_speed_camera">Snelheidscontrole</string>
-    <string name="traffic_warning">Meldingen onderweg</string>
+    <string name="traffic_warning">Waarschuwing</string>
 	<string name="local_index_description">Tik om details te bekijken; houd ingedrukt om uit te schakelen of te verwijderen. Huidige gegevens op het toestel (%1$s beschikbaar):</string>
 	<string name="text_size_descr">De grootte van tekst op de kaart instellen.</string>
     <string name="text_size">Tekstgrootte</string>
@@ -1640,8 +1640,8 @@
     <string name="routing_attr_no_new_routing_description">Gebruik de routeregels van vóór versie 1.9</string>
     <string name="traffic_warning_railways">Spoorwegovergang</string>
 	<string name="traffic_warning_pedestrian">Voetgangers oversteekplaats</string>
-	<string name="show_railway_warnings">Toon spoorwegovergangen</string>
-	<string name="show_pedestrian_warnings">Toon voetgangers oversteekplaatsen</string>
+	<string name="show_railway_warnings">Spoorwegovergangen</string>
+	<string name="show_pedestrian_warnings">Voetgangers-oversteekplaatsen</string>
     <string name="speak_pedestrian">Oversteekplaatsen</string>
     
 	<string name="parking_place">Parkeerplaats</string>
@@ -1702,7 +1702,7 @@
 	<string name="shared_string_ellipsis">…</string>
 	<string name="shared_string_ok">OK</string>
 	<string name="shared_string_cancel">Annuleren</string>
-	<string name="shared_string_dismiss">Afwijzen</string>
+	<string name="shared_string_dismiss">Detailscherm sluiten</string>
 	<string name="shared_string_yes">Ja</string>
 	<string name="shared_string_no">Nee</string>
 	<string name="shared_string_on">Aan</string>
@@ -1936,7 +1936,7 @@
     <string name="favorite_category_add_new">Categorie toevoegen</string>
     <string name="favorite_category_select">Kies categorie</string>
     <string name="default_speed_system_descr">Eenheid voor de snelheid instellen</string>
-    <string name="default_speed_system">Snelheid weergeven in ...</string>
+    <string name="default_speed_system">Eenheid van snelheid</string>
     <string name="nm">nmi</string>
     <string name="si_nm">Zeemijlen</string>
     <string name="si_kmh">Kilometer per uur</string>
@@ -2280,4 +2280,13 @@
     <string name="lat_lon_pattern">Lat: %1$.6f Lon: %2$.6f</string>
     <string name="map_widget_battery">Accuniveau</string>
     <string name="lang_hu_formal">Hongaars (formeel)</string>
+    <string name="current_track">Huidige track</string>
+    <string name="change_markers_position">Verschuif markering</string>
+    <string name="lang_es_us">Spaans (Amerikaans)</string>
+    <string name="lang_be_BY">Wit-Russisch (latijns)</string>
+    <string name="lang_kn">Kannada</string>
+    <string name="lang_en_gb">Engels (Verenigd Koninkrijk)</string>
+    <string name="lang_ast">Asturisch</string>
+    <string name="app_mode_bus">Lijnbus</string>
+ 	<string name="app_mode_train">Trein</string>
     </resources>

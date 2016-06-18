@@ -34,8 +34,8 @@ import android.util.Log;
 // This class provides reverse mapping from 'embed-resources.list' to files&folders scheme used by OsmAndCore_android.aar package
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class CoreResourcesFromAndroidAssetsCustom extends interface_ICoreResourcesProvider {
-	private static final String TAG = "CoreResourcesFromAndroidAssets";
-	private static final String NATIVE_TAG = "CoreResourcesFromAndroidAssets";
+	private static final String TAG = "CoreResFromAndAssets";
+	private static final String NATIVE_TAG = "CoreResFromAndAssets";
 
 	private CoreResourcesFromAndroidAssetsCustom(final Context context) {
 		_context = context;
@@ -84,7 +84,7 @@ public class CoreResourcesFromAndroidAssetsCustom extends interface_ICoreResourc
 			}
 
 			// Get location of this resource
-			final String path = "OsmAndCore_ResourcesBundle/" + resourceInBundle + ".qz";
+			final String path = "OsmAndCore_ResourcesBundle/" + resourceInBundle + (resourceInBundle.endsWith(".png") ? "" : ".qz");
 			final File extractedPath = ((OsmandApplication) _context.getApplicationContext()).getAppPath(path);
 			final ResourceData resourceData = new ResourceData();
 			if (!extractedPath.exists()) {
@@ -201,10 +201,15 @@ public class CoreResourcesFromAndroidAssetsCustom extends interface_ICoreResourc
 				+ name + "'");
 		System.out.println(resourceData.path.getAbsolutePath());
 		final SWIGTYPE_p_QByteArray data;
+		final String dataPath = resourceData.path.getAbsolutePath();
 		if (resourceData.offset == 0 && resourceData.size == resourceData.path.length()) {
-			data = SwigUtilities.qDecompress(SwigUtilities.readEntireFile(resourceData.path.getAbsolutePath()));
+			if (dataPath.endsWith(".qz")) {
+				data = SwigUtilities.qDecompress(SwigUtilities.readEntireFile(dataPath));
+			} else {
+				data = SwigUtilities.readEntireFile(dataPath);
+			}
 		} else {
-			data = SwigUtilities.qDecompress(SwigUtilities.readPartOfFile(resourceData.path.getAbsolutePath(),
+			data = SwigUtilities.qDecompress(SwigUtilities.readPartOfFile(dataPath,
 					resourceData.offset, resourceData.size));
 		}
 		if (data == null) {
@@ -238,15 +243,19 @@ public class CoreResourcesFromAndroidAssetsCustom extends interface_ICoreResourc
 			return SwigUtilities.emptyQByteArray();
 		}
 		System.out.println(resourceEntry.defaultVariant.path.getAbsolutePath());
-		final SWIGTYPE_p_QByteArray bt;
+		final SWIGTYPE_p_QByteArray data;
+		final String dataPath = resourceEntry.defaultVariant.path.getAbsolutePath();
 		if (resourceEntry.defaultVariant.offset == 0
 				&& resourceEntry.defaultVariant.size == resourceEntry.defaultVariant.path.length()) {
-			bt = SwigUtilities.readEntireFile(resourceEntry.defaultVariant.path.getAbsolutePath());
+			if (dataPath.endsWith(".qz")) {
+				data = SwigUtilities.qDecompress(SwigUtilities.readEntireFile(dataPath));
+			} else {
+				data = SwigUtilities.readEntireFile(dataPath);
+			}
 		} else {
-			bt = SwigUtilities.readPartOfFile(resourceEntry.defaultVariant.path.getAbsolutePath(),
-					resourceEntry.defaultVariant.offset, resourceEntry.defaultVariant.size);
+			data = SwigUtilities.qDecompress(SwigUtilities.readPartOfFile(dataPath,
+					resourceEntry.defaultVariant.offset, resourceEntry.defaultVariant.size));
 		}
-		final SWIGTYPE_p_QByteArray data = SwigUtilities.qDecompress(bt);
 		if (data == null) {
 			Log.e(TAG, "Failed to load data of '" + name + "'");
 			if (ok != null)

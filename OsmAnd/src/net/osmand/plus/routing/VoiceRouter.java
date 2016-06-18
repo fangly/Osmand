@@ -329,9 +329,10 @@ public class VoiceRouter {
 		return text;
 	}
 
-	public void announceAlarm(AlarmInfoType type) {
+	public void announceAlarm(AlarmInfo info, float speed) {
+		AlarmInfoType type = info.getType();
 		if (type == AlarmInfoType.SPEED_LIMIT) {
-			announceSpeedAlarm();
+			announceSpeedAlarm(info.getIntValue(), speed);
 		} else if (type == AlarmInfoType.SPEED_CAMERA) {
 			if (router.getSettings().SPEAK_SPEED_CAMERA.get()) {
 				CommandBuilder p = getNewCommandPlayerToPlay();
@@ -363,7 +364,7 @@ public class VoiceRouter {
 		}
 	}
 
-	public void announceSpeedAlarm() {
+	public void announceSpeedAlarm(int maxSpeed, float speed) {
 		long ms = System.currentTimeMillis();
 		if (waitAnnouncedSpeedLimit == 0) {
 			// wait 10 seconds before announcement
@@ -380,7 +381,7 @@ public class VoiceRouter {
 					notifyOnVoiceMessage();
 					lastAnnouncedSpeedLimit = ms;
 					waitAnnouncedSpeedLimit = 0;
-					p.speedAlarm().play();
+					p.speedAlarm(maxSpeed, speed).play();
 				}
 			}
 		}
@@ -616,6 +617,7 @@ public class VoiceRouter {
 			pn = pn.replace('-', ' ');
 			pn = pn.replace(':', ' ');
 			pn = pn.replace(";", ", "); // Trailing blank prevents punctuation being pronounced. Replace by comma for better intonation.
+			pn = pn.replace("/", ", "); // Slash is actually pronounced by many TTS engines, ceeating an awkward voice prompt, better replace by comma.
 			if ((player != null) && (!"de".equals(player.getLanguage()))) {
 				pn = pn.replace("\u00df", "ss"); // Helps non-German tts voices to pronounce German Strasse (=street)
 			}
@@ -894,7 +896,8 @@ public class VoiceRouter {
 		int soundClick = -1;
 		boolean success = true;
 		try {
-			soundClick = sp.load(settings.getContext().getAssets().openFd("sounds/airhorn.ogg"), 1);
+			// Taken unaltered from https://freesound.org/people/Corsica_S/sounds/91926/ under license http://creativecommons.org/licenses/by/3.0/ :
+			soundClick = sp.load(settings.getContext().getAssets().openFd("sounds/ding.ogg"), 1);
 		} catch (IOException e){
 			e.printStackTrace();
 			success = false;

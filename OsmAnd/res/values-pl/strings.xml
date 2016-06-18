@@ -15,7 +15,7 @@
     <string name="auto_follow_route_navigation_descr">Włącz podążanie za pozycją tylko w trybie nawigacji.</string>
     <string name="auto_follow_location_enabled">Podążanie za pozycją jest włączone.</string>
     <string name="delete_confirmation_msg">Usunąć %1$s?</string>
-    <string name="city_type_suburb">Dzielnica</string>
+    <string name="city_type_suburb">Przedmieście</string>
     <string name="city_type_hamlet">Przysiółek</string>
     <string name="city_type_village">Wieś</string>
     <string name="city_type_town">Miasteczko</string>
@@ -155,8 +155,8 @@
 
     <string name="shared_string_next">Naprzód</string>
     <string name="shared_string_previous">Wstecz</string>
-    <string name="unit_of_length_descr">Zmienia jednostki długości i prędkości</string>
-    <string name="unit_of_length">Jednostki miar</string>
+    <string name="unit_of_length_descr">Zmienia jednostki długości</string>
+    <string name="unit_of_length">Jednostki długości</string>
     <string name="si_mi_foots">Mile/stopy</string>
     <string name="si_mi_yard">Mile/jardy</string>
     <string name="si_km_m">Kilometry/metry</string>
@@ -831,7 +831,7 @@
 
 
     <string name="show_cameras">Fotoradary</string>
-    <string name="show_traffic_warnings">Ostrzeżenia</string>
+    <string name="show_traffic_warnings">Ostrzeżenia drogowe</string>
     <string name="avoid_toll_roads">Omijanie płatnych dróg</string>
 
     <string name="map_widget_top_text">Ulica</string>
@@ -1488,7 +1488,7 @@
     <string name="rendering_attr_moreDetailed_name">Więcej szczegółów</string>
     <string name="rendering_attr_lessDetailed_name">Mniej szczegółów</string>
     <string name="rendering_attr_hideAccess_name">Ograniczenia dostępu</string>
-    <string name="rendering_attr_showAccess_name">Ograniczenia dostępu</string>
+    <string name="rendering_attr_showAccess_name">Ograniczenia dostępu i opłaty</string>
     <string name="rendering_attr_showSurfaceGrade_name">Jakość dróg</string>
     <string name="rendering_attr_showSurfaces_name">Nawierzchnia dróg</string>
     <string name="rendering_attr_showCycleRoutes_name">Ścieżki rowerowe</string>
@@ -1497,8 +1497,8 @@
     <string name="lang_fa">Perski</string>
     <string name="lang_sc">Sardyński</string>
     <string name="lang_sr">Serbski</string>
-    <string name="lang_zh_CN">Chiński uproszczony</string>
-    <string name="lang_zh_TW">Chiński tradycyjny</string>
+    <string name="lang_zh_CN">Chiński (uproszczony)</string>
+    <string name="lang_zh_TW">Chiński (tradycyjny)</string>
     <string name="rendering_attr_subwayMode_name">Trasy metra</string>
     <string name="download_additional_maps">Pobrać brakujące mapy %1$s (%2$d MB)?</string>
     <string name="shared_string_more">Więcej…</string>
@@ -1630,7 +1630,7 @@
     <string name="voices">Komunikaty głosowe</string>
     <string name="traffic_warning_railways">Przejazd kolejowy</string>
     <string name="traffic_warning_pedestrian">Przejście dla pieszych</string>
-    <string name="show_railway_warnings">Pokazuj przejazdy kolejowe</string>
+    <string name="show_railway_warnings">Przejazdy kolejowe</string>
     <string name="show_pedestrian_warnings">Przejścia dla pieszych</string>
     <string name="speak_pedestrian">Omijanie przejść dla pieszych</string>
 
@@ -1807,16 +1807,16 @@
     <string name="lang_ta">tamilski</string>
     <string name="lang_lb">luksemburski</string>
     <string name="lang_os">osetyjski</string>
-    <string name="lang_es_ar">argentyński hiszpański</string>
-    <string name="lang_nb">norweski</string>
+    <string name="lang_es_ar">Hiszpański (Argentyna)</string>
+    <string name="lang_nb">Norweski (Bokmål)</string>
     <string name="disable_recording_once_app_killed">Zapobiegaj automatycznemu rejestrowaniu</string>
     <string name="lang_te">Telugu (Indyjski)</string>
     <string name="lang_ceb">cebuański</string>
     <string name="lang_new">newarski</string>
-    <string name="lang_vo">wolapikijski</string>
+    <string name="lang_vo">Wolapik</string>
     <string name="lang_bpy">bisznuprija-manipuri (indyjski)</string>
     <string name="lang_ml">drawidyjski</string>
-    <string name="lang_eo">międzynarodowy (Esperanto)</string>
+    <string name="lang_eo">Esperanto</string>
     <string name="rendering_attr_currentTrackColor_name">Kolor śladu GPX</string>
     <string name="rendering_attr_currentTrackWidth_name">Szerokość śladu GPX</string>
     <string name="rendering_value_red_name">Czerwony</string>
@@ -1897,8 +1897,8 @@
     <string name="roads">Drogi</string>
     <string name="favorite_category_add_new">Dodaj nową</string>
     <string name="favorite_category_select">Proszę wybrać kategorię</string>
-    <string name="default_speed_system_descr">Definiuje jednostki pomiaru prędkości</string>
-    <string name="default_speed_system">Pomiar prędkości</string>
+    <string name="default_speed_system_descr">Definiuje jednostki prędkości</string>
+    <string name="default_speed_system">Jednostki prędkości</string>
     <string name="si_nm">Mile morskie</string>
     <string name="nm">węzły</string>
     <string name="si_kmh">Kilometry na godzinę</string>
@@ -2106,7 +2106,7 @@
     <string name="clear_active_markers_q">Usunąć wszystkie aktywne znaczniki?</string>
     <string name="clear_markers_history_q">Wyczyścić historię znaczników mapy?</string>
     <string name="active_markers">Aktywne znaczniki</string>
-    <string name="map_markers">Znaczniki mapy</string>
+    <string name="map_markers">Znaczniki</string>
     <string name="map_marker">Znacznik mapy</string>
     <string name="consider_turning_polygons_off">Zaleca się wyłączenie renderowania wielokątów.</string>
     <string name="rendering_attr_showMtbRoutes_name">Trasy MTB</string>
@@ -2141,7 +2141,7 @@
     <string name="show_transparency_seekbar">Pasek przezroczystości</string>
     <string name="no_map_markers_found">Proszę dodać znacznik na mapie</string>
     <string name="no_waypoints_found">Nie znaleziono punktów</string>
-    <string name="release_2_3">" • OSM Live. Wspieraj współtwórców map i programistów i uzyskaj godzinowe aktualizacji mapy.\n\n  • Znaczniki mapy. Nowy sposób na szybki wybór miejsca na mapie.\n\n  • Bardziej szczegółowe mapy OSM z oznaczeniami numeracji dróg specyficznymi dla konkretnego kraju oraz wiele nowych funkcji map.\n\n  • Ulepszony wygląd i przygotowanie trasy.\n\n  • Wiele ulepszeń w menu kontekstowym mapy, takie jak kontekstowe odnośniki adresu.\n\n  i więcej… "</string>
+    <string name="release_2_3">" • OSM Live. Wspieraj współtwórców map i programistów, aby uzyskać bieżące aktualizacji mapy.\n\n  • Znaczniki mapy. Nowy sposób na szybkie oznaczenie położenia na mapie.\n\n  • Bardziej szczegółowe mapy OSM z oznaczeniami numeracji dróg specyficznymi dla konkretnego kraju oraz wiele nowych funkcji map.\n\n  • Ulepszony wygląd i przygotowanie trasy.\n\n  • Wiele ulepszeń w menu kontekstowym mapy, takie jak kontekstowe odnośniki adresu.\n\n  i więcej… "</string>
     <string name="shared_string_move_up">Podnieś</string>
     <string name="shared_string_move_down">Opuść</string>
     <string name="finish_navigation">Zakończ nawigację</string>
@@ -2160,7 +2160,7 @@
     <string name="osm_live_region_desc">Część wpłat zostanie wysłana do użytkowników OSM, którzy prześlą zmiany na mapie w tym regionie</string>
     <string name="osm_live_ask_for_purchase">Należy najpierw zakupić subskrypcję OSM Live</string>
 
-    <string name="osm_live_header">Ten abonament umożliwia cogodzinną aktualizację dla map z całego świata. Większa część dochodów powraca do społeczności OSM i jest wypłacana za każdy wkład OSM. W przypadku, kiedy lubisz OsmAnd i OSM i chce je wspierać, jest to doskonały sposób, aby to zrobić.</string>
+    <string name="osm_live_header">Ten abonament umożliwia cogodzinną aktualizację dla map z całego świata. Większa część dochodów powraca do społeczności OSM i jest wypłacana za każdy wkład OSM. Jeśli lubisz OsmAnd i OSM i chcesz je wspierać, jest to doskonały sposób, aby to zrobić.</string>
     
     <string name="file_name_containes_illegal_char">Nazwa pliku zawiera niedozwolony znak</string>
 <string name="access_default_color">Domyślny kolor</string>
@@ -2198,4 +2198,19 @@
     <string name="access_smart_autoannounce">Inteligentne powiadamianie</string>
     <string name="access_autoannounce_period_descr">Określa minimalny odstęp czasu pomiędzy powiadomieniami</string>
     <string name="access_autoannounce_period">Okres powiadomień</string>
+    <string name="move_marker_bottom_sheet_title">Proszę przesunąć mapę, aby zmienić położenie znacznika</string>
+    <string name="change_markers_position">Zmień położenie znacznika</string>
+    <string name="current_track">Aktualna trasa</string>
+    <string name="app_mode_bus">Autobus</string>
+ 	<string name="app_mode_train">Pociąg</string>
+    <string name="follow_us">Podążaj za nami</string>
+    <string name="access_direction_haptic_feedback">Haptyczne powiadomienia o kierunku</string>
+    <string name="access_direction_haptic_feedback_descr">Wskazuje kierunek do celu używając wibracji</string>
+    <string name="use_osm_live_routing">Nawigacja OSM Live</string>
+    <string name="lang_es_us">Hiszpański (Ameryka)</string>
+    <string name="lang_ast">Asturyjski</string>
+    <string name="lang_en_gb">Angielski (Wielka Brytania)</string>
+    <string name="lang_be_BY">Białoruski (łaciński)</string>
+    <string name="lang_hu_formal">Węgierski (formalny)</string>
+    <string name="lang_kn">Kannada</string>
     </resources>

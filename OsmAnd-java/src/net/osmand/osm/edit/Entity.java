@@ -2,6 +2,7 @@ package net.osmand.osm.edit;
 
 import net.osmand.data.LatLon;
 import net.osmand.osm.edit.OSMSettings.OSMTagKey;
+import net.osmand.util.Algorithms;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -18,30 +19,30 @@ public abstract class Entity implements Serializable {
 		WAY,
 		RELATION,
 		WAY_BOUNDARY;
-		
-		public static EntityType valueOf(Entity e){
-			if(e instanceof Node){
+
+		public static EntityType valueOf(Entity e) {
+			if (e instanceof Node) {
 				return NODE;
-			} else if(e instanceof Way){
+			} else if (e instanceof Way) {
 				return WAY;
-			} else if(e instanceof Relation){
+			} else if (e instanceof Relation) {
 				return RELATION;
 			}
 			return null;
 		}
 	}
-	
+
 	public static class EntityId {
 		private final EntityType type;
 		private final Long id;
-		
-		
-		public EntityId(EntityType type, Long id){
+
+
+		public EntityId(EntityType type, Long id) {
 			this.type = type;
 			this.id = id;
 		}
-		
-		public static EntityId valueOf(Entity e){
+
+		public static EntityId valueOf(Entity e) {
 			return new EntityId(EntityType.valueOf(e), e.getId());
 		}
 
@@ -53,16 +54,16 @@ public abstract class Entity implements Serializable {
 			result = prime * result + ((type == null) ? 0 : type.hashCode());
 			return result;
 		}
-		
+
 		@Override
 		public String toString() {
 			return type + " " + id; //$NON-NLS-1$
 		}
-		
+
 		public EntityType getType() {
 			return type;
 		}
-		
+
 		public Long getId() {
 			return id;
 		}
@@ -97,9 +98,9 @@ public abstract class Entity implements Serializable {
 				return false;
 			return true;
 		}
-		
+
 	}
-	
+
 	// lazy initializing
 	private Map<String, String> tags = null;
 	private final long id;
@@ -110,12 +111,11 @@ public abstract class Entity implements Serializable {
 	public static final int MODIFY_DELETED = -1;
 	public static final int MODIFY_MODIFIED = 1;
 	public static final int MODIFY_CREATED = 2;
-	
+
 	public Entity(long id) {
 		this.id = id;
 	}
-	
-	
+
 
 	public Entity(Entity copy, long id) {
 		this.id = id;
@@ -124,11 +124,11 @@ public abstract class Entity implements Serializable {
 		}
 		this.dataLoaded = copy.dataLoaded;
 	}
-	
+
 	public int getModify() {
 		return modify;
 	}
-	
+
 	public void setModify(int modify) {
 		this.modify = modify;
 	}
@@ -136,80 +136,90 @@ public abstract class Entity implements Serializable {
 	public long getId() {
 		return id;
 	}
-	
-	public String removeTag(String key){
-		if(tags != null) {
+
+	public String removeTag(String key) {
+		if (tags != null) {
 			return tags.remove(key);
 		}
 		return null;
 	}
-	
-	public void removeTags(String... keys){
-		if (tags != null){
-			for (String key : keys){
+
+	public void removeTags(String... keys) {
+		if (tags != null) {
+			for (String key : keys) {
 				tags.remove(key);
 			}
 		}
 	}
-	
-	public String putTag(String key, String value){
-		if(tags == null){
+
+	public String putTag(String key, String value) {
+		if (tags == null) {
 			tags = new LinkedHashMap<String, String>();
 		}
 		return tags.put(key.toLowerCase(), value);
 	}
-	
-	public void replaceTags(Map<String, String> toPut){
+
+	public void replaceTags(Map<String, String> toPut) {
 		tags = new LinkedHashMap<String, String>(toPut);
 	}
-	
-	public String getTag(OSMTagKey key){
+
+	public String getTag(OSMTagKey key) {
 		return getTag(key.getValue());
 	}
-	
-	public String getTag(String key){
-		if(tags == null){
+
+	public String getTag(String key) {
+		if (tags == null) {
 			return null;
 		}
 		return tags.get(key);
 	}
-	
+
+	public Map<String, String> getNameTags() {
+		Map<String, String> result = new LinkedHashMap<String, String>();
+		for (Map.Entry<String, String> e : tags.entrySet()) {
+			if (e.getKey().startsWith("name:")) {
+				result.put(e.getKey(), e.getValue());
+			}
+		}
+		return result;
+	}
+
 	public int getVersion() {
 		return version;
 	}
-	
+
 	public void setVersion(int version) {
 		this.version = version;
 	}
-	
+
 	public Map<String, String> getTags() {
-		if(tags == null){
+		if (tags == null) {
 			return Collections.emptyMap();
 		}
 		return Collections.unmodifiableMap(tags);
 	}
-	
 
-	public Collection<String> getTagKeySet(){
-		if(tags == null){
+
+	public Collection<String> getTagKeySet() {
+		if (tags == null) {
 			return Collections.emptyList();
 		}
 		return tags.keySet();
 	}
-	
+
 	public abstract void initializeLinks(Map<EntityId, Entity> entities);
-	
-	
+
+
 	/**
 	 * @return middle point for entity
 	 */
 	public abstract LatLon getLatLon();
-	
-	
-	public boolean isVirtual(){
+
+
+	public boolean isVirtual() {
 		return id < 0;
 	}
-	
+
 	public String getOsmUrl() {
 		return EntityId.valueOf(this).getOsmUrl();
 	}
@@ -218,6 +228,7 @@ public abstract class Entity implements Serializable {
 	public String toString() {
 		return EntityId.valueOf(this).toString();
 	}
+
 	@Override
 	public int hashCode() {
 		if (id < 0) {
@@ -238,7 +249,7 @@ public abstract class Entity implements Serializable {
 		if (id != other.id)
 			return false;
 		// virtual are not equal
-		if(id < 0){
+		if (id < 0) {
 			return false;
 		}
 		return true;
@@ -247,6 +258,10 @@ public abstract class Entity implements Serializable {
 	public Set<String> getIsInNames() {
 		String values = getTag(OSMTagKey.IS_IN);
 		if (values == null) {
+			String city = getTag(OSMTagKey.ADDR_CITY);
+			if(!Algorithms.isEmpty(city)) {
+				return Collections.singleton(city.trim());	
+			}
 			return Collections.emptySet();
 		}
 		if (values.indexOf(';') != -1) {
@@ -263,15 +278,16 @@ public abstract class Entity implements Serializable {
 	public void entityDataLoaded() {
 		this.dataLoaded = true;
 	}
-	
+
 	public boolean isDataLoaded() {
 		return dataLoaded;
 	}
 
 	public Map<String, String> getModifiableTags() {
-		if(tags == null){
+		if (tags == null) {
 			return Collections.emptyMap();
 		}
 		return tags;
 	}
+
 }

@@ -11,8 +11,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import net.osmand.Collator;
-import net.osmand.CollatorStringMatcher;
-import net.osmand.CollatorStringMatcher.StringMatcherMode;
 import net.osmand.OsmAndCollator;
 import net.osmand.PlatformUtil;
 import net.osmand.ResultMatcher;
@@ -37,9 +35,9 @@ import org.apache.commons.logging.Log;
 public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 	private static final Log log = PlatformUtil.getLog(RegionAddressRepositoryBinary.class);
 	private BinaryMapIndexReader file;
-	
-	
+
 	private LinkedHashMap<Long, City> cities = new LinkedHashMap<Long, City>();
+	private int POSTCODE_MIN_QUERY_LENGTH = 2;
 	private int ZOOM_QTREE = 10;
 	private QuadTree<City> citiesQtree = new QuadTree<City>(new QuadRect(0, 0, 1 << (ZOOM_QTREE + 1),
 			1 << (ZOOM_QTREE + 1)), 8, 0.55f);
@@ -48,48 +46,48 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 	private String fileName;
 	private ResourceManager mgr;
 	private OsmandPreference<String> langSetting;
-	
+
 	public RegionAddressRepositoryBinary(ResourceManager mgr, BinaryMapIndexReader file, String fileName) {
 		this.mgr = mgr;
 		langSetting = mgr.getContext().getSettings().MAP_PREFERRED_LOCALE;
 		this.file = file;
 		this.fileName = fileName;
- 	    this.collator = OsmAndCollator.primaryCollator();
+		this.collator = OsmAndCollator.primaryCollator();
 		this.postCodes = new TreeMap<String, City>(OsmAndCollator.primaryCollator());
 	}
-	
+
 	@Override
-	public void close(){
+	public void close() {
 		this.file = null;
 	}
-	
+
 	@Override
 	public BinaryMapIndexReader getFile() {
 		return file;
 	}
-	
+
 	@Override
 	public synchronized List<GeocodingResult> justifyReverseGeocodingSearch(GeocodingResult r, double minBuildingDistance, final ResultMatcher<GeocodingResult> result) {
 		try {
 			return new GeocodingUtilities().justifyReverseGeocodingSearch(r, file, minBuildingDistance, result);
-		} catch(IOException e) {
+		} catch (IOException e) {
 			log.error("Disk operation failed", e); //$NON-NLS-1$
 		}
 		return Collections.emptyList();
 	}
 
-	
+
 	@Override
 	public synchronized void preloadCities(ResultMatcher<City> resultMatcher) {
 		if (cities.isEmpty()) {
 			try {
-				List<City> cs = file.getCities(BinaryMapIndexReader.buildAddressRequest(resultMatcher), 
+				List<City> cs = file.getCities(BinaryMapIndexReader.buildAddressRequest(resultMatcher),
 						BinaryMapAddressReaderAdapter.CITY_TOWN_TYPE);
 				LinkedHashMap<Long, City> ncities = new LinkedHashMap<Long, City>();
 				for (City c : cs) {
 					ncities.put(c.getId(), c);
 					LatLon loc = c.getLocation();
-					if(loc != null) {
+					if (loc != null) {
 						int y31 = MapUtils.get31TileNumberY(loc.getLatitude());
 						int x31 = MapUtils.get31TileNumberX(loc.getLongitude());
 						int dz = (31 - ZOOM_QTREE);
@@ -102,7 +100,7 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 			}
 		}
 	}
-	
+
 	public City getClosestCity(LatLon l, List<City> cache) {
 		City closest = null;
 		if (l != null) {
@@ -131,16 +129,16 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 
 	@Override
 	public synchronized void preloadBuildings(Street street, ResultMatcher<Building> resultMatcher) {
-		if(street.getBuildings().isEmpty() && street.getIntersectedStreets().isEmpty()){
+		if (street.getBuildings().isEmpty() && street.getIntersectedStreets().isEmpty()) {
 			try {
 				file.preloadBuildings(street, BinaryMapIndexReader.buildAddressRequest(resultMatcher));
 				street.sortBuildings();
 			} catch (IOException e) {
-				log.error("Disk operation failed" , e); //$NON-NLS-1$
+				log.error("Disk operation failed", e); //$NON-NLS-1$
 			}
-		}		
+		}
 	}
-	
+
 	@Override
 	public void addCityToPreloadedList(City city) {
 		if (!cities.containsKey(city.getId())) {
@@ -149,63 +147,72 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 			cities = ncities;
 		}
 	}
-	
+
 	@Override
-	public List<City> getLoadedCities(){
+	public List<City> getLoadedCities() {
 		return new ArrayList<City>(cities.values());
 	}
-	
+
 	@Override
 	public synchronized void preloadStreets(City o, ResultMatcher<Street> resultMatcher) {
 		Collection<Street> streets = o.getStreets();
-		if(!streets.isEmpty()){
+		if (!streets.isEmpty()) {
 			return;
 		}
 		try {
 			file.preloadStreets(o, BinaryMapIndexReader.buildAddressRequest(resultMatcher));
 		} catch (IOException e) {
-			log.error("Disk operation failed" , e); //$NON-NLS-1$
+			log.error("Disk operation failed", e);  //$NON-NLS-1$
 		}
 	}
 
-//	// not use ccontains It is really slow, takes about 10 times more than other steps
+//	// not use contains It is really slow, takes about 10 times more than other steps
 //	private StringMatcherMode[] streetsCheckMode = new StringMatcherMode[] {StringMatcherMode.CHECK_ONLY_STARTS_WITH,
 //			StringMatcherMode.CHECK_STARTS_FROM_SPACE_NOT_BEGINNING};
-	
-	@Override
-	public synchronized List<MapObject> searchMapObjectsByName(String name, ResultMatcher<MapObject> resultMatcher) {
+
+	public synchronized List<MapObject> searchMapObjectsByName(String name, ResultMatcher<MapObject> resultMatcher, List<Integer> typeFilter) {
 		SearchRequest<MapObject> req = BinaryMapIndexReader.buildAddressByNameRequest(resultMatcher, name);
 		try {
 			log.debug("file=" + file + "; req=" + req);
-			file.searchAddressDataByName(req);
+			file.searchAddressDataByName(req, typeFilter);
 		} catch (IOException e) {
 			log.error("Disk operation failed", e); //$NON-NLS-1$
 		}
 		return req.getSearchResults();
 	}
 
-	private List<City> fillWithVillages(String name, String lang, final ResultMatcher<City> resultMatcher) throws IOException {
+	@Override
+	public synchronized List<MapObject> searchMapObjectsByName(String name, ResultMatcher<MapObject> resultMatcher) {
+		return searchMapObjectsByName(name, resultMatcher, null);
+	}
+
+	private List<City> fillWithCities(String name, final ResultMatcher<City> resultMatcher, final List<Integer> typeFilter) throws IOException {
 		List<City> result = new ArrayList<City>();
-		List<City> foundCities = file.getCities(BinaryMapIndexReader.buildAddressRequest(new ResultMatcher<City>() {
-					List<City> cache = new ArrayList<City>();
-					@Override
-					public boolean publish(City c) {
-						if(c.getLocation() != null) {
-							City ct = getClosestCity(c.getLocation(), cache);
-							c.setClosestCity(ct);
-						}
-						return resultMatcher.publish(c);
-					}
+		ResultMatcher<MapObject> matcher = new ResultMatcher<MapObject>() {
+			List<City> cache = new ArrayList<City>();
 
-					@Override
-					public boolean isCancelled() {
-						return resultMatcher.isCancelled();
+			@Override
+			public boolean publish(MapObject o) {
+				City c = (City) o;
+				City.CityType type = c.getType();
+				if (type != null && type.ordinal() >= City.CityType.VILLAGE.ordinal()) {
+					if (c.getLocation() != null) {
+						City ct = getClosestCity(c.getLocation(), cache);
+						c.setClosestCity(ct);
 					}
-				}), new CollatorStringMatcher(name, StringMatcherMode.CHECK_STARTS_FROM_SPACE), lang,
-				BinaryMapAddressReaderAdapter.VILLAGES_TYPE);
+				}
+				return resultMatcher.publish(c);
+			}
 
-		for (City c : foundCities) {
-			result.add(c);
+			@Override
+			public boolean isCancelled() {
+				return resultMatcher.isCancelled();
+			}
+		};
+		List<MapObject> foundCities = searchMapObjectsByName(name, matcher, typeFilter);
+
+		for (MapObject o : foundCities) {
+			result.add((City) o);
 			if (resultMatcher.isCancelled()) {
 				return result;
 			}
@@ -213,69 +220,23 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 		return result;
 	}
 
+	private List<Integer> getCityTypeFilter(String name, boolean searchVillages) {
+		List<Integer> cityTypes = new ArrayList<>();
+		cityTypes.add(BinaryMapAddressReaderAdapter.CITY_TOWN_TYPE);
+		if (searchVillages) {
+			cityTypes.add(BinaryMapAddressReaderAdapter.VILLAGES_TYPE);
+			if (name.length() >= POSTCODE_MIN_QUERY_LENGTH) {
+				cityTypes.add(BinaryMapAddressReaderAdapter.POSTCODES_TYPE);
+			}
+		}
+		return cityTypes;
+	}
+
 	@Override
 	public synchronized List<City> fillWithSuggestedCities(String name, final ResultMatcher<City> resultMatcher, boolean searchVillages, LatLon currentLocation) {
-		List<City> citiesToFill = new ArrayList<City>();
-		if (cities.isEmpty()) {
-			preloadCities(resultMatcher);
-			citiesToFill.addAll(cities.values());
-			if (!citiesToFill.isEmpty()) {
-				return citiesToFill;
-			}
-		}
-
-		String lang = getLang();
-		preloadCities(null);
-		if (name.length() == 0) {
-			citiesToFill.addAll(cities.values());
-			if (searchVillages) {
-				for (City c : citiesToFill) {
-					resultMatcher.publish(c);
-				}
-				try {
-					citiesToFill.addAll(fillWithVillages(name, lang, resultMatcher));
-				} catch (IOException e) {
-					log.error("Disk operation failed", e); //$NON-NLS-1$
-				}
-			}
-			if (!citiesToFill.isEmpty()) {
-				return citiesToFill;
-			}
-		}
+		List<City> citiesToFill = new ArrayList<>(cities.values());
 		try {
-			// essentially index is created that cities towns are first in cities map
-			if (/*name.length() >= 2 && Algorithms.containsDigit(name) && */searchVillages) {
-				// also try to identify postcodes
-				String uName = name.toUpperCase();
-				List<City> foundCities = file.getCities(BinaryMapIndexReader.buildAddressRequest(resultMatcher), 
-						new CollatorStringMatcher(uName, StringMatcherMode.CHECK_CONTAINS), lang, 
-						BinaryMapAddressReaderAdapter.POSTCODES_TYPE);
-				for (City code : foundCities) {
-					citiesToFill.add(code);
-					if (resultMatcher.isCancelled()) {
-						return citiesToFill;
-					}
-				}
-
-			}
-			name = name.toLowerCase();
-			for (City c : cities.values()) {
-				String cName = c.getName(lang); // lower case not needed, collator ensures that
-				if (CollatorStringMatcher.cmatches(collator, cName, name, StringMatcherMode.CHECK_STARTS_FROM_SPACE)) {
-					if (resultMatcher.publish(c)) {
-						citiesToFill.add(c);
-					}
-				}
-				if (resultMatcher.isCancelled()) {
-					return citiesToFill;
-				}
-			}
-
-			int initialSize = citiesToFill.size();
-			if (/*name.length() >= 3 && */searchVillages) {
-				citiesToFill.addAll(fillWithVillages(name, lang, resultMatcher));
-			}
-			log.debug("Loaded citites " + (citiesToFill.size() - initialSize)); //$NON-NLS-1$
+			citiesToFill.addAll(fillWithCities(name, resultMatcher, getCityTypeFilter(name, searchVillages)));
 		} catch (IOException e) {
 			log.error("Disk operation failed", e); //$NON-NLS-1$
 		}
@@ -292,7 +253,6 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 		preloadBuildings(st, null);
 		return st.getIntersectedStreets();
 	}
-	
 
 	@Override
 	public Building getBuildingByName(Street street, String name) {
@@ -309,17 +269,22 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 
 	@Override
 	public String getName() {
-		if(fileName.indexOf('.') != -1) {
+		if (fileName.indexOf('.') != -1) {
 			return fileName.substring(0, fileName.indexOf('.'));
 		}
 		return fileName;
 	}
-	
+
+	@Override
+	public String getCountryName() {
+		return file.getCountryName();
+	}
+
 	@Override
 	public String getFileName() {
 		return fileName;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getName() + " repository";
@@ -331,7 +296,7 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 			// do not preload cities for that case
 			return null;
 		}
-		if(id < -1 && name != null){
+		if (id < -1 && name != null) {
 			name = name.toUpperCase();
 		}
 		final String cmpName = name;
@@ -348,8 +313,8 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 
 					@Override
 					public boolean publish(City object) {
-						if(id < -1) {
-							if(object.getName().toUpperCase().equals(cmpName)) {
+						if (id < -1) {
+							if (object.getName().toUpperCase().equals(cmpName)) {
 								addCityToPreloadedList(object);
 								canceled = true;
 							}
@@ -372,7 +337,7 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 	public Street getStreetByName(City o, String name) {
 		name = name.toLowerCase();
 		preloadStreets(o, null);
-		Collection<Street> streets = o.getStreets() ;
+		Collection<Street> streets = o.getStreets();
 		String lang = getLang();
 		for (Street s : streets) {
 			String sName = s.getName(lang).toLowerCase();
@@ -388,7 +353,7 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 		cities = new LinkedHashMap<Long, City>();
 		citiesQtree.clear();
 		postCodes.clear();
-		
+
 	}
 
 	@Override
@@ -396,6 +361,4 @@ public class RegionAddressRepositoryBinary implements RegionAddressRepository {
 		return file.getRegionCenter();
 	}
 
-	
-	
 }

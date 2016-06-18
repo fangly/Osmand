@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,17 +16,21 @@ import net.sf.junidecode.Junidecode;
 
 
 public abstract class MapObject implements Comparable<MapObject> {
-	
+
 	public static final MapObjectComparator BY_NAME_COMPARATOR = new MapObjectComparator();
-	
-	
+
+
 	protected String name = null;
 	protected String enName = null;
+	/**
+	 * Looks like: {ru=Москва, dz=མོསི་ཀོ...} and does not contain values of OSM tags "name" and "name:en",
+	 * see {@link name} and {@link enName} respectively.
+	 */
 	protected Map<String, String> names = null;
 	protected LatLon location = null;
 	protected int fileOffset = 0;
 	protected Long id = null;
-	
+
 
 	public void setId(Long id) {
 		this.id = id;
@@ -41,8 +44,8 @@ public abstract class MapObject implements Comparable<MapObject> {
 	}
 
 	public String getName() {
-		if (this.name != null) {
-			return this.name;
+		if (name != null) {
+			return name;
 		}
 		return ""; //$NON-NLS-1$
 	}
@@ -52,11 +55,16 @@ public abstract class MapObject implements Comparable<MapObject> {
 	}
 
 	public void setName(String lang, String name) {
-		if (names == null) {
-			names = new HashMap<String, String>();
-
+		if (Algorithms.isEmpty(lang)) {
+			setName(name);
+		} else if (lang.equals("en")) {
+			setEnName(name);
+		} else {
+			if (names == null) {
+				names = new HashMap<String, String>();
+			}
+			names.put(lang, name);
 		}
-		names.put(lang, name);
 	}
 
 	public Map<String, String> getNamesMap(boolean includeEn) {
@@ -85,27 +93,21 @@ public abstract class MapObject implements Comparable<MapObject> {
 		return l;
 	}
 
-	public void copyNames(MapObject s) {
-		if (Algorithms.isEmpty(name)) {
-			name = s.name;
+	public void copyNames(String otherName, String otherEnName, Map<String, String> otherNames, boolean overwrite) {
+		if (!Algorithms.isEmpty(otherName) && (overwrite || Algorithms.isEmpty(name))) {
+			name = otherName;
 		}
-		if (Algorithms.isEmpty(enName)) {
-			enName = s.enName;
+		if (!Algorithms.isEmpty(otherEnName) && (overwrite || Algorithms.isEmpty(enName))) {
+			enName = otherEnName;
 		}
-		copyNames(s.names);
-	}
+		if (!Algorithms.isEmpty(otherNames)) {
+			if (otherNames.containsKey("name:en")) {
+				enName = otherNames.get("name:en");
+			} else if (otherNames.containsKey("en")) {
+				enName = otherNames.get("en");
+			}
 
-	public void copyNames(Map<String, String> snames) {
-		if (snames != null && snames.containsKey("name:en")) {
-			enName = snames.get("name:en");
-		}
-		if (snames != null && snames.containsKey("en")) {
-			enName = snames.get("en");
-		}
-		if (snames != null) {
-			Iterator<Entry<String, String>> it = snames.entrySet().iterator();
-			while (it.hasNext()) {
-				Entry<String, String> e = it.next();
+			for (Entry<String, String> e : otherNames.entrySet()) {
 				String key = e.getKey();
 				if (key.startsWith("name:")) {
 					key = key.substring("name:".length());
@@ -113,11 +115,23 @@ public abstract class MapObject implements Comparable<MapObject> {
 				if (names == null) {
 					names = new HashMap<String, String>();
 				}
-				if (Algorithms.isEmpty(names.get(key))) {
+				if (overwrite || Algorithms.isEmpty(names.get(key))) {
 					names.put(key, e.getValue());
 				}
 			}
 		}
+	}
+
+	public void copyNames(String otherName, String otherEnName, Map<String, String> otherNames) {
+		copyNames(otherName, otherEnName, otherNames, false);
+	}
+
+	public void copyNames(MapObject s, boolean copyName, boolean copyEnName, boolean overwrite) {
+		copyNames((copyName ? s.name : null), (copyEnName ? s.enName : null), s.names, overwrite);
+	}
+
+	public void copyNames(MapObject s) {
+		copyNames(s, true, true, false);
 	}
 
 	public String getName(String lang) {
@@ -165,7 +179,7 @@ public abstract class MapObject implements Comparable<MapObject> {
 	public void setLocation(double latitude, double longitude) {
 		location = new LatLon(latitude, longitude);
 	}
-	
+
 	@Override
 	public int compareTo(MapObject o) {
 		return OsmAndCollator.primaryCollator().compare(getName(), o.getName());
@@ -174,14 +188,14 @@ public abstract class MapObject implements Comparable<MapObject> {
 	public int getFileOffset() {
 		return fileOffset;
 	}
-	
+
 	public void setFileOffset(int fileOffset) {
 		this.fileOffset = fileOffset;
 	}
-	
+
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + " " + name +"("+id+")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return getClass().getSimpleName() + " " + name + "(" + id + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
@@ -208,7 +222,7 @@ public abstract class MapObject implements Comparable<MapObject> {
 			return false;
 		return true;
 	}
-	
+
 	public static class MapObjectComparator implements Comparator<MapObject> {
 		private final String l;
 		Collator collator = OsmAndCollator.primaryCollator();
@@ -220,7 +234,7 @@ public abstract class MapObject implements Comparable<MapObject> {
 		public MapObjectComparator(String lang) {
 			this.l = lang;
 		}
-		
+
 		@Override
 		public int compare(MapObject o1, MapObject o2) {
 			if (o1 == null ^ o2 == null) {
@@ -241,6 +255,6 @@ public abstract class MapObject implements Comparable<MapObject> {
 				return collator.equals(o1.getName(l), o2.getName(l));
 			}
 		}
-	}	
+	}
 
 }

@@ -55,6 +55,7 @@ public class OpeningHoursHoursDialogFragment extends DialogFragment {
 						new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
+								timePicker.clearFocus();
 								int minute = timePicker.getCurrentMinute();
 								int hourOfDay = timePicker.getCurrentHour();
 								int time = minute + hourOfDay * 60;

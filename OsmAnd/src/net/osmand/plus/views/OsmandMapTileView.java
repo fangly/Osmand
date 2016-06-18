@@ -60,7 +60,6 @@ import java.util.List;
 import java.util.Map;
 
 public class OsmandMapTileView implements IMapDownloaderCallback {
-
 	private static final int MAP_REFRESH_MESSAGE = OsmAndConstants.UI_HANDLER_MAP_VIEW + 4;
 	private static final int MAP_FORCE_REFRESH_MESSAGE = OsmAndConstants.UI_HANDLER_MAP_VIEW + 5;
 	private static final int BASE_REFRESH_MESSAGE = OsmAndConstants.UI_HANDLER_MAP_VIEW + 3;
@@ -72,9 +71,6 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 	private Activity activity;
 	private OsmandApplication application;
 	protected OsmandSettings settings = null;
-
-	private int maxZoom;
-	private int minZoom;
 
 	private class FPSMeasurement {
 		int fpsMeasureCount = 0;
@@ -311,8 +307,8 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 
 	// ///////////////////////// NON UI PART (could be extracted in common) /////////////////////////////
 	public void setIntZoom(int zoom) {
-		zoom = zoom > maxZoom ? maxZoom : zoom;
-		zoom = zoom < minZoom ? minZoom : zoom;
+		zoom = zoom > getMaxZoom() ? getMaxZoom() : zoom;
+		zoom = zoom < getMinZoom() ? getMinZoom() : zoom;
 		if (mainLayer != null) {
 			animatedDraggingThread.stopAnimating();
 			currentViewport.setZoomAndAnimation(zoom, 0, 0);
@@ -322,7 +318,7 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 	}
 
 	public void setComplexZoom(int zoom, double mapDensity) {
-		if (mainLayer != null && zoom <= maxZoom && zoom >= minZoom) {
+		if (mainLayer != null && zoom <= getMaxZoom() && zoom >= getMinZoom()) {
 			animatedDraggingThread.stopAnimating();
 			currentViewport.setZoomAndAnimation(zoom, 0);
 			currentViewport.setMapDensity(mapDensity);
@@ -408,13 +404,12 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 	public void setMainLayer(BaseMapLayer mainLayer) {
 		this.mainLayer = mainLayer;
 		int zoom = currentViewport.getZoom();
-		maxZoom = mainLayer.getMaximumShownMapZoom() - 1;
-		minZoom = mainLayer.getMinimumShownMapZoom() + 1;
-		if (maxZoom < zoom) {
-			zoom = maxZoom;
+
+		if (getMaxZoom() < zoom) {
+			zoom = getMaxZoom();
 		}
-		if (minZoom > zoom) {
-			zoom = minZoom;
+		if (getMinZoom() > zoom) {
+			zoom = getMinZoom();
 		}
 		currentViewport.setZoomAndAnimation(zoom, 0, 0);
 		refreshMap();
@@ -434,6 +429,20 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 
 	public OsmandSettings getSettings() {
 		return settings;
+	}
+
+	public int getMaxZoom() {
+		if (mainLayer != null) {
+			return mainLayer.getMaximumShownMapZoom();
+		}
+		return BaseMapLayer.DEFAULT_MAX_ZOOM;
+	}
+
+	public int getMinZoom() {
+		if (mainLayer != null) {
+			return mainLayer.getMinimumShownMapZoom() + 1;
+		}
+		return BaseMapLayer.DEFAULT_MIN_ZOOM;
 	}
 
 	private void drawBasemap(Canvas canvas) {
@@ -740,7 +749,7 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 
 	// for internal usage
 	protected void zoomToAnimate(int zoom, double zoomToAnimate, boolean notify) {
-		if (mainLayer != null && maxZoom >= zoom && minZoom <= zoom) {
+		if (mainLayer != null && getMaxZoom() >= zoom && getMinZoom() <= zoom) {
 			currentViewport.setZoomAndAnimation(zoom, zoomToAnimate);
 			currentViewport.setRotate(zoom > LOWEST_ZOOM_TO_ROTATE ? rotate : 0);
 			refreshMap();
@@ -830,16 +839,13 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 			animatedDraggingThread.stopAnimating();
 		}
 		for (int i = layers.size() - 1; i >= 0; i--) {
-			if (layers.get(i).onTouchEvent(event, getCurrentRotatedTileBox())) {
-				return true;
-			}
+			layers.get(i).onTouchEvent(event, getCurrentRotatedTileBox());
 		}
-		if (!multiTouchSupport.onTouchEvent(event)) {
-			/* return */
-			doubleTapScaleDetector.onTouchEvent(event);
-			if (!doubleTapScaleDetector.isInZoomMode()) {
-				gestureDetector.onTouchEvent(event);
-			}
+		final boolean isMultiTouch = multiTouchSupport.onTouchEvent(event);
+		doubleTapScaleDetector.onTouchEvent(event);
+		if (!(isMultiTouch || doubleTapScaleDetector.isInZoomMode()
+				|| doubleTapScaleDetector.isDoubleTapping())) {
+			gestureDetector.onTouchEvent(event);
 		}
 		return true;
 	}
@@ -982,6 +988,22 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 			changeZoomPosition((float) dz, 0);
 		}
 
+		@Override
+		public boolean onDoubleTap(MotionEvent e) {
+			LOG.debug("onDoubleTap getZoom()");
+			if (!doubleTapScaleDetector.isInZoomMode()) {
+				if (isZoomingAllowed(getZoom(), 1.1f)) {
+					final RotatedTileBox tb = getCurrentRotatedTileBox();
+					final double lat = tb.getLatFromPixel(e.getX(), e.getY());
+					final double lon = tb.getLonFromPixel(e.getX(), e.getY());
+					getAnimatedDraggingThread().startMoving(lat, lon, getZoom() + 1, true);
+				}
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		private void changeZoomPosition(float dz, float angle) {
 			final QuadPoint cp = initialViewport.getCenterPixelPoint();
 			float dx = cp.x - initialMultiTouchCenterPoint.x;
@@ -1014,16 +1036,16 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 	}
 
 	private boolean isZoomingAllowed(int baseZoom, float dz) {
-		if (baseZoom > maxZoom) {
+		if (baseZoom > getMaxZoom()) {
 			return false;
 		}
-		if (baseZoom > maxZoom - 1 && dz > 1) {
+		if (baseZoom > getMaxZoom() - 1 && dz > 1) {
 			return false;
 		}
-		if (baseZoom < minZoom) {
+		if (baseZoom < getMinZoom()) {
 			return false;
 		}
-		if (baseZoom < minZoom + 1 && dz < -1) {
+		if (baseZoom < getMinZoom() + 1 && dz < -1) {
 			return false;
 		}
 		return true;
@@ -1095,18 +1117,6 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 				return true;
 			}
 			return false;
-		}
-
-		@Override
-		public boolean onDoubleTap(MotionEvent e) {
-			LOG.debug("onDoubleTap getZoom()");
-			if (isZoomingAllowed(getZoom(), 1.1f)) {
-				final RotatedTileBox tb = getCurrentRotatedTileBox();
-				final double lat = tb.getLatFromPixel(e.getX(), e.getY());
-				final double lon = tb.getLonFromPixel(e.getX(), e.getY());
-				getAnimatedDraggingThread().startMoving(lat, lon, getZoom() + 1, true);
-			}
-			return true;
 		}
 	}
 

@@ -17,11 +17,11 @@ import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +81,19 @@ public class BinaryMapIndexReader {
 	public static final int SHIFT_COORDINATES = 5;
 	private final static Log log = PlatformUtil.getLog(BinaryMapIndexReader.class);
 	public static boolean READ_STATS = false;
+	public static final SearchPoiTypeFilter ACCEPT_ALL_POI_TYPE_FILTER = new SearchPoiTypeFilter() {
+		@Override
+		public boolean isEmpty() {
+			return false;
+		}
+		
+		@Override
+		public boolean accept(PoiCategory type, String subcategory) {
+			return true;
+		}
+	};
+	
+	
 	
 	
 	private final RandomAccessFile raf;
@@ -370,6 +383,25 @@ public class BinaryMapIndexReader {
 
 	public File getFile() {
 		return file;
+	}
+
+	private List<String> getCountryAndRegionNames() {
+		return new ArrayList<>(Arrays.asList(getRegionNames().get(0).split("_")));
+	}
+
+	public String getCountryName() {
+		return getCountryAndRegionNames().get(0);
+	}
+
+	private String getRegionName() {
+		List<String> names = getCountryAndRegionNames();
+		if (names.size() >= 2) {
+			String region = names.get(1);
+			region = region.substring(0, 1).toUpperCase() + region.substring(1);
+			return region;
+		} else {
+			return null;
+		}
 	}
 
 	public int readByte() throws IOException {
@@ -1266,20 +1298,21 @@ public class BinaryMapIndexReader {
 		return dataObject;
 	}
 
-	public List<MapObject> searchAddressDataByName(SearchRequest<MapObject> req) throws IOException {
-		if (req.nameQuery == null || req.nameQuery.length() == 0) {
-			throw new IllegalArgumentException();
-		}
+	public List<MapObject> searchAddressDataByName(SearchRequest<MapObject> req, List<Integer> typeFilter) throws IOException {
 		for (AddressRegion reg : addressIndexes) {
 			if (reg.indexNameOffset != -1) {
 				codedIS.seek(reg.indexNameOffset);
 				int len = readInt();
 				int old = codedIS.pushLimit(len);
-				addressAdapter.searchAddressDataByName(reg, req, null);
+				addressAdapter.searchAddressDataByName(reg, req, typeFilter);
 				codedIS.popLimit(old);
 			}
 		}
 		return req.getSearchResults();
+	}
+
+	public List<MapObject> searchAddressDataByName(SearchRequest<MapObject> req) throws IOException {
+		return searchAddressDataByName(req, null);
 	}
 
 	public void initCategories(PoiRegion poiIndex) throws IOException {
@@ -2147,18 +2180,7 @@ public class BinaryMapIndexReader {
 			println(" " + poiRegion.subcategories.get(i));
 		}
 
-		SearchRequest<Amenity> req = buildSearchPoiRequest(sleft, sright, stop, sbottom, -1, new SearchPoiTypeFilter() {
-			@Override
-			public boolean accept(PoiCategory type, String subcategory) {
-				return true;
-			}
-
-			@Override
-			public boolean isEmpty() {
-				return false;
-			}
-
-		}, null);
+		SearchRequest<Amenity> req = buildSearchPoiRequest(sleft, sright, stop, sbottom, -1, ACCEPT_ALL_POI_TYPE_FILTER, null);
 		List<Amenity> results = reader.searchPoi(req);
 		for (Amenity a : results) {
 			println(a.getType() + " " + a.getSubType() + " " + a.getName() + " " + a.getLocation());
