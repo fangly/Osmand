@@ -561,6 +561,10 @@
 	<string name="plugin_ski_descr">This plugin for OsmAnd puts at your fingertips details of global downhill ski slopes, cross country ski runs, Alpine ski routes, cable cars and ski lifts. Routes and pistes are shown color-coded by difficulty, and depicted in a special \'Winter\' map style which assimilates a snow-colored winter landscape.
 		\n\nActivating this view changes the map style to \'Winter and ski\', showing all landscape features under wintry conditions. This view can be reverted by either de-activating it again here, or by changing the \'Map style\' under \'Configure map\' as desired.
 	</string>
+    <string name="plugin_highup_name">HighUp</string>
+	<string name="plugin_highup_descr">This Osmand plugin was designed for hikes in the mountains and other activities that need to take elevation changes into account.
+		\n\nAt this time, HighUp can plot elevation profiles from GPX traces that are being recorded.
+	</string>
     <string name="audionotes_plugin_name">Audio/video notes</string>
     <string name="audionotes_plugin_description">The Audio/video notes plugin provides the functionality to take audio/photography/video notes during a trip, using either a button on the map screen, or directly the context menu for any position on the map.</string>
     <string name="osmand_parking_plugin_name">Parking Position</string>
