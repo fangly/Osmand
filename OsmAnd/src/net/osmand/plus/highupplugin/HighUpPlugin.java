@@ -30,18 +30,18 @@ public class HighUpPlugin extends OsmandPlugin {
 	
 	@Override
 	public int getLogoResourceId() {
-		return R.drawable.ic_plugin_skimaps; // TODO
+		return R.drawable.ic_plugin_highup;
 	}
 	
 	@Override
 	public int getAssetResourceName() {
-		return R.drawable.ski_map; // TODO
+		return R.drawable.ski_map; // TODO drawable-xhdpi/ski_map.webp
 	}
 
 
 	@Override
 	public String getHelpFileName() {
-		return "feature_articles/ski-plugin.html"; // TODO
+		return "feature_articles/highup-plugin.html"; // TODO
 	}
 
 	@Override
