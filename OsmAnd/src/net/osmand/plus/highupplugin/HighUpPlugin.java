@@ -35,13 +35,13 @@ public class HighUpPlugin extends OsmandPlugin {
 	
 	@Override
 	public int getAssetResourceName() {
-		return R.drawable.ski_map; // TODO drawable-xhdpi/ski_map.webp
+		return R.drawable.highup;
 	}
 
 
 	@Override
 	public String getHelpFileName() {
-		return "feature_articles/highup-plugin.html"; // TODO
+		return "feature_articles/highup-plugin.html";
 	}
 
 	@Override
