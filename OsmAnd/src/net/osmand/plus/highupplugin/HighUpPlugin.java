@@ -12,7 +12,7 @@ public class HighUpPlugin extends OsmandPlugin {
 	public static final String ID = "highup.plugin";
 	public static final String COMPONENT = "net.osmand.highupPlugin";
 	private OsmandApplication app;
-	private String previousRenderer = RendererRegistry.DEFAULT_RENDER;
+//	private String previousRenderer = RendererRegistry.DEFAULT_RENDER;
 	
 	public HighUpPlugin(OsmandApplication app) {
 		this.app = app;
@@ -38,28 +38,9 @@ public class HighUpPlugin extends OsmandPlugin {
 		return R.drawable.highup;
 	}
 
-
 	@Override
 	public String getHelpFileName() {
 		return "feature_articles/highup-plugin.html";
-	}
-
-	@Override
-	public boolean init(final OsmandApplication app, final Activity activity) {
-		if(activity != null) {
-			// called from UI 
-			previousRenderer = app.getSettings().RENDERER.get(); 
-			app.getSettings().RENDERER.set(RendererRegistry.WINTER_SKI_RENDER);
-		}
-		return true;
-	}
-	
-	@Override
-	public void disable(OsmandApplication app) {
-		super.disable(app);
-		if(app.getSettings().RENDERER.get().equals(RendererRegistry.WINTER_SKI_RENDER)) {
-			app.getSettings().RENDERER.set(previousRenderer);
-		}
 	}
 
 	@Override
@@ -71,4 +52,23 @@ public class HighUpPlugin extends OsmandPlugin {
 	public Class<? extends Activity> getSettingsActivity() {
 		return null;
 	}
+
+//	@Override
+//	public boolean init(final OsmandApplication app, final Activity activity) {
+//		if(activity != null) {
+//			// called from UI 
+//			previousRenderer = app.getSettings().RENDERER.get(); 
+//			app.getSettings().RENDERER.set(RendererRegistry.WINTER_SKI_RENDER);
+//		}
+//		return true;
+//	}
+//	
+//	@Override
+//	public void disable(OsmandApplication app) {
+//		super.disable(app);
+//		if(app.getSettings().RENDERER.get().equals(RendererRegistry.WINTER_SKI_RENDER)) {
+//			app.getSettings().RENDERER.set(previousRenderer);
+//		}
+//	}
+
 }
