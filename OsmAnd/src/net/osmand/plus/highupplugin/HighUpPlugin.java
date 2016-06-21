@@ -50,20 +50,13 @@ public class HighUpPlugin extends OsmandPlugin {
 	private OsmandSettings settings;
 	private OsmandApplication app;
 	private TextInfoWidget highupControl;
-	private LiveMonitoringHelper liveMonitoringHelper;
 	private boolean isSaving;
 
 	public HighUpPlugin(OsmandApplication app) {
 		this.app = app;
-		liveMonitoringHelper = new LiveMonitoringHelper(app);
 		final List<ApplicationMode> am = ApplicationMode.allPossibleValues();
 		ApplicationMode.regWidget("highup", am.toArray(new ApplicationMode[am.size()]));
 		settings = app.getSettings();
-	}
-	
-	@Override
-	public void updateLocation(Location location) {
-		liveMonitoringHelper.updateLocation(location);
 	}
 	
 	@Override
