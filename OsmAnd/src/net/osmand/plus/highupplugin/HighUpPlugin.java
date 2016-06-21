@@ -33,7 +33,6 @@ import net.osmand.plus.OsmandSettings;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.MapActivity;
 import net.osmand.plus.activities.SavingTrackHelper;
-import net.osmand.plus.dashboard.tools.DashFragmentData;
 import net.osmand.plus.views.MapInfoLayer;
 import net.osmand.plus.views.mapwidgets.TextInfoWidget;
 import net.osmand.plus.views.OsmandMapLayer.DrawSettings;
@@ -488,9 +487,5 @@ public class HighUpPlugin extends OsmandPlugin {
 		return ll;
 	}
 
-	@Override
-	public DashFragmentData getCardFragment() {
-		return DashTrackFragment.FRAGMENT_DATA;
-	}
 
 }
