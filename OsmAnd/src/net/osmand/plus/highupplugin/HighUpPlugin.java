@@ -154,7 +154,7 @@ public class HighUpPlugin extends OsmandPlugin {
 	
 	@Override
 	public Class<? extends Activity> getSettingsActivity() {
-		return SettingsMonitoringActivity.class;
+		return SettingsHighupActivity.class;
 	}
 
 	
