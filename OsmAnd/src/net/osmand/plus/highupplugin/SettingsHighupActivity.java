@@ -14,14 +14,14 @@ import net.osmand.plus.OsmandSettings;
 import net.osmand.plus.OsmandSettings.CommonPreference;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.SettingsBaseActivity;
-import net.osmand.plus.audionotes.AudioVideoNotesPlugin;
+import net.osmand.plus.highupplugin.HighUpPlugin;
 
 import org.apache.commons.logging.Log;
 
 
 public class SettingsHighupActivity extends SettingsBaseActivity {
 
-	private static final Log log = PlatformUtil.getLog(AudioVideoNotesPlugin.class);
+	private static final Log log = PlatformUtil.getLog(HighUpPlugin.class);
 
 
 	@Override
