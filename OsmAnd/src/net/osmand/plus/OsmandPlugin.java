@@ -27,7 +27,7 @@ import net.osmand.plus.osmo.OsMoPlugin;
 import net.osmand.plus.parkingpoint.ParkingPositionPlugin;
 import net.osmand.plus.rastermaps.OsmandRasterMapsPlugin;
 import net.osmand.plus.skimapsplugin.SkiMapsPlugin;
-import net.osmand.plus.highupplugin.HighUpPlugin;
+import net.osmand.plus.elevateplugin.ElevatePlugin;
 import net.osmand.plus.srtmplugin.SRTMPlugin;
 import net.osmand.plus.views.OsmandMapTileView;
 
@@ -113,8 +113,8 @@ public abstract class OsmandPlugin {
 //		checkMarketPlugin(app, new TouringViewPlugin(app), false, TouringViewPlugin.COMPONENT, null);
 		checkMarketPlugin(app, new NauticalMapsPlugin(app), false, NauticalMapsPlugin.COMPONENT, null);
 		checkMarketPlugin(app, new SkiMapsPlugin(app), false, SkiMapsPlugin.COMPONENT, null);
-		//checkMarketPlugin(app, new HighUpPlugin(app), false, HighUpPlugin.COMPONENT, null); // ok
-		allPlugins.add(new HighUpPlugin(app));
+		//checkMarketPlugin(app, new ElevatePlugin(app), false, ElevatePlugin.COMPONENT, null); // ok
+		allPlugins.add(new ElevatePlugin(app));
 
 //		checkMarketPlugin(app, new RoutePointsPlugin(app), false /*FIXME*/, RoutePointsPlugin.ROUTE_POINTS_PLUGIN_COMPONENT, null);
 		allPlugins.add(new AudioVideoNotesPlugin(app));

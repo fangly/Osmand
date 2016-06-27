@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.osmand.HighUpPlugin"
+    package="net.osmand.plus.elevateplugin"
     android:versionCode="6"
     android:versionName="1.0" >
 
@@ -12,7 +12,7 @@
         android:icon="@drawable/icon"
         android:label="@string/app_label" >
         <activity
-            android:name="net.osmand.highup.ElevationProfileActivity"
+            android:name="net.osmand.plus.elevateplugin.ElevationProfileActivity"
             android:label="@string/app_name" >
             <!-- 
             <intent-filter>

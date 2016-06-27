@@ -1,4 +1,4 @@
-package net.osmand.plus.highupplugin;
+package net.osmand.plus.elevateplugin;
 
 import android.app.Activity;
 import android.content.Context;
@@ -43,29 +43,29 @@ import java.util.List;
 
 import gnu.trove.list.array.TIntArrayList;
 
-public class HighUpPlugin extends OsmandPlugin {
-	private static final String ID = "highup.plugin";
+public class ElevatePlugin extends OsmandPlugin {
+	private static final String ID = "elevateplugin";
 	public final static String OSMAND_SAVE_SERVICE_ACTION = "OSMAND_SAVE_SERVICE_ACTION";
 	private OsmandSettings settings;
 	private OsmandApplication app;
-	private TextInfoWidget highupControl;
+	private TextInfoWidget elevateControl;
 	private boolean isSaving;
 
-	public HighUpPlugin(OsmandApplication app) {
+	public ElevatePlugin(OsmandApplication app) {
 		this.app = app;
 		final List<ApplicationMode> am = ApplicationMode.allPossibleValues();
-		ApplicationMode.regWidget("highup", am.toArray(new ApplicationMode[am.size()]));
+		ApplicationMode.regWidget("elevate", am.toArray(new ApplicationMode[am.size()]));
 		settings = app.getSettings();
 	}
 	
 	@Override
 	public int getLogoResourceId() {
-		return R.drawable.ic_plugin_highup;
+		return R.drawable.ic_plugin_elevate;
 	}
 	
 	@Override
 	public int getAssetResourceName() {
-		return R.drawable.highup;
+		return R.drawable.elevate;
 	}
 
 	@Override
@@ -75,17 +75,17 @@ public class HighUpPlugin extends OsmandPlugin {
 
 	@Override
 	public String getDescription() {
-		return app.getString(net.osmand.plus.R.string.plugin_highup_descr);
+		return app.getString(net.osmand.plus.R.string.plugin_elevate_descr);
 	}
 
 	@Override
 	public String getName() {
-		return app.getString(net.osmand.plus.R.string.plugin_highup_name);
+		return app.getString(net.osmand.plus.R.string.plugin_elevate_name);
 	}
 
 	@Override
 	public String getHelpFileName() {
-		return "feature_articles/highup-plugin.html";
+		return "feature_articles/elevate-plugin.html";
 	}
 
 
@@ -96,25 +96,25 @@ public class HighUpPlugin extends OsmandPlugin {
 
 	private void registerWidget(MapActivity activity) {
 		MapInfoLayer layer = activity.getMapLayers().getMapInfoLayer();
-		highupControl = createHighupControl(activity);
+		elevateControl = createElevateControl(activity);
 		
-		layer.registerSideWidget(highupControl,
-				R.drawable.ic_action_play_dark, R.string.map_widget_monitoring, "highup", false, 20); // 18 initially
+		layer.registerSideWidget(elevateControl,
+				R.drawable.ic_action_play_dark, R.string.map_widget_monitoring, "elevate", false, 20); // 18 initially
 		layer.recreateControls();
 	}
 
 	@Override
 	public void updateLayers(OsmandMapTileView mapView, MapActivity activity) {
 		if (isActive()) {
-			if (highupControl == null) {
+			if (elevateControl == null) {
 				registerWidget(activity);
 			}
 		} else {
-			if (highupControl != null) {
+			if (elevateControl != null) {
 				MapInfoLayer layer = activity.getMapLayers().getMapInfoLayer();
-				layer.removeSideWidget(highupControl);
+				layer.removeSideWidget(elevateControl);
 				layer.recreateControls();
-				highupControl = null;
+				elevateControl = null;
 			}
 		}
 	}
@@ -154,7 +154,7 @@ public class HighUpPlugin extends OsmandPlugin {
 	
 	@Override
 	public Class<? extends Activity> getSettingsActivity() {
-		return SettingsHighupActivity.class;
+		return SettingsElevateActivity.class;
 	}
 
 	
@@ -162,8 +162,8 @@ public class HighUpPlugin extends OsmandPlugin {
 	/**
 	 * creates (if it wasn't created previously) the control to be added on a MapInfoLayer that shows a monitoring state (recorded/stopped)
 	 */
-	private TextInfoWidget createHighupControl(final MapActivity map) {
-		highupControl = new TextInfoWidget(map) {
+	private TextInfoWidget createElevateControl(final MapActivity map) {
+		elevateControl = new TextInfoWidget(map) {
 			long lastUpdateTime;
 			@Override
 			public boolean updateInfo(DrawSettings drawSettings) {
@@ -173,7 +173,7 @@ public class HighUpPlugin extends OsmandPlugin {
 					return true;
 				}
 				//String txt = map.getString(R.string.monitoring_control_start);
-				String txt = map.getString(R.string.plugin_highup_name);
+				String txt = map.getString(R.string.plugin_elevate_name);
 				String subtxt = null;
 				int dn = R.drawable.widget_monitoring_rec_inactive_night;
 				int d = R.drawable.widget_monitoring_rec_inactive_day;
@@ -237,10 +237,10 @@ public class HighUpPlugin extends OsmandPlugin {
 				return true;
 			}
 		};
-		highupControl.updateInfo(null);
+		elevateControl.updateInfo(null);
 
-		// highupControl.addView(child);
-		highupControl.setOnClickListener(new View.OnClickListener() {
+		// elevateControl.addView(child);
+		elevateControl.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				controlDialog(map);
@@ -248,7 +248,7 @@ public class HighUpPlugin extends OsmandPlugin {
 
 			
 		});
-		return highupControl;
+		return elevateControl;
 	}
 
 	private void controlDialog(final Activity map) {
@@ -305,7 +305,7 @@ public class HighUpPlugin extends OsmandPlugin {
 						}
 					});
 				}
-				highupControl.updateInfo(null);
+				elevateControl.updateInfo(null);
 			}
 		};
 		if(strings.length == 1) {
@@ -328,8 +328,8 @@ public class HighUpPlugin extends OsmandPlugin {
 			@Override
 			protected void onPreExecute() {
 				isSaving = true;
-				if (highupControl != null) {
-					highupControl.updateInfo(null);
+				if (elevateControl != null) {
+					elevateControl.updateInfo(null);
 				}
 			}
 
@@ -348,8 +348,8 @@ public class HighUpPlugin extends OsmandPlugin {
 			@Override
 			protected void onPostExecute(Void aVoid) {
 				isSaving = false;
-				if (highupControl != null) {
-					highupControl.updateInfo(null);
+				if (elevateControl != null) {
+					elevateControl.updateInfo(null);
 				}
 			}
 		}, (Void) null);

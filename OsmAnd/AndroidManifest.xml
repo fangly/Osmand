@@ -167,7 +167,7 @@
 		<activity android:name="net.osmand.plus.activities.SettingsGeneralActivity" android:configChanges="keyboardHidden|orientation" />
 		<activity android:name="net.osmand.plus.activities.SettingsNavigationActivity" android:configChanges="keyboardHidden|orientation" />
 		<activity android:name="net.osmand.plus.monitoring.SettingsMonitoringActivity" android:configChanges="keyboardHidden|orientation" />
-		<activity android:name="net.osmand.plus.highupplugin.SettingsHighupActivity" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name="net.osmand.plus.elevateplugin.SettingsElevateActivity" android:configChanges="keyboardHidden|orientation" />
 		<activity android:name="net.osmand.plus.rastermaps.SettingsRasterMapsActivity" android:configChanges="keyboardHidden|orientation" />
 		<activity android:name="net.osmand.plus.routepointsnavigation.RoutePointsActivity" />
 

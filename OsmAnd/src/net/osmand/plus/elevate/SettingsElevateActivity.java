@@ -1,4 +1,4 @@
-package net.osmand.plus.highupplugin;
+package net.osmand.plus.elevateplugin;
 
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
@@ -14,14 +14,14 @@ import net.osmand.plus.OsmandSettings;
 import net.osmand.plus.OsmandSettings.CommonPreference;
 import net.osmand.plus.R;
 import net.osmand.plus.activities.SettingsBaseActivity;
-import net.osmand.plus.highupplugin.HighUpPlugin;
+import net.osmand.plus.elevateplugin.ElevatePlugin;
 
 import org.apache.commons.logging.Log;
 
 
-public class SettingsHighupActivity extends SettingsBaseActivity {
+public class SettingsElevateActivity extends SettingsBaseActivity {
 
-	private static final Log log = PlatformUtil.getLog(HighUpPlugin.class);
+	private static final Log log = PlatformUtil.getLog(ElevatePlugin.class);
 
 
 	@Override
